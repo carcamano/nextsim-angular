@@ -26056,6 +26056,11 @@ main {
   transition: ease-in 0.2s !important;
   background: #FAFAFA !important;
 }
+.owl-carousel .owl-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .properties .properties-list .item:hover {
   -webkit-box-shadow: 2px 5px 8px #cccccc;
@@ -26169,6 +26174,7 @@ main {
   font-size: 13px;
   font-weight: 600;
   color: #575656;
+  text-transform: capitalize;
 }
 
 .properties .properties-list .item .pos-content .neighborhood {
@@ -27002,6 +27008,10 @@ main {
 
 .PropertyCardCarousel
 .owl-lazy {
+  height: 100%;
+}
+
+.owl-carousel .owl-stage-outer, .owl-carousel .owl-stage, .owl-carousel.owl-drag .owl-item {
   height: 100%;
 }
 

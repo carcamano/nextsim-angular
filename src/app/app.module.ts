@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import {RouterModule} from '@angular/router';
 import {ROUTES} from './app.routes';
 import { FooterComponent } from './footer/footer.component';
+import {ImoveisService} from './imoveis/imoveis.service';
+import {HttpClientModule} from '@angular/common/http';
+import {OwlModule} from 'ngx-owl-carousel';
 
 @NgModule({
   declarations: [
@@ -19,9 +22,13 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    OwlModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [
+    ImoveisService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
