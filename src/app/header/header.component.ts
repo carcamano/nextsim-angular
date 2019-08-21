@@ -12,8 +12,10 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router) {
     router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && event.url === '/imoveis') {
+      if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
         this.rootView = false;
+      } else if (event instanceof NavigationEnd && !event.url.includes('/imoveis')) {
+        this.rootView = true;
       }
     });
   }

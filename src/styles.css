@@ -12747,7 +12747,7 @@ a:hover {
 }
 
 .content.properties {
-  margin-top: 0 !important;
+  margin-top: 170px !important;
 }
 
 .content .title-internal {
@@ -24967,6 +24967,7 @@ main {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
+  display: none !important;
 }
 
 @media (max-width: 768px) {
@@ -25732,6 +25733,8 @@ main {
   padding-top: 100px;
   position: relative;
   text-align: center;
+
+  background: url("assets/img/house-bg.jpg");
 }
 
 .home-header .owl-carousel {

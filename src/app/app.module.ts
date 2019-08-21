@@ -11,6 +11,9 @@ import { FooterComponent } from './footer/footer.component';
 import {ImoveisService} from './imoveis/imoveis.service';
 import {HttpClientModule} from '@angular/common/http';
 import {OwlModule} from 'ngx-owl-carousel';
+import { ImovelComponent } from './imovel/imovel.component';
+import {AgmCoreModule} from '@agm/core';
+import { QueroNegociarComponent } from './quero-negociar/quero-negociar.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,17 @@ import {OwlModule} from 'ngx-owl-carousel';
     HeaderComponent,
     ImoveisComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    ImovelComponent,
+    QueroNegociarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     OwlModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB8F9P_r8OgBfXItSsOAGNB5LnIHWw-Jbw'
+    }),
     RouterModule.forRoot(ROUTES)
   ],
   providers: [

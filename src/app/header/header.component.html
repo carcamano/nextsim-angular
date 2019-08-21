@@ -1,44 +1,57 @@
-<header class="home-header" *ngIf="rootView">
+<header class="" [ngClass]="{'home-header': rootView, 'container-fluid PropertyListHeader': !rootView }">
   <div class="row NextMobileMenu d-lg-none mt-4">
     <div class="col-2 text-left">
-      <a class="toggleMenu" >
-        <img src="assets/img/menu-mobile.png" >
+      <a class="toggleMenu">
+        <img src="assets/img/menu-mobile.png">
       </a>
     </div>
     <div class="col-8 text-center">
-      <a href="index.html">
+      <a [routerLink]='["/"]'>
       </a>
     </div>
     <div class="col-2 text-right">
-      <a class="toggleMenuPerfil" ><img src="assets/img/user-mobile.png" ></a>
+      <a class="toggleMenuPerfil"><img src="assets/img/user-mobile.png"></a>
     </div>
   </div>
   <div class="MenuMobile animated">
     <div class="container-fluid">
       <div class="row MobileMenuHeader">
-        <div class="col-12 col-sm-12"><a href="index.html#" class="CloseMenu"><img src="assets/img/menu-burg-laranja.png">
-          <span>MENU</span></a>
+        <div class="col-12 col-sm-12">
+          <a [routerLink]='["/"]' class="CloseMenu">
+            <img src="assets/img/menu-burg-laranja.png" />
+          <span>MENU</span>
+          </a>
         </div>
       </div>
       <div class="row">
         <div class="col-12  col-sm-12 px-0">
           <ul class="FirstMenu">
             <li class="CollapseMobile1">
-              <a href="index.html#">Quero alugar</a>
+              <a href="">Quero alugar</a>
               <ul class="SecondMenu Collapse1">
-                <li><a class="dropdown-item" href="imoveis@categoria=residencial&amp;finalidade[]=alugar&amp;search=&amp;filter-interno=1.html">Residencial</a></li>
-                <li><a class="dropdown-item" href="imoveis@categoria=comercial&amp;finalidade[]=alugar&amp;search=&amp;filter-interno=1.html">Comercial</a></li>
+                <li>
+                  <a class="dropdown-item"
+                       [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar'}">Residencial</a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                     [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'alugar'}">Comercial</a>
+                </li>
               </ul>
             </li>
             <li class="CollapseMobile2">
               <a href="index.html#">Quero comprar</a>
               <ul class="SecondMenu Collapse2">
-                <li><a class="dropdown-item" href="imoveis@categoria=residencial&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">Residencial</a></li>
-                <li><a class="dropdown-item" href="imoveis@categoria=comercial&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">Comercial</a></li>
+                <li><a class="dropdown-item"
+                       [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar'}">Residencial</a>
+                </li>
+                <li><a class="dropdown-item"
+                       [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'comprar'}">Comercial</a>
+                </li>
               </ul>
             </li>
-            <li><a href="quero-negociar.html">Quero anunciar</a></li>
-            <li><a href="sobre-nos.html">Sobre nós</a></li>
+            <li><a [routerLink]='["/anunciar"]'>Quero anunciar</a></li>
+            <li><a [routerLink]='["/sobre"]'>Sobre nós</a></li>
           </ul>
         </div>
       </div>
@@ -47,1143 +60,97 @@
           <div class="d-flex align-items-end align-self-end">
             <ul class="SocialMobileMenu">
               <li><a href="https://www.facebook.com/nextsim"><img src="assets/img/Caminho&#32;354.png" alt=""></a></li>
-              <li><a href="https://www.instagram.com/next_sim/"><img src="assets/img/Caminho&#32;355.png" alt=""></a></li>
-              <li><a href="https://www.youtube.com/channel/nextsim?sub_confirmation=1"><img src="assets/img/Caminho&#32;356.png" alt=""></a></li>
+              <li><a href="https://www.instagram.com/next_sim/"><img src="assets/img/Caminho&#32;355.png" alt=""></a>
+              </li>
+              <li><a href="https://www.youtube.com/channel/nextsim?sub_confirmation=1"><img
+                src="assets/img/Caminho&#32;356.png" alt=""></a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="MenuMobilePerfil animated" >
+  <div class="MenuMobilePerfil animated">
     <div class="container-fluid">
       <div class="row MobileMenuHeaderPerfil">
-        <div class="col-12  col-sm-12"><a href="index.html#" class="CloseMenuPerfil"><img src="assets/img/user-mobile-orange.png" width="17" alt="user">
+        <div class="col-12  col-sm-12"><a href="#" class="CloseMenuPerfil"><img
+          src="assets/img/user-mobile-orange.png" width="17" alt="user">
           <span>MEU PERFIL</span></a>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="display: none;">
         <div class="col-12 col-sm-12">
           <ul class="MenuPerfilBtns">
             <li class="">
-              <button type="button" class="btn btn-enter btn-rounded CloseMenuPerfil"  data-toggle="modal" data-target="#login">Entrar</button>
+              <button type="button" class="btn btn-enter btn-rounded CloseMenuPerfil" data-toggle="modal"
+                      data-target="#login">Entrar
+              </button>
             </li>
             <li class="">
-              <button type="button" class="btn btn-sing-up btn-rounded CloseMenuPerfil" data-toggle="modal" data-target="#cadastro">Cadastre-se</button>
+              <button type="button" class="btn btn-sing-up btn-rounded CloseMenuPerfil" data-toggle="modal"
+                      data-target="#cadastro">Cadastre-se
+              </button>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="home-header-fixed">
+  <div class="" [ngClass]="{'header-nav container alt': !rootView, 'home-header-fixed': rootView}">
     <div class="container">
       <nav class="header-nav container">
         <ul class="d-none d-sm-none d-md-none d-lg-flex">
           <li class="logo">
-            <a href="index.html">
-              <img src="assets/img/logo-next-home.svg" alt="" width="145">
+            <a [routerLink]="['/']">
+              <img src="assets/img/logo-next-home.svg" alt="" width="145" *ngIf="rootView">
+              <img src="assets/img/logo-next-header.svg" alt="" width="145" *ngIf="!rootView">
             </a>
           </li>
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle " href="index.html#" id="QueroAlugar" role="button" aria-haspopup="true" aria-expanded="false">
+            <a data-toggle="dropdown" class="dropdown-toggle " href="#" id="QueroAlugar" role="button"
+               aria-haspopup="true" aria-expanded="false">
               Quero alugar
             </a>
             <div class="dropdown-menu" aria-labelledby="QueroAlugar">
-              <a class="dropdown-item" href="imoveis@categoria=residencial&amp;finalidade[]=alugar&amp;search=&amp;filter-interno=1.html">Residencial</a>
-              <a class="dropdown-item" href="imoveis@categoria=comercial&amp;finalidade[]=alugar&amp;search=&amp;filter-interno=1.html">Comercial</a>
+              <a class="dropdown-item"
+                 [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar'}">Residencial</a>
+              <a class="dropdown-item"
+                 [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'alugar'}">Comercial</a>
             </div>
           </li>
           <li class="dropdown">
-            <a class="dropdown-toggle " href="index.html#" id="QueroComprar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="dropdown-toggle " href="#" id="QueroComprar" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
               Quero comprar
             </a>
             <div class="dropdown-menu " aria-labelledby="QueroComprar">
-              <a class="dropdown-item" href="imoveis@categoria=residencial&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">Residencial</a>
-              <a class="dropdown-item" href="imoveis@categoria=comercial&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">Comercial</a>
+              <a class="dropdown-item"
+                 [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar'}">Residencial</a>
+              <a class="dropdown-item"
+                 [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'comprar'}">Comercial</a>
             </div>
           </li>
           <li>
-            <a href="quero-negociar.html" >Quero anunciar</a>
+            <a [routerLink]='["/anunciar"]'>Quero anunciar</a>
           </li>
-          <li>
-            <button type="button" class="btn btn-enter btn-rounded"  data-toggle="modal" data-target="#login">Entrar</button>
+          <li style="display: none;">
+            <button type="button" class="btn btn-enter btn-rounded" data-toggle="modal" data-target="#login">Entrar
+            </button>
           </li>
-          <li>
-            <button type="button" class="btn btn-sing-up btn-rounded btn-sing-up-home" data-toggle="modal" data-target="#cadastro">Cadastre-se</button>
+          <li style="display: none;">
+            <button type="button" class="btn btn-sing-up btn-rounded btn-sing-up-home" data-toggle="modal"
+                    data-target="#cadastro">Cadastre-se
+            </button>
           </li>
         </ul>
       </nav>
     </div>
   </div>
-  <form id="frm_filter" method="GET" action="http://nextsim.com.br/imoveis" class="d-none d-sm-none d-md-block d-lg-block d-xl-block">
-    <input type="hidden" name="categoria" value=""/>
-    <input type="hidden" name="filter-interno" value=""/>
-    <!-- Modal -->
-    <div class="modal fade Home-Personal-Filter-Bar" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header BoxShadowdown">
-            <h5 class="modal-title text-center">BUSCA PERSONALIZADA</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="HomePersonalFilterBar">
-              <div class="row FilterBarShadowDown">
-                <div class="col-5">
-                  <H4>Finalidade</H4>
-                  <ul class="HorizontalCheckBoxMobile">
-                    <li>
-                      <input type="radio"  class="HorizontalCheckBoxMobileInput " name="finalidade[]" value="comprar" id="OPCcomprar">
-                      <label  for="OPCcomprar" class="HorizontalCheckBoxMobileLabel"><span>Comprar</span></label>
-                    </li>
-                    <li>
-                      <input type="radio"  class="HorizontalCheckBoxMobileInput " name="finalidade[]" value="alugar" id="OPCalugar">
-                      <label  for="OPCalugar" class="HorizontalCheckBoxMobileLabel"><span>Alugar</span></label>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-7">
-                  <H4>Categoria</H4>
-                  <ul class="HorizontalCheckBoxMobile">
-                    <li>
-                      <input type="radio"  class="HorizontalCheckBoxMobileInput " name="categoria[]" value="residencial" id="OPCResidencial">
-                      <label  for="OPCResidencial" class="HorizontalCheckBoxMobileLabel"><span>Residencial</span></label>
-                    </li>
-                    <li>
-                      <input type="radio"  class="HorizontalCheckBoxMobileInput " name="categoria[]" value="comercial" id="OPCComercial">
-                      <label  for="OPCComercial" class="HorizontalCheckBoxMobileLabel"><span>Comercial</span></label>
-                    </li>
-                    <li>
-                      <input type="radio"  class="HorizontalCheckBoxMobileInput " name="categoria[]" value="comercial" id="OPCLancamentos">
-                      <label  for="OPCLancamentos" class="HorizontalCheckBoxMobileLabel"><span>Lançamentos</span></label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-4">
-                  <span class="TitleCityMobHome">Cidade ou Bairro</span>
-                </div>
-                <div class="col-4">
-                  <div class="MBFilterOptions2">
-                    <div  id="menu-cities">
-                      <div class="CitiesBox"   style="height: 240px !important;">
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name9" role="button" aria-expanded="false"
-                                 aria-controls="city_name9"><i class="fas fa-chevron-down "></i>
-                                Caieiras</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name9">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">C</i>
-                                <input type="checkbox" id="bairro_122" value="Calcárea" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_122"><span class="Bairro">Calcárea</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name10" role="button" aria-expanded="false"
-                                 aria-controls="city_name10"><i class="fas fa-chevron-down "></i>
-                                Cajamar</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name10">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">P</i>
-                                <input type="checkbox" id="bairro_137" value="Portais (Polvilho)" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_137"><span class="Bairro">Portais (Polvilho)</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name1" role="button" aria-expanded="false"
-                                 aria-controls="city_name1"><i class="fas fa-chevron-down "></i>
-                                Campinas</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name1">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">A</i>
-                                <input type="checkbox" id="bairro_3" value="Alphaville" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_3"><span class="Bairro">Alphaville</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_21" value="Alphaville Dom Pedro" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_21">
-                                  <span class="Bairro">Alphaville Dom Pedro</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_144" value="Alphaville Dom Pedro 2" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_144">
-                                  <span class="Bairro">Alphaville Dom Pedro 2</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">B</i>
-                                <input type="checkbox" id="bairro_121" value="Bairro Alphaville" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_121"><span class="Bairro">Bairro Alphaville</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_20" value="Bairro das Palmeiras" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_20">
-                                  <span class="Bairro">Bairro das Palmeiras</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_2" value="Barão Geraldo" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_2">
-                                  <span class="Bairro">Barão Geraldo</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_4" value="Bonfim" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_4">
-                                  <span class="Bairro">Bonfim</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_5" value="Bosque" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_5">
-                                  <span class="Bairro">Bosque</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_26" value="Bosque das Palmeiras" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_26">
-                                  <span class="Bairro">Bosque das Palmeiras</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_15" value="Botafogo" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_15">
-                                  <span class="Bairro">Botafogo</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">C</i>
-                                <input type="checkbox" id="bairro_1" value="Cambuí" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_1"><span class="Bairro">Cambuí</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_50" value="Campo dos Amarais" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_50">
-                                  <span class="Bairro">Campo dos Amarais</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_8" value="Centro" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_8">
-                                  <span class="Bairro">Centro</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_142" value="Chácara Bela Vista" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_142">
-                                  <span class="Bairro">Chácara Bela Vista</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_33" value="Chacara da Barra" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_33">
-                                  <span class="Bairro">Chacara da Barra</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_124" value="Chácara Primavera" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_124">
-                                  <span class="Bairro">Chácara Primavera</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_125" value="Chácara Santa Margarida" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_125">
-                                  <span class="Bairro">Chácara Santa Margarida</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_84" value="Chácaras Campos dos Amarais" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_84">
-                                  <span class="Bairro">Chácaras Campos dos Amarais</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_10" value="Chapadão" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_10">
-                                  <span class="Bairro">Chapadão</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_141" value="Condomínio Chácaras do Alto da Nova Campinas" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_141">
-                                  <span class="Bairro">Condomínio Chácaras do Alto da Nova Campinas</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">F</i>
-                                <input type="checkbox" id="bairro_30" value="Fazenda Santa Cândida" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_30"><span class="Bairro">Fazenda Santa Cândida</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_11" value="Flamboyant" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_11">
-                                  <span class="Bairro">Flamboyant</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">G</i>
-                                <input type="checkbox" id="bairro_126" value="Galeria" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_126"><span class="Bairro">Galeria</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_9" value="Galleria" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_9">
-                                  <span class="Bairro">Galleria</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_19" value="Gramado" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_19">
-                                  <span class="Bairro">Gramado</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_6" value="Guanabara" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_6">
-                                  <span class="Bairro">Guanabara</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">H</i>
-                                <input type="checkbox" id="bairro_42" value="Hípica" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_42"><span class="Bairro">Hípica</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">I</i>
-                                <input type="checkbox" id="bairro_76" value="Iguatemi" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_76"><span class="Bairro">Iguatemi</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">J</i>
-                                <input type="checkbox" id="bairro_127" value="Jardim Botânico (Sousas)" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_127"><span class="Bairro">Jardim Botânico (Sousas)</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_87" value="Jardim Centenário" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_87">
-                                  <span class="Bairro">Jardim Centenário</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_128" value="Jardim Chapadão" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_128">
-                                  <span class="Bairro">Jardim Chapadão</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_35" value="Jardim das Paineiras" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_35">
-                                  <span class="Bairro">Jardim das Paineiras</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_95" value="Jardim do Lago" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_95">
-                                  <span class="Bairro">Jardim do Lago</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_44" value="Jardim do Trevo" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_44">
-                                  <span class="Bairro">Jardim do Trevo</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_129" value="Jardim Flamboyant" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_129">
-                                  <span class="Bairro">Jardim Flamboyant</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_67" value="Jardim Guanabara" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_67">
-                                  <span class="Bairro">Jardim Guanabara</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_18" value="Jardim Guarani" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_18">
-                                  <span class="Bairro">Jardim Guarani</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_88" value="Jardim Leonor" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_88">
-                                  <span class="Bairro">Jardim Leonor</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_140" value="Jardim Margarida" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_140">
-                                  <span class="Bairro">Jardim Margarida</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_90" value="Jardim Myrian Moreira da Costa" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_90">
-                                  <span class="Bairro">Jardim Myrian Moreira da Costa</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_91" value="Jardim Nova Mercedes" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_91">
-                                  <span class="Bairro">Jardim Nova Mercedes</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_92" value="Jardim Planalto" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_92">
-                                  <span class="Bairro">Jardim Planalto</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_14" value="Jardim Proença" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_14">
-                                  <span class="Bairro">Jardim Proença</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_93" value="Jardim Santa Genebra" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_93">
-                                  <span class="Bairro">Jardim Santa Genebra</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_94" value="Jardim Tupi" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_94">
-                                  <span class="Bairro">Jardim Tupi</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_45" value="Joaquim Egídio" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_45">
-                                  <span class="Bairro">Joaquim Egídio</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">L</i>
-                                <input type="checkbox" id="bairro_133" value="Loteamento Alphaville Campinas" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_133"><span class="Bairro">Loteamento Alphaville Campinas</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_138" value="Loteamento Caminhos de Sao Conrado (Sousas)" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_138">
-                                  <span class="Bairro">Loteamento Caminhos de Sao Conrado (Sousas)</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_98" value="Loteamento Center Santa Genebra" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_98">
-                                  <span class="Bairro">Loteamento Center Santa Genebra</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_145" value="Loteamento Residencial Barão do Café" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_145">
-                                  <span class="Bairro">Loteamento Residencial Barão do Café</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_143" value="Loteamento Residencial Vila Bella" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_143">
-                                  <span class="Bairro">Loteamento Residencial Vila Bella</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">M</i>
-                                <input type="checkbox" id="bairro_12" value="Mansões Santo Antônio" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_12"><span class="Bairro">Mansões Santo Antônio</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">N</i>
-                                <input type="checkbox" id="bairro_17" value="Nova Campinas" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_17"><span class="Bairro">Nova Campinas</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">P</i>
-                                <input type="checkbox" id="bairro_48" value="Paineiras" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_48"><span class="Bairro">Paineiras</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_134" value="Parque Alto Taquaral" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_134">
-                                  <span class="Bairro">Parque Alto Taquaral</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_136" value="Parque da Hípica" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_136">
-                                  <span class="Bairro">Parque da Hípica</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_52" value="Parque Imperador" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_52">
-                                  <span class="Bairro">Parque Imperador</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_51" value="Parque Industrial" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_51">
-                                  <span class="Bairro">Parque Industrial</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_135" value="Parque Jatibaia (Sousas)" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_135">
-                                  <span class="Bairro">Parque Jatibaia (Sousas)</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_13" value="Parque Prado" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_13">
-                                  <span class="Bairro">Parque Prado</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_101" value="Parque São Quirino" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_101">
-                                  <span class="Bairro">Parque São Quirino</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_102" value="Parque Taquaral" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_102">
-                                  <span class="Bairro">Parque Taquaral</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_103" value="Parque Via Norte" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_103">
-                                  <span class="Bairro">Parque Via Norte</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_104" value="Parque Xangrilá" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_104">
-                                  <span class="Bairro">Parque Xangrilá</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_107" value="Polo II de Alta Tecnologia (Campinas)" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_107">
-                                  <span class="Bairro">Polo II de Alta Tecnologia (Campinas)</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_16" value="Ponte Preta" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_16">
-                                  <span class="Bairro">Ponte Preta</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">R</i>
-                                <input type="checkbox" id="bairro_109" value="Residencial Jatibela" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_109"><span class="Bairro">Residencial Jatibela</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_110" value="Residencial Parque das Araucárias" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_110">
-                                  <span class="Bairro">Residencial Parque das Araucárias</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_75" value="Residencial Vila Bella" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_75">
-                                  <span class="Bairro">Residencial Vila Bella</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">S</i>
-                                <input type="checkbox" id="bairro_22" value="Sousas" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_22"><span class="Bairro">Sousas</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_31" value="Swiss Park" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_31">
-                                  <span class="Bairro">Swiss Park</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">T</i>
-                                <input type="checkbox" id="bairro_7" value="Taquaral" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_7"><span class="Bairro">Taquaral</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_65" value="Techno Park" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_65">
-                                  <span class="Bairro">Techno Park</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_61" value="Tijuco das Telhas" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_61">
-                                  <span class="Bairro">Tijuco das Telhas</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">V</i>
-                                <input type="checkbox" id="bairro_43" value="Vila Brandina" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_43"><span class="Bairro">Vila Brandina</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_66" value="Vila Industrial" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_66">
-                                  <span class="Bairro">Vila Industrial</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_118" value="Vila Itapura" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_118">
-                                  <span class="Bairro">Vila Itapura</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_68" value="Vila Nogueira" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_68">
-                                  <span class="Bairro">Vila Nogueira</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_119" value="Vila Pompéia" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_119">
-                                  <span class="Bairro">Vila Pompéia</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_27" value="Ville Sainte Hélène" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_27">
-                                  <span class="Bairro">Ville Sainte Hélène</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name6" role="button" aria-expanded="false"
-                                 aria-controls="city_name6"><i class="fas fa-chevron-down "></i>
-                                Hortolandia</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name6">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">J</i>
-                                <input type="checkbox" id="bairro_131" value="Jardim Santa Esmeralda" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_131"><span class="Bairro">Jardim Santa Esmeralda</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_53" value="Jardim Sao Pedro" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_53">
-                                  <span class="Bairro">Jardim Sao Pedro</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">L</i>
-                                <input type="checkbox" id="bairro_97" value="Loteamento Adventista Campineiro" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_97"><span class="Bairro">Loteamento Adventista Campineiro</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name8" role="button" aria-expanded="false"
-                                 aria-controls="city_name8"><i class="fas fa-chevron-down "></i>
-                                Indaiatuba</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name8">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">C</i>
-                                <input type="checkbox" id="bairro_81" value="Centro Empresarial de Indaiatuba" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_81"><span class="Bairro">Centro Empresarial de Indaiatuba</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name5" role="button" aria-expanded="false"
-                                 aria-controls="city_name5"><i class="fas fa-chevron-down "></i>
-                                Jaguariuna</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name5">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">C</i>
-                                <input type="checkbox" id="bairro_80" value="Centro" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_80"><span class="Bairro">Centro</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">D</i>
-                                <input type="checkbox" id="bairro_39" value="Duas Marias" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_39"><span class="Bairro">Duas Marias</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">H</i>
-                                <input type="checkbox" id="bairro_34" value="Haras Patente" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_34"><span class="Bairro">Haras Patente</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">J</i>
-                                <input type="checkbox" id="bairro_29" value="Jaguariuna" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_29"><span class="Bairro">Jaguariuna</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_54" value="Jardim Primavera" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_54">
-                                  <span class="Bairro">Jardim Primavera</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">N</i>
-                                <input type="checkbox" id="bairro_28" value="Nova Jaguary" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_28"><span class="Bairro">Nova Jaguary</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">S</i>
-                                <input type="checkbox" id="bairro_113" value="Santa Ursula" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_113"><span class="Bairro">Santa Ursula</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">T</i>
-                                <input type="checkbox" id="bairro_114" value="Tamboré" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_114"><span class="Bairro">Tamboré</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_115" value="Tanquinho Velho" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_115">
-                                  <span class="Bairro">Tanquinho Velho</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name4" role="button" aria-expanded="false"
-                                 aria-controls="city_name4"><i class="fas fa-chevron-down "></i>
-                                Paulinia</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name4">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">B</i>
-                                <input type="checkbox" id="bairro_25" value="Betel" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_25"><span class="Bairro">Betel</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">J</i>
-                                <input type="checkbox" id="bairro_74" value="Jardim Fortaleza" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_74"><span class="Bairro">Jardim Fortaleza</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_139" value="Jardim Itapoã" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_139">
-                                  <span class="Bairro">Jardim Itapoã</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_60" value="Jardim Ypê" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_60">
-                                  <span class="Bairro">Jardim Ypê</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">P</i>
-                                <input type="checkbox" id="bairro_58" value="Parque Brasil 500" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_58"><span class="Bairro">Parque Brasil 500</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_105" value="Parque da Figueira" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_105">
-                                  <span class="Bairro">Parque da Figueira</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_106" value="Paulínia" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_106">
-                                  <span class="Bairro">Paulínia</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">V</i>
-                                <input type="checkbox" id="bairro_63" value="Viva Real" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_63"><span class="Bairro">Viva Real</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name7" role="button" aria-expanded="false"
-                                 aria-controls="city_name7"><i class="fas fa-chevron-down "></i>
-                                Sumare</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name7">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">J</i>
-                                <input type="checkbox" id="bairro_59" value="Jardim Bela Vista" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_59"><span class="Bairro">Jardim Bela Vista</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_130" value="Jardim Marchissolo" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_130">
-                                  <span class="Bairro">Jardim Marchissolo</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_132" value="Jardim São Judas Tadeu (Nova Veneza)" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_132">
-                                  <span class="Bairro">Jardim São Judas Tadeu (Nova Veneza)</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">P</i>
-                                <input type="checkbox" id="bairro_100" value="Parque Brasil 500" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_100"><span class="Bairro">Parque Brasil 500</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">R</i>
-                                <input type="checkbox" id="bairro_108" value="Real Parque" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_108"><span class="Bairro">Real Parque</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2" >
-                          <div class="row">
-                            <div class="col-12 text-left">
-                              <a class="ArrowCollapseMobile" data-toggle="collapse" href="index.html#city_name3" role="button" aria-expanded="false"
-                                 aria-controls="city_name3"><i class="fas fa-chevron-down "></i>
-                                Valinhos</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name3">
-                          <div class="text-left">
-                            <ul class="CityCheck">
-                              <li>
-                                <i  class="menu-letter-marker">A</i>
-                                <input type="checkbox" id="bairro_24" value="Alto da Colina" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_24"><span class="Bairro">Alto da Colina</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">C</i>
-                                <input type="checkbox" id="bairro_123" value="Centro" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_123"><span class="Bairro">Centro</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_69" value="Chácara das Nações" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_69">
-                                  <span class="Bairro">Chácara das Nações</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_38" value="Chacara Flora" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_38">
-                                  <span class="Bairro">Chacara Flora</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_55" value="Chacara Sao Bento" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_55">
-                                  <span class="Bairro">Chacara Sao Bento</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_83" value="Chácaras Alpina" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_83">
-                                  <span class="Bairro">Chácaras Alpina</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_70" value="Chácaras Silvania" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_70">
-                                  <span class="Bairro">Chácaras Silvania</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_41" value="Colinas dos Alamos" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_41">
-                                  <span class="Bairro">Colinas dos Alamos</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">D</i>
-                                <input type="checkbox" id="bairro_56" value="Dois Corregos" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_56"><span class="Bairro">Dois Corregos</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">E</i>
-                                <input type="checkbox" id="bairro_85" value="Estância Recreativa San Fernando" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_85"><span class="Bairro">Estância Recreativa San Fernando</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">J</i>
-                                <input type="checkbox" id="bairro_46" value="Jardim Alto da Colina" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_46"><span class="Bairro">Jardim Alto da Colina</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_86" value="Jardim America Ii" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_86">
-                                  <span class="Bairro">Jardim America Ii</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_89" value="Jardim Monte Verde" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_89">
-                                  <span class="Bairro">Jardim Monte Verde</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_49" value="Jardim Paiquere" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_49">
-                                  <span class="Bairro">Jardim Paiquere</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_77" value="Jardim Recanto" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_77">
-                                  <span class="Bairro">Jardim Recanto</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_32" value="Jardim Soleil" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_32">
-                                  <span class="Bairro">Jardim Soleil</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_96" value="Joapiranga" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_96">
-                                  <span class="Bairro">Joapiranga</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">L</i>
-                                <input type="checkbox" id="bairro_71" value="Loteamento Residencial Fazenda Sao Jose" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_71"><span class="Bairro">Loteamento Residencial Fazenda Sao Jose</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_79" value="Loteamento Residencial Santa Gertrudes" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_79">
-                                  <span class="Bairro">Loteamento Residencial Santa Gertrudes</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">M</i>
-                                <input type="checkbox" id="bairro_36" value="Macuco" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_36"><span class="Bairro">Macuco</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">O</i>
-                                <input type="checkbox" id="bairro_62" value="Ortizes" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_62"><span class="Bairro">Ortizes</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">P</i>
-                                <input type="checkbox" id="bairro_64" value="Parque Residencial Maison Blanche" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_64"><span class="Bairro">Parque Residencial Maison Blanche</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_37" value="Parque Valinhos" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_37">
-                                  <span class="Bairro">Parque Valinhos</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_73" value="Pinheiro" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_73">
-                                  <span class="Bairro">Pinheiro</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_78" value="Portal do Lago" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_78">
-                                  <span class="Bairro">Portal do Lago</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">R</i>
-                                <input type="checkbox" id="bairro_111" value="Residencial Vila Lombarda" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_111"><span class="Bairro">Residencial Vila Lombarda</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">S</i>
-                                <input type="checkbox" id="bairro_112" value="Santa Maria" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_112"><span class="Bairro">Santa Maria</span></label>
-                              </li>
-                              <li>
-                                <i  class="menu-letter-marker">V</i>
-                                <input type="checkbox" id="bairro_116" value="Vale do Itamaracá" class="checkbox-s2  CheckBoxCityInput bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_116"><span class="Bairro">Vale do Itamaracá</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_47" value="Vale Verde" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_47">
-                                  <span class="Bairro">Vale Verde</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_117" value="Vila Capuava" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_117">
-                                  <span class="Bairro">Vila Capuava</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_40" value="Village Visconde de Itamaraca" class="checkbox-s2  bairros" name="bairros[]"/>
-                                <label class="CheckBoxCityLabel" for="bairro_40">
-                                  <span class="Bairro">Village Visconde de Itamaraca</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="filter-badgesMob">
-                    <span class="TitleCitySelectMobHome">Selecionados</span>
-                    <div class="BairroSec"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <ul class="nav nav-tabs ULHOMEFILTERSTAB" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a href="index.html#" class="MenuItem2" data-target="#typeMenu-tab" data-toggle="tab" ><i class="icon-house"></i>  Tipo <i class="fas fa-chevron-down small-icon"></i></a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="index.html#" class="MenuItem2" data-target="#priceMenu-tab" data-toggle="tab" ><i class="icon-dollar"></i>  Preço <i class="fas fa-chevron-down small-icon"></i></a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="index.html#" class="MenuItem2" data-target="#areaM2-tab" data-toggle="tab"><i class="icon-area"></i> M<SUP>2</SUP> <i class="fas fa-chevron-down small-icon"></i></a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="index.html#" class="MenuItem2 BtnComercial"  data-target="#roomMenu-tab" data-toggle="tab"><i class="icon2-salas"></i>  Salas <i class="fas fa-chevron-down small-icon"></i></a>
-                    <a href="index.html#" class="MenuItem2 BtnResidencial"  data-target="#roomMenu-tab" data-toggle="tab"><i class="icon-bed"></i>  Quartos <i class="fas fa-chevron-down small-icon"></i></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="tab-content" id="myTabContent">
-                <!-- TIPO DE IMOVEL -->
-                <div class="tab-pane fade show active  FilterBarCheckBoxFIELDS2" id="typeMenu-tab" >
-                  <ul>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Apartamento" value="apartamento" name="tipos[]" id="Apartamento" />
-                      <label for="Apartamento"><span>Apartamento</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Área" value="area" name="tipos[]" id="Área" />
-                      <label for="Área"><span>Área</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Casa" value="casa" name="tipos[]" id="Casa" />
-                      <label for="Casa"><span>Casa</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Chácara" value="chacara" name="tipos[]" id="Chácara" />
-                      <label for="Chácara"><span>Chácara</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Cobertura" value="cobertura" name="tipos[]" id="Cobertura" />
-                      <label for="Cobertura"><span>Cobertura</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Flat" value="flat" name="tipos[]" id="Flat" />
-                      <label for="Flat"><span>Flat</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Galpão" value="galpao" name="tipos[]" id="Galpão" />
-                      <label for="Galpão"><span>Galpão</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Prédio" value="predio" name="tipos[]" id="Prédio" />
-                      <label for="Prédio"><span>Prédio</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Sala" value="sala" name="tipos[]" id="Sala" />
-                      <label for="Sala"><span>Sala</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Salão" value="salao" name="tipos[]" id="Salão" />
-                      <label for="Salão"><span>Salão</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Studio" value="studio" name="tipos[]" id="Studio" />
-                      <label for="Studio"><span>Studio</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="Terreno" value="terreno" name="tipos[]" id="Terreno" />
-                      <label for="Terreno"><span>Terreno</span></label>
-                    </li>
-                  </ul>
-                </div>
-                <!-- END DE IMOVEL -->
-                <!-- INICIO PRECO DE IMOVEL -->
-                <div class="tab-pane fade   FilterBarCheckBoxFIELDS2" id="priceMenu-tab" >
-                  <div class="row">
-                    <div class="col-6 offset-3">
-                      <div class="row pt-5">
-                        <div class="col-6">
-                          <span>De</span> <input type="text" class="col-9 money inputDe input-grey" id="inputDe" placeholder="R$" value="0.00">
-                        </div>
-                        <div class="col-6">
-                          <span>Até</span> <input type="text" class="col-9 money inputAte input-grey" id="inputAte" placeholder="R$" value="27000000.00">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-12 mt-3 mb-3">
-                        </div>
-                        <div class="col-12">
-                          <input class="range-example-price" type="text" min="0.00" max="27000000.00" value="0.00,27000000.00" name="preco" step="500" id="preco">
-                        </div>
-                        <div class="col-6">
-                          <span class="values"><span class="values" id="show_start_value">0.00</span></span>
-                        </div>
-                        <div class="col-6 text-right">
-                          <span class="values"><span class="values" id="show_end_value">27000000.00</span></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END PRECO DE IMOVEL -->
-                <!-- INICIO M2 DE IMOVEL -->
-                <div class="tab-pane fade  " id="areaM2-tab" >
-                  <div class="row pt-3">
-                    <div class="col-6 offset-3">
-                      <H6 class="text-left mb-4">Área Útil</H6>
-                      <div class="row">
-                        <div class="col-6">
-                          <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey" value="0.00" id="inputDeM2" placeholder="M²">
-                        </div>
-                        <div class="col-6">
-                          <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"  value="16146.00" id="inputAteM2" placeholder="M²">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row pt-3 mt-4 pl-3 pr-3">
-                    <div class="col-6 offset-3">
-                      <input class="range-example-area" type="text" value="0.00,16146.00" min="0.00" max="16146.00" name="area" id="area_range">
-                    </div>
-                    <div class="col-6">
-                      <span class="values">M<span>2</span> <span class="values" id="show_start_value2">0.00</span></span>
-                    </div>
-                    <div class="col-6 text-right">
-                      <span class="values">M<span>2</span> <span class="values" id="show_end_value2">16146.00</span></span>
-                    </div>
-                  </div>
-                </div>
-                <!-- END M2 DE IMOVEL -->
-                <!-- QUARTOS DE IMOVEL -->
-                <div class="tab-pane fade BALLCheckStyle pt-5 pb-3" id="roomMenu-tab" >
-                  <ul class="CheckHorizontal ScaleFilter">
-                    <li>
-                      <input type="radio"   class="CheckHorizontalInput checkbox-s2" id="quarto_0" name="quartos" value="0"  />
-                      <label for="quarto_0" class="CheckHorizontalLabel"><span>0</span></label>
-                    </li>
-                    <li>
-                      <input type="radio"   class="CheckHorizontalInput checkbox-s2" id="quarto_1" name="quartos" value="1"  />
-                      <label for="quarto_1" class="CheckHorizontalLabel"><span>1</span></label>
-                    </li>
-                    <li>
-                      <input type="radio"   class="CheckHorizontalInput checkbox-s2" id="quarto_2" name="quartos" value="2"  />
-                      <label for="quarto_2" class="CheckHorizontalLabel"><span>2</span></label>
-                    </li>
-                    <li>
-                      <input type="radio"   class="CheckHorizontalInput checkbox-s2" id="quarto_3" name="quartos" value="3"  />
-                      <label for="quarto_3" class="CheckHorizontalLabel"><span>3</span></label>
-                    </li>
-                    <li>
-                      <input type="radio"   class="CheckHorizontalInput checkbox-s2" id="quarto_4" name="quartos" value="4"  />
-                      <label for="quarto_4" class="CheckHorizontalLabel"><span>+4</span></label>
-                    </li>
-                  </ul>
-                </div>
-                <!-- END QUARTO DE IMOVEIS -->
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer d-flex align-content-center justify-content-center">
-            <div class="row text-center">
-              <div class="col-12 py-2 "><button type="submit" class="center-block btn btn-search btn-rounded"><i class="fas fa-search"></i> Buscar</button></div>
-              <div class="col-12 py-2 "><button type="button" class="px-5 py-2 center-block btn btn-outline-orange btn-rounded"  id="btn-limpar"><i class="fas fa-trash"></i> Limpar</button></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-  <div class="modal fade" id="MobHomeFilterModal" tabindex="-1" role="dialog" aria-labelledby="MobHomeFilterModalLabel" aria-hidden="true">
+  <div class="modal fade" id="MobHomeFilterModal" tabindex="-1" role="dialog" aria-labelledby="MobHomeFilterModalLabel"
+       aria-hidden="true" *ngIf="rootView">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div id="frm_filter" >
+        <div id="frm_filter">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <img src="assets/img/close-btn.png" alt="">
@@ -1204,12 +171,14 @@
               <div class="col-12">
                 <ul class="HorizontalCheckBoxMobile2">
                   <li>
-                    <input type="radio"  class="HorizontalCheckBoxMobileInput2 " name="finalidade[]" value="Comprar" id="OPCcomprar2">
-                    <label  for="OPCcomprar2" class="HorizontalCheckBoxMobileLabel2"><span>Comprar</span></label>
+                    <input type="radio" class="HorizontalCheckBoxMobileInput2 " name="finalidade[]" value="Comprar"
+                           id="OPCcomprar2">
+                    <label for="OPCcomprar2" class="HorizontalCheckBoxMobileLabel2"><span>Comprar</span></label>
                   </li>
                   <li>
-                    <input type="radio"  class="HorizontalCheckBoxMobileInput2 " name="finalidade[]" value="Alugar" id="OPCalugar2">
-                    <label  for="OPCalugar2" class="HorizontalCheckBoxMobileLabel2"><span>Alugar</span></label>
+                    <input type="radio" class="HorizontalCheckBoxMobileInput2 " name="finalidade[]" value="Alugar"
+                           id="OPCalugar2">
+                    <label for="OPCalugar2" class="HorizontalCheckBoxMobileLabel2"><span>Alugar</span></label>
                   </li>
                 </ul>
               </div>
@@ -1217,7 +186,7 @@
             <div class="row">
               <div class="col-12">
                 <ul class="StepsFilter">
-                  <li ><a class="active ball_step1"></a></li>
+                  <li><a class="active ball_step1"></a></li>
                   <li><a class="ball_step2"></a></li>
                   <li><a class="ball_step3"></a></li>
                 </ul>
@@ -1243,22 +212,26 @@
             <div class="row pt-5 pb-2">
               <div class="col-12">
                 <div class="category">
-                  <div class="category-title"><span class="icon-category arrow-down-icon"></span> <span class="category-title-in">Categoria</span></div>
+                  <div class="category-title"><span class="icon-category arrow-down-icon"></span> <span
+                    class="category-title-in">Categoria</span></div>
                   <div class="category-options">
                     <div class="form-check category-option">
-                      <input class="form-check-input" type="radio" name="category" id="Check-residencial" value="Residencial">
+                      <input class="form-check-input" type="radio" name="category" id="Check-residencial"
+                             value="Residencial">
                       <label class="form-check-label" id="label-residencial" for="Check-residencial">
                         Residencial
                       </label>
                     </div>
                     <div class="form-check category-option">
-                      <input class="form-check-input" type="radio" name="category" id="Check-comercial" value="Comercial">
+                      <input class="form-check-input" type="radio" name="category" id="Check-comercial"
+                             value="Comercial">
                       <label class="form-check-label" id="label-comercial" for="Check-comercial">
                         Comercial
                       </label>
                     </div>
                     <div class="form-check category-option">
-                      <input class="form-check-input" type="radio" name="category" id="Check-lancamento" value="Lançamento">
+                      <input class="form-check-input" type="radio" name="category" id="Check-lancamento"
+                             value="Lançamento">
                       <label class="form-check-label" id="label-lancamento" for="Check-lancamento">
                         Lançamento
                       </label>
@@ -1270,9 +243,9 @@
             <div class="row">
               <div class="col-12">
                 <ul class="StepsFilter">
-                  <li ><a  class="ball_step1"></a></li>
-                  <li><a   class="ball_step2"></a></li>
-                  <li><a   class="ball_step3"></a></li>
+                  <li><a class="ball_step1"></a></li>
+                  <li><a class="ball_step2"></a></li>
+                  <li><a class="ball_step3"></a></li>
                 </ul>
               </div>
             </div>
@@ -1296,7 +269,8 @@
             <div class="row pt-5 pb-2">
               <div class="col-12 ">
                               <span class="filterCityField">
-                              <input type="text" class="CityField" name="bairros[]"  placeholder="Cidade, bairro ou código" >
+                              <input type="text" class="CityField" name="bairros[]"
+                                     placeholder="Cidade, bairro ou código">
                               </span>
               </div>
               <div id="ajaxList2" class="ajaxlist">
@@ -1305,7 +279,7 @@
             <div class="row">
               <div class="col-12">
                 <ul class="StepsFilter">
-                  <li ><a class="ball_step1"></a></li>
+                  <li><a class="ball_step1"></a></li>
                   <li><a class="ball_step2"></a></li>
                   <li><a class="ball_step3"></a></li>
                 </ul>
@@ -1313,7 +287,8 @@
             </div>
             <div class="row pt-3 pb-5">
               <div class="col-12">
-                <button type="button" class="btn btn-rounded btn-search BTN3"><I class="fas fa-search"></I> BUSCAR</button>
+                <button type="button" class="btn btn-rounded btn-search BTN3"><I class="fas fa-search"></I> BUSCAR
+                </button>
               </div>
             </div>
           </div>
@@ -1321,7 +296,7 @@
       </div>
     </div>
   </div>
-  <div class="container title-home-section d-lg-none">
+  <div class="container title-home-section d-lg-none" *ngIf="rootView">
     <a href="index.html#" class="logo">
       <img src="assets/img/logo-next.svg" alt="" width="145">
     </a>
@@ -1330,19 +305,20 @@
     </h3>
     <h4 class="font-weight-semibold">Encontre o lugar dos seus sonhos em Campinas e região:</h4>
   </div>
-  <div class="container title-home-section d-none d-lg-block">
+  <div class="container title-home-section d-none d-lg-block" *ngIf="rootView">
     <h3>
       Sua melhor forma de acessar imóveis<br> de alto padrão com suporte.
     </h3>
-    <h4 class="font-weight-semibold">Encontre o lugar dos seus sonhos em Campinas e região:</h4>
+    <h4 class="font-weight-semibold" style="display: none;">Encontre o lugar dos seus sonhos em Campinas e região:</h4>
   </div>
-  <div class="container home-filter ">
+  <div class="container home-filter " *ngIf="false">
     <form action="http://nextsim.com.br/imoveis" method="GET" id="home-search">
       <div class="row d-none d-lg-block">
         <div class="col-md-12">
           <div class="filter-bar-home centerObject">
             <div class="goal">
-              <div class="goal-title"><span class="icon-goal arrow-down-icon"></span> <span class="goal-title-in">Finalidade</span></div>
+              <div class="goal-title"><span class="icon-goal arrow-down-icon"></span> <span class="goal-title-in">Finalidade</span>
+              </div>
               <div class="goal-options">
                 <div class="form-check goal-option">
                   <input class="form-check-input" type="radio" name="goal" id="CheckComprar" value="Comprar">
@@ -1359,10 +335,12 @@
               </div>
             </div>
             <div class="category">
-              <div class="category-title"><span class="icon-category arrow-down-icon"></span> <span class="category-title-in">Categoria</span></div>
+              <div class="category-title"><span class="icon-category arrow-down-icon"></span> <span
+                class="category-title-in">Categoria</span></div>
               <div class="category-options">
                 <div class="form-check category-option">
-                  <input class="form-check-input" type="radio" name="category" id="Check-residencial" value="Residencial">
+                  <input class="form-check-input" type="radio" name="category" id="Check-residencial"
+                         value="Residencial">
                   <label class="form-check-label" id="label-residencial" for="Check-residencial">
                     Residencial
                   </label>
@@ -1381,7 +359,8 @@
               </div>
             </div>
             <div class="searchfield">
-              <input type="text" class="form-control" name="bairros[]" id="search-field" placeholder="Cidade, bairro ou código" autocomplete="off">
+              <input type="text" class="form-control" name="bairros[]" id="search-field"
+                     placeholder="Cidade, bairro ou código" autocomplete="off">
               <div id="ajaxList">
               </div>
               <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
@@ -1396,134 +375,23 @@
           </button>
         </div>
         <div class="col-md-12 d-block d-sm-block d-md-none">
-          <button class="btn btn-search btn-rounded " data-toggle="modal" data-target="#MobHomeFilterModal" type="button">
+          <button class="btn btn-search btn-rounded " data-toggle="modal" data-target="#MobHomeFilterModal"
+                  type="button">
             <i class="fas fa-search"></i> REALIZAR PESQUISA
           </button>
         </div>
-        <div class="col-md-12 d-none d-lg-block">
-          <a class="btn btn-custom-your-search btn-rounded" data-toggle="modal" data-target=".Home-Personal-Filter-Bar">
-            <span class="custom-your-search-icon"></span> Personalize a sua busca
-          </a>
-        </div>
+<!--        <div class="col-md-12 d-none d-lg-block">-->
+<!--          <a class="btn btn-custom-your-search btn-rounded" data-toggle="modal" data-target=".Home-Personal-Filter-Bar">-->
+<!--            <span class="custom-your-search-icon"></span> Personalize a sua busca-->
+<!--          </a>-->
+<!--        </div>-->
       </div>
     </form>
   </div>
-  <div class="container scroll-btn">
-    <a href="index.html#"><img src="assets/img/arrow-01.png" width="50" id="down-arrow"></a>
+  <div class="container scroll-btn" *ngIf="rootView">
+    <span href=""><img src="assets/img/arrow-01.png" width="50" id="down-arrow"></span>
   </div>
-  <div class="owl-carousel">
-    <img src="assets/img/house-bg.jpg" alt="">
-  </div>
-</header>
-
-
-
-<header class="container-fluid PropertyListHeader" *ngIf="!rootView">
-  <div class="row NextMobileMenu d-lg-none mt-4">
-    <div class="col-2 text-left"><a class="toggleMenu"><img src="assets/img/menu-mobile.png" class="darkIcon"></a></div>
-    <div class="col-8 text-center"> <a href="index.html">
-      <img src="assets/img/logo-next-mobile-escuro.svg" alt="" width="90">
-    </a>
-    </div>
-    <div class="col-2 text-right"><a class="toggleMenuPerfil"><img src="assets/img/user-mobile.png" class="darkIcon"></a></div>
-  </div>
-  <div class="MenuMobile animated">
-    <div class="container-fluid">
-      <div class="row MobileMenuHeader">
-        <div class="col-12 col-sm-12"><a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#" class="CloseMenu"><img src="assets/img/menu-burg-laranja.png">
-          <span>MENU</span></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12  col-sm-12 px-0">
-          <ul class="FirstMenu">
-            <li class="CollapseMobile1">
-              <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#">Quero alugar</a>
-              <ul class="SecondMenu Collapse1">
-                <li><a class="dropdown-item" href="imoveis@categoria=residencial&amp;finalidade[]=alugar&amp;search=&amp;filter-interno=1.html">Residencial</a></li>
-                <li><a class="dropdown-item" href="imoveis@categoria=comercial&amp;finalidade[]=alugar&amp;search=&amp;filter-interno=1.html">Comercial</a></li>
-              </ul>
-            </li>
-            <li class="CollapseMobile2">
-              <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#">Quero comprar</a>
-              <ul class="SecondMenu Collapse2">
-                <li><a class="dropdown-item" href="imoveis@categoria=residencial&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">Residencial</a></li>
-                <li><a class="dropdown-item" href="imoveis@categoria=comercial&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">Comercial</a></li>
-              </ul>
-            </li>
-            <li><a href="quero-negociar.html">Quero anunciar</a></li>
-            <li><a href="sobre-nos.html">Sobre nós</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12  col-sm-12">
-          <div class="d-flex align-items-end align-self-end">
-            <ul class="SocialMobileMenu">
-              <li><a href="https://www.facebook.com/nextsim"><img src="assets/img/Caminho&#32;354.png" alt=""></a></li>
-              <li><a href="https://www.instagram.com/next_sim/"><img src="assets/img/Caminho&#32;355.png" alt=""></a></li>
-              <li><a href="https://www.youtube.com/channel/nextsim?sub_confirmation=1"><img src="assets/img/Caminho&#32;356.png" alt=""></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="MenuMobilePerfil animated" >
-    <div class="container-fluid">
-      <div class="row MobileMenuHeaderPerfil">
-        <div class="col-12  col-sm-12"><a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#" class="CloseMenuPerfil"><img src="assets/img/user-mobile-orange.png" width="17" alt="user">
-          <span>MEU PERFIL</span></a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-sm-12">
-          <ul class="MenuPerfilBtns">
-            <li class="">
-              <button type="button" class="btn btn-enter btn-rounded CloseMenuPerfil"  data-toggle="modal" data-target="#login">Entrar</button>
-            </li>
-            <li class="">
-              <button type="button" class="btn btn-sing-up btn-rounded CloseMenuPerfil" data-toggle="modal" data-target="#cadastro">Cadastre-se</button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <nav class="header-nav container alt">
-    <ul class="d-none d-sm-none d-md-none d-lg-flex">
-      <li class="logo">
-        <a href="index.html">
-          <img src="assets/img/logo-next-header.svg" alt="" width="145">
-        </a>
-      </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle  active " href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#" id="QueroAlugar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Quero alugar
-        </a>
-        <div class="dropdown-menu" aria-labelledby="QueroAlugar">
-          <a class="dropdown-item" href="imoveis@categoria=residencial&amp;finalidade[]=alugar&amp;search=&amp;filter-interno=1.html">Residencial</a>
-          <a class="dropdown-item" href="imoveis@categoria=comercial&amp;finalidade[]=alugar&amp;search=&amp;filter-interno=1.html">Comercial</a>
-        </div>
-      </li>
-      <li class="dropdown">
-        <a  class="dropdown-toggle " href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#" id="QueroComprar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Quero comprar
-        </a>
-        <div class="dropdown-menu " aria-labelledby="QueroComprar">
-          <a class="dropdown-item" href="imoveis@categoria=residencial&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">Residencial</a>
-          <a class="dropdown-item" href="imoveis@categoria=comercial&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">Comercial</a>
-        </div>
-      </li>
-      <li class="link-menu">
-        <a href="quero-negociar.html" >Quero anunciar</a>
-      </li>
-      <li class="link-menu">
-        <button type="button" class="btn btn-enter btn-rounded"  data-toggle="modal" data-target="#login">Entrar</button>
-      </li>
-      <li class="link-menu">
-        <button type="button" class="btn btn-sing-up btn-sing-up-solid btn-rounded" data-toggle="modal" data-target="#cadastro">Cadastre-se</button>
-      </li>
-    </ul>
-  </nav>
+<!--  <div class="owl-carousel" *ngIf="rootView"  [ngStyle]="{'height.px': divStyle}">-->
+<!--    <img src="assets/img/house-bg.jpg" alt="">-->
+<!--  </div>-->
 </header>

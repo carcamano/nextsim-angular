@@ -1,0 +1,799 @@
+<div id="backdrop" *ngIf="imovel">
+
+  <button id="buttonContato" class="btn btn-contact-chat btn-rounded btn-contact-me-NEW d-none d-sm-none d-md-block"
+          type="button"><span class="chat-icon"></span> <span><span style="color:#575656;">Entre em</span>
+                <br> CONTATO</span>
+  </button>
+
+  <a class="btn btn-contact-chat btn-circle btn-xl btn-contact-me-NEW d-block d-sm-block d-md-none" data-toggle="modal"
+     data-target="#contactMe"><span class="chat-icon"></span></a>
+
+  <div class="d-none" id="groupButtomContact" style="">
+
+    <a href="apartamento-residencial-alphaville-campinas-sp-AP001588.html#"
+       class="btn btn-secondary-action btn-sca-phone btn-rounded text-uppercase">
+      <img class="mr-1" alt="" title="" width="22" src="../../assets/img/icons/icon-phone.svg"/> <span><span
+      style="color:#575656;">LIGUE AGORA</span>
+                    <br>2512-0000</span>
+    </a>
+
+    <a target="_blank" rel=”noopener”
+       href="https://api.whatsapp.com/send?phone=5519999120030&text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20seus%20im%C3%B3veis!%20"
+       class="btn btn-secondary-action btn-sca-whatsapp btn-rounded text-uppercase">
+      <img class="mr-1" alt="" title="" width="22" src="../../assets/img/icons/icon-whatsapp.svg"/> <span><span
+      style="color:#575656;">whatsapp</span>
+                    <br>(19) 99912-0030</span>
+    </a>
+
+    <a href="apartamento-residencial-alphaville-campinas-sp-AP001588.html#"
+       class="btn btn-secondary-action btn-sca-contact btn-rounded text-uppercase" data-toggle="modal"
+       data-target="#contactMe">
+      <img class="mr-1" width="22" alt="" title="" src="../../assets/img/icons/icon-contact-pq.svg"> MENSAGEM
+    </a>
+
+    <button type="button" id="btnContactTimes" class="btn bnt-sca-times"><img width="22" alt="" title=""
+                                                                              src="../../assets/img/icons/icon-times-contact.svg">
+    </button>
+
+  </div>
+  <input type="hidden" id="type_property" value="Apartamento">
+  <input type="hidden" id="cod_property" value="AP001588">
+  <input type="hidden" id="title_property" value="Alphaville">
+  <input type="hidden" id="address_property" value="Alphaville, Campinas - SP ">
+
+  <section class="property container-fluid">
+    <div class="ResidencialHeaderContainer container mb-3 mb-md-0">
+      <div class="row">
+        <div class="col-lg-12 noPadding">
+          <a href="javascript:history.back();" class="PropertyBackLink pl-4 pl-sm-4 pl-md-4 pl-lg-3"><i
+            class="PropertyArrowBackBtn"></i>
+            Voltar aos resultados</a>
+          <!--          <p class="PropertyBreadcrumbs"><a href="../index.html" title="Home">Home<a href="../imoveis/comprar.html"-->
+          <!--                                                                                     title="Para Comprar">Para-->
+          <!--            Comprar</a></p>-->
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-7 col-lg-7 col-md-12 ">
+          <owl-carousel [options]="mySlideOptions" [items]="imovel.midia.imagens"
+                        [carouselClasses]="['PropertyCardCarousel', 'owl-theme', 'sliding']">
+            <div class="item" *ngFor="let image of imovel.midia.imagens;let i = index" style="height: 100%;">
+              <div class="img" style="height: 100%;">
+                <img src={{image}}/>
+              </div>
+            </div>
+          </owl-carousel>
+        </div>
+        <div class="col-xl-5 col-lg-5 col-md-12">
+          <div class="row">
+
+            <div class="col-md-12">
+              <div class="PropertyCardDetails PropertyCardShadowBox">
+
+                <!--<p class="PropertyCardType">Apartamento | Área
+            total: 137 m²</p>-->
+
+                <p class="PropertyCardType">
+                  {{imovel.tipo}} | Área total 137 m² Área útil 137 m²
+                  <!--                  local: {bairro: "Cambuí", cidade: "Campinas/SP", cep: "13025152", coordenadas: Array(2)}-->
+                </p>
+                <p class="PropertyCardTitle">{{imovel.local.bairro}}</p>
+                <p class="PropertyCardNeighboor"><img
+                  src="../../../assets/img/MapPointer-orenge.png"/> {{imovel.local.bairro}} ,
+                  {{imovel.local.cidade}}</p>
+
+                <ul class="PropertyOptions">
+                  <li><img src="../../assets/img/imovel/bed-orange.svg"/>
+                    <span>{{imovel.numeros.dormitorios}}</span>
+                  </li>
+                  <li><img src="../../assets/img/imovel/shower-orange.svg"/>
+                    <span>{{imovel.numeros.banheiros}}</span>
+                  </li>
+                  <li class="last-item"><img src="../../assets/img/imovel/car-orange.svg"/>
+                    <span>{{imovel.numeros.vagas}}</span>
+                  </li>
+                </ul>
+
+                <p class="PropertyCardValues pt-4 " style="display: none;">
+                  <img src="../../assets/img/imovel/coin-orange.svg"/> IPTU: R$ 3.035,00/mês
+                </p>
+              </div>
+            </div>
+
+            <div class="col-8 col-sm-8 col-lg-9 col-xl-9  pt-1 mt-2">
+              <div class="PropertyCard PropertyCardShadowBox">
+
+                <p class="PropertyCardValues ">
+                  <img
+                    src="../../assets/img/imovel/coin-gray.svg"/> {{!imovel?.comercializacao?.locacao?.ativa ? "Venda:" : "Aluguel:"}}
+                  <b>R$ {{imovel?.comercializacao?.locacao?.ativa ? imovel?.comercializacao?.locacao?.preco : imovel?.comercializacao?.venda?.preco}}</b>
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="col-4 col-sm-4 col-lg-3 col-xl-3  pl-0 pl-xl-0  pt-1 mt-2 ">
+              <div class="PropertyCard PropertyCardShadowBox">
+                <p class="PropertyCardCod">Código:<b><br/>{{imovel.sigla}}</b></p>
+              </div>
+            </div>
+
+            <div class="col-md-12 pt-1 mt-2" style="display: none !important;">
+              <button type="button" class="btn btn-block PropertyCardBTN PropertyCardShadowBox" data-toggle="modal"
+                      data-target="#propContactMe">Quero saber mais
+              </button>
+            </div>
+            <div
+              class="col-md-6 pt-4  align-self-center text-center d-none d-sm-none d-md-block btn-add-wishlist-login btn-wishlist"
+              style="display: none !important;">
+              <img src="../../assets/img/ADDWishListBTN.png" style="max-width: 100%;"
+                   alt="Adicionar a lista de desejos">
+            </div>
+
+            <div class="col-md-6 pt-4 align-self-center text-center d-none d-sm-none d-md-block btn-wishlist"
+                 style="display: none !important;">
+              <a data-toggle="collapse" data-target="#share"><img src="../../assets/img/ShareBTN.png"
+                                                                  style="max-width: 100%;" alt="Compartilhar"></a>
+            </div>
+
+            <div id="share" class="collapse col-md-12 mx-auto" style="display: none !important;">
+              <div class="mt-3 text-right">
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_inline_share_toolbox"></div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-12  d-none d-sm-none d-md-block pb-2">
+          <img class="mx-auto d-none d-sm-none d-md-block" id="down-arrow" src="../../assets/img/arrow-04.png"
+               width="50">
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-12 offset-0 col-sm-10 offset-sm-1 col-md-10 offset-md-1 col-lg-8 offset-lg-2 PropertyDescription">
+        <h3>Descrição</h3>
+        <p>
+          {{imovel.detalhes.descricaosite}}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container">
+        <div class="row">
+          <div class="col" *ngIf="imovel.recursos.imovel.length > 0">
+            <h3>Recursos do Imóvel</h3>
+            <ul>
+              <li *ngFor="let recurso of imovel.recursos.imovel">{{recurso}}</li>
+            </ul>
+          </div>
+          <div class="col" *ngIf="imovel.recursos.condominio.length > 0">
+            <h3>Recursos do Condomínio</h3>
+            <ul>
+              <li *ngFor="let recurso of imovel.recursos.condominio">{{recurso}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INICIO SESSAO MAPA -->
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="PropertyMapText" style="display:none !important;">
+          <p>Conheça esse imóvel com
+            <br/>um dos nossos corretores
+            <br/>ou tire suas dúvidas pelo
+            <br/><b>fale com a gente.</b></p>
+          <a class="btn btn-rounded PropertyMapButton" data-toggle="modal" data-target="#propContactMe">Quero
+            visitar</a>
+        </div>
+
+        <agm-map [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]">
+          <agm-marker [latitude]="imovel?.local?.coordenadas[0]"
+                      [longitude]="imovel?.local?.coordenadas[1]"></agm-marker>
+        </agm-map>
+        <!--        <section class="PropertyMap" id="cd-google-map" #googleMap>-->
+        <!--          <div id="map"></div>-->
+        <!--          <div id="cd-zoom-in" class='btn-in'><span class="zoom">+</span></div>-->
+        <!--          <div id="cd-zoom-out" class='btn-in'><span class="zoom">-</span></div>-->
+        <!--        </section>-->
+      </div>
+    </div>
+  </section>
+  <!-- FINAL SESSAO MAPA -->
+
+  <div class="PropertyMore" style="display: none !important;">
+    <div class="container">
+      <div class="row ">
+        <div class="col-md-10 offset-md-1 mt-5 mt-sm-5 mt-lg-0 mb-md-3">
+          <p class="more-prop"><img src="../../assets/img/icons/icon-plus.svg"> Mais imóveis para você</p>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-1 col-lg-1 text-right d-none d-lg-block">
+          <a onclick="PreviusSlideBlog()" class="arrow-left-blog" style="display: none !important;">
+            <img src="../../assets/img/propertyLeftArrow.png" alt="">
+          </a>
+        </div>
+
+        <div class="col-12 col-md-10 col-lg-10 px-md-0 px-lg-3">
+
+          <div class="all_slides_hook animated fadeIn" style="" id="slide_0" data-slide="0">
+
+            <div class="PropertyBoxCard PropertyBoxCardShadowBox">
+              <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-4">
+                  <div class="PropertyBoxDivCarousel owl-carousel owl-theme">
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_103386.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_196661.jpg"
+                      alt="casa-residencial-village-visconde-de-itamaraca-valinhos-sp-CA114961"
+                      title="casa-residencial-village-visconde-de-itamaraca-valinhos-sp-CA114961">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_103386.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_734704.jpg"
+                      alt="casa-residencial-village-visconde-de-itamaraca-valinhos-sp-CA114961"
+                      title="casa-residencial-village-visconde-de-itamaraca-valinhos-sp-CA114961">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_103386.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_103386.jpg"
+                      alt="casa-residencial-village-visconde-de-itamaraca-valinhos-sp-CA114961"
+                      title="casa-residencial-village-visconde-de-itamaraca-valinhos-sp-CA114961">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-8 PropertyBoxCardPadding">
+                  <div class="row PropertyBoxCardDetails ">
+                    <div class="col-12 ml-3">
+                      <h4>Casa</h4>
+                      <h3>Village Visconde de Itamaraca</h3>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 ml-3">
+                      <p>Cód: <span>CA114961</span></p>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 mt-4 mt-lg-0 ml-3">
+                      <div class="row">
+
+                        <!-- Info Type -->
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+                            Quartos
+                          </p>
+                          <h6><i class="icon-bed text-orange"></i>4</h6>
+                        </div>
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+
+                            Área
+                          </p>
+                          <h6><i class="icon-area text-orange"></i>627.54m²</h6>
+                        </div>
+
+                        <div class="col-6 col-md-4 col-lg-6 pl-5">
+                          <p class="PropertyBoxCardLabel">Preço</p>
+                          <h6><i class="icon-dollar text-orange"></i> 4,500 milhões</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-6">
+                      <a class="btn btn-see-more btn-rounded"
+                         href="casa-residencial-village-visconde-de-itamaraca-valinhos-sp-CA114961.html">VER MAIS <span
+                        class="arrow-icon"></span></a>
+                    </div>
+                    <div class="col-6">
+                      <img class="AddWishListBtn" src="../../assets/img/add-wish-list-icon.png" alt="">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="all_slides_hook animated fadeIn" style="display:none !important;" id="slide_1" data-slide="1">
+
+            <div class="PropertyBoxCard PropertyBoxCardShadowBox">
+              <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-4">
+                  <div class="PropertyBoxDivCarousel owl-carousel owl-theme">
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_756478.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_105306.jpg"
+                      alt="casa-residencial-duas-marias-jaguariuna-sp-CA114861"
+                      title="casa-residencial-duas-marias-jaguariuna-sp-CA114861">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_756478.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_67898.jpg"
+                      alt="casa-residencial-duas-marias-jaguariuna-sp-CA114861"
+                      title="casa-residencial-duas-marias-jaguariuna-sp-CA114861">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_756478.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_756478.jpg"
+                      alt="casa-residencial-duas-marias-jaguariuna-sp-CA114861"
+                      title="casa-residencial-duas-marias-jaguariuna-sp-CA114861">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-8 PropertyBoxCardPadding">
+                  <div class="row PropertyBoxCardDetails ">
+                    <div class="col-12 ml-3">
+                      <h4>Casa</h4>
+                      <h3>Duas Marias</h3>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 ml-3">
+                      <p>Cód: <span>CA114861</span></p>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 mt-4 mt-lg-0 ml-3">
+                      <div class="row">
+
+                        <!-- Info Type -->
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+                            Quartos
+                          </p>
+                          <h6><i class="icon-bed text-orange"></i>2</h6>
+                        </div>
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+
+                            Área
+                          </p>
+                          <h6><i class="icon-area text-orange"></i>300m²</h6>
+                        </div>
+
+                        <div class="col-6 col-md-4 col-lg-6 pl-5">
+                          <p class="PropertyBoxCardLabel">Preço</p>
+                          <h6><i class="icon-dollar text-orange"></i> 5,500 mil</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-6">
+                      <a class="btn btn-see-more btn-rounded"
+                         href="casa-residencial-duas-marias-jaguariuna-sp-CA114861.html">VER MAIS <span
+                        class="arrow-icon"></span></a>
+                    </div>
+                    <div class="col-6">
+                      <img class="AddWishListBtn" src="../../assets/img/add-wish-list-icon.png" alt="">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="all_slides_hook animated fadeIn" style="display:none !important;" id="slide_2" data-slide="2">
+
+            <div class="PropertyBoxCard PropertyBoxCardShadowBox">
+              <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-4">
+                  <div class="PropertyBoxDivCarousel owl-carousel owl-theme">
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_906792.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_860085.jpg"
+                      alt="sala-comercial-cambui-campinas-sp-SA003191"
+                      title="sala-comercial-cambui-campinas-sp-SA003191">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_906792.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_824321.jpg"
+                      alt="sala-comercial-cambui-campinas-sp-SA003191"
+                      title="sala-comercial-cambui-campinas-sp-SA003191">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_906792.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_906792.jpg"
+                      alt="sala-comercial-cambui-campinas-sp-SA003191"
+                      title="sala-comercial-cambui-campinas-sp-SA003191">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-8 PropertyBoxCardPadding">
+                  <div class="row PropertyBoxCardDetails ">
+                    <div class="col-12 ml-3">
+                      <h4>Sala</h4>
+                      <h3>Cambuí</h3>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 ml-3">
+                      <p>Cód: <span>SA003191</span></p>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 mt-4 mt-lg-0 ml-3">
+                      <div class="row">
+
+                        <!-- Info Type -->
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+                            Quartos
+                          </p>
+                          <h6><i class="icon-bed text-orange"></i>1</h6>
+                        </div>
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+
+                            Área
+                          </p>
+                          <h6><i class="icon-area text-orange"></i>254.2m²</h6>
+                        </div>
+
+                        <div class="col-6 col-md-4 col-lg-6 pl-5">
+                          <p class="PropertyBoxCardLabel">Preço</p>
+                          <h6><i class="icon-dollar text-orange"></i> 20,320 mil</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-6">
+                      <a class="btn btn-see-more btn-rounded" href="sala-comercial-cambui-campinas-sp-SA003191.html">VER
+                        MAIS <span class="arrow-icon"></span></a>
+                    </div>
+                    <div class="col-6">
+                      <img class="AddWishListBtn" src="../../assets/img/add-wish-list-icon.png" alt="">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="all_slides_hook animated fadeIn" style="display:none" id="slide_3" data-slide="3">
+
+            <div class="PropertyBoxCard PropertyBoxCardShadowBox">
+              <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-4">
+                  <div class="PropertyBoxDivCarousel owl-carousel owl-theme">
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_154949.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_259664.jpg"
+                      alt="galpao-comercial-bonfim-campinas-sp-GA002850"
+                      title="galpao-comercial-bonfim-campinas-sp-GA002850">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_154949.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_783480.jpg"
+                      alt="galpao-comercial-bonfim-campinas-sp-GA002850"
+                      title="galpao-comercial-bonfim-campinas-sp-GA002850">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_154949.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_154949.jpg"
+                      alt="galpao-comercial-bonfim-campinas-sp-GA002850"
+                      title="galpao-comercial-bonfim-campinas-sp-GA002850">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-8 PropertyBoxCardPadding">
+                  <div class="row PropertyBoxCardDetails ">
+                    <div class="col-12 ml-3">
+                      <h4>Galpão</h4>
+                      <h3>Bonfim</h3>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 ml-3">
+                      <p>Cód: <span>GA002850</span></p>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 mt-4 mt-lg-0 ml-3">
+                      <div class="row">
+
+                        <!-- Info Type -->
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+                            Quartos
+                          </p>
+                          <h6><i class="icon-bed text-orange"></i>1</h6>
+                        </div>
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+
+                            Área
+                          </p>
+                          <h6><i class="icon-area text-orange"></i>250m²</h6>
+                        </div>
+
+                        <div class="col-6 col-md-4 col-lg-6 pl-5">
+                          <p class="PropertyBoxCardLabel">Preço</p>
+                          <h6><i class="icon-dollar text-orange"></i> 4,400 mil</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-6">
+                      <a class="btn btn-see-more btn-rounded" href="galpao-comercial-bonfim-campinas-sp-GA002850.html">VER
+                        MAIS <span class="arrow-icon"></span></a>
+                    </div>
+                    <div class="col-6">
+                      <img class="AddWishListBtn" src="../../assets/img/add-wish-list-icon.png" alt="">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="all_slides_hook animated fadeIn" style="display:none" id="slide_4" data-slide="4">
+
+            <div class="PropertyBoxCard PropertyBoxCardShadowBox">
+              <div class="row">
+
+                <div class="col-12 col-md-12 col-lg-4">
+                  <div class="PropertyBoxDivCarousel owl-carousel owl-theme">
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_718001.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_205117.jpg"
+                      alt="apartamento-residencial-parque-prado-campinas-sp-AP002904"
+                      title="apartamento-residencial-parque-prado-campinas-sp-AP002904">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_718001.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_817449.jpg"
+                      alt="apartamento-residencial-parque-prado-campinas-sp-AP002904"
+                      title="apartamento-residencial-parque-prado-campinas-sp-AP002904">
+                    </div>
+                    <div
+                      style="background-image: url(http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_718001.jpg)"
+                      class="img PropertyBoxDivCarouselIMG"
+                      data-src="http://nextsim.criah.com.br//storage/properties/gr/imobiliaria5796bc63c096d580178b4575/imagens_718001.jpg"
+                      alt="apartamento-residencial-parque-prado-campinas-sp-AP002904"
+                      title="apartamento-residencial-parque-prado-campinas-sp-AP002904">
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-8 PropertyBoxCardPadding">
+                  <div class="row PropertyBoxCardDetails ">
+                    <div class="col-12 ml-3">
+                      <h4>Apartamento</h4>
+                      <h3>Parque Prado</h3>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 ml-3">
+                      <p>Cód: <span>AP002904</span></p>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-12 mt-4 mt-lg-0 ml-3">
+                      <div class="row">
+
+                        <!-- Info Type -->
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+                            Quartos
+                          </p>
+                          <h6><i class="icon-bed text-orange"></i>2</h6>
+                        </div>
+                        <div class="col-3 col-md-3 col-lg-3">
+                          <p class="PropertyBoxCardLabel">
+
+                            Área
+                          </p>
+                          <h6><i class="icon-area text-orange"></i>87m²</h6>
+                        </div>
+
+                        <div class="col-6 col-md-4 col-lg-6 pl-5">
+                          <p class="PropertyBoxCardLabel">Preço</p>
+                          <h6><i class="icon-dollar text-orange"></i> 600 mil</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row PropertyBoxCardDetails">
+                    <div class="col-6">
+                      <a class="btn btn-see-more btn-rounded"
+                         href="apartamento-residencial-parque-prado-campinas-sp-AP002904.html">VER MAIS <span
+                        class="arrow-icon"></span></a>
+                    </div>
+                    <div class="col-6">
+                      <img class="AddWishListBtn" src="../../assets/img/add-wish-list-icon.png" alt="">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <ul class="propertyCAR blog-slider-pagination text-center mt-md-5">
+
+            <li class="active balls" id="ball_0" data-ball="0" onclick="ClickBall(0)">1</li>
+
+            <li class=" balls" id="ball_1" data-ball="1" onclick="ClickBall(1)">2</li>
+
+            <li class=" balls" id="ball_2" data-ball="2" onclick="ClickBall(2)">3</li>
+
+            <li class=" balls" id="ball_3" data-ball="3" onclick="ClickBall(3)">4</li>
+
+            <li class=" balls" id="ball_4" data-ball="4" onclick="ClickBall(4)">5</li>
+          </ul>
+        </div>
+
+        <div class="col-1  col-lg-1 text-left d-none d-lg-block">
+          <a onclick="NextSlideBlog()" class="arrow-right-blog">
+            <img src="../../assets/img/propertyRightArrow.png" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="propContactMe" tabindex="-1" role="dialog" aria-labelledby="propContactMe"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form method="POST" class="form-card " action="apartamento-residencial-alphaville-campinas-sp-AP001588.html"
+              id="form-negotiate-property">
+
+          <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
+          <input type="hidden" value="propriedade" name="contact_type" id="form-contact-contact_type">
+
+          <input type="hidden" value="Venda" name="form-contact-category" id="form-contact-category">
+
+          <div class="card text-center">
+            <div class="card-header text-dark-gray bg-gray-100 font-weight-bolder text-uppercase py-3">
+              Entre em contato
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="card-body text-left bg-gray-100 p-2 pt-5">
+              <div class="row">
+                <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+                  <div class="form-group">
+                    <div class="form-icon">
+                      <span id="validate_contact_name"></span>
+                      <input type="text" class="form-control orange-input" name="form-contact-name"
+                             id="form-contact-name"
+                             value="" placeholder="Nome completo" autocomplete="off" required="required">
+                      <span id="alert_contact_name" class="float-left blur-error"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+                  <div class="form-group">
+                    <div class="form-icon">
+                      <span id="validate_contact_phone"></span>
+                      <input type="text" class="form-control phone orange-input" name="form-contact-phone"
+                             id="form-contact-phone" placeholder="Telefone" autocomplete="off" required="required">
+                    </div>
+                    <span id="alert_contact_phone" class="float-left blur-error"></span>
+                  </div>
+                </div>
+
+                <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+                  <div class="form-group">
+                    <div class="form-icon">
+                      <span id="validate_contact_email"></span>
+                      <input type="email" class="form-control orange-input" name="form-contact-email"
+                             id="form-contact-email" value="" placeholder="Digite seu e-mail aqui" autocomplete="off"
+                             required="required">
+                    </div>
+                    <span id="alert_contact_email" class="float-left blur-error"></span>
+                  </div>
+                </div>
+
+                <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+                  <div class="form-group ">
+                    <label for="form-contact-message">Mensagem</label>
+                    <span id="alert_message" class="float-right blur-error"></span>
+                    <textarea class="form-control orange-textarea" name="form-contact-message" id="form-contact-message"
+                              rows="3"
+                              placeholder="Mensagem (Opcional)">Quero saber mais sobre o imovél: AP001588</textarea>
+                  </div>
+                </div>
+                <div class="col-12 text-center my-4">
+                  <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
+                          disabled="disabled" id="btn-negotiate-modal">
+                    Enviar
+                    <img class="btn-invisible" src="../../assets/img/spinner.gif" id="negotiate_modal_spinner"
+                         width="23"/>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  ;
+
+</div>

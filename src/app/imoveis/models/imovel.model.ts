@@ -4,10 +4,22 @@ export interface Imovel {
   local: Local;
   comercializacao: Comercializacao;
   numeros: Numeros;
+  detalhes: Detalhes;
+  recursos: Recursos;
   midia: {
     imagens: [string],
     fotoscond: [string]
-  }
+  };
+}
+
+export interface Recursos {
+  imovel: [string];
+  condominio: [string];
+}
+
+export interface Detalhes {
+  separacaocasa: string;
+  descricaosite: string;
 }
 
 export interface Local {
@@ -33,6 +45,8 @@ export interface Locacao {
 }
 
 export interface Venda {
+  preco: number;
+  ativa: boolean;
   aceitafinanciamento: boolean;
 }
 

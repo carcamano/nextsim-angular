@@ -26,7 +26,7 @@
                                                                                 src="assets/img/icons/icon-times-contact.svg">
       </button>
     </div>
-    <form id="frm_filter" class="d-none d-sm-none d-md-block d-lg-block d-xl-block">
+    <form id="frm_filter" class="d-none d-sm-none d-md-block d-lg-block d-xl-block" style="display: none !important;">
       <input type="hidden" name="categoria" value="residencial"/>
       <div class="FilterBarLine mb-5" id="FilterBar">
         <div class="container">
@@ -717,7 +717,7 @@
       </div>
       <input type="hidden" name="filter-interno" value="1"/>
     </form>
-    <form id="frm_filterMob" class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
+    <form id="frm_filterMob" class="d-block d-sm-block d-md-none d-lg-none d-xl-none" style="display: none !important;">
       <div class="MobileFilterBar container-fluid ">
         <div class="row MobileFilterBarHeader">
           <div class="col-8">
@@ -1441,22 +1441,22 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-lg-4 sidebar">
-            <div class="sidebar-title">IMÓVEIS RESIDENCIAIS</div>
+            <div class="sidebar-title">IMÓVEIS {{queryParams.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </div>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a> Pesquisa </a></li>
-                <li class='breadcrumb-item active'>RESIDENCIAIS</li>
+                <li class='breadcrumb-item active'>{{queryParams.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </li>
               </ol>
             </nav>
             <div class="filter-badges">
                               <span class="badge badge-pill">
-                              Alugar
+                              {{queryParams.categoria === 'comprar' ? 'Comprar' : 'Alugar'}}
                               <button class="btn-badge"
-                                      onclick="javascript:removeFiltro('finalidade%5B%5D=','alugar',this)">x</button>
+                                      >x</button>
                               </span>
               <span class="badge badge-pill">
-                              Residencial
+                              {{queryParams.finalidade === 'residencial' ? 'Residencial' : 'Comercial'}}
                               <button class="btn-badge remove-badge" data-url="categoria">x</button>
                               </span>
             </div>
@@ -1493,13 +1493,13 @@
                   </div>
                   <div class="info-item">
                     <span class="field-label label-change">Preço</span>
-                    <div><i class="icon-dollar text-orange"></i> {{imovel.comercializacao?.locacao?.preco}}</div>
+                    <div><i class="icon-dollar text-orange"></i> {{imovel?.comercializacao?.locacao?.ativa ? imovel?.comercializacao?.locacao?.preco : imovel?.comercializacao?.venda?.preco}}</div>
                   </div>
                 </div>
                 <div class="footer-info">
                   <div class="row">
                     <div class="col-6 col-sm-6 pos-btn-see-more">
-                      <a href="imovel/casa-residencial-barao-geraldo-campinas-sp-CA002693.html"
+                      <a [routerLink]="'/imoveis/' + imovel.sigla"
                          class="btn btn-see-more btn-rounded">
                         VER MAIS <span class="arrow-icon"></span>
                       </a>
@@ -1518,32 +1518,13 @@
             </div>
 
             <div class="col-12">
-              <ul class="pagination justify-content-center align-items-baseline" role="navigation">
-                <li class="page-item">
-                  <a class="page-link"
-                     href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=4.html"
-                     rel="prev" aria-label="&laquo; Anterior">&lsaquo;</a>
+              <ul class="pagination justify-content-center align-items-baseline" role="navigation" *ngIf="pages.length > 0">
+                <li class="page-item" (click)="changePage(currentPage - 1)">
+                  <span class="page-link" rel="prev" aria-label="&laquo; Anterior">&lsaquo;</span>
                 </li>
-                <li class="page-item"><a class="page-link"
-                                         href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=1.html">1</a>
-                </li>
-                <li class="page-item"><a class="page-link"
-                                         href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=2.html">2</a>
-                </li>
-                <li class="page-item"><a class="page-link"
-                                         href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=3.html">3</a>
-                </li>
-                <li class="page-item"><a class="page-link"
-                                         href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=4.html">4</a>
-                </li>
-                <li class="page-item active" aria-current="page"><span class="page-link">5</span></li>
-                <li class="page-item"><a class="page-link"
-                                         href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=6.html">6</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link"
-                     href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=6.html"
-                     rel="next" aria-label="Próximo &raquo;">
+                <li class="page-item " (click)="changePage(page)" [class.active]="currentPage === page" aria-current="page" *ngFor="let page of pages"><span class="page-link">{{page}}</span></li>
+                <li class="page-item" (click)="changePage(currentPage + 1)">
+                  <a class="page-link" href="#" rel="next" aria-label="Próximo &raquo;">
                     <b>&rsaquo;</b>
                   </a>
                 </li>
@@ -1560,7 +1541,7 @@
                 <div class="row mood">
                   <div class="col-12 col-md mood-bg mood-card building px-0 mx-0" style="cursor:pointer;">
                     <a
-                      href="imoveis@categoria=residencial&amp;tipos[]=terreno&amp;finalidade[]=comprar&amp;search=&amp;filter-interno=1.html">
+                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar', tipo: 'terreno'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-wall h4"></i>
@@ -1570,7 +1551,7 @@
                     </a>
                   </div>
                   <div class="col-12 col-md mood-bg mood-card highlight px-0 mx-0" style="cursor:pointer;">
-                    <a href="imoveis@featured=1.html">
+                    <a href="imoveis@featured=1.html" [routerLink]="['/imoveis/']" [queryParams]="{featured: 'true'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-featured h4"></i>
@@ -1581,7 +1562,7 @@
                   </div>
                   <div class="col-12 col-md mood-bg mood-card for-family px-0 mx-0" style="cursor:pointer;">
                     <a
-                      href="imoveis@categoria=residencial&amp;finalidade[]=comprar&amp;finalidade[]=alugar&amp;search=&amp;quartos=3&amp;filter-interno=1.html">
+                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '3'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-house-heart h4"></i>
@@ -1592,7 +1573,7 @@
                   </div>
                   <div class="col-12 col-md mood-bg mood-card for-couple px-0 mx-0" style="cursor:pointer;">
                     <a
-                      href="imoveis@categoria=residencial&amp;finalidade[]=comprar&amp;finalidade[]=alugar&amp;search=&amp;quartos=2&amp;filter-interno=1.html">
+                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '2'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-alliance h4"></i>
@@ -1603,7 +1584,7 @@
                   </div>
                   <div class="col-12 col-md mood-bg mood-card alone px-0 mx-0" style="cursor:pointer;">
                     <a
-                      href="imoveis@categoria=residencial&amp;tipos[]=apartamento&amp;finalidade[]=comprar&amp;finalidade[]=alugar&amp;search=&amp;quartos=1&amp;filter-interno=1.html">
+                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '1'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-avatar-alone"></i>
