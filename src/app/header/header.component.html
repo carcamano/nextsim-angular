@@ -309,68 +309,62 @@
     <h3>
       Sua melhor forma de acessar imóveis<br> de alto padrão com suporte.
     </h3>
-    <h4 class="font-weight-semibold" style="display: none;">Encontre o lugar dos seus sonhos em Campinas e região:</h4>
+    <h4 class="font-weight-semibold">Encontre o lugar dos seus sonhos em Campinas e região:</h4>
   </div>
-  <div class="container home-filter " *ngIf="false">
+  <div class="container home-filter " >
     <form action="http://nextsim.com.br/imoveis" method="GET" id="home-search">
       <div class="row d-none d-lg-block">
         <div class="col-md-12">
           <div class="filter-bar-home centerObject">
-            <div class="goal">
-              <div class="goal-title"><span class="icon-goal arrow-down-icon"></span> <span class="goal-title-in">Finalidade</span>
+            <div class="goal" ngbDropdown>
+              <div class="goal-title" ngbDropdownToggle id="dropdownForm1"><span class="icon-goal arrow-down-icon"></span> <span class="goal-title-in">{{simpleSearch.finalidade || 'Finalidade'}}</span>
               </div>
-              <div class="goal-options">
-                <div class="form-check goal-option">
-                  <input class="form-check-input" type="radio" name="goal" id="CheckComprar" value="Comprar">
-                  <label class="form-check-label" id="label-comprar" for="CheckComprar">
+              <div class="goal-options" ngbDropdownMenu aria-labelledby="dropdownForm1">
+                <div class="form-check goal-option" (click)='simpleSearch.finalidade = "Comprar"'>
+                  <label class="form-check-label" id="label-comprar" >
                     Comprar
                   </label>
                 </div>
-                <div class="form-check goal-option">
-                  <input class="form-check-input" type="radio" name="goal" id="CheckAlugar" value="Alugar">
-                  <label class="form-check-label" id="label-alugar" for="CheckAlugar">
+                <div class="form-check goal-option" (click)='simpleSearch.finalidade = "Alugar"'>
+                  <label class="form-check-label" id="label-alugar" >
                     Alugar
                   </label>
                 </div>
               </div>
             </div>
-            <div class="category">
-              <div class="category-title"><span class="icon-category arrow-down-icon"></span> <span
-                class="category-title-in">Categoria</span></div>
-              <div class="category-options">
-                <div class="form-check category-option">
-                  <input class="form-check-input" type="radio" name="category" id="Check-residencial"
-                         value="Residencial">
-                  <label class="form-check-label" id="label-residencial" for="Check-residencial">
+            <div class="category" ngbDropdown>
+              <div class="category-title" ngbDropdownToggle id="dropdownForm2"><span class="icon-category arrow-down-icon"></span> <span
+                class="category-title-in">{{simpleSearch.categoria || 'Categoria'}}</span></div>
+              <div class="category-options" ngbDropdownMenu aria-labelledby="dropdownForm2">
+                <div class="form-check category-option" (click)="simpleSearch.categoria = 'Residencial'">
+                  <label class="form-check-label"  >
                     Residencial
                   </label>
                 </div>
-                <div class="form-check category-option">
-                  <input class="form-check-input" type="radio" name="category" id="Check-comercial" value="Comercial">
-                  <label class="form-check-label" id="label-comercial" for="Check-comercial">
+                <div class="form-check category-option" (click)="simpleSearch.categoria = 'Comercial'">
+                  <label class="form-check-label"  >
                     Comercial
                   </label>
                 </div>
-                <div class="form-check goal-option">
-                  <a href="index.html#sectionRelease" class="sectionReleaseLink">
-                    <label class="form-check-label" id="" for=""> Lançamentos </label>
-                  </a>
-                </div>
+<!--                <div class="form-check goal-option">-->
+<!--                  <a href="index.html#sectionRelease" class="sectionReleaseLink">-->
+<!--                    <label class="form-check-label" id="" for=""> Lançamentos </label>-->
+<!--                  </a>-->
+<!--                </div>-->
               </div>
             </div>
             <div class="searchfield">
-              <input type="text" class="form-control" name="bairros[]" id="search-field"
-                     placeholder="Cidade, bairro ou código" autocomplete="off">
+              <input type="text" class="form-control" id="search-field"
+                     placeholder="Cidade, bairro ou código" autocomplete="off" [ngModel]="simpleSearch.campo">
               <div id="ajaxList">
               </div>
-              <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
             </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-12 d-none d-sm-none d-md-block">
-          <button class="btn btn-search btn-rounded" type="submit">
+          <button class="btn btn-search btn-rounded" >
             <i class="fas fa-search"></i> BUSCAR
           </button>
         </div>
@@ -380,11 +374,11 @@
             <i class="fas fa-search"></i> REALIZAR PESQUISA
           </button>
         </div>
-<!--        <div class="col-md-12 d-none d-lg-block">-->
-<!--          <a class="btn btn-custom-your-search btn-rounded" data-toggle="modal" data-target=".Home-Personal-Filter-Bar">-->
-<!--            <span class="custom-your-search-icon"></span> Personalize a sua busca-->
-<!--          </a>-->
-<!--        </div>-->
+        <div class="col-md-12 d-none d-lg-block">
+          <a class="btn btn-custom-your-search btn-rounded" data-toggle="modal" data-target=".Home-Personal-Filter-Bar" (click)="open(content)">
+            <span class="custom-your-search-icon"></span> Personalize a sua busca
+          </a>
+        </div>
       </div>
     </form>
   </div>
@@ -395,3 +389,18 @@
 <!--    <img src="assets/img/house-bg.jpg" alt="">-->
 <!--  </div>-->
 </header>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h1>dasdsads</h1>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>

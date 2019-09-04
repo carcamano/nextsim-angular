@@ -76,7 +76,8 @@
             total: 137 m²</p>-->
 
                 <p class="PropertyCardType">
-                  {{imovel.tipo}} | Área total 137 m² Área útil 137 m²
+                  {{imovel.tipo}} | Área total {{imovel.numeros?.areas.total}} {{imovel.numeros?.areas?.unidade}} Área
+                  útil {{imovel.numeros?.areas.util}} {{imovel.numeros?.areas?.unidade}}
                   <!--                  local: {bairro: "Cambuí", cidade: "Campinas/SP", cep: "13025152", coordenadas: Array(2)}-->
                 </p>
                 <p class="PropertyCardTitle">{{imovel.local.bairro}}</p>
@@ -96,9 +97,18 @@
                   </li>
                 </ul>
 
-                <p class="PropertyCardValues pt-4 " style="display: none;">
-                  <img src="../../assets/img/imovel/coin-orange.svg"/> IPTU: R$ 3.035,00/mês
-                </p>
+                <div class="PropertyCardValues pt-4 row" *ngIf="imovel?.comercializacao?.taxa">
+                  <img src="../../assets/img/imovel/coin-orange.svg"/>
+                  <div class="" style="display: inline-block;">
+
+                  <span *ngIf="imovel?.comercializacao?.taxa?.iptu">IPTU: R$ {{imovel?.comercializacao?.taxa?.iptu}}
+                    <span *ngIf="imovel?.comercializacao?.taxa?.mes">/mês</span></span>
+                    <br *ngIf="imovel?.comercializacao?.taxa?.iptu && imovel?.comercializacao?.taxa?.condominio"/>
+                    <span
+                      *ngIf="imovel?.comercializacao?.taxa?.condominio">Condomínio: R$ {{imovel?.comercializacao?.taxa?.condominio}}
+                      <span *ngIf="imovel?.comercializacao?.taxa?.mes">/mês</span></span>
+                  </div>
+                </div>
               </div>
             </div>
 
