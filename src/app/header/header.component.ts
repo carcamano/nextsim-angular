@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
     finalidade: 'residencial',
     quartos: 0,
     salas: 0,
+    dormitorios: 0,
     tipos: [],
     precos: {
       min: 0,
@@ -94,10 +95,13 @@ export class HeaderComponent implements OnInit {
       }).map(value => {
         return value.key;
       });
-      this.customSearch.tipos.push(this.customSearch.finalidade);
       const area: string = this.customSearch.area.min + ',' + this.customSearch.area.max;
       const precos: string = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
-      this.search({finalidade: this.customSearch.finalidade, tipo: this.customSearch.tipos.join(','), categoria: this.customSearch.categoria, precos: precos, area: area, custom: true});
+      this.search({
+        finalidade: this.customSearch.finalidade, tipo: this.customSearch.tipos.join(','),
+        categoria: this.customSearch.categoria, precos: precos, area: area, custom: true,
+        dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas
+      });
     }, (reason) => {
 
     });

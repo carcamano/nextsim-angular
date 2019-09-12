@@ -41,3 +41,26 @@ ngb-tabset {
 .CheckHorizontalLabel input[type=checkbox] {
   display: none;
 }
+.CheckHorizontalLabel {
+  display: inline-block;
+  cursor: pointer;
+  outline: 0;
+  width: 35px;
+  height: 35px;
+  background: #dbdbdb;
+  color: #575656;
+  padding-top: 4px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 100%;
+  margin: 0 10px;
+}
+
+.CheckHorizontalLabel.active {
+  background: #f69731;
+  color: #fff;
+}
+
+.CheckHorizontalInput {
+  display: none;
+}

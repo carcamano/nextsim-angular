@@ -80,8 +80,6 @@ export class ImoveisComponent implements OnInit {
       }
       if (this.queryParams.precos) {
         const values = this.queryParams.precos.split(',');
-        console.log(values)
-        console.log(values.length)
         if (values.length === 2) {
           if (imovel.comercializacao.venda && imovel.comercializacao.venda.preco >= values[0] &&
             imovel.comercializacao.venda.preco <= values[1]) {
@@ -110,13 +108,11 @@ export class ImoveisComponent implements OnInit {
           f.push('f');
         }
       }
-      console.log(f);
-      console.log(!f.includes('f'));
       return !f.includes('f');
     });
 
+    this.pages = filtred.length;
     this.imoveis = this.chunkArray(filtred, this.itensPerPage)[this.currentPage];
-    console.log(this.imoveis.length);
 
     this.scrollTop();
   }
