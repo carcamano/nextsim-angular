@@ -16,7 +16,11 @@ import {AgmCoreModule} from '@agm/core';
 import {QueroNegociarComponent} from './quero-negociar/quero-negociar.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {GeneralService} from './imoveis/general.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSliderModule} from '@angular/material';
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,12 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     OwlModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    Ng5SliderModule,
     FontAwesomeModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB8F9P_r8OgBfXItSsOAGNB5LnIHWw-Jbw'
     }),
@@ -41,7 +50,8 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   providers: [
-    ImoveisService
+    ImoveisService,
+    GeneralService
   ],
   bootstrap: [AppComponent]
 })

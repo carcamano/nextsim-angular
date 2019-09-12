@@ -6,6 +6,7 @@ export interface Imovel {
   numeros: Numeros;
   detalhes: Detalhes;
   recursos: Recursos;
+  finalidade: string;
   midia: {
     imagens: [string],
     fotoscond: [string]

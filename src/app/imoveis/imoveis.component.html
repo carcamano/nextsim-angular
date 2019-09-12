@@ -717,7 +717,7 @@
       </div>
       <input type="hidden" name="filter-interno" value="1"/>
     </form>
-    <form id="frm_filterMob" class="d-block d-sm-block d-md-none d-lg-none d-xl-none" style="display: none !important;">
+    <form id="frm_filterMob" class="d-block d-sm-block d-md-none d-lg-none d-xl-none" >
       <div class="MobileFilterBar container-fluid ">
         <div class="row MobileFilterBarHeader">
           <div class="col-8">
@@ -1517,18 +1517,8 @@
               </div>
             </div>
 
-            <div class="col-12">
-              <ul class="pagination justify-content-center align-items-baseline" role="navigation" *ngIf="pages.length > 0">
-                <li class="page-item" (click)="changePage(currentPage - 1)">
-                  <span class="page-link" rel="prev" aria-label="&laquo; Anterior">&lsaquo;</span>
-                </li>
-                <li class="page-item " (click)="changePage(page)" [class.active]="currentPage === page" aria-current="page" *ngFor="let page of pages"><span class="page-link">{{page}}</span></li>
-                <li class="page-item" (click)="changePage(currentPage + 1)">
-                  <a class="page-link" href="#" rel="next" aria-label="Próximo &raquo;">
-                    <b>&rsaquo;</b>
-                  </a>
-                </li>
-              </ul>
+            <div class="col-12" *ngIf="pages > 0">
+              <ngb-pagination [collectionSize]="pages" [(page)]="currentPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12">

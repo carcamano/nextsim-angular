@@ -47,6 +47,13 @@ export class ImoveisService {
 
   }
 
+  all(): Observable<Imovel[]> {
+
+    return this.http
+      .get<Imovel[]>(`${API_URL}/imoveis`);
+
+  }
+
   imoveisBySigla(sigla: string): Observable<Imovel> {
     return this.http.get<Imovel>(`${API_URL}/imoveis?sigla=${sigla}`);
   }
