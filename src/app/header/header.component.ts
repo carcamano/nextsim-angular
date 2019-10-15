@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {GeneralService} from '../imoveis/general.service';
 import {HttpResponse} from '@angular/common/http';
 import {Imovel} from '../imoveis/models/imovel.model';
-import { Options } from 'ng5-slider';
+import {Options} from 'ng5-slider';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     campo: null
   };
 
-  customSearch =  {
+  customSearch = {
     categoria: 'comprar',
     finalidade: 'residencial',
     quartos: 0,
@@ -38,7 +38,10 @@ export class HeaderComponent implements OnInit {
       min: 0,
       max: 61000,
     }
-  }
+  };
+
+  tipos_residencial = [];
+  tipos_comercial = [];
 
   options: Options = {
     floor: 0,
@@ -80,11 +83,10 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
   open(content) {
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
-    // @ts-ignore
+      // @ts-ignore
       size: 'xl',
       scrollable: true,
       centered: true
@@ -112,7 +114,11 @@ export class HeaderComponent implements OnInit {
     console.log(query);
     if (this.simpleSearch.finalidade || this.simpleSearch.categoria || this.simpleSearch.campo || query) {
       this.router.navigate(['imoveis'], {
-        queryParams: query || {finalidade: this.simpleSearch.finalidade, categoria: this.simpleSearch.categoria, query: this.simpleSearch.campo}
+        queryParams: query || {
+          finalidade: this.simpleSearch.finalidade,
+          categoria: this.simpleSearch.categoria,
+          query: this.simpleSearch.campo
+        }
       });
     }
   }
@@ -124,10 +130,26 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  finalidadeChange(event: any) {
+    if (this.customSearch.finalidade === 'residencial') {
+      this.customSearch.tipos = this.tipos_residencial;
+    } else {
+      this.customSearch.tipos = this.tipos_comercial;
+    }
+  }
+
 
   private loadDefaults() {
-    this.generalService.tipos().subscribe((res: HttpResponse<string[]>) => {
-      this.customSearch.tipos = res.body.map((value, index, array) => {
+    this.generalService.tipos_residencial().subscribe((res: HttpResponse<string[]>) => {
+      this.tipos_residencial = res.body.map((value, index, array) => {
+        return {key: value, selected: false, i: index};
+      });
+    });
+
+    this.customSearch.tipos = this.tipos_residencial;
+
+    this.generalService.tipos_comercial().subscribe((res: HttpResponse<string[]>) => {
+      this.tipos_comercial = res.body.map((value, index, array) => {
         return {key: value, selected: false, i: index};
       });
     });

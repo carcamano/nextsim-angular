@@ -76,8 +76,8 @@
             total: 137 m²</p>-->
 
                 <p class="PropertyCardType">
-                  {{imovel.tipo}} | Área total {{imovel.numeros?.areas.total}} {{imovel.numeros?.areas?.unidade}} Área
-                  útil {{imovel.numeros?.areas.util}} {{imovel.numeros?.areas?.unidade}}
+                  {{imovel.tipo}} | Área total {{imovel.numeros?.areas.total.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} Área
+                  útil {{imovel.numeros?.areas.util.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}
                   <!--                  local: {bairro: "Cambuí", cidade: "Campinas/SP", cep: "13025152", coordenadas: Array(2)}-->
                 </p>
                 <p class="PropertyCardTitle">{{imovel.local.bairro}}</p>
@@ -87,7 +87,7 @@
 
                 <ul class="PropertyOptions">
                   <li><img src="../../assets/img/imovel/bed-orange.svg"/>
-                    <span>{{imovel.numeros.dormitorios}}</span>
+                    <span>{{imovel.finalidade === 'residencial' ? imovel.numeros.dormitorios : imovel.numeros.salas }}</span>
                   </li>
                   <li><img src="../../assets/img/imovel/shower-orange.svg"/>
                     <span>{{imovel.numeros.banheiros}}</span>
@@ -113,12 +113,17 @@
             </div>
 
             <div class="col-8 col-sm-8 col-lg-9 col-xl-9  pt-1 mt-2">
-              <div class="PropertyCard PropertyCardShadowBox">
+              <div class="PropertyCard PropertyCardShadowBox" style="flex-direction: column;">
 
-                <p class="PropertyCardValues ">
+                <p class="PropertyCardValues " *ngIf="imovel?.comercializacao?.locacao?.ativa">
                   <img
-                    src="../../assets/img/imovel/coin-gray.svg"/> {{!imovel?.comercializacao?.locacao?.ativa ? "Venda:" : "Aluguel:"}}
-                  <b>R$ {{imovel?.comercializacao?.locacao?.ativa ? imovel?.comercializacao?.locacao?.preco : imovel?.comercializacao?.venda?.preco}}</b>
+                    src="../../assets/img/imovel/coin-gray.svg"/> Aluguel:
+                  <b>R$ {{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</b>
+                </p>
+                <p class="PropertyCardValues " *ngIf="imovel?.comercializacao?.venda?.ativa">
+                  <img
+                    src="../../assets/img/imovel/coin-gray.svg"/> Venda:
+                  <b>R$ {{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</b>
                 </p>
 
               </div>

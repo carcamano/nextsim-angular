@@ -411,7 +411,7 @@
         </div>
         <div class="col-7">
           <h4>Categoria</h4>
-          <ul class="HorizontalCheckBoxMobile" ngbRadioGroup name="radioBasic" [(ngModel)]="customSearch.finalidade">
+          <ul class="HorizontalCheckBoxMobile" ngbRadioGroup name="radioBasic" [(ngModel)]="customSearch.finalidade" (ngModelChange)="finalidadeChange($event)">
             <li>
               <label ngbButtonLabel class="HorizontalCheckBoxMobileLabel">
                 <input ngbButton type="radio" value="residencial" class="HorizontalCheckBoxMobileInput"> Residencial
@@ -430,7 +430,7 @@
           </ul>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="display: none;">
         <div class="col-4">
           <span class="TitleCityMobHome">Cidade</span>
         </div>
@@ -560,7 +560,7 @@
             <ng-template ngbTabContent>
               <div class="BALLCheckStyle pt-5 pb-3 ">
                 <ul class="CheckHorizontal ScaleFilter" ngbRadioGroup name="radioBasic"
-                    [(ngModel)]="customSearch.quartos">
+                    [(ngModel)]="customSearch.dormitorios">
                   <li>
 
                     <label ngbButtonLabel class="CheckHorizontalLabel">

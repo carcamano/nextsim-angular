@@ -38,7 +38,6 @@ export class ImoveisComponent implements OnInit {
   }
 
   changePage(page: number) {
-    console.log(page);
     this.currentPage = page;
     if (!this.customSearch) {
       this.getImoveis();
@@ -108,6 +107,35 @@ export class ImoveisComponent implements OnInit {
           f.push('f');
         }
       }
+
+      // dormitorios
+      if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'residencial') {
+        if (imovel.numeros && imovel.numeros.dormitorios && imovel.numeros.dormitorios === Number(this.queryParams.dormitorios)) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+
+      // salas
+      if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'comercial') {
+        if (imovel.numeros && imovel.numeros.salas && imovel.numeros.salas === Number(this.queryParams.salas)) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+
+      // salas
+      if (this.queryParams.query) {
+        if (imovel.sigla.toLowerCase().includes(this.queryParams.query.toLowerCase()) ||
+          imovel.local.cidade.toLowerCase().includes(this.queryParams.query.toLowerCase()) ||
+          imovel.local.bairro.toLowerCase().includes(this.queryParams.query.toLowerCase())) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
       return !f.includes('f');
     });
 
@@ -121,7 +149,7 @@ export class ImoveisComponent implements OnInit {
     this.imoveis = [];
     this.pages = 0;
     // this.currentPage = 1;
-    if (this.queryParams.custom) {
+    if (this.queryParams.custom || this.queryParams.customSearch) {
       this.imoveisService.all().subscribe((res: Imovel[]) => {
         this.allImoveis = res;
         this.filterAll();
@@ -156,5 +184,40 @@ export class ImoveisComponent implements OnInit {
     }
     return tempArray;
   }
+
+  toArea(imovel: Imovel) {
+    if (imovel.tipo === 'casa') {
+      return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+    } else if (imovel.tipo === 'apartamento' || imovel.tipo === 'sala') {
+      return imovel.numeros.areas.util.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+    } else if (imovel.tipo === 'terreno') {
+      return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+    }
+    return '?';
+  }
+
+  toDormis(imovel: Imovel) {
+    if (imovel.finalidade === 'residencial') {
+      return imovel.numeros.dormitorios;
+    } else {
+      return imovel.numeros.salas;
+    }
+  }
+
+  getprice(imovel: Imovel) {
+
+    if (imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
+      return this.getFormattedPrice(imovel.comercializacao.locacao.preco);
+    } else if (imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
+      return this.getFormattedPrice(imovel.comercializacao.venda.preco);
+    }
+
+    return '?';
+  }
+
+  getFormattedPrice(price: number) {
+    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price);
+  }
+
 
 }

@@ -21,6 +21,7 @@ import {GeneralService} from './imoveis/general.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material';
 import { Ng5SliderModule } from 'ng5-slider';
+import { LOCALE_ID } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { Ng5SliderModule } from 'ng5-slider';
   ],
   providers: [
     ImoveisService,
-    GeneralService
+    GeneralService,
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]
 })

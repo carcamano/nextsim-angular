@@ -717,7 +717,7 @@
       </div>
       <input type="hidden" name="filter-interno" value="1"/>
     </form>
-    <form id="frm_filterMob" class="d-block d-sm-block d-md-none d-lg-none d-xl-none" >
+    <form id="frm_filterMob" class="d-block d-sm-block d-md-none d-lg-none d-xl-none">
       <div class="MobileFilterBar container-fluid ">
         <div class="row MobileFilterBarHeader">
           <div class="col-8">
@@ -1441,23 +1441,25 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-lg-4 sidebar">
-            <div class="sidebar-title">IMÓVEIS {{queryParams.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </div>
+            <div class="sidebar-title">
+              IMÓVEIS {{queryParams.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </div>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a> Pesquisa </a></li>
-                <li class='breadcrumb-item active'>{{queryParams.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </li>
+                <li
+                  class='breadcrumb-item active'>{{queryParams.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </li>
               </ol>
             </nav>
             <div class="filter-badges">
                               <span class="badge badge-pill">
                               {{queryParams.categoria === 'comprar' ? 'Comprar' : 'Alugar'}}
-                              <button class="btn-badge"
-                                      >x</button>
+                                <button class="btn-badge"
+                                >x</button>
                               </span>
               <span class="badge badge-pill">
                               {{queryParams.finalidade === 'residencial' ? 'Residencial' : 'Comercial'}}
-                              <button class="btn-badge remove-badge" data-url="categoria">x</button>
+                <button class="btn-badge remove-badge" data-url="categoria">x</button>
                               </span>
             </div>
           </div>
@@ -1482,18 +1484,18 @@
                   <!-- Info Type -->
                   <div class="info-item">
                     <span class="field-label label-change">Quartos</span>
-                    <div><i class="icon-bed text-orange"></i> {{imovel.numeros?.dormitorios}}</div>
+                    <div><i class="icon-bed text-orange"></i> {{toDormis(imovel)}}</div>
                   </div>
                   <div class="info-item">
                     <span class="field-label label-change">Área</span>
                     <div>
                       <i class="icon-area text-orange"></i>
-                      {{imovel.numeros?.areas.util}} {{imovel.numeros?.areas?.unidade}}
+                      {{toArea(imovel)}}
                     </div>
                   </div>
                   <div class="info-item">
                     <span class="field-label label-change">Preço</span>
-                    <div><i class="icon-dollar text-orange"></i> {{imovel?.comercializacao?.locacao?.ativa ? imovel?.comercializacao?.locacao?.preco : imovel?.comercializacao?.venda?.preco}}</div>
+                    <div><i class="icon-dollar text-orange"></i> {{getprice(imovel)}}</div>
                   </div>
                 </div>
                 <div class="footer-info">
@@ -1518,7 +1520,8 @@
             </div>
 
             <div class="col-12" *ngIf="pages > 0">
-              <ngb-pagination [collectionSize]="pages" [(page)]="currentPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
+              <ngb-pagination [collectionSize]="pages" [(page)]="currentPage" [maxSize]="5" [rotate]="true"
+                              [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12">
@@ -1531,7 +1534,8 @@
                 <div class="row mood">
                   <div class="col-12 col-md mood-bg mood-card building px-0 mx-0" style="cursor:pointer;">
                     <a
-                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar', tipo: 'terreno'}">
+                      [routerLink]="['/imoveis/']"
+                      [queryParams]="{finalidade: 'residencial', categoria: 'comprar', tipo: 'terreno'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-wall h4"></i>
@@ -1552,7 +1556,8 @@
                   </div>
                   <div class="col-12 col-md mood-bg mood-card for-family px-0 mx-0" style="cursor:pointer;">
                     <a
-                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '3'}">
+                      [routerLink]="['/imoveis/']"
+                      [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '3'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-house-heart h4"></i>
@@ -1563,7 +1568,8 @@
                   </div>
                   <div class="col-12 col-md mood-bg mood-card for-couple px-0 mx-0" style="cursor:pointer;">
                     <a
-                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '2'}">
+                      [routerLink]="['/imoveis/']"
+                      [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '2'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-alliance h4"></i>
@@ -1574,7 +1580,8 @@
                   </div>
                   <div class="col-12 col-md mood-bg mood-card alone px-0 mx-0" style="cursor:pointer;">
                     <a
-                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '1'}">
+                      [routerLink]="['/imoveis/']"
+                      [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '1'}">
                       <div class="blend-mode">
                         <div class="mood-description">
                           <i class="icon-avatar-alone"></i>

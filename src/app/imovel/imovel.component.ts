@@ -30,4 +30,22 @@ export class ImovelComponent implements OnInit {
     // cd-google-map
   }
 
+
+  getFormattedPrice(price: number) {
+    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price);
+  }
+
+
+  toArea(imovel: Imovel) {
+    if (imovel.tipo === 'casa') {
+      const total = imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+      const util = imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+    } else if (imovel.tipo === 'apartamento' || imovel.tipo === 'sala') {
+      const num = imovel.numeros.areas.util.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+    } else if (imovel.tipo === 'terreno') {
+      const num = imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+    }
+    return '?';
+  }
+
 }

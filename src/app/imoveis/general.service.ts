@@ -14,9 +14,15 @@ export class GeneralService {
   }
 
 
-  tipos(): Observable<HttpResponse<string[]>> {
+  tipos_comercial(): Observable<HttpResponse<string[]>> {
     return this.http
-      .get<string[]>(`${API_URL}/tipos`, {observe: 'response'});
+      .get<string[]>(`${API_URL}/tipos_comercial`, {observe: 'response'});
+
+  }
+
+  tipos_residencial(): Observable<HttpResponse<string[]>> {
+    return this.http
+      .get<string[]>(`${API_URL}/tipos_residencial`, {observe: 'response'});
 
   }
 
