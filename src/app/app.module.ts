@@ -22,6 +22,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material';
 import { Ng5SliderModule } from 'ng5-slider';
 import { LOCALE_ID } from '@angular/core';
+import {IsotopeModule} from 'ngx-isotopee';
+import {LancamentoService} from './home/lancamento.service';
+import { SobreComponent } from './sobre/sobre.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { LOCALE_ID } from '@angular/core';
     HomeComponent,
     FooterComponent,
     ImovelComponent,
-    QueroNegociarComponent
+    QueroNegociarComponent,
+    SobreComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +44,7 @@ import { LOCALE_ID } from '@angular/core';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    IsotopeModule,
     Ng5SliderModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
@@ -53,6 +58,7 @@ import { LOCALE_ID } from '@angular/core';
   providers: [
     ImoveisService,
     GeneralService,
+    LancamentoService,
     {provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]

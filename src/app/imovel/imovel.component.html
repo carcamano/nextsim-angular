@@ -76,7 +76,8 @@
             total: 137 m²</p>-->
 
                 <p class="PropertyCardType">
-                  {{imovel.tipo}} | Área total {{imovel.numeros?.areas.total.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} Área
+                  {{imovel.tipo}} | Área
+                  total {{imovel.numeros?.areas.total.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} Área
                   útil {{imovel.numeros?.areas.util.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}
                   <!--                  local: {bairro: "Cambuí", cidade: "Campinas/SP", cep: "13025152", coordenadas: Array(2)}-->
                 </p>
@@ -118,12 +119,12 @@
                 <p class="PropertyCardValues " *ngIf="imovel?.comercializacao?.locacao?.ativa">
                   <img
                     src="../../assets/img/imovel/coin-gray.svg"/> Aluguel:
-                  <b>R$ {{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</b>
+                  <b>{{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</b>
                 </p>
                 <p class="PropertyCardValues " *ngIf="imovel?.comercializacao?.venda?.ativa">
                   <img
                     src="../../assets/img/imovel/coin-gray.svg"/> Venda:
-                  <b>R$ {{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</b>
+                  <b>{{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</b>
                 </p>
 
               </div>
@@ -136,9 +137,9 @@
               </div>
             </div>
 
-            <div class="col-md-12 pt-1 mt-2" style="display: none !important;">
-              <button type="button" class="btn btn-block PropertyCardBTN PropertyCardShadowBox" data-toggle="modal"
-                      data-target="#propContactMe">Quero saber mais
+            <div class="col-md-12 pt-1 mt-2">
+              <button type="button" class="btn btn-block PropertyCardBTN PropertyCardShadowBox" (click)="open(content)">
+                Quero saber mais
               </button>
             </div>
             <div
@@ -217,9 +218,21 @@
             visitar</a>
         </div>
 
-        <agm-map [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]">
-          <agm-marker [latitude]="imovel?.local?.coordenadas[0]"
-                      [longitude]="imovel?.local?.coordenadas[1]"></agm-marker>
+        <agm-map [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]" [zoom]="14">
+          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"
+                      [radius]="500"
+                      [fillColor]="'#ff9820'">
+          </agm-circle>
+
+          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"
+                      [radius]="1000"
+                      [fillColor]="'#ff9820'">
+          </agm-circle>
+
+          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"
+                      [radius]="1500"
+                      [fillColor]="'#ff9820'">
+          </agm-circle>
         </agm-map>
         <!--        <section class="PropertyMap" id="cd-google-map" #googleMap>-->
         <!--          <div id="map"></div>-->
@@ -729,86 +742,83 @@
   </div>
 
 
-  <div class="modal fade" id="propContactMe" tabindex="-1" role="dialog" aria-labelledby="propContactMe"
-       aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form method="POST" class="form-card " action="apartamento-residencial-alphaville-campinas-sp-AP001588.html"
-              id="form-negotiate-property">
+  <ng-template #content let-modal>
 
-          <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
-          <input type="hidden" value="propriedade" name="contact_type" id="form-contact-contact_type">
+    <div class="modal-content">
+      <form method="POST" class="form-card " action="apartamento-residencial-alphaville-campinas-sp-AP001588.html"
+            id="form-negotiate-property">
 
-          <input type="hidden" value="Venda" name="form-contact-category" id="form-contact-category">
+        <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
+        <input type="hidden" value="propriedade" name="contact_type" id="form-contact-contact_type">
 
-          <div class="card text-center">
-            <div class="card-header text-dark-gray bg-gray-100 font-weight-bolder text-uppercase py-3">
-              Entre em contato
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="card-body text-left bg-gray-100 p-2 pt-5">
-              <div class="row">
-                <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
-                  <div class="form-group">
-                    <div class="form-icon">
-                      <span id="validate_contact_name"></span>
-                      <input type="text" class="form-control orange-input" name="form-contact-name"
-                             id="form-contact-name"
-                             value="" placeholder="Nome completo" autocomplete="off" required="required">
-                      <span id="alert_contact_name" class="float-left blur-error"></span>
-                    </div>
+        <input type="hidden" value="Venda" name="form-contact-category" id="form-contact-category">
+
+        <div class="card text-center">
+          <div class="card-header text-dark-gray bg-gray-100 font-weight-bolder text-uppercase py-3">
+            Entre em contato
+            <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body text-left bg-gray-100 p-2 pt-5">
+            <div class="row">
+              <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+                <div class="form-group">
+                  <div class="form-icon">
+                    <span id="validate_contact_name"></span>
+                    <input type="text" class="form-control orange-input" name="form-contact-name"
+                           id="form-contact-name"
+                           value="" placeholder="Nome completo" autocomplete="off" required="required">
+                    <span id="alert_contact_name" class="float-left blur-error"></span>
                   </div>
                 </div>
+              </div>
 
-                <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
-                  <div class="form-group">
-                    <div class="form-icon">
-                      <span id="validate_contact_phone"></span>
-                      <input type="text" class="form-control phone orange-input" name="form-contact-phone"
-                             id="form-contact-phone" placeholder="Telefone" autocomplete="off" required="required">
-                    </div>
-                    <span id="alert_contact_phone" class="float-left blur-error"></span>
+              <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+                <div class="form-group">
+                  <div class="form-icon">
+                    <span id="validate_contact_phone"></span>
+                    <input type="text" class="form-control phone orange-input" name="form-contact-phone"
+                           id="form-contact-phone" placeholder="Telefone" autocomplete="off" required="required">
                   </div>
+                  <span id="alert_contact_phone" class="float-left blur-error"></span>
                 </div>
+              </div>
 
-                <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
-                  <div class="form-group">
-                    <div class="form-icon">
-                      <span id="validate_contact_email"></span>
-                      <input type="email" class="form-control orange-input" name="form-contact-email"
-                             id="form-contact-email" value="" placeholder="Digite seu e-mail aqui" autocomplete="off"
-                             required="required">
-                    </div>
-                    <span id="alert_contact_email" class="float-left blur-error"></span>
+              <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+                <div class="form-group">
+                  <div class="form-icon">
+                    <span id="validate_contact_email"></span>
+                    <input type="email" class="form-control orange-input" name="form-contact-email"
+                           id="form-contact-email" value="" placeholder="Digite seu e-mail aqui" autocomplete="off"
+                           required="required">
                   </div>
+                  <span id="alert_contact_email" class="float-left blur-error"></span>
                 </div>
+              </div>
 
-                <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
-                  <div class="form-group ">
-                    <label for="form-contact-message">Mensagem</label>
-                    <span id="alert_message" class="float-right blur-error"></span>
-                    <textarea class="form-control orange-textarea" name="form-contact-message" id="form-contact-message"
-                              rows="3"
-                              placeholder="Mensagem (Opcional)">Quero saber mais sobre o imovél: AP001588</textarea>
-                  </div>
+              <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+                <div class="form-group ">
+                  <label for="form-contact-message">Mensagem</label>
+                  <span id="alert_message" class="float-right blur-error"></span>
+                  <textarea class="form-control orange-textarea" name="form-contact-message" id="form-contact-message"
+                            rows="3"
+                            placeholder="Mensagem (Opcional)">Quero saber mais sobre o imovél: {{imovel.sigla}}</textarea>
                 </div>
-                <div class="col-12 text-center my-4">
-                  <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
-                          disabled="disabled" id="btn-negotiate-modal">
-                    Enviar
-                    <img class="btn-invisible" src="../../assets/img/spinner.gif" id="negotiate_modal_spinner"
-                         width="23"/>
-                  </button>
-                </div>
+              </div>
+              <div class="col-12 text-center my-4">
+                <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
+                        disabled="disabled" id="btn-negotiate-modal">
+                  Enviar
+                  <img class="btn-invisible" src="../../assets/img/spinner.gif" id="negotiate_modal_spinner"
+                       width="23"/>
+                </button>
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-  </div>
-  ;
+  </ng-template>
 
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {IsotopeOptions} from 'ngx-isotopee';
+import {LancamentoService} from './lancamento.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+
+  myOptions: IsotopeOptions = {
+    itemSelector: '.grid-item'
+  };
+
+  lancamentos = []
+  constructor(private lancamentoService: LancamentoService) { }
 
   ngOnInit() {
+
+    this.lancamentoService.all().subscribe(value => {
+      console.log(value.body);
+      this.lancamentos = value.body;
+    });
+
+
   }
 
 }

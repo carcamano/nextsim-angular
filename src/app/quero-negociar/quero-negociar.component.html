@@ -1,3 +1,314 @@
-<p>
-  quero-negociar works!
-</p>
+<div class="content-internal bg-gray-800" [style.height.px]="height">
+  <section class="row  h-100 align-items-center">
+    <div class="negociate-header w-100">
+      <div class="container h-100">
+        <div class="row ">
+          <div class="col-12 col-md-5 offset-lg-1">
+            <img src="assets/img/quero-negociar-aperto-de-maos.png" width="80%" alt="Quero Negociar"
+                 class="d-none d-md-block img-fluid">
+            <img src="assets/img/quero-negociar/Ilustra_Anunciar_02.png"
+                 class="d-block d-md-none mb-3 img-fluid mx-auto"/>
+          </div>
+          <div class="col-12 col-md-4 text-left">
+            <h1 class="text-white font-weight-bold title-negotiate">A Next é perfeita <br class="d-block d-md-none">para
+              você anunciar.</h1>
+            <p class="text-gray-300 mt-3">A praticidade que você procura com a segurança que você precisa. Com a
+              Next você tem facilidades e suporte para todas as etapas de venda ou locação.</p>
+            <a (click)="scroll(target_form)"
+               class="btn btn-generic btn-rounded btn-primary text-uppercase mt-3 d-none d-md-block">Quero
+              negociar</a>
+          </div>
+          <div class="col-12 col-sm-12 pt-3 text-center d-block d-md-none">
+            <button class="btn btn-primary btn-rounded btn-mobile" data-target="#contactMe" data-toggle="modal">
+              ENTRE EM CONTATO
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="backdrop">
+
+  <section class="content d-block d-sm-block d-md-none bg-gray">
+    <div class="row">
+
+      <div class="col-10 col-sm-10 offset-1 offset-sm-1 pt-2 mt-3">
+        <div class="col-12 col-sm-12 title-internal">
+          <h3>Confira o</h3>
+          <h2>Passo a passo:</h2>
+          <span class="orange-bar"></span>
+        </div>
+
+        <div class="col-12 col-sm-12">
+          <div class="row pt-4">
+
+            <div class="col-12 col-sm-6 upmobile50">
+              <div class="HWD-img-block">
+                <div class="HWD-picture-frame">
+                  <img src="assets/img/pic-hwd-01.png" alt="" class="HWD-picture">
+                </div>
+              </div>
+              <div class="icon-block">
+                <p class="HWD-text"><label class="HWD-number">1</label>Preencha o formulário de contato com seus dados
+                  para que um de nossos consultores possa lhe retornar.</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 upmobile50">
+              <div class="HWD-img-block">
+                <div class="HWD-picture-frame">
+                  <img src="assets/img/pic-hwd-02.png" alt="" class="HWD-picture">
+                </div>
+              </div>
+              <div class="icon-block">
+                <p class="HWD-text"><label class="HWD-number">2</label>Feito isso, nossos especialistas irão lhe
+                  contatar para agendar uma visita em seu imóvel, avalia-lo, tirar fotos profissionais e apresentar o
+                  documento de autorização de venda e/ou locação.</p>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 upmobile50">
+              <div class="HWD-img-block">
+                <div class="HWD-picture-frame">
+                  <img src="assets/img/pic-hwd-03.png" alt="" class="HWD-picture">
+                </div>
+              </div>
+              <div class="icon-block">
+                <p class="HWD-text"><label class="HWD-number">3</label>Em seguida, seu imóvel irá passar por um
+                  processo de aprovação do departamento de marketing, com o intuito de maximizar a divulgação.</p>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 upmobile50">
+              <div class="HWD-img-block">
+                <div class="HWD-picture-frame">
+                  <img src="assets/img/pic-hwd-04.png" alt="" class="HWD-picture">
+                </div>
+              </div>
+              <div class="icon-block">
+                <p class="HWD-text"><label class="HWD-number">4</label>A partir daí, você faz parte da Next, e, poderá
+                  acompanhar todo o processo de negociação, por meio de nosso email 360 e continuo dialogo com nossos
+                  consultores.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <section class="container-fluid d-block d-sm-block d-md-none bg-white pd-img">
+
+    <div class="row pl-0 pr-0 pt-0 pb-2">
+      <img class="img-fluid" style="width:100%;" src="assets/img/brief/shutterstock_717416971.png"/>
+    </div>
+
+    <div class="offset-1 offset-sm-1 col-10 col-sm-10 pt-3 ">
+      <img class="img-fluid pb-2" src="assets/img/icons/icon-quote.png"/>
+      <p class=""> O apoio da Next foi essencial para alcançar o valor de mercado que eu esperava.
+        Eles me ajudaram resolvendo as burocracias que seriam impossíveis com a minha rotina.
+      </p>
+      <p class="text-right pb-5">
+        Helena, <br/>
+        <small>Empresária, vendeu a sua casa no condomínio Alphaville em 2017.</small>
+      </p>
+    </div>
+
+  </section>
+
+
+  <section class="content d-none d-sm-none d-md-block d-lg-block d-xl-block pt-5">
+
+    <button id="buttonContato" class="btn btn-contact-chat btn-rounded btn-contact-me-NEW d-none d-sm-none d-md-block"
+            type="button"><span class="chat-icon"></span> <span><span style="color:#575656;">Entre em</span><br> CONTATO</span>
+    </button>
+
+    <a class="btn btn-contact-chat btn-circle btn-xl btn-contact-me-NEW d-block d-sm-block d-md-none"
+       data-toggle="modal" data-target="#contactMe"><span class="chat-icon"></span></a>
+
+    <div class="d-none" id="groupButtomContact" style="">
+
+      <a href="quero-negociar.html#" class="btn btn-secondary-action btn-sca-phone btn-rounded text-uppercase">
+        <img class="mr-1" alt="" title="" width="22" src="assets/img/icons/icon-phone.svg"/> <span><span
+        style="color:#575656;">LIGUE AGORA</span><br>2512-0000</span>
+      </a>
+
+      <a target="_blank" rel=”noopener”
+         href="https://api.whatsapp.com/send?phone=5519999120030&text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20seus%20im%C3%B3veis!%20"
+         class="btn btn-secondary-action btn-sca-whatsapp btn-rounded text-uppercase">
+        <img class="mr-1" alt="" title="" width="22" src="assets/img/icons/icon-whatsapp.svg"/> <span><span
+        style="color:#575656;">whatsapp</span><br>(19) 99912-0030</span>
+      </a>
+
+      <a href="quero-negociar.html#" class="btn btn-secondary-action btn-sca-contact btn-rounded text-uppercase"
+         data-toggle="modal" data-target="#contactMe">
+        <img class="mr-1" width="22" alt="" title="" src="assets/img/icons/icon-contact-pq.svg"> MENSAGEM
+      </a>
+
+      <button type="button" id="btnContactTimes" class="btn bnt-sca-times"><img width="22" alt="" title=""
+                                                                                src="assets/img/icons/icon-times-contact.svg">
+      </button>
+
+    </div>
+    <div class="negotiate-passo-a-passo">
+      <div class="container">
+        <div class="animated fadeInU text-center">
+          <div class="title-internal">
+            <h3>Confira o</h3>
+            <h2>Passo a passo:</h2>
+            <span class="orange_bar_decoration"></span>
+          </div>
+        </div>
+
+        <div class="row picture_block">
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 upmobile50">
+            <div class="HWD-img-block">
+              <div class="HWD-picture-frame">
+                <img src="assets/img/pic-hwd-01.png" alt="" class="HWD-picture">
+              </div>
+            </div>
+            <div class="icon-block">
+              <p class="HWD-text"><label class="HWD-number">1</label>Preencha o formulário de contato com seus dados
+                para que um de nossos consultores possa lhe retornar.</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 upmobile50">
+            <div class="HWD-img-block">
+              <div class="HWD-picture-frame">
+                <img src="assets/img/pic-hwd-02.png" alt="" class="HWD-picture">
+              </div>
+            </div>
+            <div class="icon-block">
+              <p class="HWD-text"><label class="HWD-number">2</label>Feito isso, nossos especialistas irão lhe
+                contatar para agendar uma visita em seu imóvel, avalia-lo, tirar fotos profissionais e apresentar o
+                documento de autorização de venda e/ou locação.</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 upmobile50">
+            <div class="HWD-img-block">
+              <div class="HWD-picture-frame">
+                <img src="assets/img/pic-hwd-03.png" alt="" class="HWD-picture">
+              </div>
+            </div>
+            <div class="icon-block">
+              <p class="HWD-text"><label class="HWD-number">3</label>Em seguida, seu imóvel irá passar por um processo
+                de aprovação do departamento de marketing, com o intuito de maximizar a divulgação.</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 upmobile50">
+            <div class="HWD-img-block">
+              <div class="HWD-picture-frame">
+                <img src="assets/img/pic-hwd-04.png" alt="" class="HWD-picture">
+              </div>
+            </div>
+            <div class="icon-block">
+              <p class="HWD-text"><label class="HWD-number">4</label>A partir daí, você faz parte da Next, e, poderá
+                acompanhar todo o processo de negociação, por meio de nosso email 360 e continuo dialogo com nossos
+                consultores.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row bg-gray-oportunity py-5">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-lg-5 offset-lg-1">
+            <div class="vertical-align">
+              <h3 class="oportunity-title">
+                O custo de<br>oportunidade
+              </h3>
+              <p class="text-gray-300 pr-5 mt-4 oportunity-p">
+                Imóvel parado não é bom para ninguém. Custos mensais podem fazer a conta ficar alta ao longo do tempo.
+                Por isto muitas vezes a dinâmica de colocar o valor do seu imóvel no máximo possível pode atrasar a
+                negociação, e na maioria dos casos resultar em perda de dinheiro. Conte com nossa ajuda para encontrar
+                o melhor valor para o seu imóvel.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 text-center px-5">
+            <img src="assets/img/custo-oportunidade-exemplo.png" alt="Custo oportunidade" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="negotiate-contato content animated fadeInUp" id="form-negotiate_container" #target_form>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 title-internal">
+          <h2 class="mb-4">Anuncie com a gente</h2>
+          <h3>Preencha o formulário abaixo e entre em<br>contato para avaliarmos o seu imóvel:</h3>
+        </div>
+        <div class="offset-0 col-12 offset-sm-0 col-sm-12 col-md-12 offset-md-3 col-lg-6 offset-lg-3">
+          <div class="card shadow">
+            <div class="card-body p-4 m-4 p-md-5 m-md-5 ">
+              <form method="POST" action="quero-negociar.html" id="form-negotiate" name="form-negotiate">
+                <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
+                <input type="hidden" value="negociacao" name="contact_type" id="form-contact-contact_type">
+
+                <div class="form-group">
+                  <div class="form-icon">
+                    <span id="validate_contact_name"></span>
+                    <input type="text" class="form-control" name="name" id="form-contact-name" value=""
+                           placeholder="Nome completo" autocomplete="off" required="required">
+                    <span id="alert_contact_name" class="float-left blur-error"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-icon">
+                    <span id="validate_contact_phone"></span>
+                    <input type="text" class="form-control" name="phone" id="form-contact-phone" value=""
+                           placeholder="Telefone" required="required">
+                    <span id="alert_contact_phone" class="float-left blur-error"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-icon">
+                    <span id="validate_contact_email"></span>
+                    <input type="email" class="form-control" name="email" id="form-contact-email" value=""
+                           placeholder="Digite seu e-mail aqui" autocomplete="off" required="required">
+                  </div>
+                  <span id="alert_contact_email" class="float-left blur-error"></span>
+
+                </div>
+
+                <div class="form-group">
+                  <span id="validate_contact_category"></span>
+                  <select class="form-control" id="form-contact-category" required="required" name="category">
+                    <option disabled selected>Categoria</option>
+                    <option value="Locação">Locação</option>
+                    <option value="Venda">Venda</option>
+                  </select>
+
+                  <span id="alert_contact_category" class="float-left blur-error"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                  <span id="alert_contact_message" class="float-right blur-error"></span>
+                  <textarea class="form-control" name="message" id="form-contact-message" rows="3"
+                            placeholder="Mensagem (Opcional)"></textarea>
+                </div>
+                <p class="text-right">
+                  <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
+                          disabled="disabled" id="btn-negotiate-modal">
+                    Enviar
+                    <img class="btn-invisible" src="assets/img/spinner.gif" id="negotiate_modal_spinner" width="23"/>
+                  </button>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

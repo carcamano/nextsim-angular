@@ -69,6 +69,8 @@ export class HeaderComponent implements OnInit {
           categoria: null,
           campo: null
         };
+      } else if (event instanceof NavigationEnd && (event.url.includes('/sobre-nos') || event.url.includes('/quero-negociar'))) {
+        this.rootView = false;
       } else if (event instanceof NavigationEnd && !event.url.includes('/imoveis')) {
         this.rootView = true;
       }

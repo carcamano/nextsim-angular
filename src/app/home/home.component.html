@@ -30,21 +30,31 @@
       <h3>Confira os Nossos</h3>
       <h2>Lançamentos</h2>
       <span class="orange_bar_decoration"></span>
+
+
       <div class="property_releases_nav">
         <ul>
-          <li><a href="index.html#all" class="active">Todos</a></li>
-          <li><a href="index.html#residencial">Residencial</a></li>
-          <li><a href="index.html#comercial">Comercial</a></li>
+          <li><a [class.active]="" class="active">Todos</a></li>
+          <li><a>Residencial</a></li>
+          <li><a>Comercial</a></li>
         </ul>
       </div>
       <div class="property_releases_content">
         <div class="container">
           <div class="col-lg-10 offset-lg-1">
-            <div id="all" class="releases position-relative row property_releases_content--item">
-            </div>
-            <div id="comercial" class="comercial-releases position-relative row property_releases_content--item">
-            </div>
-            <div id="residencial" class="residencial-releases position-relative row property_releases_content--item">
+            <div class="row">
+              <div class="col-4" *ngFor="let lancamento of lancamentos">
+                <a href="{{lancamento.link}}">
+                  <img src="{{lancamento.image}}" class="img-fluid"/>
+                  <div class="lancamento_nome">
+                    <div class="row">
+                      <div class="col">
+                        <span>{{lancamento.title.rendered}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -138,7 +148,7 @@
           <p> Por isso, nós orientamos e atuamos, do início ao fim, em todo processo de análise e negociação
             imobiliária.
           </p>
-          <a href="sobre-nos.html" class="btn btn-see-more btn-rounded mt-5">VER MAIS <span
+          <a [routerLink]="['/sobre-nos/']" class="btn btn-see-more btn-rounded mt-5">VER MAIS <span
             class="arrow-icon"></span></a>
         </div>
       </div>
@@ -206,7 +216,7 @@
         </div>
       </div>
       <div class="row divBtnDownload">
-        <div class="col-md-12 centerObject"><a href="quero-negociar.html" class="btn btn-generic-inverse btn-rounded ">QUERO
+        <div class="col-md-12 centerObject"><a [routerLink]="['/quero-negociar/']" class="btn btn-generic-inverse btn-rounded ">QUERO
           NEGOCIAR</a></div>
       </div>
     </div>

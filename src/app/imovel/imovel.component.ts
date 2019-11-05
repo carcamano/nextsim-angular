@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Imovel} from '../imoveis/models/imovel.model';
 import {ImoveisService} from '../imoveis/imoveis.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-imovel',
@@ -15,7 +16,7 @@ export class ImovelComponent implements OnInit {
   myCarouselOptions = {items: 3, dots: true, nav: true};
 
 
-  constructor(private route: ActivatedRoute, private imoveisService: ImoveisService) { }
+  constructor(private route: ActivatedRoute, private imoveisService: ImoveisService, private modalService: NgbModal) { }
 
   ngOnInit() {
 
@@ -46,6 +47,17 @@ export class ImovelComponent implements OnInit {
       const num = imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
     }
     return '?';
+  }
+
+  open(content) {
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+    // @ts-ignore
+      size: 'md',
+      centered: true
+    }).result.then((result) => {
+    }, (reason) => {
+    });
   }
 
 }

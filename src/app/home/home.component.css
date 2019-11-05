@@ -1,0 +1,38 @@
+.lancamento_nome {
+  position: absolute;
+  top: 0;
+  width: calc(100% - 30px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-animation: all 0.5s ease-out;
+  -moz-animation: all 0.5s ease-out;
+  -o-animation: all 0.5s ease-out;
+  animation: all 0.5s ease-out;
+}
+
+.lancamento_nome:hover {
+  background: rgba(0, 0, 0, .6);
+}
+
+.lancamento_nome span {
+  opacity: 0;
+  color: #f69731;
+  -webkit-animation: all 0.5s ease-out;
+  -moz-animation: all 0.5s ease-out;
+  -o-animation: all 0.5s ease-out;
+  animation: all 0.5s ease-out;
+}
+
+.lancamento_nome:hover span {
+  opacity: 1;
+}
+
+.property_releases_nav {
+
+}
+
+.property_releases_nav ul li a {
+  cursor: pointer;
+}
