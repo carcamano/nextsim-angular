@@ -743,7 +743,6 @@
 
 
   <ng-template #content let-modal>
-
     <div class="modal-content">
       <form method="POST" class="form-card " action="apartamento-residencial-alphaville-campinas-sp-AP001588.html"
             id="form-negotiate-property">
@@ -768,7 +767,7 @@
                     <span id="validate_contact_name"></span>
                     <input type="text" class="form-control orange-input" name="form-contact-name"
                            id="form-contact-name"
-                           value="" placeholder="Nome completo" autocomplete="off" required="required">
+                           [(ngModel)]="form.nome" placeholder="Nome completo" autocomplete="off" required="required">
                     <span id="alert_contact_name" class="float-left blur-error"></span>
                   </div>
                 </div>
@@ -779,7 +778,7 @@
                   <div class="form-icon">
                     <span id="validate_contact_phone"></span>
                     <input type="text" class="form-control phone orange-input" name="form-contact-phone"
-                           id="form-contact-phone" placeholder="Telefone" autocomplete="off" required="required">
+                           id="form-contact-phone" placeholder="Telefone" autocomplete="off" required="required" [(ngModel)]="form.telefone">
                   </div>
                   <span id="alert_contact_phone" class="float-left blur-error"></span>
                 </div>
@@ -790,7 +789,7 @@
                   <div class="form-icon">
                     <span id="validate_contact_email"></span>
                     <input type="email" class="form-control orange-input" name="form-contact-email"
-                           id="form-contact-email" value="" placeholder="Digite seu e-mail aqui" autocomplete="off"
+                           id="form-contact-email" value="" placeholder="Digite seu e-mail aqui" autocomplete="off" [(ngModel)]="form.email"
                            required="required">
                   </div>
                   <span id="alert_contact_email" class="float-left blur-error"></span>
@@ -803,12 +802,12 @@
                   <span id="alert_message" class="float-right blur-error"></span>
                   <textarea class="form-control orange-textarea" name="form-contact-message" id="form-contact-message"
                             rows="3"
-                            placeholder="Mensagem (Opcional)">Quero saber mais sobre o imovél: {{imovel.sigla}}</textarea>
+                            placeholder="Mensagem (Opcional)" [(ngModel)]="form.texto"></textarea>
                 </div>
               </div>
               <div class="col-12 text-center my-4">
                 <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
-                        disabled="disabled" id="btn-negotiate-modal">
+                        id="btn-negotiate-modal" [disabled]="form.nome === '' || form.email === ''" (click)="submitForm()">
                   Enviar
                   <img class="btn-invisible" src="../../assets/img/spinner.gif" id="negotiate_modal_spinner"
                        width="23"/>

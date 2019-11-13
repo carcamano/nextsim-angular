@@ -1,4 +1,5 @@
 export interface Imovel {
+  _id: string;
   sigla: string;
   tipo: string;
   local: Local;

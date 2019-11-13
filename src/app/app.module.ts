@@ -20,11 +20,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {GeneralService} from './imoveis/general.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material';
-import { Ng5SliderModule } from 'ng5-slider';
-import { LOCALE_ID } from '@angular/core';
+import {Ng5SliderModule} from 'ng5-slider';
+import {LOCALE_ID} from '@angular/core';
 import {IsotopeModule} from 'ngx-isotopee';
 import {LancamentoService} from './home/lancamento.service';
-import { SobreComponent } from './sobre/sobre.component';
+import {SobreComponent} from './sobre/sobre.component';
+import {ImovelService} from './imovel/imovel.service';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { SobreComponent } from './sobre/sobre.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB8F9P_r8OgBfXItSsOAGNB5LnIHWw-Jbw'
     }),
@@ -57,6 +60,7 @@ import { SobreComponent } from './sobre/sobre.component';
   ],
   providers: [
     ImoveisService,
+    ImovelService,
     GeneralService,
     LancamentoService,
     {provide: LOCALE_ID, useValue: 'pt-BR'}

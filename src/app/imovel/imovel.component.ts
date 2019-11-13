@@ -2,7 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Imovel} from '../imoveis/models/imovel.model';
 import {ImoveisService} from '../imoveis/imoveis.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {ImovelService} from './imovel.service';
+import {HttpClient} from '@angular/common/http';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-imovel',
@@ -15,20 +18,36 @@ export class ImovelComponent implements OnInit {
   mySlideOptions = {items: 1, dots: true, nav: false};
   myCarouselOptions = {items: 3, dots: true, nav: true};
 
+  @ViewChild('content') public childModal: NgbModalRef;
 
-  constructor(private route: ActivatedRoute, private imoveisService: ImoveisService, private modalService: NgbModal) { }
+  form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ');
+
+
+  constructor(private route: ActivatedRoute, private imoveisService: ImoveisService,
+              private modalService: NgbModal, private service: ImovelService, private toastr: ToastrService) {
+
+  }
 
   ngOnInit() {
 
-    this.route.params.subscribe( params => {
+    this.route.params.subscribe(params => {
       this.imoveisService.imoveisBySigla(params.id).subscribe((value: Imovel) => {
         this.imovel = value[0];
+        this.form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ' + this.imovel.sigla);
         console.log(this.imovel);
       });
     });
 
-
     // cd-google-map
+  }
+
+  submitForm() {
+    console.log(this.form);
+    this.service.incluir(this.form, this.imovel).subscribe(value => {
+      console.log(value);
+      this.modalService.dismissAll();
+      this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');
+    });
   }
 
 
@@ -52,7 +71,7 @@ export class ImovelComponent implements OnInit {
   open(content) {
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
-    // @ts-ignore
+      // @ts-ignore
       size: 'md',
       centered: true
     }).result.then((result) => {
@@ -60,4 +79,17 @@ export class ImovelComponent implements OnInit {
     });
   }
 
+}
+
+
+export class ContactForm {
+  constructor(
+    public nome: string,
+    public telefone: string,
+    public email: string,
+    public texto?: string,
+    public interesse = 0,
+    public midia = 0
+  ) {
+  }
 }
