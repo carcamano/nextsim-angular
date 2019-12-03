@@ -6,6 +6,7 @@ import {GeneralService} from '../imoveis/general.service';
 import {HttpResponse} from '@angular/common/http';
 import {Imovel} from '../imoveis/models/imovel.model';
 import {Options} from 'ng5-slider';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-header',
@@ -37,11 +38,16 @@ export class HeaderComponent implements OnInit {
     area: {
       min: 0,
       max: 61000,
-    }
+    },
+    bairros: []
   };
 
   tipos_residencial = [];
   tipos_comercial = [];
+  locais: any;
+
+  locaisGeral: string[];
+  bairrosSelecionados: any[] = [];
 
   options: Options = {
     floor: 0,
@@ -94,17 +100,24 @@ export class HeaderComponent implements OnInit {
       centered: true
     }).result.then((result) => {
       console.log(this.customSearch);
-      this.customSearch.tipos = this.customSearch.tipos.filter(value => {
+      const tipos = this.customSearch.tipos.filter(value => {
         return value.selected === true;
       }).map(value => {
         return value.key;
       });
+      const bairros = this.customSearch.bairros.filter(value => {
+        return value.selected === true;
+      }).map(value => {
+        return value.key;
+      });
+      console.log(bairros);
       const area: string = this.customSearch.area.min + ',' + this.customSearch.area.max;
       const precos: string = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
       this.search({
-        finalidade: this.customSearch.finalidade, tipo: this.customSearch.tipos.join(','),
+        finalidade: this.customSearch.finalidade, tipo: tipos.join(','),
         categoria: this.customSearch.categoria, precos: precos, area: area, custom: true,
-        dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas
+        dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas,
+        bairros: bairros.join(',')
       });
     }, (reason) => {
 
@@ -129,6 +142,15 @@ export class HeaderComponent implements OnInit {
   changeTipo(event: any, i: number) {
     this.customSearch.tipos[i].selected = event.currentTarget.checked;
     console.log(this.customSearch.tipos);
+  }
+
+  changeBairro(event: any, i: number) {
+    this.customSearch.bairros[i].selected = event.currentTarget.checked;
+    this.bairrosSelecionados = this.customSearch.bairros.filter(value => {
+      return value.selected === true;
+    }).map(value => {
+      return value.key;
+    });
   }
 
 
@@ -156,6 +178,17 @@ export class HeaderComponent implements OnInit {
       });
     });
 
+
+    this.generalService.locais().subscribe((res: HttpResponse<any>) => {
+      if (!this.locais) {
+        this.locais = res.body;
+        this.buildLocais();
+        this.locaisGeral.map((value, index) => {
+          this.buildLocaisBairros(value);
+        });
+      }
+    });
+
     this.generalService.area().subscribe((res: HttpResponse<any>) => {
       this.customSearch.area.max = res.body.max;
       this.customSearch.area.min = res.body.min;
@@ -165,6 +198,35 @@ export class HeaderComponent implements OnInit {
       this.customSearch.precos.max = res.body.max;
       this.customSearch.precos.min = res.body.min;
     });
+  }
+
+
+  buildLocais() {
+    if (!this.locaisGeral) {
+      this.locaisGeral = [];
+      _.forIn(this.locais, (value, key) => {
+        this.locaisGeral.push(key);
+      });
+      console.log(this.locaisGeral);
+    }
+  }
+
+  filterLocaisBairros(cidade: string) {
+    return this.customSearch.bairros.filter(value => value.c === cidade);
+  }
+
+  buildLocaisBairros(cidade: string) {
+    // if (!this.customSearch.bairros.length) {
+    //   this.locaisBairro = [];
+    // }
+    _.forIn(this.locais, (value, key) => {
+      if (key === cidade) {
+        value.map((value2, index, array) => {
+          this.customSearch.bairros.push({key: value2, selected: false, i: index, c: cidade});
+        });
+      }
+    });
+    console.log(this.customSearch.bairros);
   }
 
 }

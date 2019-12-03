@@ -412,7 +412,8 @@
         </div>
         <div class="col-7">
           <h4>Categoria</h4>
-          <ul class="HorizontalCheckBoxMobile" ngbRadioGroup name="radioBasic" [(ngModel)]="customSearch.finalidade" (ngModelChange)="finalidadeChange($event)">
+          <ul class="HorizontalCheckBoxMobile" ngbRadioGroup name="radioBasic" [(ngModel)]="customSearch.finalidade"
+              (ngModelChange)="finalidadeChange($event)">
             <li>
               <label ngbButtonLabel class="HorizontalCheckBoxMobileLabel">
                 <input ngbButton type="radio" value="residencial" class="HorizontalCheckBoxMobileInput"> Residencial
@@ -431,17 +432,38 @@
           </ul>
         </div>
       </div>
-      <div class="row" style="display: none;">
-        <div class="col-4">
-          <span class="TitleCityMobHome">Cidade</span>
+      <div class="row" style="">
+
+
+        <div class="col-8" *ngIf="locais">
+          <span class="TitleCityMobHome">Locais</span>
+          <ngb-accordion [closeOthers]="true" >
+            <ngb-panel [attr.id]="'static-' + i" *ngFor="let local of locaisGeral;  let i = index">
+              <ng-template ngbPanelTitle>
+                <span>{{local}}</span>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" >
+                  <ul>
+                    <li *ngFor="let bairro of filterLocaisBairros(local);  let i = index">
+                      <input type="checkbox" class="checkbox-s2" id="tipo{{bairro.i}}" ([ngModel])="bairro.selected"
+                             (change)="changeBairro($event, i)"/>
+                      <label for="tipo{{bairro.i}}"><span>{{bairro.key}}</span></label>
+                    </li>
+                  </ul>
+                </div>
+
+              </ng-template>
+            </ngb-panel>
+
+          </ngb-accordion>
         </div>
         <div class="col-4">
-          <span class="TitleCityMobHome">Bairro</span>
-        </div>
-        <div class="col-4">
-          <div class="filter-badgesMob" style="display: none;">
+          <div class="filter-badgesMob" style="">
             <span class="TitleCitySelectMobHome">Selecionados</span>
-            <div class="BairroSec"></div>
+            <div class="BairroSec">
+              <span *ngFor="let bairro of bairrosSelecionados  let i = index">{{bairro}}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -452,12 +474,12 @@
             </ng-template>
             <ng-template ngbTabContent>
               <!-- TIPO DE IMOVEL -->
-              <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" id="">
-                <ul>
+              <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" id="" *ngIf="customSearch.tipos.length > 0">
+                <ul >
                   <li *ngFor="let tipo of customSearch.tipos;  let i = index">
-                    <input type="checkbox" class="checkbox-s2" id="tipo{{tipo.i}}" ([ngModel])="tipo.selected"
-                           (change)="changeTipo($event, i)" />
-                    <label for="tipo{{tipo.i}}"><span>{{tipo.key}}</span></label>
+                    <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" ([ngModel])="tipo.selected"
+                           (change)="changeTipo($event, i)"/>
+                    <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>
                   </li>
                 </ul>
               </div>
@@ -557,7 +579,8 @@
             </ng-template>
           </ngb-tab>
           <ngb-tab *ngIf="customSearch.finalidade === 'residencial'">
-            <ng-template ngbTabTitle><i class="icon-bed"></i> Quartos <i class="fas fa-chevron-down small-icon"></i></ng-template>
+            <ng-template ngbTabTitle><i class="icon-bed"></i> Quartos <i class="fas fa-chevron-down small-icon"></i>
+            </ng-template>
             <ng-template ngbTabContent>
               <div class="BALLCheckStyle pt-5 pb-3 ">
                 <ul class="CheckHorizontal ScaleFilter" ngbRadioGroup name="radioBasic"

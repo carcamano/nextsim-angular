@@ -37,4 +37,10 @@ export class GeneralService {
       .get<string[]>(`${API_URL}/area`, {observe: 'response'});
 
   }
+
+  locais(): Observable<HttpResponse<any>> {
+    return this.http
+      .get<string[]>(`${API_URL}/locais`, {observe: 'response'});
+
+  }
 }
