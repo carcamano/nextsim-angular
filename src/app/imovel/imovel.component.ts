@@ -45,7 +45,7 @@ export class ImovelComponent implements OnInit {
 
   submitForm() {
     console.log(this.form);
-    this.service.incluir(this.form, this.imovel).subscribe(value => {
+    this.service.sendGrid(this.form, this.imovel).subscribe(value => {
       console.log(value);
       this.modalService.dismissAll();
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');

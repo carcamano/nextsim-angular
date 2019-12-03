@@ -23724,6 +23724,48 @@ body {
   width: 14px;
 }
 
+.selectiona_local .BairroSec span {
+  display: block;
+
+}
+.selectiona_local .card {
+  display: block;
+  border: none;
+}
+
+
+.selectiona_local .card-header {
+  border: none;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+.selectiona_local .card-header h5 {
+
+
+}
+
+.selectiona_local .card-header h5  .btn-link {
+  font-family:Raleway, sans-serif;
+  color: #212529;
+
+}
+
+.selectiona_local .card-body {
+  padding: 0;
+
+}
+
+.selectiona_local .card-body ul {
+  width: 100% !important;
+  margin: 0;
+  overflow: scroll;
+}
+.selectiona_local .card-body ul li {
+  display: inline-block !important;
+   float: none !important;
+}
+
 /*-------------------
   #checkbox-s style
   ------------------*/

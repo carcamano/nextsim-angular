@@ -432,7 +432,7 @@
           </ul>
         </div>
       </div>
-      <div class="row" style="">
+      <div class="row selectiona_local" style="">
 
 
         <div class="col-8" *ngIf="locais">
@@ -467,7 +467,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="tipos_residencial.length > 0">
         <ngb-tabset justify="center" class="">
           <ngb-tab>
             <ng-template ngbTabTitle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i>

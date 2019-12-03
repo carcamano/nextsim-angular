@@ -16,6 +16,20 @@ export class ImovelService {
   }
 
 
+  sendGrid(form: ContactForm, imovel: Imovel): Observable<HttpResponse<any>> {
+
+    return this.http
+      .post<any>('https://us-central1-promocao-bosch-service.cloudfunctions.net/sendEmailNext', {
+        nome: form.nome,
+        telefone: form.telefone,
+        email: form.email,
+        texto: form.texto,
+        to: 'leads@nextsim.com.br',
+        subject: 'Contato Site Next'
+      });
+  }
+
+
   incluir(form: ContactForm, imovel: Imovel): Observable<HttpResponse<any>> {
 
     const authorizationData = 'Basic ' + btoa('5796bc63c096d580178b4575:11e42072bb3d7b0443dc46f491b531f5');
