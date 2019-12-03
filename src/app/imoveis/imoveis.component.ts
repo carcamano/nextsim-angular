@@ -41,11 +41,11 @@ export class ImoveisComponent implements OnInit {
 
   changePage(page: number) {
     this.currentPage = page;
-    if (!this.customSearch) {
-      this.getImoveis();
-    } else {
-      this.filterAll();
-    }
+    // if (!this.customSearch) {
+    this.getImoveis();
+    // } else {
+    //   this.filterAll();
+    // }
   }
 
   private filterAll() {
@@ -55,105 +55,106 @@ export class ImoveisComponent implements OnInit {
     this.imoveis = [];
 
     this.scrollTop();
-    setTimeout(() => {
-      const filtred = this.allImoveis.filter(imovel => {
-        const f = [];
-        if (this.queryParams.tipo) {
-          const tipos = this.queryParams.tipo.split(',');
-          if (tipos.includes(imovel.tipo)) {
+    // setTimeout(() => {
+    const filtred = this.allImoveis.filter(imovel => {
+      const f = [];
+      if (this.queryParams.tipo) {
+        const tipos = this.queryParams.tipo.split(',');
+        if (tipos.includes(imovel.tipo)) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+      if (this.queryParams.finalidade) {
+        if (this.queryParams.finalidade === imovel.finalidade) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+      if (this.queryParams.categoria) {
+        if (this.queryParams.categoria === 'comprar' && imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
+          f.push('t');
+        } else if (this.queryParams.categoria === 'alugar' && imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+      if (this.queryParams.precos) {
+        const values = this.queryParams.precos.split(',');
+        if (values.length === 2) {
+          if (imovel.comercializacao.venda && imovel.comercializacao.venda.preco >= values[0] &&
+            imovel.comercializacao.venda.preco <= values[1]) {
+            f.push('t');
+          } else if (imovel.comercializacao.locacao && imovel.comercializacao.locacao.preco >= values[0] &&
+            imovel.comercializacao.locacao.preco <= values[1]) {
             f.push('t');
           } else {
             f.push('f');
           }
+        } else {
+          f.push('f');
         }
-        if (this.queryParams.finalidade) {
-          if (this.queryParams.finalidade === imovel.finalidade) {
-            f.push('t');
-          } else {
-            f.push('f');
-          }
-        }
-        if (this.queryParams.categoria) {
-          if (this.queryParams.categoria === 'comprar' && imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
-            f.push('t');
-          } else if (this.queryParams.categoria === 'alugar' && imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
-            f.push('t');
-          } else {
-            f.push('f');
-          }
-        }
-        if (this.queryParams.precos) {
-          const values = this.queryParams.precos.split(',');
-          if (values.length === 2) {
-            if (imovel.comercializacao.venda && imovel.comercializacao.venda.preco >= values[0] &&
-              imovel.comercializacao.venda.preco <= values[1]) {
-              f.push('t');
-            } else if (imovel.comercializacao.locacao && imovel.comercializacao.locacao.preco >= values[0] &&
-              imovel.comercializacao.locacao.preco <= values[1]) {
-              f.push('t');
-            } else {
-              f.push('f');
-            }
-          } else {
-            f.push('f');
-          }
-        }
+      }
 
-        // areas
-        if (this.queryParams.area) {
-          const values = this.queryParams.area.split(',');
-          if (values.length === 2) {
-            if (imovel.numeros && imovel.numeros.areas && imovel.numeros.areas.util >= values[0] && imovel.numeros.areas.util <= values[1]) {
-              f.push('t');
-            } else {
-              f.push('f');
-            }
-          } else {
-            f.push('f');
-          }
-        }
-
-        // dormitorios
-        if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'residencial') {
-          if (imovel.numeros && imovel.numeros.dormitorios && imovel.numeros.dormitorios === Number(this.queryParams.dormitorios)) {
+      // areas
+      if (this.queryParams.area) {
+        const values = this.queryParams.area.split(',');
+        if (values.length === 2) {
+          if (imovel.numeros && imovel.numeros.areas && imovel.numeros.areas.util >= values[0] && imovel.numeros.areas.util <= values[1]) {
             f.push('t');
           } else {
             f.push('f');
           }
+        } else {
+          f.push('f');
         }
+      }
 
-        // salas
-        if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'comercial') {
-          if (imovel.numeros && imovel.numeros.salas && imovel.numeros.salas === Number(this.queryParams.salas)) {
-            f.push('t');
-          } else {
-            f.push('f');
-          }
+      // dormitorios
+      if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'residencial') {
+        if (imovel.numeros && imovel.numeros.dormitorios && imovel.numeros.dormitorios === Number(this.queryParams.dormitorios)) {
+          f.push('t');
+        } else {
+          f.push('f');
         }
+      }
 
-        // salas
-        if (this.queryParams.query) {
-          if (imovel.sigla.toLowerCase().includes(this.queryParams.query.toLowerCase()) ||
-            imovel.local.cidade.toLowerCase().includes(this.queryParams.query.toLowerCase()) ||
-            imovel.local.bairro.toLowerCase().includes(this.queryParams.query.toLowerCase())) {
-            f.push('t');
-          } else {
-            f.push('f');
-          }
+      // salas
+      if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'comercial') {
+        if (imovel.numeros && imovel.numeros.salas && imovel.numeros.salas === Number(this.queryParams.salas)) {
+          f.push('t');
+        } else {
+          f.push('f');
         }
-        return !f.includes('f');
-      });
+      }
 
-      this.pages = filtred.length;
-      this.imoveis = this.chunkArray(filtred, this.itensPerPage)[this.currentPage];
+      // salas
+      if (this.queryParams.query) {
+        if (imovel.sigla.toLowerCase().includes(this.queryParams.query.toLowerCase()) ||
+          imovel.local.cidade.toLowerCase().includes(this.queryParams.query.toLowerCase()) ||
+          imovel.local.bairro.toLowerCase().includes(this.queryParams.query.toLowerCase())) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+      return !f.includes('f');
+    });
 
-    }, 2000);
+    console.log(filtred);
+    this.pages = filtred.length;
+    this.imoveis = _.chunk(filtred, this.itensPerPage)[this.currentPage - 1];
+
+    // }, 2000);
 
 
   }
 
   private getImoveis() {
-    // this.imoveis = [];
+    this.imoveis = [];
     this.pages = 0;
     // this.currentPage = 1;
     if (this.queryParams.custom || this.queryParams.customSearch) {
@@ -165,11 +166,7 @@ export class ImoveisComponent implements OnInit {
       if (this.queryParams.query) {
         this.imoveisService.imoveisQuery(this.queryParams.query).subscribe(imoveis => {
           this.allImoveis = imoveis;
-          this.customSearch = true;
-          this.pages = imoveis.length;
-          const chuck = _.chunk(imoveis, this.itensPerPage);
-          this.imoveis = chuck[this.currentPage - 1];
-          this.scrollTop();
+          this.filterAll();
         });
       } else {
         this.imoveisService.imoveis(this.queryParams, this.currentPage).subscribe((res: HttpResponse<Imovel[]>) => {
@@ -194,17 +191,6 @@ export class ImoveisComponent implements OnInit {
     } catch (e) {
       window.scrollTo(0, 0);
     }
-  }
-
-  private chunkArray(myArray: Imovel[], chunkSize: number) {
-    const arrayLength = myArray.length;
-    const tempArray = [];
-
-    for (let index = 0; index < arrayLength; index += chunkSize) {
-      const myChunk = myArray.slice(index, index + chunkSize);
-      tempArray.push(myChunk);
-    }
-    return tempArray;
   }
 
   toArea(imovel: Imovel) {

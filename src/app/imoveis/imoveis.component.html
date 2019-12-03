@@ -1441,32 +1441,32 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-lg-4 sidebar">
-            <div class="sidebar-title" *ngIf="!queryParams.query">
-              IMÓVEIS {{queryParams.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </div>
+            <div class="sidebar-title" *ngIf="!queryParams?.query">
+              IMÓVEIS {{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </div>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"  *ngIf="queryParams.query"><a> Pesquisa </a></li>
-                <li class="breadcrumb-item"  *ngIf="!queryParams.query"><a> Imóveis </a></li>
+                <li class="breadcrumb-item"  *ngIf="queryParams?.query"><a> Pesquisa </a></li>
+                <li class="breadcrumb-item"  *ngIf="!queryParams?.query"><a> Imóveis </a></li>
                 <li
-                  class='breadcrumb-item active' *ngIf="!queryParams.query">{{queryParams.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </li>
+                  class='breadcrumb-item active' *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : 'COMERCIAIS'}} </li>
                 <li
-                  class='breadcrumb-item active' *ngIf="queryParams.query">{{queryParams.query}} </li>
+                  class='breadcrumb-item active' *ngIf="queryParams?.query">{{queryParams?.query}} </li>
               </ol>
             </nav>
-            <div class="filter-badges" *ngIf="!queryParams.query">
+            <div class="filter-badges" *ngIf="!queryParams?.query">
                               <span class="badge badge-pill">
-                              {{queryParams.categoria === 'comprar' ? 'Comprar' : 'Alugar'}}
+                              {{queryParams?.categoria === 'comprar' ? 'Comprar' : 'Alugar'}}
                                 <button class="btn-badge"
                                 >x</button>
                               </span>
               <span class="badge badge-pill">
-                              {{queryParams.finalidade === 'residencial' ? 'Residencial' : 'Comercial'}}
+                              {{queryParams?.finalidade === 'residencial' ? 'Residencial' : 'Comercial'}}
                 <button class="btn-badge remove-badge" data-url="categoria">x</button>
                               </span>
             </div>
           </div>
-          <div class="col-lg-8 properties-list" *ngIf="imoveis.length > 0">
+          <div class="col-lg-8 properties-list" >
             <div class="d-block d-sm-flex item" *ngFor="let imovel of imoveis">
               <div class="col-lg-5 pos-slider">
                 <owl-carousel [options]="mySlideOptions" [items]="imagensCarousel(imovel?.midia?.imagens)"

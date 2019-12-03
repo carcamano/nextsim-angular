@@ -23677,7 +23677,7 @@ body {
 .FilterBarCheckBoxFIELDS2 ul {
   width: 900px !important;
   display: block;
-  margin: 25px 0 10px 80px;
+  margin: 25px 0 10px 0px;
   padding: 0;
   list-style: none;
   height: 90px;
@@ -23719,7 +23719,7 @@ body {
   cursor: pointer;
   display: block;
   height: 14px;
-  margin: auto;
+  margin: 0px 20px 0 20px;
   position: relative;
   width: 14px;
 }
