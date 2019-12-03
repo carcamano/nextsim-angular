@@ -27,6 +27,7 @@ import {LancamentoService} from './home/lancamento.service';
 import {SobreComponent} from './sobre/sobre.component';
 import {ImovelService} from './imovel/imovel.service';
 import {ToastrModule} from 'ngx-toastr';
+import {ComponentFixtureAutoDetect} from '@angular/core/testing';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import {ToastrModule} from 'ngx-toastr';
     ImovelService,
     GeneralService,
     LancamentoService,
-    {provide: LOCALE_ID, useValue: 'pt-BR'}
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
+    { provide: ComponentFixtureAutoDetect, useValue: true }
   ],
   bootstrap: [AppComponent]
 })

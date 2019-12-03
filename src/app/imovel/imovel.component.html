@@ -188,13 +188,13 @@
     <div class="row">
       <div class="container">
         <div class="row">
-          <div class="col" *ngIf="imovel.recursos.imovel.length > 0">
+          <div class="col" *ngIf="imovel?.recursos?.imovel?.length > 0">
             <h3>Recursos do Imóvel</h3>
             <ul>
               <li *ngFor="let recurso of imovel.recursos.imovel">{{recurso}}</li>
             </ul>
           </div>
-          <div class="col" *ngIf="imovel.recursos.condominio.length > 0">
+          <div class="col" *ngIf="imovel?.recursos?.condominio?.length > 0">
             <h3>Recursos do Condomínio</h3>
             <ul>
               <li *ngFor="let recurso of imovel.recursos.condominio">{{recurso}}</li>

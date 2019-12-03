@@ -31,7 +31,9 @@ export class ImovelComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe(params => {
+      console.log(params)
       this.imoveisService.imoveisBySigla(params.id).subscribe((value: Imovel) => {
+      console.log(value)
         this.imovel = value[0];
         this.form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ' + this.imovel.sigla);
         console.log(this.imovel);
