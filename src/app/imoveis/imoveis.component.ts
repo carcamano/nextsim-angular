@@ -27,6 +27,8 @@ export class ImoveisComponent implements OnInit {
   imoveis: Imovel[] = [];
   allImoveis: Imovel[] = [];
 
+  badges = [];
+
   queryParams: any;
 
   mySlideOptions = {items: 1, dots: true, nav: false};
@@ -55,6 +57,12 @@ export class ImoveisComponent implements OnInit {
     cidade: ''
   };
 
+  minPrice = 0;
+  maxPrice = 0;
+
+  minArea = 0;
+  maxArea = 0;
+
   tipos_residencial = [];
   tipos_comercial = [];
   locais: any;
@@ -74,11 +82,14 @@ export class ImoveisComponent implements OnInit {
     this.route.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
       console.log(this.queryParams);
+      this.buildBadges();
       this.getImoveis();
       this.loadDefaults();
 
     });
   }
+
+
 
   categoriaChange(categoria: string) {
     console.log('categoriaChange');
@@ -404,7 +415,9 @@ export class ImoveisComponent implements OnInit {
 
     this.generalService.area().subscribe((res: HttpResponse<any>) => {
       this.customSearch.area.max = res.body.max;
+      this.maxArea = res.body.max;
       this.customSearch.area.min = res.body.min;
+      this.minArea = res.body.min;
 
       this.optionsArea = {
         floor: 0,
@@ -416,9 +429,11 @@ export class ImoveisComponent implements OnInit {
     });
 
     this.generalService.precos().subscribe((res: HttpResponse<any>) => {
-      console.log(res)
+      console.log(res);
       this.customSearch.precos.max = res.body.max;
+      this.maxPrice = res.body.max;
       this.customSearch.precos.min = res.body.min;
+      this.minPrice = res.body.min;
 
       this.options = {
         floor: 0,
@@ -430,6 +445,97 @@ export class ImoveisComponent implements OnInit {
     });
   }
 
+  badgeClose(param: any) {
+    console.log('badgeClose');
+    console.log(param);
+    console.log(this.queryParams[param]);
+    this.router.navigate([], this.queryParams);
+
+  }
+
+  clearFiltro() {
+    console.log('clearFiltro')
+    this.router.navigate([]);
+  }
+
+  buildBadges() {
+    // area: "0,61000"
+    // bairros: ""
+    // categoria: "comprar"
+    // cidade: ""
+    // custom: "true"
+    // dormitorios: "0"
+    // finalidade: "residencial"
+    // precos: "0,39000000"
+    // salas: "0"
+    // tipo: ""
+    this.badges = [];
+    if (this.queryParams.categoria) {
+      this.badges.push(this.badge(this.queryParams.categoria, 'categoria',() => {
+        this.queryParams.categoria = '';
+        console.log('call categoria');
+      }));
+    }
+
+    if (this.queryParams.finalidade) {
+      this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade',() => this.queryParams.finalidade = ''));
+    }
+
+    if (this.queryParams.bairros) {
+      const ss = this.queryParams.bairros.split(',');
+      const f = () => this.queryParams.bairros = '';
+      if (ss.length > 1) {
+        this.badges.push(this.badge(`Nos bairros: ${ss.join(', ')}`, 'bairros', f));
+      } else {
+        this.badges.push(this.badge(`No bairro: ${ss.join(', ')}`,'bairros', f));
+      }
+    }
+
+    if (this.queryParams.cidade) {
+      this.badges.push(this.badge(`Na cidade de ${this.queryParams.cidade}`, this.queryParams.cidade,() => this.queryParams.cidade = ''));
+    }
+
+    if (this.queryParams.dormitorios) {
+      const n = Number(this.queryParams.dormitorios);
+      const f = () => this.queryParams.dormitorios = '';
+      if (n === 1) {
+        this.badges.push(this.badge(`Com ${n} dormitório`,this.queryParams.dormitorios, f));
+      } else if(n === 4) {
+        this.badges.push(this.badge(`Com ${n} ou mais dormitórios`,this.queryParams.dormitorios, f));
+      } else if(n !== 0){
+        this.badges.push(this.badge(`Com ${n}  dormitórios`,this.queryParams.dormitorios, f));
+      }
+
+    }
+
+    if (this.queryParams.tipo) {
+      const ss = this.queryParams.tipo.split(',');
+      if (ss.length > 1) {
+        this.badges.push(this.badge(`Tipos: ${ss.join(', ')}`,this.queryParams.tipo, () => this.queryParams.tipo = ''));
+      } else {
+        this.badges.push(this.badge(`Tipo: ${ss.join(', ')}`,this.queryParams.tipo, () => this.queryParams.tipo = ''));
+      }
+    }
+
+    if (this.queryParams.precos) {
+      const ss = this.queryParams.precos.split(',');
+
+
+      const pMin = Number(ss[0]);
+      const pMax = Number(ss[1]);
+
+      if (pMin !== this.minPrice || pMax !== this.maxPrice) {
+        const spMin = formatCurrency(Number(ss[0]), 'pt-BR', 'R$', 'BRL');
+        const spMax = formatCurrency(Number(ss[1]), 'pt-BR', 'R$', 'BRL');
+        this.badges.push(this.badge(`Entre: ${spMin} e ${spMax}`, this.queryParams.precos,  () => this.queryParams.precos = ''));
+      }
+    }
+  }
+
+  private badge(s: string, query: string, close: () => void): any {
+    return {label: s, close, query };
+
+  }
 
   buildLocais() {
     if (!this.locaisGeral) {

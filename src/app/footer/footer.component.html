@@ -10,58 +10,62 @@
             <li><a [routerLink]="['/quero-negociar/']">Como Fazemos</a></li>
           </ul>
           <ul class="footer-links">
-            <li class="title"><a href="blog.html">Blog Next</a></li>
+            <!--            <li class="title"><a href="blog.html">Blog Next</a></li>-->
           </ul>
         </div>
         <div class="col-12 col-sm-6 col-md-3 col-lg-3 footer-col">
           <ul class="footer-links">
             <li class="title">Quero Alugar</li>
-            <li><a href="#">Imóveis Residenciais</a></li>
-            <li><a href="#">Imóveis Comerciais</a></li>
+            <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar'}">Imóveis
+              Residenciais</a></li>
+            <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'alugar'}">Imóveis
+              Comerciais</a></li>
           </ul>
           <ul class="footer-links">
             <li class="title">Quero Comprar</li>
-            <li><a href="#">Imóveis Residenciais</a></li>
-            <li><a href="#">Imóveis Comerciais</a></li>
+            <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar'}">Imóveis
+              Residenciais</a></li>
+            <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'comprar'}">Imóveis
+              Comerciais</a></li>
           </ul>
           <ul class="footer-links">
             <li class="title"><a href="#">Quero anunciar</a></li>
           </ul>
         </div>
         <div class="col-12 col-sm-6 col-md-3 col-lg-3 footer-col">
+<!--          <ul class="footer-links d-none d-sm-none d-md-none d-lg-block">-->
+<!--            <li class="title">Contato</li>-->
+<!--            <li><a href="fale-conosco.html">Fale Conosco</a></li>-->
+<!--            &lt;!&ndash; <li><a href="">Trabalhe na Next</a></li> &ndash;&gt;-->
+<!--          </ul>-->
           <ul class="footer-links">
-            <li class="title">Meu perfil</li>
+            <li class="title">Telefone</li>
+            <li class="numtel"><img class="social" src="assets/img/tel-icon.svg" alt=""> <a
+              href="callto:+55192512-0000">2512-0000</a></li>
           </ul>
-          <ul class="footer-links">
-            <li class="title"><a href="#">Serviços e Formulários</a></li>
-          </ul>
-          <ul class="footer-links d-block d-sm-block d-md-block d-lg-none">
-            <li class="title">Contato</li>
-            <li><a href="#">Fale Conosco</a></li>
-            <!-- <li><a href="">Trabalhe na Next</a></li> -->
+          <ul class="footer-links" style="margin-bottom: 30px;">
+            <li class="title">Whatsapp</li>
+            <li class="numtel"><img src="assets/img/zap-icon.svg" alt=""> <a
+              href="https://api.whatsapp.com/send?phone=5519999120030">(19) 99912-0030</a></li>
           </ul>
           <ul class="footer-links">
             <li class="title">Redes Sociais</li>
             <ul class="list-inline">
-              <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.facebook.com/nextsim" data-toggle="tooltip" data-placement="bottom" title="Facebook"><img class="social-media-img" src="assets/img/Caminho&#32;354.png" alt=""></a></li>
-              <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.instagram.com/next_sim/" data-toggle="tooltip" data-placement="bottom" title="Instagram"><img class="social-media-img" src="assets/img/Caminho&#32;355.png" alt=""></a></li>
-              <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.youtube.com/channel/nextsim?sub_confirmation=1" data-toggle="tooltip" data-placement="bottom" title="Youtube"><img class="social-media-img" src="assets/img/Caminho&#32;356.png" alt=""></a></li>
+              <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.facebook.com/nextsim"
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               title="Facebook"><img class="social-media-img"
+                                                                                     src="assets/img/Caminho&#32;354.png"
+                                                                                     alt=""></a></li>
+              <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.instagram.com/next_sim/"
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               title="Instagram"><img class="social-media-img"
+                                                                                      src="assets/img/Caminho&#32;355.png"
+                                                                                      alt=""></a></li>
+              <li class="list-inline-item px-md-0 px-lg-1 "><a
+                href="https://www.youtube.com/channel/nextsim?sub_confirmation=1" data-toggle="tooltip"
+                data-placement="bottom" title="Youtube"><img class="social-media-img"
+                                                             src="assets/img/Caminho&#32;356.png" alt=""></a></li>
             </ul>
-          </ul>
-        </div>
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3 footer-col">
-          <ul class="footer-links d-none d-sm-none d-md-none d-lg-block">
-            <li class="title">Contato</li>
-            <li><a href="fale-conosco.html">Fale Conosco</a></li>
-            <!-- <li><a href="">Trabalhe na Next</a></li> -->
-          </ul>
-          <ul class="footer-links">
-            <li class="title">Telefone</li>
-            <li class="numtel"><img class="social" src="assets/img/tel-icon.svg" alt=""> <a href="callto:+55192512-0000">2512-0000</a></li>
-          </ul>
-          <ul class="footer-links" style="margin-bottom: 30px;">
-            <li class="title">Whatsapp</li>
-            <li class="numtel"><img  src="assets/img/zap-icon.svg" alt=""> <a href="https://api.whatsapp.com/send?phone=5519999120030">(19) 99912-0030</a></li>
           </ul>
         </div>
       </div>
@@ -69,7 +73,8 @@
   </div>
   <div class="footer-bar">
     <div class="container">
-      <p class="creditos">Next soluçōes imobiliárias - Campinas - SP  <span class="breakcnpj">| CNPJ 03.492.692/0001-20</span></p>
+      <p class="creditos">Next soluçōes imobiliárias - Campinas - SP <span
+        class="breakcnpj">| CNPJ 03.492.692/0001-20</span></p>
     </div>
   </div>
 </footer>

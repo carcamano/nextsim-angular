@@ -257,7 +257,7 @@
                   <div class="form-icon">
                     <span id="validate_contact_name"></span>
                     <input type="text" class="form-control" name="name" id="form-contact-name" value=""
-                           placeholder="Nome completo" autocomplete="off" required="required">
+                           placeholder="Nome completo" autocomplete="off" required="required" [(ngModel)]="form.nome">
                     <span id="alert_contact_name" class="float-left blur-error"></span>
                   </div>
                 </div>
@@ -266,7 +266,7 @@
                   <div class="form-icon">
                     <span id="validate_contact_phone"></span>
                     <input type="text" class="form-control" name="phone" id="form-contact-phone" value=""
-                           placeholder="Telefone" required="required">
+                           placeholder="Telefone" required="required" [(ngModel)]="form.telefone">
                     <span id="alert_contact_phone" class="float-left blur-error"></span>
                   </div>
                 </div>
@@ -275,7 +275,7 @@
                   <div class="form-icon">
                     <span id="validate_contact_email"></span>
                     <input type="email" class="form-control" name="email" id="form-contact-email" value=""
-                           placeholder="Digite seu e-mail aqui" autocomplete="off" required="required">
+                           placeholder="Digite seu e-mail aqui" autocomplete="off" required="required" [(ngModel)]="form.email">
                   </div>
                   <span id="alert_contact_email" class="float-left blur-error"></span>
 
@@ -283,7 +283,7 @@
 
                 <div class="form-group">
                   <span id="validate_contact_category"></span>
-                  <select class="form-control" id="form-contact-category" required="required" name="category">
+                  <select class="form-control" id="form-contact-category" required="required" name="category" [(ngModel)]="form.categoria">
                     <option disabled selected>Categoria</option>
                     <option value="Locação">Locação</option>
                     <option value="Venda">Venda</option>
@@ -295,11 +295,11 @@
                 <div class="form-group mt-4">
                   <span id="alert_contact_message" class="float-right blur-error"></span>
                   <textarea class="form-control" name="message" id="form-contact-message" rows="3"
-                            placeholder="Mensagem (Opcional)"></textarea>
+                            placeholder="Mensagem (Opcional)" [(ngModel)]="form.texto"></textarea>
                 </div>
                 <p class="text-right">
                   <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
-                          disabled="disabled" id="btn-negotiate-modal">
+                           id="btn-negotiate-modal" [disabled]="form.nome === '' || form.email === ''" (click)="submitForm()">
                     Enviar
                     <img class="btn-invisible" src="assets/img/spinner.gif" id="negotiate_modal_spinner" width="23"/>
                   </button>

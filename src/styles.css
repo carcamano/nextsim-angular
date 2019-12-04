@@ -3750,7 +3750,7 @@ input[type=submit].btn-block {
 }
 
 .dropdown-menu.show {
-  display: block;
+  display: block !important;
 }
 
 .dropdown-header {
@@ -5548,6 +5548,11 @@ input[type=submit].btn-block {
   padding-right: .6em;
   padding-left: .6em;
   border-radius: 10rem;
+}
+
+.filter-badges .badge-pill::first-letter {
+  text-transform: uppercase;
+
 }
 
 .badge-primary {
@@ -10801,11 +10806,11 @@ body {
 }
 
 .btn-see-more:hover .arrow-icon {
-  background-image: url(assets/images/white-arrow-icon.svg@23bbc96dc6bbd911bd2069ef858a8e68);
+  background-image: url(assets/images/white-arrow-icon.svg);
 }
 
 .custom-your-search-icon {
-  background-image: url(assets/images/custom-orange-search-icon.svg@2c9c76887cd7e20d72c804430cb716d1);
+  background-image: url(assets/images/custom-orange-search-icon.svg);
   background-repeat: no-repeat;
   width: 23px;
   height: 25px;

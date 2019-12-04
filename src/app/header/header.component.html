@@ -50,7 +50,7 @@
                 </li>
               </ul>
             </li>
-            <li><a [routerLink]='["/anunciar"]'>Quero anunciar</a></li>
+            <li><a [routerLink]='["/quero-negociar"]'>Quero anunciar</a></li>
             <li><a [routerLink]='["/sobre"]'>Sobre nós</a></li>
           </ul>
         </div>
@@ -117,7 +117,7 @@
             </div>
           </li>
           <li>
-            <a [routerLink]='["/anunciar"]'>Quero anunciar</a>
+            <a [routerLink]='["/quero-negociar"]'>Quero anunciar</a>
           </li>
         </ul>
       </nav>
@@ -375,6 +375,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
+    <h3>Encontre seu imóvel</h3>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
