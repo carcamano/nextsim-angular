@@ -8,6 +8,7 @@ import {Imovel} from '../imoveis/models/imovel.model';
 import {Options} from 'ng5-slider';
 import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
+import {formatCurrency} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -55,7 +56,7 @@ export class HeaderComponent implements OnInit {
     floor: 0,
     ceil: this.customSearch.precos.max,
     translate: (value: number): string => {
-      return 'R$' + value;
+      return formatCurrency(value, 'pt-BR', 'R$', 'BRL');
     }
   };
 

@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {Options} from 'ng5-slider';
 import {GeneralService} from './general.service';
+import {CurrencyPipe, formatCurrency} from '@angular/common';
 
 @Component({
   selector: 'app-imoveis',
@@ -61,21 +62,9 @@ export class ImoveisComponent implements OnInit {
   locaisGeral: string[];
   bairrosSelecionados: any[] = [];
 
-  options: Options = {
-    floor: 0,
-    ceil: this.customSearch.precos.max,
-    translate: (value: number): string => {
-      return 'R$' + value;
-    }
-  };
+  options: Options;
 
-  optionsArea: Options = {
-    floor: 0,
-    ceil: this.customSearch.area.max,
-    translate: (value: number): string => {
-      return value + ' M²';
-    }
-  };
+  optionsArea: Options;
 
   constructor(private imoveisService: ImoveisService, private route: ActivatedRoute, private ngxService: NgxUiLoaderService,
               private generalService: GeneralService, private router: Router) {
@@ -92,7 +81,7 @@ export class ImoveisComponent implements OnInit {
   }
 
   categoriaChange(categoria: string) {
-    console.log('categoriaChange')
+    console.log('categoriaChange');
     this.customSearch.categoria = categoria;
   }
 
@@ -416,11 +405,28 @@ export class ImoveisComponent implements OnInit {
     this.generalService.area().subscribe((res: HttpResponse<any>) => {
       this.customSearch.area.max = res.body.max;
       this.customSearch.area.min = res.body.min;
+
+      this.optionsArea = {
+        floor: 0,
+        ceil: this.customSearch.area.max,
+        translate: (value: number): string => {
+          return value + ' M²';
+        }
+      };
     });
 
     this.generalService.precos().subscribe((res: HttpResponse<any>) => {
+      console.log(res)
       this.customSearch.precos.max = res.body.max;
       this.customSearch.precos.min = res.body.min;
+
+      this.options = {
+        floor: 0,
+        ceil: this.customSearch.precos.max,
+        translate: (value: number): string => {
+          return formatCurrency(value, 'pt-BR', 'R$', 'BRL');
+        }
+      };
     });
   }
 

@@ -29,6 +29,9 @@ import {ImovelService} from './imovel/imovel.service';
 import {ToastrModule} from 'ngx-toastr';
 import {ComponentFixtureAutoDetect} from '@angular/core/testing';
 import {NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule} from 'ngx-ui-loader';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: '#f69731',
