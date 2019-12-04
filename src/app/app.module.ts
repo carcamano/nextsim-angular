@@ -28,6 +28,34 @@ import {SobreComponent} from './sobre/sobre.component';
 import {ImovelService} from './imovel/imovel.service';
 import {ToastrModule} from 'ngx-toastr';
 import {ComponentFixtureAutoDetect} from '@angular/core/testing';
+import {NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule} from 'ngx-ui-loader';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: '#f69731',
+  bgsOpacity: 0.5,
+  bgsPosition: 'bottom-right',
+  bgsSize: 60,
+  bgsType: 'ball-spin-clockwise',
+  blur: 5,
+  fgsColor: '#f69731',
+  fgsPosition: 'center-center',
+  fgsSize: 60,
+  fgsType: 'double-bounce',
+  gap: 24,
+  logoPosition: 'center-center',
+  logoSize: 120,
+  logoUrl: '',
+  masterLoaderId: 'master',
+  overlayBorderRadius: '0',
+  overlayColor: 'rgba(40,40,40,0.69)',
+  pbColor: 'red',
+  pbDirection: 'ltr',
+  pbThickness: 3,
+  hasProgressBar: false,
+  text: '',
+  textColor: '#FFFFFF',
+  textPosition: 'center-center',
+};
 
 @NgModule({
   declarations: [
@@ -57,7 +85,9 @@ import {ComponentFixtureAutoDetect} from '@angular/core/testing';
       apiKey: 'AIzaSyB8F9P_r8OgBfXItSsOAGNB5LnIHWw-Jbw'
     }),
     RouterModule.forRoot(ROUTES),
-    FormsModule
+    FormsModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderRouterModule,
   ],
   providers: [
     ImoveisService,
@@ -65,7 +95,7 @@ import {ComponentFixtureAutoDetect} from '@angular/core/testing';
     GeneralService,
     LancamentoService,
     {provide: LOCALE_ID, useValue: 'pt-BR'},
-    { provide: ComponentFixtureAutoDetect, useValue: true }
+    {provide: ComponentFixtureAutoDetect, useValue: true}
   ],
   bootstrap: [AppComponent]
 })

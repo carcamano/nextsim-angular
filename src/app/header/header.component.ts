@@ -7,6 +7,7 @@ import {HttpResponse} from '@angular/common/http';
 import {Imovel} from '../imoveis/models/imovel.model';
 import {Options} from 'ng5-slider';
 import * as _ from 'lodash';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-header',
@@ -39,7 +40,8 @@ export class HeaderComponent implements OnInit {
       min: 0,
       max: 61000,
     },
-    bairros: []
+    bairros: [],
+    cidade: ''
   };
 
   tipos_residencial = [];
@@ -66,7 +68,7 @@ export class HeaderComponent implements OnInit {
   };
 
 
-  constructor(private router: Router, private modalService: NgbModal, private generalService: GeneralService) {
+  constructor(private router: Router, private modalService: NgbModal, private generalService: GeneralService, private ngxService: NgxUiLoaderService) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
         this.rootView = false;
@@ -90,6 +92,15 @@ export class HeaderComponent implements OnInit {
     this.loadDefaults();
   }
 
+
+  changeCidade(cidade: string ) {
+    this.customSearch.cidade = cidade;
+    this.locaisGeral.map((value, index) => {
+      if (value === cidade) {
+        this.buildLocaisBairros(value);
+      }
+    });
+  }
 
   open(content) {
     this.modalService.open(content, {
@@ -117,7 +128,7 @@ export class HeaderComponent implements OnInit {
         finalidade: this.customSearch.finalidade, tipo: tipos.join(','),
         categoria: this.customSearch.categoria, precos: precos, area: area, custom: true,
         dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas,
-        bairros: bairros.join(',')
+        bairros: bairros.join(','), cidade: this.customSearch.cidade
       });
     }, (reason) => {
 
@@ -145,6 +156,7 @@ export class HeaderComponent implements OnInit {
   }
 
   changeBairro(event: any, i: number) {
+    console.log('changeBairro')
     this.customSearch.bairros[i].selected = event.currentTarget.checked;
     this.bairrosSelecionados = this.customSearch.bairros.filter(value => {
       return value.selected === true;
@@ -183,9 +195,7 @@ export class HeaderComponent implements OnInit {
       if (!this.locais) {
         this.locais = res.body;
         this.buildLocais();
-        this.locaisGeral.map((value, index) => {
-          this.buildLocaisBairros(value);
-        });
+
       }
     });
 
@@ -219,6 +229,7 @@ export class HeaderComponent implements OnInit {
     // if (!this.customSearch.bairros.length) {
     //   this.locaisBairro = [];
     // }
+    this.customSearch.bairros = [];
     _.forIn(this.locais, (value, key) => {
       if (key === cidade) {
         value.map((value2, index, array) => {

@@ -23751,21 +23751,60 @@ body {
 
 }
 
-.selectiona_local .card-body {
+.selectiona_local {
   padding: 0;
-
 }
 
-.selectiona_local .card-body ul {
+.selectiona_local .FilterBarCheckBoxFIELDS2, .selectiona_local .checkboxes, .selectiona_local .cidades_botoes {
+  max-height: 300px;
+  overflow: scroll;
+}
+
+.selectiona_local ul {
   width: 100% !important;
   margin: 0;
   overflow: scroll;
+  height: auto;
 }
-.selectiona_local .card-body ul li {
+.selectiona_local  ul li {
   display: inline-block !important;
    float: none !important;
+  width: 100%;
+}
+.selectiona_local  ul li span {
+  width: 100%;
+  white-space: nowrap;
 }
 
+.selectiona_local .cidades_botoes {
+
+}
+
+.selectiona_local .cidades_botoes button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  text-indent: 10px;
+  background: transparent;
+  border: none;
+  color: #a3a3a3;
+}
+
+.selectiona_local .cidades_botoes button.active {
+  color: #F69731;
+  font-weight: bold;
+
+}
+
+.button:active,
+button:active,
+.button:focus,
+button:focus,
+.button:hover,
+button:hover{
+  border:none !important;
+  outline:none !important;
+}
 /*-------------------
   #checkbox-s style
   ------------------*/

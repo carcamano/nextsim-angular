@@ -4,6 +4,8 @@ import {Imovel} from './models/imovel.model';
 import {ActivatedRoute} from '@angular/router';
 import {HttpResponse} from '@angular/common/http';
 import * as _ from 'lodash';
+import {GeneralService} from './general.service';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-imoveis',
@@ -28,7 +30,7 @@ export class ImoveisComponent implements OnInit {
   mySlideOptions = {items: 1, dots: true, nav: false};
   myCarouselOptions = {items: 3, dots: true, nav: true};
 
-  constructor(private imoveisService: ImoveisService, private route: ActivatedRoute) {
+  constructor(private imoveisService: ImoveisService, private route: ActivatedRoute, private ngxService: NgxUiLoaderService) {
   }
 
   ngOnInit() {
@@ -82,6 +84,25 @@ export class ImoveisComponent implements OnInit {
           f.push('f');
         }
       }
+
+      if (this.queryParams.bairros) {
+        const values = this.queryParams.bairros.split(',');
+        if (values.length > 0 && values.includes(imovel.local.bairro)) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+
+      }
+
+      if (this.queryParams.cidade) {
+        if (imovel.local.cidade === this.queryParams.cidade) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+
       if (this.queryParams.precos) {
         const values = this.queryParams.precos.split(',');
         if (values.length === 2) {
@@ -131,16 +152,6 @@ export class ImoveisComponent implements OnInit {
         }
       }
 
-      // salas
-      if (this.queryParams.query) {
-        if (imovel.sigla.toLowerCase().includes(this.queryParams.query.toLowerCase()) ||
-          imovel.local.cidade.toLowerCase().includes(this.queryParams.query.toLowerCase()) ||
-          imovel.local.bairro.toLowerCase().includes(this.queryParams.query.toLowerCase())) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
       return !f.includes('f');
     });
 
@@ -156,17 +167,20 @@ export class ImoveisComponent implements OnInit {
   private getImoveis() {
     this.imoveis = [];
     this.pages = 0;
+    this.ngxService.start();
     // this.currentPage = 1;
     if (this.queryParams.custom || this.queryParams.customSearch) {
       this.imoveisService.all().subscribe((res: Imovel[]) => {
         this.allImoveis = res;
         this.filterAll();
+        this.ngxService.stop();
       });
     } else {
       if (this.queryParams.query) {
         this.imoveisService.imoveisQuery(this.queryParams.query).subscribe(imoveis => {
           this.allImoveis = imoveis;
           this.filterAll();
+          this.ngxService.stop();
         });
       } else {
         this.imoveisService.imoveis(this.queryParams, this.currentPage).subscribe((res: HttpResponse<Imovel[]>) => {
@@ -175,6 +189,7 @@ export class ImoveisComponent implements OnInit {
           console.log(res.body);
           console.log(this.imoveis.length);
           this.scrollTop();
+          this.ngxService.stop();
         });
       }
     }

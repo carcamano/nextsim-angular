@@ -34,6 +34,7 @@
     "ngx-isotopee": "^0.1.11",
     "ngx-owl-carousel": "^2.0.7",
     "ngx-toastr": "^10.1.0",
+    "ngx-ui-loader": "^7.2.2",
     "owl.carousel": "^2.3.4",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.3.3",
