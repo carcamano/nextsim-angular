@@ -10806,7 +10806,7 @@ body {
 }
 
 .btn-see-more:hover .arrow-icon {
-  background-image: url(assets/images/white-arrow-icon.svg);
+  background-image: url(assets/images/white-arrow-icon.svg@23bbc96dc6bbd911bd2069ef858a8e68);
 }
 
 .custom-your-search-icon {
@@ -11093,6 +11093,26 @@ body {
 
 .blog_title {
   margin-bottom: 60px;
+}
+
+.HomePersonalFilterBar {
+
+}
+
+.HomePersonalFilterBar .HorizontalCheckBoxMobile {
+  padding: 0px 0px 4px;
+}
+
+.HomePersonalFilterBar input[type=checkbox], .HomePersonalFilterBar input[type=radio] {
+  position: absolute;
+
+}
+
+.HomePersonalFilterBar .HorizontalCheckBoxMobileLabel {
+  background: #a3a3a3 ;
+
+  font-weight: bold !important;
+  border-radius: 20px;
 }
 
 .blog_title h2 {
@@ -23777,6 +23797,21 @@ body {
   display: inline-block !important;
    float: none !important;
   width: 100%;
+  margin: 0;
+}
+
+.ng5-slider .ng5-slider-pointer, .ng5-slider .ng5-slider-pointer.ng5-slider-active:after, .ng5-slider .ng5-slider-bar-wrapper.ng5-slider-left-out-selection .ng5-slider-bar, .ng5-slider .ng5-slider-bar-wrapper.ng5-slider-right-out-selection .ng5-slider-bar, .ng5-slider .ng5-slider-selection {
+  background-color: #F69731;
+}
+
+.modal-search-footer .tab-content {
+  min-height: 160px;
+  padding-top: 10px;
+
+}
+
+.modal-search-footer .FilterBarCheckBoxFIELDS2 ul {
+  margin: 0;
 }
 .selectiona_local  ul li span {
   width: 100%;
@@ -23785,6 +23820,7 @@ body {
 
 .selectiona_local .cidades_botoes {
 
+  padding-left: 4px;
 }
 
 .selectiona_local .cidades_botoes button {
@@ -23795,6 +23831,7 @@ body {
   background: transparent;
   border: none;
   color: #a3a3a3;
+  font-size: 14px;
 }
 
 .selectiona_local .cidades_botoes button.active {
