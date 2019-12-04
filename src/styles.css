@@ -15233,8 +15233,11 @@ header.property-menu nav ul li a {
   font-weight: 700;
 }
 
-.dropdown:hover > .dropdown-menu {
+.header-nav .dropdown:hover > .dropdown-menu {
   display: block;
+}
+
+.FilterBarLine .dropdown:hover > .dropdown-menu {
 }
 
 /* *{
@@ -22418,7 +22421,7 @@ h3.blog-result {
   width: auto !important;
   height: auto !important;
   position: absolute;
-  top: -2px !important;
+  top: -2px;
   left: 15px;
   background: #ffffff;
   padding: 15px 8px;
@@ -22433,7 +22436,7 @@ h3.blog-result {
   width: auto !important;
   height: auto !important;
   position: absolute;
-  top: -2px !important;
+  top: -2px ;
   left: 15px;
   background: #ffffff;
   padding: 15px 8px;
@@ -22446,8 +22449,8 @@ h3.blog-result {
   border-radius: 0 !important;
   -webkit-box-shadow: 0px 4px 11px -4px rgba(0, 0, 0, 0.41);
   box-shadow: 0px 4px 11px -4px rgba(0, 0, 0, 0.41);
-  left: 50% !important;
-  max-width: 100%;
+  /*left: 50% !important;*/
+  /*max-width: 100%;*/
   top: 58px !important;
   padding: 20px 30px;
   overflow-y: scroll;
@@ -22521,10 +22524,9 @@ h3.blog-result {
   width: 350px;
   height: auto !important;
   position: absolute;
-  top: -2px !important;
   left: -90px;
   background: #ffffff;
-  padding: 40px;
+  padding: 15px;
   z-index: 101 !important;
   -webkit-box-shadow: 0px 4px 11px -4px rgba(0, 0, 0, 0.41);
   box-shadow: 0px 4px 11px -4px rgba(0, 0, 0, 0.41);

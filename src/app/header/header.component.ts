@@ -93,14 +93,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  changeCidade(cidade: string ) {
-    this.customSearch.cidade = cidade;
-    this.locaisGeral.map((value, index) => {
-      if (value === cidade) {
-        this.buildLocaisBairros(value);
-      }
-    });
-  }
+
 
   open(content) {
     this.modalService.open(content, {
@@ -150,6 +143,15 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  changeCidade(cidade: string ) {
+    this.customSearch.cidade = cidade;
+    this.locaisGeral.map((value, index) => {
+      if (value === cidade) {
+        this.buildLocaisBairros(value);
+      }
+    });
+  }
+
   changeTipo(event: any, i: number) {
     this.customSearch.tipos[i].selected = event.currentTarget.checked;
     console.log(this.customSearch.tipos);
@@ -180,9 +182,9 @@ export class HeaderComponent implements OnInit {
       this.tipos_residencial = res.body.map((value, index, array) => {
         return {key: value, selected: false, i: index};
       });
+      this.customSearch.tipos = this.tipos_residencial;
     });
 
-    this.customSearch.tipos = this.tipos_residencial;
 
     this.generalService.tipos_comercial().subscribe((res: HttpResponse<string[]>) => {
       this.tipos_comercial = res.body.map((value, index, array) => {

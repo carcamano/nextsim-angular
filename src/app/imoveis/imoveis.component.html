@@ -32,372 +32,165 @@
         <div class="container">
           <div class="row d-flex flex-row justify-content-between">
             <div class="text-center align-content-center ">
-              <a class="btn btn-more-filters btn-semi-rounded FiltersBTN " data-toggle="collapse"
-                 href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#MoreFiltersBTN"
-                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN"><span class="plus-icon"></span> Mais
-                filtros</a>
+              <a class="btn btn-more-filters btn-semi-rounded FiltersBTN "
+                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN" (click)="showExtraFilter = !showExtraFilter"><span class="plus-icon"></span> <b *ngIf="!showExtraFilter">Mais filtros</b><b *ngIf="showExtraFilter">Menos filtros</b></a>
             </div>
             <div class="box-filter-1">
               <!-- TIPO DE IMOVEL -->
-              <div>
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
-                   class="MenuItem dropdown-toggle" id="TypeMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i></a>
-                <div class="TypeMenu dropdown-menu FilterBarCheckBoxFIELDS">
+              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+                <a
+                   class="MenuItem dropdown-toggle" id="TypeMenu"
+                   ngbDropdownToggle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i></a>
+                <div class="TypeMenu dropdown-menu FilterBarCheckBoxFIELDS2" ngbDropdownMenu>
                   <ul>
-                    <li>
-                      <input type="checkbox" class="checkbox-s" id="Apartamento" value="apartamento" name="tipos[]"
-                             id="Apartamento"/>
-                      <label for="Apartamento"><span>Apartamento</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s" id="Casa" value="casa" name="tipos[]" id="Casa"/>
-                      <label for="Casa"><span>Casa</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s" id="Cobertura" value="cobertura" name="tipos[]"
-                             id="Cobertura"/>
-                      <label for="Cobertura"><span>Cobertura</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s" id="Flat" value="flat" name="tipos[]" id="Flat"/>
-                      <label for="Flat"><span>Flat</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s" id="Terreno" value="terreno" name="tipos[]"
-                             id="Terreno"/>
-                      <label for="Terreno"><span>Terreno</span></label>
+                    <li *ngFor="let tipo of customSearch.tipos;  let i = index">
+                      <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" ([ngModel])="tipo.selected"
+                             (change)="changeTipo($event, i)"/>
+                      <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>
                     </li>
                   </ul>
                 </div>
               </div>
               <!-- END TIPO DE IMOVEL -->
               <!-- FINALIDADE DE IMOVEL -->
-              <div>
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
+              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+                <a
                    class="MenuItem dropdown-toggle" id="GoalMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-key"></i> Finalidade <i
+                   aria-expanded="false" ngbDropdownToggle><i class="icon-key"></i> Finalidade <i
                   class="fas fa-chevron-down small-icon"></i></a>
-                <div class=" GoalMenu dropdown-menu FilterBarCheckBoxFIELDS">
+                <div class=" GoalMenu dropdown-menu FilterBarCheckBoxFIELDS" ngbDropdownMenu>
                   <ul>
                     <li>
-                      <input type="checkbox" class="checkbox-s" name="finalidade[]" value="comprar" id="OPCcomprar">
+                      <input type="checkbox" class="checkbox-s"  value="comprar" id="OPCcomprar" [checked]="customSearch.categoria === 'comprar'" (change)="categoriaChange('comprar')">
                       <label for="OPCcomprar"><span>Comprar</span></label>
                     </li>
                     <li>
-                      <input type="checkbox" class="checkbox-s" name="finalidade[]" value="alugar" id="OPCalugar"
-                             checked>
+                      <input type="checkbox" class="checkbox-s" value="alugar" id="OPCalugar" [checked]="customSearch.categoria === 'alugar'" (change)="categoriaChange('alugar')"
+                             >
                       <label for="OPCalugar"><span>Alugar</span></label>
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div >
               <!-- END FINALIDADE DE IMOVEL -->
               <!--  CIDADE OU BAIRRO DE IMOVEL -->
-              <div class="btn-cidade">
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
+              <div class="btn-cidade" ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+                <a
                    class="MenuItem dropdown-toggle" id="CityMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-pin"></i> Cidade ou Bairro <i
+                   aria-expanded="false" ngbDropdownToggle><i class="icon-pin"></i> Cidade ou Bairro <i
                   class="fas fa-chevron-down small-icon"></i></a>
-                <div class="CityMenu dropdown-menu">
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text SearchCityStyle"><i class="fas fa-search"></i></span>
-                        </div>
-                        <input name="search" id="search" type="text" class="SearchCity form-control"
-                               placeholder="Pesquise aqui por cidades ou bairros" aria-label="search"
-                               aria-describedby="basic-addon1">
+                <div class="CityMenu dropdown-menu" ngbDropdownMenu>
+                  <div class="row selectiona_local" style="">
+                    <div class="col-6" *ngIf="locais">
+                      <span class="TitleCityMobHome">Cidade</span>
+                      <div class="cidades_botoes">
+                        <button *ngFor="let local of locaisGeral;  let i = index" (click)="changeCidade(local)" [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12">
-                      <div id="accordionExample">
-                        <div class="py-2 FilterCollapseHeader">
-                          <div class="row">
-                            <div class="col-6 cityname">
-                              <a class="ArrowCollapse" data-toggle="collapse"
-                                 href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#city_name1"
-                                 role="button" aria-expanded="false"
-                                 aria-controls="city_name1"><i class="fas fa-chevron-down "></i></a>
-                              <ul>
-                                <li>
-                                  <input class="checkbox-s" value="Campinas" type="checkbox" id="city_1"
-                                         class="checkbox-s" name="cidades[]"/>
-                                  <label for="city_1"><span class="cidade">Campinas</span></label>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name1">
-                          <div class="FilterBarCheckBoxCity">
-                            <ul class=" Col3 ">
-                              <li>
-                                <span><i class="menu-letter-marker">A</i></span>
-                                <input type="checkbox" id="bairro_3" value="Alphaville" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_3"><span class="Bairro">Alphaville</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">B</i></span>
-                                <input type="checkbox" id="bairro_121" value="Bairro Alphaville"
-                                       class="checkbox-s bairros" name="bairros[]"/>
-                                <label for="bairro_121"><span class="Bairro">Bairro Alphaville</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_20" value="Bairro das Palmeiras"
-                                       class="checkbox-s bairros" name="bairros[]"/>
-                                <label for="bairro_20"><span class="Bairro">Bairro das Palmeiras</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_2" value="Barão Geraldo" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_2"><span class="Bairro">Barão Geraldo</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_15" value="Botafogo" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_15"><span class="Bairro">Botafogo</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">C</i></span>
-                                <input type="checkbox" id="bairro_1" value="Cambuí" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_1"><span class="Bairro">Cambuí</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_8" value="Centro" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_8"><span class="Bairro">Centro</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">G</i></span>
-                                <input type="checkbox" id="bairro_9" value="Galleria" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_9"><span class="Bairro">Galleria</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_19" value="Gramado" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_19"><span class="Bairro">Gramado</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_6" value="Guanabara" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_6"><span class="Bairro">Guanabara</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">I</i></span>
-                                <input type="checkbox" id="bairro_76" value="Iguatemi" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_76"><span class="Bairro">Iguatemi</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">J</i></span>
-                                <input type="checkbox" id="bairro_14" value="Jardim Proença" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_14"><span class="Bairro">Jardim Proença</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_93" value="Jardim Santa Genebra"
-                                       class="checkbox-s bairros" name="bairros[]"/>
-                                <label for="bairro_93"><span class="Bairro">Jardim Santa Genebra</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">M</i></span>
-                                <input type="checkbox" id="bairro_12" value="Mansões Santo Antônio"
-                                       class="checkbox-s bairros" name="bairros[]"/>
-                                <label for="bairro_12"><span class="Bairro">Mansões Santo Antônio</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">N</i></span>
-                                <input type="checkbox" id="bairro_17" value="Nova Campinas" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_17"><span class="Bairro">Nova Campinas</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">P</i></span>
-                                <input type="checkbox" id="bairro_48" value="Paineiras" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_48"><span class="Bairro">Paineiras</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_136" value="Parque da Hípica"
-                                       class="checkbox-s bairros" name="bairros[]"/>
-                                <label for="bairro_136"><span class="Bairro">Parque da Hípica</span></label>
-                              </li>
-                              <li>
-                                <input type="checkbox" id="bairro_104" value="Parque Xangrilá"
-                                       class="checkbox-s bairros" name="bairros[]"/>
-                                <label for="bairro_104"><span class="Bairro">Parque Xangrilá</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">T</i></span>
-                                <input type="checkbox" id="bairro_7" value="Taquaral" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_7"><span class="Bairro">Taquaral</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2 FilterCollapseHeader">
-                          <div class="row">
-                            <div class="col-6 cityname">
-                              <a class="ArrowCollapse" data-toggle="collapse"
-                                 href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#city_name5"
-                                 role="button" aria-expanded="false"
-                                 aria-controls="city_name5"><i class="fas fa-chevron-down "></i></a>
-                              <ul>
-                                <li>
-                                  <input class="checkbox-s" value="Jaguariuna" type="checkbox" id="city_5"
-                                         class="checkbox-s" name="cidades[]"/>
-                                  <label for="city_5"><span class="cidade">Jaguariuna</span></label>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name5">
-                          <div class="FilterBarCheckBoxCity">
-                            <ul class="  ">
-                              <li>
-                                <span><i class="menu-letter-marker">D</i></span>
-                                <input type="checkbox" id="bairro_39" value="Duas Marias" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_39"><span class="Bairro">Duas Marias</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="py-2 FilterCollapseHeader">
-                          <div class="row">
-                            <div class="col-6 cityname">
-                              <a class="ArrowCollapse" data-toggle="collapse"
-                                 href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#city_name3"
-                                 role="button" aria-expanded="false"
-                                 aria-controls="city_name3"><i class="fas fa-chevron-down "></i></a>
-                              <ul>
-                                <li>
-                                  <input class="checkbox-s" value="Valinhos" type="checkbox" id="city_3"
-                                         class="checkbox-s" name="cidades[]"/>
-                                  <label for="city_3"><span class="cidade">Valinhos</span></label>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collapse" id="city_name3">
-                          <div class="FilterBarCheckBoxCity">
-                            <ul class="  ">
-                              <li>
-                                <span><i class="menu-letter-marker">A</i></span>
-                                <input type="checkbox" id="bairro_24" value="Alto da Colina" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_24"><span class="Bairro">Alto da Colina</span></label>
-                              </li>
-                              <li>
-                                <span><i class="menu-letter-marker">C</i></span>
-                                <input type="checkbox" id="bairro_38" value="Chacara Flora" class="checkbox-s bairros"
-                                       name="bairros[]"/>
-                                <label for="bairro_38"><span class="Bairro">Chacara Flora</span></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                    <div class="col-6" *ngIf="locais">
+                      <span class="TitleCityMobHome">Bairro</span>
+                      <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2">
+                        <ul>
+                          <li *ngFor="let local of customSearch.bairros;  let i = index">
+                            <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i" ([ngModel])="local.selected"
+                                   (change)="changeBairro($event, i)"/>
+                            <label [attr.for]="'bairro' + i"><span>{{local.key}}</span></label>
+                          </li>
+                        </ul>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
               <!-- END CIDADE OU BAIRRO DE IMOVEL -->
               <!-- QUARTOS DE IMOVEL -->
-              <div>
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
+              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+                <a
                    class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-bed"></i> Quartos <i class="fas fa-chevron-down small-icon"></i></a>
-                <div class=" RoomMenu  BALLCheckStyle dropdown-menu">
-                  <ul class="CheckHorizontal">
-                    <li>
-                      <input type="radio" disabled="disabled" class="CheckHorizontalInput checkbox-s" id="quarto_0"
-                             name="quartos" value="0"/>
-                      <label for="quarto_0" class="CheckHorizontalLabel checkHorizontalDisable"><span>0</span></label>
-                    </li>
-                    <li>
-                      <input type="radio" class="CheckHorizontalInput checkbox-s" id="quarto_1" name="quartos"
-                             value="1"/>
-                      <label for="quarto_1" class="CheckHorizontalLabel"><span>1</span></label>
-                    </li>
-                    <li>
-                      <input type="radio" class="CheckHorizontalInput checkbox-s" id="quarto_2" name="quartos"
-                             value="2"/>
-                      <label for="quarto_2" class="CheckHorizontalLabel"><span>2</span></label>
-                    </li>
-                    <li>
-                      <input type="radio" class="CheckHorizontalInput checkbox-s" id="quarto_3" name="quartos"
-                             value="3"/>
-                      <label for="quarto_3" class="CheckHorizontalLabel"><span>3</span></label>
-                    </li>
-                    <li>
-                      <input type="radio" class="CheckHorizontalInput checkbox-s" id="quarto_4" name="quartos"
-                             value="4"/>
-                      <label for="quarto_4" class="CheckHorizontalLabel"><span>+4</span></label>
-                    </li>
-                  </ul>
+                   aria-expanded="false" ngbDropdownToggle><i class="icon-bed"></i> Quartos <i class="fas fa-chevron-down small-icon"></i></a>
+                <div class=" RoomMenu  BALLCheckStyle dropdown-menu" ngbDropdownMenu>
+                  <div class="BALLCheckStyle pt-5 pb-3 ">
+                    <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
+                        [(ngModel)]="customSearch.dormitorios">
+                      <li>
+
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0"> <span>0</span>
+                        </label>
+                      </li>
+                      <li>
+
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1"> <span>1</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="4"><span>+4</span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <!-- END QUARTO DE IMOVEIS -->
               <!-- PRECO DE IMOVEL -->
-              <div>
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
+              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+                <a
                    class="MenuItem dropdown-toggle" id="PriceMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-dollar"></i> Preço <i
+                   aria-expanded="false" ngbDropdownToggle><i class="icon-dollar"></i> Preço <i
                   class="fas fa-chevron-down small-icon"></i></a>
-                <div class=" PriceMenu dropdown-menu ">
-                  <div class="row">
-                    <div class="col-6">
-                      <span>De</span> <input type="text" class="col-9 money inputDe input-grey" id="inputDe"
-                                             placeholder="R$" value="">
-                    </div>
-                    <div class="col-6">
-                      <span>Até</span> <input type="text" class="col-9 money inputAte input-grey" id="inputAte"
-                                              placeholder="R$" value="40000.00">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 mt-3 mb-3">
-                    </div>
-                    <div class="col-12">
-                      <input class="range-example-price" type="text" min="" max="40000.00" value=",40000.00"
-                             name="preco" step="500" id="preco">
-                    </div>
-                    <div class="col-6">
-                      <span class="values"><span class="values" id="show_start_value">R$ 0,00</span></span>
-                    </div>
-                    <div class="col-6 text-right">
-                      <span class="values"><span class="values" id="show_end_value">R$ 40.000,00</span></span>
+                <div class=" PriceMenu dropdown-menu " ngbDropdownMenu>
+                  <div class="row pt-3">
+                    <div class="col-12 ">
+                      <h6 class="text-left mb-4">Preço</h6>
+                      <div class="row">
+                        <div class="col-6">
+                          <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
+                                                 [(ngModel)]="customSearch.precos.min" placeholder="M²" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="col-6">
+                          <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
+                                                  [(ngModel)]="customSearch.precos.max" placeholder="M²" [ngModelOptions]="{standalone: true}">
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-12 text-right px-0 pt-3">
-                    <a class="btn btn-block btn-apply checkbox-s">Aplicar</a>
+                  <div class="row pt-3 mt-4 pl-3 pr-3">
+                    <div class="col-12 ">
+                      <ng5-slider [(value)]="customSearch.precos.min" [(highValue)]="customSearch.precos.max"
+                                  [options]="options"></ng5-slider>
+                    </div>
                   </div>
+<!--                  <div class="col-12 text-right px-0 pt-3">-->
+<!--                    <a class="btn btn-block btn-apply checkbox-s">Aplicar</a>-->
+<!--                  </div>-->
                 </div>
               </div>
               <!-- END PRECO DE IMOVEL -->
             </div>
           </div>
-          <div class="collapse FilterBarLineTop justify-content-between" id="MoreFiltersBTN">
+          <div class="FilterBarLineTop justify-content-between" id="MoreFiltersBTN" [hidden]="!showExtraFilter">
             <!-- INICIO MAIS FILTRO -->
             <div class="box-filter-2">
               <!-- BANEIROS DO IMOVEL -->
-              <div>
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
+              <div ngbDropdown>
+                <a
                    class="MenuItem dropdown-toggle" id="BathMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-bathtub"></i> Banheiros <i
+                   aria-expanded="false" ngbDropdownToggle><i class="icon-bathtub"></i> Banheiros <i
                   class="fas fa-chevron-down small-icon"></i></a>
-                <div class=" BathMenu dropdown-menu">
+                <div class=" BathMenu dropdown-menu" ngbDropdownMenu>
                   <ul class="CheckHorizontal">
                     <li>
                       <input type="radio" name="banheiros" class="CheckHorizontalInput checkbox-s" id="banheiros_0"
@@ -429,287 +222,78 @@
               </div>
               <!-- END BANHEIROS DO IMOVEL -->
               <!-- AREA M2 DE IMOVEL -->
-              <div>
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
+              <div ngbDropdown>
+                <a
                    class="MenuItem dropdown-toggle" id="AreaM2" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-area"></i> M<SUP>2</SUP> <i
+                   aria-expanded="false" ngbDropdownToggle><i class="icon-area"></i> M<SUP>2</SUP> <i
                   class="fas fa-chevron-down small-icon"></i></a>
-                <div class="dropdown-menu AreaM2 ">
-                  <div class="row">
-                    <div class="col-12">
-                      <H6 class="text-left mb-4">Área Útil</H6>
+                <div class="dropdown-menu AreaM2 " ngbDropdownMenu>
+                  <div class="row pt-3">
+                    <div class="col-12 ">
+                      <h6 class="text-left mb-4">Área Útil</h6>
                       <div class="row">
                         <div class="col-6">
-                          <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey" value="0,00"
-                                                 id="inputDeM2" placeholder="M²">
+                          <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
+                                                 [(ngModel)]="customSearch.area.min" placeholder="M²" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="col-6">
-                          <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey" value="890,00"
-                                                  id="inputAteM2" placeholder="M²">
+                          <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
+                                                  [(ngModel)]="customSearch.area.max" placeholder="M²" [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="row mt-4 pl-3 pr-3">
-                    <div class="col-12">
-                      <input class="range-example-area" type="text" value="0,890" min="0" max="890" name="area"
-                             id="area_range">
+                  <div class="row pt-3 mt-4 pl-3 pr-3">
+                    <div class="col-12 ">
+                      <ng5-slider [(value)]="customSearch.area.min" [(highValue)]="customSearch.area.max"
+                                  [options]="optionsArea"></ng5-slider>
                     </div>
-                    <div class="col-6">
-                      <span class="values"><span class="values"
-                                                 id="show_start_value2">0,00</span> M<span>2</span></span>
-                    </div>
-                    <div class="col-6 text-right">
-                      <span class="values"><span class="values"
-                                                 id="show_end_value2">890,00</span> M<span>2</span></span>
-                    </div>
-                  </div>
-                  <div class="col-12 text-right px-0 pt-3">
-                    <a class="btn btn-block btn-apply checkbox-s">Aplicar</a>
                   </div>
                 </div>
               </div>
               <!-- END M2 DE IMOVEL -->
               <!-- VAGAS DE GARAGEM DE IMOVEL -->
-              <div>
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
+              <div ngbDropdown>
+                <a
                    class="MenuItem dropdown-toggle" id="CarMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-car"></i> Vagas de Garagem <i
+                   aria-expanded="false" ngbDropdownToggle><i class="icon-car"></i> Vagas de Garagem <i
                   class="fas fa-chevron-down small-icon"></i></a>
-                <div class="dropdown-menu CarMenu ">
-                  <ul class="CheckHorizontal">
-                    <li>
-                      <input type="radio" name="vagas" id="vagas_0" value="0" class="CheckHorizontalInput checkbox-s"/>
-                      <label for="vagas_0" class="CheckHorizontalLabel"><span>0</span></label>
-                    </li>
-                    <li>
-                      <input type="radio" name="vagas" id="vagas_1" value="1" class="CheckHorizontalInput checkbox-s"/>
-                      <label for="vagas_1" class="CheckHorizontalLabel"><span>1</span></label>
-                    </li>
-                    <li>
-                      <input type="radio" name="vagas" id="vagas_2" value="2" class="CheckHorizontalInput checkbox-s"/>
-                      <label for="vagas_2" class="CheckHorizontalLabel"><span>2</span></label>
-                    </li>
-                    <li>
-                      <input type="radio" name="vagas" id="vagas_3" value="3" class="CheckHorizontalInput checkbox-s"/>
-                      <label for="vagas_3" class="CheckHorizontalLabel"><span>3</span></label>
-                    </li>
-                    <li>
-                      <input type="radio" name="vagas" id="vagas_4" value="4" class="CheckHorizontalInput checkbox-s"/>
-                      <label for="vagas_4" class="CheckHorizontalLabel"><span>+4</span></label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- END  VAGAS DE GARAGEM  DE IMOVEL -->
-              <!-- EXTRAS DE IMOVEL -->
-              <div>
-                <a href="imoveis@categoria=residencial&amp;finalidade[0]=alugar&amp;filter-interno=1&amp;page=5.html#"
-                   class="MenuItem dropdown-toggle" id="ExtrasMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"><i class="icon-star"></i> Extras <i class="fas fa-chevron-down small-icon"></i></a>
-                <div class="dropdown-menu ExtrasMenu ">
-                  <div class="FilterBarCheckBoxExtras ">
-                    <div class="row">
-                      <div class="col-12">
-                        <input type="text" id="search_extra" placeholder="Pesquisar extras"
-                               class="SearchExtras col-12"/>
-                      </div>
-                      <div class="col-12  " style="overflow-y: scroll; height: 300px">
-                        <ul class="Col2">
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="acesso para deficientes" name="extra[]"
-                                   value="acesso para deficientes">
-                            <label for="acesso para deficientes"><span>acesso para deficientes</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="água" name="extra[]" value="água">
-                            <label for="água"><span>água</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="água quente" name="extra[]"
-                                   value="água quente">
-                            <label for="água quente"><span>água quente</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="ar condicionado" name="extra[]"
-                                   value="ar condicionado">
-                            <label for="ar condicionado"><span>ar condicionado</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="área fitness" name="extra[]"
-                                   value="área fitness">
-                            <label for="área fitness"><span>área fitness</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="armários" name="extra[]" value="armários">
-                            <label for="armários"><span>armários</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="churrasqueira" name="extra[]"
-                                   value="churrasqueira">
-                            <label for="churrasqueira"><span>churrasqueira</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="cozinha independente" name="extra[]"
-                                   value="cozinha independente">
-                            <label for="cozinha independente"><span>cozinha independente</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="cozinha planejada" name="extra[]"
-                                   value="cozinha planejada">
-                            <label for="cozinha planejada"><span>cozinha planejada</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="espaço gourmet" name="extra[]"
-                                   value="espaço gourmet">
-                            <label for="espaço gourmet"><span>espaço gourmet</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="forno de pizza" name="extra[]"
-                                   value="forno de pizza">
-                            <label for="forno de pizza"><span>forno de pizza</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="hall" name="extra[]" value="hall">
-                            <label for="hall"><span>hall</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="home office" name="extra[]"
-                                   value="home office">
-                            <label for="home office"><span>home office</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="jardim" name="extra[]" value="jardim">
-                            <label for="jardim"><span>jardim</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="lavanderia" name="extra[]" value="lavanderia">
-                            <label for="lavanderia"><span>lavanderia</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="living para três ambientes" name="extra[]"
-                                   value="living para três ambientes">
-                            <label for="living para três ambientes"><span>living para três ambientes</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="mobiliado" name="extra[]" value="mobiliado">
-                            <label for="mobiliado"><span>mobiliado</span></label>
-                          </li>
-                          <li class=" search-results   ">
-                            <input type="checkbox" class="checkbox-s" id="piscina" name="extra[]" value="piscina">
-                            <label for="piscina"><span>piscina</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="piscina, salão de festas, salão de jogos"
-                                   name="extra[]" value="piscina, salão de festas, salão de jogos">
-                            <label for="piscina, salão de festas, salão de jogos"><span>piscina, salão de festas, salão de jogos</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="playground" name="extra[]" value="playground">
-                            <label for="playground"><span>playground</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="playkids" name="extra[]" value="playkids">
-                            <label for="playkids"><span>playkids</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="portão eletrônico" name="extra[]"
-                                   value="portão eletrônico">
-                            <label for="portão eletrônico"><span>portão eletrônico</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="portaria" name="extra[]" value="portaria">
-                            <label for="portaria"><span>portaria</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="portaria 24 horas" name="extra[]"
-                                   value="portaria 24 horas">
-                            <label for="portaria 24 horas"><span>portaria 24 horas</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="portaria 24h" name="extra[]"
-                                   value="portaria 24h">
-                            <label for="portaria 24h"><span>portaria 24h</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="quadra de esportes" name="extra[]"
-                                   value="quadra de esportes">
-                            <label for="quadra de esportes"><span>quadra de esportes</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="quintal" name="extra[]" value="quintal">
-                            <label for="quintal"><span>quintal</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="sacada lateral" name="extra[]"
-                                   value="sacada lateral">
-                            <label for="sacada lateral"><span>sacada lateral</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="salão de beleza" name="extra[]"
-                                   value="salão de beleza">
-                            <label for="salão de beleza"><span>salão de beleza</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="salão de festas" name="extra[]"
-                                   value="salão de festas">
-                            <label for="salão de festas"><span>salão de festas</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="salão de jogos" name="extra[]"
-                                   value="salão de jogos">
-                            <label for="salão de jogos"><span>salão de jogos</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="salão gourmet" name="extra[]"
-                                   value="salão gourmet">
-                            <label for="salão gourmet"><span>salão gourmet</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="sauna" name="extra[]" value="sauna">
-                            <label for="sauna"><span>sauna</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="segurança integral" name="extra[]"
-                                   value="segurança integral">
-                            <label for="segurança integral"><span>segurança integral</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="serviço de arrumação" name="extra[]"
-                                   value="serviço de arrumação">
-                            <label for="serviço de arrumação"><span>serviço de arrumação</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="um apartamento por andar" name="extra[]"
-                                   value="um apartamento por andar">
-                            <label for="um apartamento por andar"><span>um apartamento por andar</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="varanda" name="extra[]" value="varanda">
-                            <label for="varanda"><span>varanda</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="varanda gourmet" name="extra[]"
-                                   value="varanda gourmet">
-                            <label for="varanda gourmet"><span>varanda gourmet</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="ventilador de teto" name="extra[]"
-                                   value="ventilador de teto">
-                            <label for="ventilador de teto"><span>ventilador de teto</span></label>
-                          </li>
-                          <li class=" search-results  ExtrasPad ">
-                            <input type="checkbox" class="checkbox-s" id="vista para cidade" name="extra[]"
-                                   value="vista para cidade">
-                            <label for="vista para cidade"><span>vista para cidade</span></label>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+                <div class="dropdown-menu CarMenu " ngbDropdownMenu>
+                  <div class="BALLCheckStyle pt-5 pb-3 ">
+                    <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
+                        [(ngModel)]="customSearch.garagem">
+                      <li>
+
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0"> <span>0</span>
+                        </label>
+                      </li>
+                      <li>
+
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1"> <span>1</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="4"><span>+4</span>
+                        </label>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
-              <!-- END  EXTRAS  DE IMOVEL -->
+              <!-- END  VAGAS DE GARAGEM  DE IMOVEL -->
             </div>
             <!-- END MAIS FILTRO -->
           </div>

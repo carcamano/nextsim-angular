@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ImoveisService} from './imoveis.service';
 import {Imovel} from './models/imovel.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpResponse} from '@angular/common/http';
 import * as _ from 'lodash';
-import {GeneralService} from './general.service';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
+import {Options} from 'ng5-slider';
+import {GeneralService} from './general.service';
 
 @Component({
   selector: 'app-imoveis',
@@ -17,7 +18,7 @@ export class ImoveisComponent implements OnInit {
   pages = 0;
   currentPage = 1;
 
-  customSearch = false;
+  showExtraFilter = false;
 
   private itensPerPage = 10;
 
@@ -30,7 +31,54 @@ export class ImoveisComponent implements OnInit {
   mySlideOptions = {items: 1, dots: true, nav: false};
   myCarouselOptions = {items: 3, dots: true, nav: true};
 
-  constructor(private imoveisService: ImoveisService, private route: ActivatedRoute, private ngxService: NgxUiLoaderService) {
+
+  /// filtro
+
+  customSearch = {
+    categoria: 'comprar',
+    finalidade: 'residencial',
+    quartos: 0,
+    salas: 0,
+    garagem: 0,
+    dormitorios: 0,
+    tipos: [],
+    precos: {
+      min: 0,
+      max: 39000000,
+    },
+    area: {
+      min: 0,
+      max: 61000,
+    },
+    bairros: [],
+    cidade: ''
+  };
+
+  tipos_residencial = [];
+  tipos_comercial = [];
+  locais: any;
+
+  locaisGeral: string[];
+  bairrosSelecionados: any[] = [];
+
+  options: Options = {
+    floor: 0,
+    ceil: this.customSearch.precos.max,
+    translate: (value: number): string => {
+      return 'R$' + value;
+    }
+  };
+
+  optionsArea: Options = {
+    floor: 0,
+    ceil: this.customSearch.area.max,
+    translate: (value: number): string => {
+      return value + ' M²';
+    }
+  };
+
+  constructor(private imoveisService: ImoveisService, private route: ActivatedRoute, private ngxService: NgxUiLoaderService,
+              private generalService: GeneralService, private router: Router) {
   }
 
   ngOnInit() {
@@ -38,16 +86,56 @@ export class ImoveisComponent implements OnInit {
       this.queryParams = queryParams;
       console.log(this.queryParams);
       this.getImoveis();
+      this.loadDefaults();
+
     });
+  }
+
+  categoriaChange(categoria: string) {
+    console.log('categoriaChange')
+    this.customSearch.categoria = categoria;
+  }
+
+  dropDownChange(event: boolean) {
+    console.log(event);
+
+    if (!event) {
+      console.log(this.customSearch);
+      const tipos = this.customSearch.tipos.filter(value => {
+        return value.selected === true;
+      }).map(value => {
+        return value.key;
+      });
+      const bairros = this.customSearch.bairros.filter(value => {
+        return value.selected === true;
+      }).map(value => {
+        return value.key;
+      });
+      console.log(bairros);
+      const area: string = this.customSearch.area.min + ',' + this.customSearch.area.max;
+      const precos: string = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
+      this.search({
+        finalidade: this.customSearch.finalidade, tipo: tipos.join(','),
+        categoria: this.customSearch.categoria, precos: precos, area: area, custom: true,
+        dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas,
+        bairros: bairros.join(','), cidade: this.customSearch.cidade
+      });
+    }
+  }
+
+  search(query) {
+    console.log('query');
+    console.log(query);
+    if (query) {
+      this.router.navigate(['imoveis'], {
+        queryParams: query
+      });
+    }
   }
 
   changePage(page: number) {
     this.currentPage = page;
-    // if (!this.customSearch) {
     this.getImoveis();
-    // } else {
-    //   this.filterAll();
-    // }
   }
 
   private filterAll() {
@@ -261,6 +349,109 @@ export class ImoveisComponent implements OnInit {
 
   getFormattedPrice(price: number) {
     return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price);
+  }
+
+  // fitros metodes
+
+
+  changeCidade(cidade: string) {
+    this.customSearch.cidade = cidade;
+    this.locaisGeral.map((value, index) => {
+      if (value === cidade) {
+        this.buildLocaisBairros(value);
+      }
+    });
+  }
+
+  changeTipo(event: any, i: number) {
+    this.customSearch.tipos[i].selected = event.currentTarget.checked;
+    console.log(this.customSearch.tipos);
+  }
+
+  changeBairro(event: any, i: number) {
+    console.log('changeBairro');
+    this.customSearch.bairros[i].selected = event.currentTarget.checked;
+    this.bairrosSelecionados = this.customSearch.bairros.filter(value => {
+      return value.selected === true;
+    }).map(value => {
+      return value.key;
+    });
+  }
+
+
+  finalidadeChange(event: any) {
+    if (this.customSearch.finalidade === 'residencial') {
+      this.customSearch.tipos = this.tipos_residencial;
+    } else {
+      this.customSearch.tipos = this.tipos_comercial;
+    }
+  }
+
+
+  private loadDefaults() {
+    this.generalService.tipos_residencial().subscribe((res: HttpResponse<string[]>) => {
+      this.tipos_residencial = res.body.map((value, index, array) => {
+        return {key: value, selected: false, i: index};
+      });
+      this.customSearch.tipos = this.tipos_residencial;
+      console.log(this.customSearch.tipos);
+    });
+
+
+    this.generalService.tipos_comercial().subscribe((res: HttpResponse<string[]>) => {
+      this.tipos_comercial = res.body.map((value, index, array) => {
+        return {key: value, selected: false, i: index};
+      });
+    });
+
+
+    this.generalService.locais().subscribe((res: HttpResponse<any>) => {
+      if (!this.locais) {
+        this.locais = res.body;
+        this.buildLocais();
+
+      }
+    });
+
+    this.generalService.area().subscribe((res: HttpResponse<any>) => {
+      this.customSearch.area.max = res.body.max;
+      this.customSearch.area.min = res.body.min;
+    });
+
+    this.generalService.precos().subscribe((res: HttpResponse<any>) => {
+      this.customSearch.precos.max = res.body.max;
+      this.customSearch.precos.min = res.body.min;
+    });
+  }
+
+
+  buildLocais() {
+    if (!this.locaisGeral) {
+      this.locaisGeral = [];
+      _.forIn(this.locais, (value, key) => {
+        this.locaisGeral.push(key);
+      });
+      console.log(this.locaisGeral);
+    }
+  }
+
+  filterLocaisBairros(cidade: string) {
+    return this.customSearch.bairros.filter(value => value.c === cidade);
+  }
+
+  buildLocaisBairros(cidade: string) {
+    // if (!this.customSearch.bairros.length) {
+    //   this.locaisBairro = [];
+    // }
+    this.customSearch.bairros = [];
+    _.forIn(this.locais, (value, key) => {
+      if (key === cidade) {
+        value.map((value2, index, array) => {
+          this.customSearch.bairros.push({key: value2, selected: false, i: index, c: cidade});
+        });
+      }
+    });
+    console.log(this.customSearch.bairros);
   }
 
 
