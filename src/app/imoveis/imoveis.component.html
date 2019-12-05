@@ -33,7 +33,7 @@
           <div class="row d-flex flex-row justify-content-between">
             <div class="text-center align-content-center ">
               <a class="btn btn-more-filters btn-semi-rounded FiltersBTN "
-                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN" (click)="showExtraFilter = !showExtraFilter"><span class="plus-icon"></span> <b *ngIf="!showExtraFilter">Mais filtros</b><b *ngIf="showExtraFilter">Menos filtros</b></a>
+                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN" (click)="showExtraFilter = !showExtraFilter"><span class="plus-icon" *ngIf="!showExtraFilter"></span> <b *ngIf="!showExtraFilter">Mais filtros</b><span class="plus-icon"*ngIf="showExtraFilter"></span><b *ngIf="showExtraFilter">Menos filtros</b></a>
             </div>
             <div class="box-filter-1">
               <!-- TIPO DE IMOVEL -->
@@ -338,9 +338,9 @@
             <a  class="btn btn-see-more btn-rounded" (click)="clearFiltro()" *ngIf="badges.length > 0"> Limpar filtros </a>
           </div>
           <div class="col-lg-8 properties-list" >
-<!--            <div class="d-block d-sm-flex item" *ngIf="noResults">-->
-<!--              <h4>Nenhum imóvel encontrado!</h4>-->
-<!--            </div>-->
+            <div class="d-block d-sm-flex item" *ngIf="noResults">
+              <h4>Nenhum imóvel encontrado!</h4>
+            </div>
             <div class="d-block d-sm-flex item" *ngFor="let imovel of imoveis">
               <div class="col-lg-5 pos-slider">
                 <owl-carousel [options]="mySlideOptions" [items]="imagensCarousel(imovel?.midia?.imagens)"

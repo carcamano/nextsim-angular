@@ -10858,7 +10858,7 @@ body {
 }
 
 .plus-icon {
-  background-image: url(assets/images/orange-plus-icon.svg@4c25fade4fe22aa33d0de7ab5e6232be);
+  background-image: url(assets/images/orange-plus-icon.svg);
   background-repeat: no-repeat;
   width: 28px;
   height: 28px;
@@ -10868,7 +10868,7 @@ body {
 }
 
 .minus-icon {
-  background-image: url(assets/images/orange-minus-icon.svg@5aecc575c52bcdf40679bcc697defcbc);
+  background-image: url(assets/images/orange-minus-icon.svg);
   background-repeat: no-repeat;
   width: 28px;
   height: 28px;
@@ -10877,7 +10877,7 @@ body {
 }
 
 .heart-icon {
-  background-image: url(assets/images/orange-heart-icon.svg@ab42a89c2bcfad0371d6f6d8dca76ce8);
+  background-image: url(assets/images/orange-heart-icon.svg);
   background-repeat: no-repeat;
   width: 28px;
   height: 25px;
@@ -11506,6 +11506,10 @@ body {
   padding-top: 10%;
 }
 
+.box-filter-1 > div, .box-filter-2 > div, .MenuItem  {
+  min-width: auto !important;
+  width: auto !important;
+}
 /*VERSÃO DE TABLET E CELULAR ------------------------------------------------------------*/
 
 @media (max-width: 991.98px) {

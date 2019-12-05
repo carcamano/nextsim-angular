@@ -249,6 +249,7 @@ export class ImoveisComponent implements OnInit {
     this.pages = filtred.length;
     this.imoveis = _.chunk(filtred, this.itensPerPage)[this.currentPage - 1];
 
+    this.checkResults();
     // }, 2000);
 
 
@@ -289,11 +290,14 @@ export class ImoveisComponent implements OnInit {
 
 
   private checkResults() {
-    if (this.allImoveis.length > 0) {
-      this.noResults = false;
-
-    } else {
+    console.log('checkResults');
+    console.log(this.imoveis);
+    if (!this.imoveis || this.imoveis.length === 0) {
+    console.log('if');
       this.noResults = true;
+    } else {
+    console.log('else');
+      this.noResults = false;
     }
   }
 
