@@ -21,7 +21,7 @@ export class ImoveisComponent implements OnInit {
 
   showExtraFilter = false;
 
-  noResults = false
+  noResults = false;
 
   private itensPerPage = 10;
 
@@ -92,7 +92,6 @@ export class ImoveisComponent implements OnInit {
   }
 
 
-
   categoriaChange(categoria: string) {
     console.log('categoriaChange');
     this.customSearch.categoria = categoria;
@@ -126,8 +125,6 @@ export class ImoveisComponent implements OnInit {
   }
 
   search(query) {
-    console.log('query');
-    console.log(query);
     if (query) {
       this.router.navigate(['imoveis'], {
         queryParams: query
@@ -290,13 +287,9 @@ export class ImoveisComponent implements OnInit {
 
 
   private checkResults() {
-    console.log('checkResults');
-    console.log(this.imoveis);
     if (!this.imoveis || this.imoveis.length === 0) {
-    console.log('if');
       this.noResults = true;
     } else {
-    console.log('else');
       this.noResults = false;
     }
   }
@@ -387,7 +380,6 @@ export class ImoveisComponent implements OnInit {
   }
 
   changeBairro(event: any, i: number) {
-    console.log('changeBairro');
     this.customSearch.bairros[i].selected = event.currentTarget.checked;
     this.bairrosSelecionados = this.customSearch.bairros.filter(value => {
       return value.selected === true;
@@ -397,10 +389,10 @@ export class ImoveisComponent implements OnInit {
   }
 
 
-  finalidadeChange(event: any) {
-    if (this.customSearch.finalidade === 'residencial') {
+  finalidadeChange() {
+    if (this.queryParams.finalidade === 'residencial') {
       this.customSearch.tipos = this.tipos_residencial;
-    } else {
+    } else if (this.queryParams.finalidade === 'comercial') {
       this.customSearch.tipos = this.tipos_comercial;
     }
   }
@@ -411,8 +403,7 @@ export class ImoveisComponent implements OnInit {
       this.tipos_residencial = res.body.map((value, index, array) => {
         return {key: value, selected: false, i: index};
       });
-      this.customSearch.tipos = this.tipos_residencial;
-      console.log(this.customSearch.tipos);
+      this.finalidadeChange();
     });
 
 
@@ -420,6 +411,7 @@ export class ImoveisComponent implements OnInit {
       this.tipos_comercial = res.body.map((value, index, array) => {
         return {key: value, selected: false, i: index};
       });
+      this.finalidadeChange();
     });
 
 
@@ -472,7 +464,7 @@ export class ImoveisComponent implements OnInit {
   }
 
   clearFiltro() {
-    console.log('clearFiltro')
+    console.log('clearFiltro');
     this.router.navigate([]);
   }
 
@@ -489,14 +481,13 @@ export class ImoveisComponent implements OnInit {
     // tipo: ""
     this.badges = [];
     if (this.queryParams.categoria) {
-      this.badges.push(this.badge(this.queryParams.categoria, 'categoria',() => {
+      this.badges.push(this.badge(this.queryParams.categoria, 'categoria', () => {
         this.queryParams.categoria = '';
-        console.log('call categoria');
       }));
     }
 
     if (this.queryParams.finalidade) {
-      this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade',() => this.queryParams.finalidade = ''));
+      this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade', () => this.queryParams.finalidade = ''));
     }
 
     if (this.queryParams.bairros) {
@@ -505,23 +496,23 @@ export class ImoveisComponent implements OnInit {
       if (ss.length > 1) {
         this.badges.push(this.badge(`Nos bairros: ${ss.join(', ')}`, 'bairros', f));
       } else {
-        this.badges.push(this.badge(`No bairro: ${ss.join(', ')}`,'bairros', f));
+        this.badges.push(this.badge(`No bairro: ${ss.join(', ')}`, 'bairros', f));
       }
     }
 
     if (this.queryParams.cidade) {
-      this.badges.push(this.badge(`Na cidade de ${this.queryParams.cidade}`, this.queryParams.cidade,() => this.queryParams.cidade = ''));
+      this.badges.push(this.badge(`Na cidade de ${this.queryParams.cidade}`, this.queryParams.cidade, () => this.queryParams.cidade = ''));
     }
 
     if (this.queryParams.dormitorios) {
       const n = Number(this.queryParams.dormitorios);
       const f = () => this.queryParams.dormitorios = '';
       if (n === 1) {
-        this.badges.push(this.badge(`Com ${n} dormitório`,this.queryParams.dormitorios, f));
-      } else if(n === 4) {
-        this.badges.push(this.badge(`Com ${n} ou mais dormitórios`,this.queryParams.dormitorios, f));
-      } else if(n !== 0){
-        this.badges.push(this.badge(`Com ${n}  dormitórios`,this.queryParams.dormitorios, f));
+        this.badges.push(this.badge(`Com ${n} dormitório`, this.queryParams.dormitorios, f));
+      } else if (n === 4) {
+        this.badges.push(this.badge(`Com ${n} ou mais dormitórios`, this.queryParams.dormitorios, f));
+      } else if (n !== 0) {
+        this.badges.push(this.badge(`Com ${n}  dormitórios`, this.queryParams.dormitorios, f));
       }
 
     }
@@ -529,9 +520,9 @@ export class ImoveisComponent implements OnInit {
     if (this.queryParams.tipo) {
       const ss = this.queryParams.tipo.split(',');
       if (ss.length > 1) {
-        this.badges.push(this.badge(`Tipos: ${ss.join(', ')}`,this.queryParams.tipo, () => this.queryParams.tipo = ''));
+        this.badges.push(this.badge(`Tipos: ${ss.join(', ')}`, this.queryParams.tipo, () => this.queryParams.tipo = ''));
       } else {
-        this.badges.push(this.badge(`Tipo: ${ss.join(', ')}`,this.queryParams.tipo, () => this.queryParams.tipo = ''));
+        this.badges.push(this.badge(`Tipo: ${ss.join(', ')}`, this.queryParams.tipo, () => this.queryParams.tipo = ''));
       }
     }
 
@@ -545,13 +536,13 @@ export class ImoveisComponent implements OnInit {
       if (pMin !== this.minPrice || pMax !== this.maxPrice) {
         const spMin = formatCurrency(Number(ss[0]), 'pt-BR', 'R$', 'BRL');
         const spMax = formatCurrency(Number(ss[1]), 'pt-BR', 'R$', 'BRL');
-        this.badges.push(this.badge(`Entre: ${spMin} e ${spMax}`, this.queryParams.precos,  () => this.queryParams.precos = ''));
+        this.badges.push(this.badge(`Entre: ${spMin} e ${spMax}`, this.queryParams.precos, () => this.queryParams.precos = ''));
       }
     }
   }
 
   private badge(s: string, query: string, close: () => void): any {
-    return {label: s, close, query };
+    return {label: s, close, query};
 
   }
 
@@ -581,7 +572,6 @@ export class ImoveisComponent implements OnInit {
         });
       }
     });
-    console.log(this.customSearch.bairros);
   }
 
 

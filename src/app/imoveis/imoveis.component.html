@@ -105,7 +105,7 @@
               </div>
               <!-- END CIDADE OU BAIRRO DE IMOVEL -->
               <!-- QUARTOS DE IMOVEL -->
-              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'" *ngIf="queryParams && queryParams.finalidade === 'residencial'">
                 <a
                    class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false" ngbDropdownToggle><i class="icon-bed"></i> Quartos <i class="fas fa-chevron-down small-icon"></i></a>
@@ -145,6 +145,47 @@
                 </div>
               </div>
               <!-- END QUARTO DE IMOVEIS -->
+              <!-- SALAS DE IMOVEL -->
+              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'" *ngIf="queryParams.finalidade === 'comercial'">
+                <a
+                  class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" ngbDropdownToggle><i class="icon2-salas"></i> Salas <i class="fas fa-chevron-down small-icon"></i></a>
+                <div class=" RoomMenu  BALLCheckStyle dropdown-menu" ngbDropdownMenu>
+                  <div class="BALLCheckStyle pt-5 pb-3 ">
+                    <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
+                        [(ngModel)]="customSearch.salas">
+                      <li>
+
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0"> <span>0</span>
+                        </label>
+                      </li>
+                      <li>
+
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1"> <span>1</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>
+                        </label>
+                      </li>
+                      <li>
+                        <label ngbButtonLabel class="CheckHorizontalLabel">
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="4"><span>+4</span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- END SALAS DE IMOVEIS -->
               <!-- PRECO DE IMOVEL -->
               <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
                 <a
