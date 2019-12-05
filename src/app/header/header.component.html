@@ -1,23 +1,23 @@
 <header class="" [ngClass]="{'home-header': rootView, 'container-fluid PropertyListHeader': !rootView }">
   <div class="row NextMobileMenu d-lg-none mt-4">
     <div class="col-2 text-left">
-      <a class="toggleMenu">
-        <img src="assets/img/menu-mobile.png">
+      <a class="toggleMenu" (click)="showMobileMenu = !showMobileMenu">
+        <img src="assets/img/menu-mobile.png" [ngClass]="{'darkIcon': !rootView}">
       </a>
     </div>
     <div class="col-8 text-center">
       <a [routerLink]='["/"]'>
+        <img src="assets/img/logo-next-mobile-escuro.svg" alt="" width="90" *ngIf="!rootView">
       </a>
     </div>
     <div class="col-2 text-right">
-      <a class="toggleMenuPerfil"><img src="assets/img/user-mobile.png"></a>
     </div>
   </div>
-  <div class="MenuMobile animated">
+  <div class="MenuMobile animated" [ngClass]="{'open': showMobileMenu}">
     <div class="container-fluid">
       <div class="row MobileMenuHeader">
         <div class="col-12 col-sm-12">
-          <a [routerLink]='["/"]' class="CloseMenu">
+          <a  class="CloseMenu" (click)="showMobileMenu = false">
             <img src="assets/img/menu-burg-laranja.png"/>
             <span>MENU</span>
           </a>
@@ -26,9 +26,9 @@
       <div class="row">
         <div class="col-12  col-sm-12 px-0">
           <ul class="FirstMenu">
-            <li class="CollapseMobile1">
-              <a href="">Quero alugar</a>
-              <ul class="SecondMenu Collapse1">
+            <li class="CollapseMobile1" >
+              <a href="#" (click)="mobileMenuAlugar = !mobileMenuAlugar">Quero alugar</a>
+              <ul class="SecondMenu Collapse1" >
                 <li>
                   <a class="dropdown-item"
                      [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar'}">Residencial</a>
@@ -40,7 +40,7 @@
               </ul>
             </li>
             <li class="CollapseMobile2">
-              <a href="index.html#">Quero comprar</a>
+              <a href="#">Quero comprar</a>
               <ul class="SecondMenu Collapse2">
                 <li><a class="dropdown-item"
                        [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar'}">Residencial</a>
@@ -51,7 +51,7 @@
               </ul>
             </li>
             <li><a [routerLink]='["/quero-negociar"]'>Quero anunciar</a></li>
-            <li><a [routerLink]='["/sobre"]'>Sobre nós</a></li>
+            <li><a [routerLink]='["/sobre-nos"]'>Sobre nós</a></li>
           </ul>
         </div>
       </div>
@@ -90,12 +90,12 @@
               <img src="assets/img/logo-next-header.svg" alt="" width="145" *ngIf="!rootView">
             </a>
           </li>
-          <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle " href="#" id="QueroAlugar" role="button"
-               aria-haspopup="true" aria-expanded="false">
+          <li class="dropdown" ngbDropdown>
+            <a data-toggle="dropdown" class="dropdown-toggle " id="QueroAlugar" role="button"
+               aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
               Quero alugar
             </a>
-            <div class="dropdown-menu" aria-labelledby="QueroAlugar">
+            <div class="dropdown-menu" aria-labelledby="QueroAlugar" ngbDropdownMenu>
               <a class="dropdown-item"
                  [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar'}">Residencial</a>
               <a class="dropdown-item"
@@ -103,12 +103,12 @@
                  [queryParams]="{finalidade: 'comercial', categoria: 'alugar'}">Comercial</a>
             </div>
           </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle " href="#" id="QueroComprar" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
+          <li class="dropdown" ngbDropdown>
+            <a class="dropdown-toggle "  id="QueroComprar" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
               Quero comprar
             </a>
-            <div class="dropdown-menu " aria-labelledby="QueroComprar">
+            <div class="dropdown-menu " aria-labelledby="QueroComprar" ngbDropdownMenu>
               <a class="dropdown-item"
                  [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar'}">Residencial</a>
               <a class="dropdown-item"
@@ -123,156 +123,7 @@
       </nav>
     </div>
   </div>
-  <div class="modal fade" id="MobHomeFilterModal" tabindex="-1" role="dialog" aria-labelledby="MobHomeFilterModalLabel"
-       aria-hidden="true" *ngIf="rootView">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div id="frm_filter">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body" id="STEP1">
-            <div class="row pt-5">
-              <div class="col-8 offset-2">
-                <div class="row">
-                  <div class="col-3"><img src="assets/img/icon-1.png" alt=""></div>
-                  <div class="col-9">
-                    <h2>Escolha uma<br><span>Finalidade:</span></h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row pt-5 pb-2">
-              <div class="col-12">
-                <ul class="HorizontalCheckBoxMobile2">
-                  <li>
-                    <input type="radio" class="HorizontalCheckBoxMobileInput2 " name="finalidade[]" value="Comprar"
-                           id="OPCcomprar2">
-                    <label for="OPCcomprar2" class="HorizontalCheckBoxMobileLabel2"><span>Comprar</span></label>
-                  </li>
-                  <li>
-                    <input type="radio" class="HorizontalCheckBoxMobileInput2 " name="finalidade[]" value="Alugar"
-                           id="OPCalugar2">
-                    <label for="OPCalugar2" class="HorizontalCheckBoxMobileLabel2"><span>Alugar</span></label>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <ul class="StepsFilter">
-                  <li><a class="active ball_step1"></a></li>
-                  <li><a class="ball_step2"></a></li>
-                  <li><a class="ball_step3"></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="row pt-3 pb-5">
-              <div class="col-12">
-                <button type="button" class="btn btn-rounded btn-search BTN1">AVANÇAR</button>
-              </div>
-            </div>
-          </div>
-          <div class="modal-body" id="STEP2">
-            <div class="row pt-5">
-              <div class="col-8 offset-2">
-                <div class="row">
-                  <div class="col-3"><img src="assets/img/icon-2.png" alt=""></div>
-                  <div class="col-9">
-                    <h2>Escolha uma<br><span>Categoria:</span></h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row pt-5 pb-2">
-              <div class="col-12">
-                <div class="category">
-                  <div class="category-title"><span class="icon-category arrow-down-icon"></span> <span
-                    class="category-title-in">Categoria</span></div>
-                  <div class="category-options">
-                    <div class="form-check category-option">
-                      <input class="form-check-input" type="radio" name="category" id="Check-residencial"
-                             value="Residencial">
-                      <label class="form-check-label" id="label-residencial" for="Check-residencial">
-                        Residencial
-                      </label>
-                    </div>
-                    <div class="form-check category-option">
-                      <input class="form-check-input" type="radio" name="category" id="Check-comercial"
-                             value="Comercial">
-                      <label class="form-check-label" id="label-comercial" for="Check-comercial">
-                        Comercial
-                      </label>
-                    </div>
-                    <div class="form-check category-option">
-                      <input class="form-check-input" type="radio" name="category" id="Check-lancamento"
-                             value="Lançamento">
-                      <label class="form-check-label" id="label-lancamento" for="Check-lancamento">
-                        Lançamento
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <ul class="StepsFilter">
-                  <li><a class="ball_step1"></a></li>
-                  <li><a class="ball_step2"></a></li>
-                  <li><a class="ball_step3"></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="row pt-3 pb-5">
-              <div class="col-12">
-                <button type="button" class="btn btn-rounded btn-search BTN2">AVANÇAR</button>
-              </div>
-            </div>
-          </div>
-          <div class="modal-body" id="STEP3">
-            <div class="row pt-5">
-              <div class="col-8 offset-2">
-                <div class="row">
-                  <div class="col-3"><img src="assets/img/icon-3.png" alt=""></div>
-                  <div class="col-9">
-                    <h2>Escolha uma<br><span>Cidade:</span></h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row pt-5 pb-2">
-              <div class="col-12 ">
-                              <span class="filterCityField">
-                              <input type="text" class="CityField" name="bairros[]"
-                                     placeholder="Cidade, bairro ou código">
-                              </span>
-              </div>
-              <div id="ajaxList2" class="ajaxlist">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <ul class="StepsFilter">
-                  <li><a class="ball_step1"></a></li>
-                  <li><a class="ball_step2"></a></li>
-                  <li><a class="ball_step3"></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="row pt-3 pb-5">
-              <div class="col-12">
-                <button type="button" class="btn btn-rounded btn-search BTN3"><I class="fas fa-search"></I> BUSCAR
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <div class="container title-home-section d-lg-none" *ngIf="rootView">
     <a href="index.html#" class="logo">
@@ -327,11 +178,11 @@
                     Comercial
                   </label>
                 </div>
-                <!--                <div class="form-check goal-option">-->
-                <!--                  <a href="index.html#sectionRelease" class="sectionReleaseLink">-->
-                <!--                    <label class="form-check-label" id="" for=""> Lançamentos </label>-->
-                <!--                  </a>-->
-                <!--                </div>-->
+                <div class="form-check category-option" (click)="simpleSearch.finalidade = 'lancamentos'">
+                  <label class="form-check-label">
+                    Lançamentos
+                  </label>
+                </div>
               </div>
             </div>
             <div class="searchfield">
@@ -351,7 +202,7 @@
           </button>
         </div>
         <div class="col-md-12 d-block d-sm-block d-md-none">
-          <button class="btn btn-search btn-rounded " data-toggle="modal" data-target="#MobHomeFilterModal"
+          <button class="btn btn-search btn-rounded " (click)="openSearchMobile(modalmobile)"
                   type="button">
             <i class="fas fa-search"></i> REALIZAR PESQUISA
           </button>
@@ -437,14 +288,14 @@
       <div class="row selectiona_local" style="">
 
 
-        <div class="col-4" *ngIf="locais" style="background-color: #a8a8a8;">
+        <div class="col-4" *ngIf="locais" >
           <span class="TitleCityMobHome">Cidade</span>
           <div class="cidades_botoes">
             <button *ngFor="let local of locaisGeral;  let i = index" (click)="changeCidade(local)"
                     [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
           </div>
         </div>
-        <div class="col-4" *ngIf="locais" style="background-color: #bcbcbc;">
+        <div class="col-4" *ngIf="locais" >
           <span class="TitleCityMobHome">Bairro</span>
           <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2">
             <ul>
@@ -456,7 +307,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-4" style="background-color: #dadddd;">
+        <div class="col-4" >
             <span class="TitleCityMobHome">Selecionados</span>
           <div class="filter-badgesMob" style="">
             <div class="BairroSec">
@@ -632,3 +483,167 @@
     </div>
   </div>
 </ng-template>
+
+
+
+<!--<div class="modal fade" id="MobHomeFilterModal" tabindex="-1" role="dialog" aria-labelledby="MobHomeFilterModalLabel"-->
+<!--     aria-hidden="true" *ngIf="rootView">-->
+<!--  <div class="modal-dialog" role="document">-->
+
+<ng-template #modalmobile let-modal >
+    <div class="modal-content">
+      <div id="frm_filter">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" id="STEP1" *ngIf="modalMobileStep1">
+          <div class="row pt-5">
+            <div class="col-8 offset-2">
+              <div class="row">
+                <div class="col-3"><img src="assets/img/icon-1.png" alt=""></div>
+                <div class="col-9">
+                  <h2>Escolha uma<br><span>Finalidade:</span></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-5 pb-2">
+            <div class="col-12">
+<!--              <ul class="HorizontalCheckBoxMobile2">-->
+<!--                <li>-->
+<!--                  <input type="radio" class="HorizontalCheckBoxMobileInput2 "-->
+<!--                         id="OPCcomprar2" (click)="simpleSearch.categoria = 'comprar'" [checked]="simpleSearch.categoria == 'comprar'">-->
+<!--                  <label for="OPCcomprar2" class="HorizontalCheckBoxMobileLabel2" ><span>Comprar</span></label>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <input type="radio" class="HorizontalCheckBoxMobileInput2 " name="finalidade[]" value="Alugar"-->
+<!--                         id="OPCalugar2">-->
+<!--                  <label for="OPCalugar2" class="HorizontalCheckBoxMobileLabel2"><span>Alugar</span></label>-->
+<!--                </li>-->
+<!--              </ul>-->
+
+              <ul class="HorizontalCheckBoxMobile2" ngbRadioGroup name="radioBasic" [(ngModel)]="customSearch.categoria">
+                <li>
+                  <label ngbButtonLabel class="HorizontalCheckBoxMobileLabel2">
+                    <input ngbButton type="radio" value="comprar" class="HorizontalCheckBoxMobileInput2"> Comprar
+                  </label>
+                </li>
+                <li>
+                  <label ngbButtonLabel class="HorizontalCheckBoxMobileLabel2">
+                    <input ngbButton type="radio" value="alugar" class="HorizontalCheckBoxMobileInput2"> Alugar
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <ul class="StepsFilter">
+                <li><a class="active ball_step1" (click)="modalStep(1)"></a></li>
+                <li><a class="ball_step2" (click)="modalStep(2)"></a></li>
+                <li><a class="ball_step3" (click)="modalStep(3)"></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row pt-3 pb-5">
+            <div class="col-12">
+              <button type="button" class="btn btn-rounded btn-search BTN1" (click)="modalStep(2)">AVANÇAR</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body" id="STEP2" *ngIf="modalMobileStep2">
+          <div class="row pt-5">
+            <div class="col-8 offset-2">
+              <div class="row">
+                <div class="col-3"><img src="assets/img/icon-2.png" alt=""></div>
+                <div class="col-9">
+                  <h2>Escolha uma<br><span>Categoria:</span></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-5 pb-2">
+            <div class="col-12">
+
+              <div class="category" ngbDropdown>
+                <div class="category-title" ngbDropdownToggle id="dropdownForm2"><span
+                  class="icon-category arrow-down-icon"></span> <span
+                  class="category-title-in">{{simpleSearch.finalidade || 'Categoria'}}</span></div>
+                <div class="category-options" ngbDropdownMenu aria-labelledby="dropdownForm2">
+                  <div class="form-check category-option" (click)="simpleSearch.finalidade = 'residencial'">
+                    <label class="form-check-label">
+                      Residencial
+                    </label>
+                  </div>
+                  <div class="form-check category-option" (click)="simpleSearch.finalidade = 'comercial'">
+                    <label class="form-check-label">
+                      Comercial
+                    </label>
+                  </div>
+                  <div class="form-check category-option" (click)="simpleSearch.finalidade = 'lancamentos'">
+                    <label class="form-check-label">
+                      Lançamentos
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <ul class="StepsFilter">
+                <li><a class=" ball_step1" (click)="modalStep(1)"></a></li>
+                <li><a class="ball_step2 active" (click)="modalStep(2)"></a></li>
+                <li><a class="ball_step3" (click)="modalStep(3)"></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row pt-3 pb-5">
+            <div class="col-12">
+              <button type="button" class="btn btn-rounded btn-search BTN2" (click)="modalStep(3)">AVANÇAR</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body" id="STEP3" *ngIf="modalMobileStep3">
+          <div class="row pt-5">
+            <div class="col-8 offset-2">
+              <div class="row">
+                <div class="col-3"><img src="assets/img/icon-3.png" alt=""></div>
+                <div class="col-9">
+                  <h2>Digite a <br><span>Busca:</span></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-5 pb-2">
+            <div class="col-12 ">
+                              <span class="filterCityField">
+                              <input type="text" class="CityField" name="bairros[]" [(ngModel)]="simpleSearch.campo"
+                                     placeholder="Cidade, bairro ou código" [ngModelOptions]="{standalone: true}">
+                              </span>
+            </div>
+            <div id="ajaxList2" class="ajaxlist">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <ul class="StepsFilter">
+                <li><a class=" ball_step1" (click)="modalStep(1)"></a></li>
+                <li><a class="ball_step2" (click)="modalStep(2)"></a></li>
+                <li><a class="ball_step3 active" (click)="modalStep(3)"></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row pt-3 pb-5">
+            <div class="col-12">
+              <button type="button" class="btn btn-rounded btn-search BTN3" (click)="modal.close()"><I class="fas fa-search"></I> BUSCAR
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--  </div>-->
+<!--</div>-->

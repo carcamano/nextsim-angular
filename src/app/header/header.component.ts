@@ -68,6 +68,12 @@ export class HeaderComponent implements OnInit {
     }
   };
 
+  showMobileMenu = false;
+  modalMobileStep1 = true;
+  modalMobileStep2 = false;
+  modalMobileStep3 = false;
+
+  mobileMenuAlugar = false;
 
   constructor(private router: Router, private modalService: NgbModal, private generalService: GeneralService, private ngxService: NgxUiLoaderService) {
     router.events.subscribe((event) => {
@@ -83,6 +89,7 @@ export class HeaderComponent implements OnInit {
       } else if (event instanceof NavigationEnd && !event.url.includes('/imoveis')) {
         this.rootView = true;
       }
+      this.showMobileMenu = false;
       this.loadDefaults();
     });
   }
@@ -92,8 +99,6 @@ export class HeaderComponent implements OnInit {
     // this.rootView = this.router.url;
     this.loadDefaults();
   }
-
-
 
 
   open(content) {
@@ -129,6 +134,39 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  openSearchMobile(content) {
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      // @ts-ignore
+      size: 'xl',
+      scrollable: false,
+      centered: true,
+      windowClass: 'MobHomeFilterModal'
+    }).result.then((result) => {
+      this.search(null);
+    }, (reason) => {
+    });
+  }
+
+  modalStep(step: number) {
+    this.modalMobileStep3 = false;
+    this.modalMobileStep2 = false;
+    this.modalMobileStep1 = false;
+    switch (step) {
+      case 1:
+        this.modalMobileStep1 = true;
+        break;
+      case 2:
+        this.modalMobileStep2 = true;
+        break;
+      case 3:
+        this.modalMobileStep3 = true;
+        break;
+
+    }
+
+  }
+
   search(query) {
     console.log('query');
     console.log(query);
@@ -144,7 +182,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  changeCidade(cidade: string ) {
+  changeCidade(cidade: string) {
     this.customSearch.cidade = cidade;
     this.locaisGeral.map((value, index) => {
       if (value === cidade) {
@@ -159,7 +197,7 @@ export class HeaderComponent implements OnInit {
   }
 
   changeBairro(event: any, i: number) {
-    console.log('changeBairro')
+    console.log('changeBairro');
     this.customSearch.bairros[i].selected = event.currentTarget.checked;
     this.bairrosSelecionados = this.customSearch.bairros.filter(value => {
       return value.selected === true;

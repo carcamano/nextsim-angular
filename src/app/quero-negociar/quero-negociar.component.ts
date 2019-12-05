@@ -12,7 +12,7 @@ export class QueroNegociarComponent implements OnInit {
 
   height = 0;
 
-  form = new ContactFormNegociar('', '', '', 'Quero saber mais sobre o imovél: ');
+  form = new ContactFormNegociar('', '', '', '');
   constructor(private service: ImovelService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -29,6 +29,7 @@ export class QueroNegociarComponent implements OnInit {
     this.service.sendGrid(this.form, null).subscribe(value => {
       console.log(value);
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');
+      this.form = new ContactFormNegociar('', '', '', '');
     });
   }
 

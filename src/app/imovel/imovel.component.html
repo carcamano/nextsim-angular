@@ -76,9 +76,8 @@
             total: 137 m²</p>-->
 
                 <p class="PropertyCardType">
-                  {{imovel.tipo}} | Área
-                  total {{imovel.numeros?.areas.total.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} Área
-                  útil {{imovel.numeros?.areas.util.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}
+                  <span class="first-letter">{{imovel.tipo}}</span> | <span *ngIf="imovel.tipo !=='apartamento'">Área total {{imovel.numeros?.areas.total.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span>Área útil {{imovel.numeros?.areas.util.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
                   <!--                  local: {bairro: "Cambuí", cidade: "Campinas/SP", cep: "13025152", coordenadas: Array(2)}-->
                 </p>
                 <p class="PropertyCardTitle">{{imovel.local.bairro}}</p>
@@ -176,9 +175,9 @@
 
   </section>
 
-  <section class="container-fluid">
+  <section class="container">
     <div class="row">
-      <div class="col-12 offset-0 col-sm-10 offset-sm-1 col-md-10 offset-md-1 col-lg-8 offset-lg-2 PropertyDescription">
+      <div class="col-12 PropertyDescription">
         <h3>Descrição</h3>
         <p>
           {{imovel.detalhes.descricaosite}}
@@ -188,13 +187,13 @@
     <div class="row">
       <div class="container">
         <div class="row">
-          <div class="col" *ngIf="imovel?.recursos?.imovel?.length > 0">
+          <div class="col recursos" *ngIf="imovel?.recursos?.imovel?.length > 0">
             <h3>Recursos do Imóvel</h3>
             <ul>
               <li *ngFor="let recurso of imovel.recursos.imovel">{{recurso}}</li>
             </ul>
           </div>
-          <div class="col" *ngIf="imovel?.recursos?.condominio?.length > 0">
+          <div class="col recursos" *ngIf="imovel?.recursos?.condominio?.length > 0">
             <h3>Recursos do Condomínio</h3>
             <ul>
               <li *ngFor="let recurso of imovel.recursos.condominio">{{recurso}}</li>

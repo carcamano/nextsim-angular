@@ -21,6 +21,8 @@ export class ImoveisComponent implements OnInit {
 
   showExtraFilter = false;
 
+  noResults = false
+
   private itensPerPage = 10;
 
 
@@ -256,12 +258,14 @@ export class ImoveisComponent implements OnInit {
     this.imoveis = [];
     this.pages = 0;
     this.ngxService.start();
+    this.noResults = false;
     // this.currentPage = 1;
     if (this.queryParams.custom || this.queryParams.customSearch) {
       this.imoveisService.all().subscribe((res: Imovel[]) => {
         this.allImoveis = res;
         this.filterAll();
         this.ngxService.stop();
+        this.checkResults();
       });
     } else {
       if (this.queryParams.query) {
@@ -269,17 +273,27 @@ export class ImoveisComponent implements OnInit {
           this.allImoveis = imoveis;
           this.filterAll();
           this.ngxService.stop();
+          this.checkResults();
         });
       } else {
         this.imoveisService.imoveis(this.queryParams, this.currentPage).subscribe((res: HttpResponse<Imovel[]>) => {
           this.pages = Number(res.headers.get('X-Total-Count'));
           this.imoveis = res.body;
-          console.log(res.body);
-          console.log(this.imoveis.length);
           this.scrollTop();
           this.ngxService.stop();
+          this.checkResults();
         });
       }
+    }
+  }
+
+
+  private checkResults() {
+    if (this.allImoveis.length > 0) {
+      this.noResults = false;
+
+    } else {
+      this.noResults = true;
     }
   }
 

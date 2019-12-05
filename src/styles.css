@@ -10678,7 +10678,7 @@ body {
 
 .btn-search:hover {
   background-color: transparent !important;
-  border: #F69731 2px solid;
+  border: #F69731 2px solid !important;
   color: #F69731 !important;
 }
 
@@ -10886,7 +10886,7 @@ body {
 }
 
 .chat-icon {
-  background-image: url(assets/images/orange-contact-chat-icon.svg@a1002dd222ef6767e9aa55e2eb042deb);
+  background-image: url(assets/images/orange-contact-chat-icon.svg);
   background-repeat: no-repeat;
   width: 46px;
   height: 45px;
@@ -12137,7 +12137,7 @@ Date: 17/09/2018
 }
 
 .arrow-down-icon {
-  background: url(assets/images/arrow-down-dark-grey-icon.svg@6662737a73449b64c622c9f8abcbaddc);
+  background: url(assets/images/arrow-down-dark-grey-icon.svg);
   width: 15px;
   height: 10px;
   display: inline-block;
@@ -21392,16 +21392,16 @@ h3.blog-result {
     overflow-x: hidden;
   }
 
-  #MobHomeFilterModal .modal-dialog {
+  .MobHomeFilterModal .modal-dialog {
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  #MobHomeFilterModal .modal-content {
+  .MobHomeFilterModal .modal-content {
     min-height: 100vh !important;
   }
 
-  #MobHomeFilterModal .modal-content {
+  .MobHomeFilterModal .modal-content {
     background: url(assets/images/bg-step.png@abb6f677ddab6da04fa754ec148db443);
     /*background: rgba(0, 0, 0, 0.3) !important;*/
     color: #ffffff;
@@ -21411,7 +21411,7 @@ h3.blog-result {
     background-size: cover;
   }
 
-  #MobHomeFilterModal .close {
+  .MobHomeFilterModal .close {
     color: #ffffff !important;
     font-size: 3em !important;
     -webkit-filter: brightness(100) !important;
@@ -21420,7 +21420,34 @@ h3.blog-result {
     opacity: 1 !important;
   }
 
-  #MobHomeFilterModal h2 {
+  .MobHomeFilterModal .HorizontalCheckBoxMobileLabel2  {
+    display: inline-block;
+    cursor: pointer !important;
+    outline: 0;
+    width: 120px;
+    height: auto;
+    background: #ffffff !important;
+    color: #575656;
+    padding: 5px 15px;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 2px 10px 2px 0;
+  }
+
+  .MobHomeFilterModal .HorizontalCheckBoxMobileLabel2  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .MobHomeFilterModal .HorizontalCheckBoxMobileLabel2.active {
+    background: #f69731 !important;
+    color: #ffffff;
+  }
+
+
+  .MobHomeFilterModal h2 {
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 1.6px;
@@ -21429,12 +21456,16 @@ h3.blog-result {
     text-align: left;
   }
 
-  #MobHomeFilterModal h2 span {
+  .MobHomeFilterModal h2 span {
     font-size: 20px;
   }
 
-  #MobHomeFilterModal .modal-header,
-  #MobHomeFilterModal .modal-footer {
+  .MobHomeFilterModal .modal-body {
+    text-align: center;
+  }
+
+  .MobHomeFilterModal .modal-header,
+  .MobHomeFilterModal .modal-footer {
     border: none !important;
   }
 
@@ -21510,7 +21541,6 @@ h3.blog-result {
 
   #STEP2,
   #STEP3 {
-    display: none;
   }
 
   #STEP1,
@@ -21697,7 +21727,7 @@ h3.blog-result {
 @media (min-width: 577px) and (max-width: 768px) {
   .MenuMobile {
     display: none;
-    width: 80%;
+    width: 100%;
     background: #f4f4f4;
     margin: 0;
     position: fixed;
@@ -21809,6 +21839,8 @@ h3.blog-result {
     font-weight: 600;
     letter-spacing: 1.6px;
   }
+
+
 
   .SocialMobileMenu {
     width: 100%;
@@ -23292,7 +23324,7 @@ body {
 .MobileFilterBar {
   width: 100%;
   height: 100%;
-  display: block;
+  display: none;
   margin-top: 50px;
 }
 
@@ -23738,6 +23770,10 @@ body {
   color: #f69731;
 }
 
+.FilterBarCheckBoxFIELDS2 label span::first-letter {
+  text-transform: uppercase;
+}
+
 .FilterBarCheckBoxFIELDS2 input[type='checkbox'] + label {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -23801,7 +23837,7 @@ body {
 }
 
 .ng5-slider .ng5-slider-pointer, .ng5-slider .ng5-slider-pointer.ng5-slider-active:after, .ng5-slider .ng5-slider-bar-wrapper.ng5-slider-left-out-selection .ng5-slider-bar, .ng5-slider .ng5-slider-bar-wrapper.ng5-slider-right-out-selection .ng5-slider-bar, .ng5-slider .ng5-slider-selection {
-  background-color: #F69731;
+  background-color: #F69731 !important;
 }
 
 .modal-search-footer .tab-content {
@@ -25824,7 +25860,7 @@ main {
 
   .MenuMobile {
     display: none;
-    width: 80%;
+    width: 100%;
     background: #f4f4f4;
     margin: 0;
     position: fixed;
@@ -26821,7 +26857,9 @@ main {
   position: absolute;
   left: 15px;
 }
-
+.first-letter::first-letter {
+  text-transform: uppercase;
+}
 .PropertyCarousel .next-slide {
   position: absolute;
   right: 15px;
@@ -26838,14 +26876,26 @@ main {
 }
 
 .PropertyDescription {
-  padding: 6% 10%;
 }
 
+.recursos {
+  font-family: "Raleway", sans-serif;
+}
+
+.recursos h3 {
+  color: #575656;
+  margin-top: 20px;
+}
+.recursos ul {
+  list-style: none;
+  color: #575656;
+}
 .PropertyDescription h3 {
   font-family: "Raleway", sans-serif;
   padding: 0;
   margin: 0;
   font-size: 30px;
+  margin-top: 20px;
   font-weight: 400;
   color: #575656;
   letter-spacing: 1.6px;
@@ -26855,7 +26905,7 @@ main {
   font-family: "Raleway", sans-serif;
   padding: 0;
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   color: #575656;
   letter-spacing: 1.6px;
@@ -27520,6 +27570,62 @@ main {
   .blog-single-banner {
     margin-top: 55px;
   }
+}
+
+.homeContactButtonMark {
+  display: none;
+}
+
+
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1300px) {
+
+}
+@media only screen and (max-width : 1200px) {
+
+}
+
+@media only screen and (max-width : 1080px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .home-filter .btn-search {
+    margin-top: 0 !important;
+  }
+
+  .SecondMenu{
+    display: block;
+  }
+
+  .text-left {
+    text-align: center !important;
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+
+}
+.home-filter .btn-search {
+
+}
+
+.btn-contact-chat {
+  display: none;
 }
 
 

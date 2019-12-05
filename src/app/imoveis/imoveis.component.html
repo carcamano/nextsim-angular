@@ -338,6 +338,9 @@
             <a  class="btn btn-see-more btn-rounded" (click)="clearFiltro()" *ngIf="badges.length > 0"> Limpar filtros </a>
           </div>
           <div class="col-lg-8 properties-list" >
+<!--            <div class="d-block d-sm-flex item" *ngIf="noResults">-->
+<!--              <h4>Nenhum imóvel encontrado!</h4>-->
+<!--            </div>-->
             <div class="d-block d-sm-flex item" *ngFor="let imovel of imoveis">
               <div class="col-lg-5 pos-slider">
                 <owl-carousel [options]="mySlideOptions" [items]="imagensCarousel(imovel?.midia?.imagens)"
