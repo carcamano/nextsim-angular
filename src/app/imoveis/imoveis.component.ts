@@ -69,6 +69,8 @@ export class ImoveisComponent implements OnInit {
   tipos_comercial = [];
   locais: any;
 
+  removeParams: string[] = [];
+
   locaisGeral: string[];
   bairrosSelecionados: any[] = [];
 
@@ -101,37 +103,67 @@ export class ImoveisComponent implements OnInit {
     this.customSearch.categoria = categoria;
   }
 
+  badgeClose(param: any) {
+    console.log('badgeClose');
+    console.log(param);
+
+    this.removeParams.push(param);
+    this.dropDownChange(false);
+
+  }
+
   dropDownChange(event: boolean) {
     console.log(event);
 
+
     if (!event) {
       console.log(this.customSearch);
-      const tipos = this.customSearch.tipos.filter(value => {
-        return value.selected === true;
-      }).map(value => {
-        return value.key;
-      });
-      const bairros = this.customSearch.bairros.filter(value => {
-        return value.selected === true;
-      }).map(value => {
-        return value.key;
-      });
+      let tipos = [];
+      if (!this.removeParams.includes('tipo')) {
+        tipos = this.customSearch.tipos.filter(value => {
+          return value.selected === true;
+        }).map(value => {
+          return value.key;
+        });
+      }
+      let bairros;
+      if (!this.removeParams.includes('bairros')) {
+        bairros = this.customSearch.bairros.filter(value => {
+          return value.selected === true;
+        }).map(value => {
+          return value.key;
+        });
+      }
       console.log(bairros);
-      const area: string = this.customSearch.area.min + ',' + this.customSearch.area.max;
-      const precos: string = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
+      let area: string;
+      if (!this.removeParams.includes('bairros')) {
+        area = this.customSearch.area.min + ',' + this.customSearch.area.max;
+      }
+      let precos: string;
+      if (!this.removeParams.includes('precos')) {
+        precos = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
+      }
       this.search({
-        finalidade: this.customSearch.finalidade, tipo: tipos.join(','),
-        categoria: this.customSearch.categoria, precos, area, custom: true,
-        dormitorios: this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '', salas: this.customSearch.salas > 0 ? this.customSearch.salas : '',
-        bairros: bairros.join(','), cidade: this.customSearch.cidade
+        finalidade: !this.removeParams.includes('finalidade') ? this.customSearch.finalidade : '',
+        tipo: tipos.join(','),
+        categoria: !this.removeParams.includes('categoria') ? this.customSearch.categoria : '',
+        precos,
+        area,
+        custom: true,
+        dormitorios: !this.removeParams.includes('dormitorios') ? (this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '') : '',
+        salas: !this.removeParams.includes('salas') ? (this.customSearch.salas > 0 ? this.customSearch.salas : '') : '',
+        bairros: bairros.join(','),
+        cidade: !this.removeParams.includes('cidade') ? this.customSearch.cidade : ''
       });
     }
   }
+
   // finalidade: this.queryParams && this.queryParams.finalidade ? this.queryParams.finalidade : this.customSearch.finalidade, tipo: tipos.join(','),
   // categoria: this.queryParams && this.queryParams.categoria ? this.queryParams.categoria : this.customSearch.categoria, precos, area, custom: true,
   // dormitorios: this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '', salas: this.customSearch.salas > 0 ? this.customSearch.salas : '',
 
   search(query) {
+    this.removeParams = [];
     if (query) {
       this.router.navigate(['imoveis'], {
         queryParams: query
@@ -466,18 +498,6 @@ export class ImoveisComponent implements OnInit {
     });
   }
 
-  badgeClose(param: any) {
-    console.log('badgeClose');
-    console.log(param);
-    console.log(this.queryParams[param]);
-    this.router.navigate([], this.queryParams);
-
-  }
-
-  clearFiltro() {
-    console.log('clearFiltro');
-    this.router.navigate([]);
-  }
 
   buildBadges() {
     // area: "0,61000"

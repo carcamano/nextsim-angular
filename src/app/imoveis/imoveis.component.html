@@ -397,7 +397,6 @@
             <div class="filter-badges">
               <span class="badge badge-pill" *ngFor="let badge of badges" (click)="badgeClose(badge.query)">{{badge.label}}<button class="btn-badge" (click)="badgeClose(badge.query)">x</button></span>
             </div>
-            <a  class="btn btn-see-more btn-rounded" (click)="clearFiltro()" *ngIf="badges.length > 0"> Limpar filtros </a>
           </div>
           <div class="col-lg-8 properties-list" >
             <div class="d-block d-sm-flex item" *ngIf="noResults">
