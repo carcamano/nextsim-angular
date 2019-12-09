@@ -43,4 +43,11 @@ export class GeneralService {
       .get<string[]>(`${API_URL}/locais`, {observe: 'response'});
 
   }
+
+
+  autocomplete(): Observable<HttpResponse<any>> {
+    return this.http
+      .get<string[]>(`${API_URL}/autocomplete`, {observe: 'response'});
+
+  }
 }

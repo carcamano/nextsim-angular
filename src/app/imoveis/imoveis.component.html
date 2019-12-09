@@ -36,6 +36,27 @@
                  role="button" aria-expanded="false" aria-controls="MoreFiltersBTN" (click)="showExtraFilter = !showExtraFilter"><span class="plus-icon" *ngIf="!showExtraFilter"></span> <b *ngIf="!showExtraFilter">Mais filtros</b><span class="plus-icon"*ngIf="showExtraFilter"></span><b *ngIf="showExtraFilter">Menos filtros</b></a>
             </div>
             <div class="box-filter-1">
+              <!-- TIPO DE CATEGORIA -->
+              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'" *ngIf="!queryParams.categoria">
+                <a
+                  class="MenuItem dropdown-toggle" id="CategoryMenu"
+                  ngbDropdownToggle><i class="icon-building"></i> Categoria <i class="fas fa-chevron-down small-icon"></i></a>
+                <div class="GoalMenu dropdown-menu FilterBarCheckBoxFIELDS2 tiny" ngbDropdownMenu>
+                  <ul>
+                    <li>
+                      <input type="checkbox" class="checkbox-s2" id="categoria-1"
+                             (change)="changeFinalidade($event, 'residencial')" [checked]="customSearch.categoria === 'residencial'"/>
+                      <label for="categoria-1"><span>Residencial</span></label>
+                    </li>
+                    <li>
+                      <input type="checkbox" class="checkbox-s2" id="categoria-2"
+                             (change)="changeFinalidade($event, 'comercial')" [checked]="customSearch.categoria === 'comercial'"/>
+                      <label for="categoria-2"><span>Comercial</span></label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- END TIPO DE CATEGORIA -->
               <!-- TIPO DE IMOVEL -->
               <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
                 <a
@@ -58,14 +79,14 @@
                    class="MenuItem dropdown-toggle" id="GoalMenu" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false" ngbDropdownToggle><i class="icon-key"></i> Finalidade <i
                   class="fas fa-chevron-down small-icon"></i></a>
-                <div class=" GoalMenu dropdown-menu FilterBarCheckBoxFIELDS" ngbDropdownMenu>
+                <div class=" GoalMenu dropdown-menu FilterBarCheckBoxFIELDS2 tiny" ngbDropdownMenu>
                   <ul>
                     <li>
-                      <input type="checkbox" class="checkbox-s"  value="comprar" id="OPCcomprar" [checked]="customSearch.categoria === 'comprar'" (change)="categoriaChange('comprar')">
+                      <input type="checkbox" class="checkbox-s2"  value="comprar" id="OPCcomprar" [checked]="customSearch.categoria === 'comprar'" (change)="categoriaCheckboxChange('comprar')">
                       <label for="OPCcomprar"><span>Comprar</span></label>
                     </li>
                     <li>
-                      <input type="checkbox" class="checkbox-s" value="alugar" id="OPCalugar" [checked]="customSearch.categoria === 'alugar'" (change)="categoriaChange('alugar')"
+                      <input type="checkbox" class="checkbox-s2" value="alugar" id="OPCalugar" [checked]="customSearch.categoria === 'alugar'" (change)="categoriaCheckboxChange('alugar')"
                              >
                       <label for="OPCalugar"><span>Alugar</span></label>
                     </li>

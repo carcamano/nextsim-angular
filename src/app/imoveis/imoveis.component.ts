@@ -84,6 +84,10 @@ export class ImoveisComponent implements OnInit {
     this.route.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
       console.log(this.queryParams);
+      if (this.queryParams.finalidade) {
+        this.customSearch.finalidade = this.queryParams.finalidade;
+
+      }
       this.buildBadges();
       this.getImoveis();
       this.loadDefaults();
@@ -92,8 +96,8 @@ export class ImoveisComponent implements OnInit {
   }
 
 
-  categoriaChange(categoria: string) {
-    console.log('categoriaChange');
+  categoriaCheckboxChange(categoria: string) {
+    console.log('categoriaCheckboxChange');
     this.customSearch.categoria = categoria;
   }
 
@@ -117,12 +121,15 @@ export class ImoveisComponent implements OnInit {
       const precos: string = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
       this.search({
         finalidade: this.customSearch.finalidade, tipo: tipos.join(','),
-        categoria: this.customSearch.categoria, precos: precos, area: area, custom: true,
-        dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas,
+        categoria: this.customSearch.categoria, precos, area, custom: true,
+        dormitorios: this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '', salas: this.customSearch.salas > 0 ? this.customSearch.salas : '',
         bairros: bairros.join(','), cidade: this.customSearch.cidade
       });
     }
   }
+  // finalidade: this.queryParams && this.queryParams.finalidade ? this.queryParams.finalidade : this.customSearch.finalidade, tipo: tipos.join(','),
+  // categoria: this.queryParams && this.queryParams.categoria ? this.queryParams.categoria : this.customSearch.categoria, precos, area, custom: true,
+  // dormitorios: this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '', salas: this.customSearch.salas > 0 ? this.customSearch.salas : '',
 
   search(query) {
     if (query) {
@@ -377,6 +384,10 @@ export class ImoveisComponent implements OnInit {
   changeTipo(event: any, i: number) {
     this.customSearch.tipos[i].selected = event.currentTarget.checked;
     console.log(this.customSearch.tipos);
+  }
+
+  changeFinalidade(event: any, finalidade: string) {
+    this.customSearch.finalidade = finalidade;
   }
 
   changeBairro(event: any, i: number) {

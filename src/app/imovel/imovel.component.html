@@ -76,8 +76,8 @@
             total: 137 m²</p>-->
 
                 <p class="PropertyCardType">
-                  <span class="first-letter">{{imovel.tipo}}</span> |
-                  <span *ngIf="imovel.tipo ==='apartamento'">Área Provativa {{imovel.numeros?.areas.util.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span class="first_letter">{{imovel.tipo}}</span> |
+                  <span *ngIf="imovel.tipo ==='apartamento'">Área Privativa {{imovel.numeros?.areas.util.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
                   <span *ngIf="imovel.tipo ==='casa'">Área do Terreno {{imovel.numeros?.areas.terreno.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
                   <span *ngIf="imovel.tipo ==='casa'">Área Construída {{imovel.numeros?.areas.construida.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
                   <span *ngIf="imovel.tipo ==='galpão'">Área do Terreno {{imovel.numeros?.areas.terreno.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>

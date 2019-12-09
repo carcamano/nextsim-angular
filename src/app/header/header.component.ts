@@ -52,6 +52,8 @@ export class HeaderComponent implements OnInit {
   locaisGeral: string[];
   bairrosSelecionados: any[] = [];
 
+  autocompletes: string[];
+
   options: Options = {
     floor: 0,
     ceil: this.customSearch.precos.max,
@@ -98,6 +100,11 @@ export class HeaderComponent implements OnInit {
     // console.log(this.router);
     // this.rootView = this.router.url;
     this.loadDefaults();
+
+    this.generalService.autocomplete().subscribe(value => {
+      console.log(value.body);
+      this.autocompletes = value.body;
+    });
   }
 
 
@@ -146,6 +153,16 @@ export class HeaderComponent implements OnInit {
       this.search(null);
     }, (reason) => {
     });
+  }
+
+  searchAutocomplete(event: any) {
+    const datalist = document.querySelector('datalist');
+    if (this.simpleSearch.campo.length > 3) {
+      datalist.id = 'dynmicUserIds';
+    } else {
+      datalist.id = '';
+    }
+
   }
 
   modalStep(step: number) {
