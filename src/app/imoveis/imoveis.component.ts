@@ -397,8 +397,8 @@ export class ImoveisComponent implements OnInit {
     return '?';
   }
 
-  getFormattedPrice(price: number) {
-    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price);
+  getFormattedPrice(price: number): string {
+    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price).replace(',00', '');
   }
 
   // fitros metodes
@@ -512,38 +512,34 @@ export class ImoveisComponent implements OnInit {
     // tipo: ""
     this.badges = [];
     if (this.queryParams.categoria) {
-      this.badges.push(this.badge(this.queryParams.categoria, 'categoria', () => {
-        this.queryParams.categoria = '';
-      }));
+      this.badges.push(this.badge(this.queryParams.categoria, 'categoria'));
     }
 
     if (this.queryParams.finalidade) {
-      this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade', () => this.queryParams.finalidade = ''));
+      this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade'));
     }
 
     if (this.queryParams.bairros) {
       const ss = this.queryParams.bairros.split(',');
-      const f = () => this.queryParams.bairros = '';
       if (ss.length > 1) {
-        this.badges.push(this.badge(`Nos bairros: ${ss.join(', ')}`, 'bairros', f));
+        this.badges.push(this.badge(`Nos bairros: ${ss.join(', ')}`, 'bairros'));
       } else {
-        this.badges.push(this.badge(`No bairro: ${ss.join(', ')}`, 'bairros', f));
+        this.badges.push(this.badge(`No bairro: ${ss.join(', ')}`, 'bairros'));
       }
     }
 
     if (this.queryParams.cidade) {
-      this.badges.push(this.badge(`Na cidade de ${this.queryParams.cidade}`, this.queryParams.cidade, () => this.queryParams.cidade = ''));
+      this.badges.push(this.badge(`Na cidade de ${this.queryParams.cidade}`, 'cidade'));
     }
 
     if (this.queryParams.dormitorios) {
       const n = Number(this.queryParams.dormitorios);
-      const f = () => this.queryParams.dormitorios = '';
       if (n === 1) {
-        this.badges.push(this.badge(`Com ${n} dormitório`, this.queryParams.dormitorios, f));
+        this.badges.push(this.badge(`Com ${n} dormitório`, 'dormitorios'));
       } else if (n === 4) {
-        this.badges.push(this.badge(`Com ${n} ou mais dormitórios`, this.queryParams.dormitorios, f));
+        this.badges.push(this.badge(`Com ${n} ou mais dormitórios`, 'dormitorios'));
       } else if (n !== 0) {
-        this.badges.push(this.badge(`Com ${n}  dormitórios`, this.queryParams.dormitorios, f));
+        this.badges.push(this.badge(`Com ${n}  dormitórios`, 'dormitorios'));
       }
 
     }
@@ -551,9 +547,9 @@ export class ImoveisComponent implements OnInit {
     if (this.queryParams.tipo) {
       const ss = this.queryParams.tipo.split(',');
       if (ss.length > 1) {
-        this.badges.push(this.badge(`Tipos: ${ss.join(', ')}`, this.queryParams.tipo, () => this.queryParams.tipo = ''));
+        this.badges.push(this.badge(`Tipos: ${ss.join(', ')}`, 'tipo'));
       } else {
-        this.badges.push(this.badge(`Tipo: ${ss.join(', ')}`, this.queryParams.tipo, () => this.queryParams.tipo = ''));
+        this.badges.push(this.badge(`Tipo: ${ss.join(', ')}`, 'tipo'));
       }
     }
 
@@ -567,13 +563,13 @@ export class ImoveisComponent implements OnInit {
       if (pMin !== this.minPrice || pMax !== this.maxPrice) {
         const spMin = formatCurrency(Number(ss[0]), 'pt-BR', 'R$', 'BRL');
         const spMax = formatCurrency(Number(ss[1]), 'pt-BR', 'R$', 'BRL');
-        this.badges.push(this.badge(`Entre: ${spMin} e ${spMax}`, this.queryParams.precos, () => this.queryParams.precos = ''));
+        this.badges.push(this.badge(`Entre: ${spMin} e ${spMax}`, 'precos'));
       }
     }
   }
 
-  private badge(s: string, query: string, close: () => void): any {
-    return {label: s, close, query};
+  private badge(s: string, query: string): any {
+    return {label: s, query};
 
   }
 
