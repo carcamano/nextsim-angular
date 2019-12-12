@@ -26,31 +26,37 @@
                                                                                 src="assets/img/icons/icon-times-contact.svg">
       </button>
     </div>
-    <form id="frm_filter" class="d-none d-sm-none d-md-block d-lg-block d-xl-block" >
-      <input type="hidden" name="categoria" value="residencial"/>
+    <form id="frm_filter" class="d-none d-sm-none d-md-block d-lg-block d-xl-block">
       <div class="FilterBarLine mb-5" id="FilterBar">
         <div class="container">
           <div class="row d-flex flex-row justify-content-between">
             <div class="text-center align-content-center ">
               <a class="btn btn-more-filters btn-semi-rounded FiltersBTN "
-                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN" (click)="showExtraFilter = !showExtraFilter"><span class="plus-icon" *ngIf="!showExtraFilter"></span> <b *ngIf="!showExtraFilter">Mais filtros</b><span class="plus-icon"*ngIf="showExtraFilter"></span><b *ngIf="showExtraFilter">Menos filtros</b></a>
+                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN"
+                 (click)="showExtraFilter = !showExtraFilter"><span class="plus-icon" *ngIf="!showExtraFilter"></span>
+                <b *ngIf="!showExtraFilter">Mais filtros</b><span class="plus-icon" *ngIf="showExtraFilter"></span><b
+                  *ngIf="showExtraFilter">Menos filtros</b></a>
             </div>
             <div class="box-filter-1">
               <!-- TIPO DE CATEGORIA -->
-              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'" *ngIf="!queryParams.categoria">
+              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'"
+                   *ngIf="!queryParams.categoria">
                 <a
                   class="MenuItem dropdown-toggle" id="CategoryMenu"
-                  ngbDropdownToggle><i class="icon-building"></i> Categoria <i class="fas fa-chevron-down small-icon"></i></a>
+                  ngbDropdownToggle><i class="icon-building"></i> Categoria <i
+                  class="fas fa-chevron-down small-icon"></i></a>
                 <div class="GoalMenu dropdown-menu FilterBarCheckBoxFIELDS2 tiny" ngbDropdownMenu>
                   <ul>
                     <li>
                       <input type="checkbox" class="checkbox-s2" id="categoria-1"
-                             (change)="changeFinalidade($event, 'residencial')" [checked]="customSearch.categoria === 'residencial'"/>
+                             (change)="changeFinalidade($event, 'residencial')"
+                             [checked]="customSearch.categoria === 'residencial'"/>
                       <label for="categoria-1"><span>Residencial</span></label>
                     </li>
                     <li>
                       <input type="checkbox" class="checkbox-s2" id="categoria-2"
-                             (change)="changeFinalidade($event, 'comercial')" [checked]="customSearch.categoria === 'comercial'"/>
+                             (change)="changeFinalidade($event, 'comercial')"
+                             [checked]="customSearch.categoria === 'comercial'"/>
                       <label for="categoria-2"><span>Comercial</span></label>
                     </li>
                   </ul>
@@ -58,10 +64,10 @@
               </div>
               <!-- END TIPO DE CATEGORIA -->
               <!-- TIPO DE IMOVEL -->
-              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
                 <a
-                   class="MenuItem dropdown-toggle" id="TypeMenu"
-                   ngbDropdownToggle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i></a>
+                  class="MenuItem dropdown-toggle" id="TypeMenu"
+                  ngbDropdownToggle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i></a>
                 <div class="TypeMenu dropdown-menu FilterBarCheckBoxFIELDS2" ngbDropdownMenu>
                   <ul>
                     <li *ngFor="let tipo of customSearch.tipos;  let i = index">
@@ -74,38 +80,43 @@
               </div>
               <!-- END TIPO DE IMOVEL -->
               <!-- FINALIDADE DE IMOVEL -->
-              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
                 <a
-                   class="MenuItem dropdown-toggle" id="GoalMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false" ngbDropdownToggle><i class="icon-key"></i> Finalidade <i
+                  class="MenuItem dropdown-toggle" id="GoalMenu" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" ngbDropdownToggle><i class="icon-key"></i> Finalidade <i
                   class="fas fa-chevron-down small-icon"></i></a>
                 <div class=" GoalMenu dropdown-menu FilterBarCheckBoxFIELDS2 tiny" ngbDropdownMenu>
                   <ul>
                     <li>
-                      <input type="checkbox" class="checkbox-s2"  value="comprar" id="OPCcomprar" [checked]="customSearch.categoria === 'comprar'" (change)="categoriaCheckboxChange('comprar')">
+                      <input type="checkbox" class="checkbox-s2" value="comprar" id="OPCcomprar"
+                             [checked]="customSearch.categoria === 'comprar'"
+                             (change)="categoriaCheckboxChange('comprar')">
                       <label for="OPCcomprar"><span>Comprar</span></label>
                     </li>
                     <li>
-                      <input type="checkbox" class="checkbox-s2" value="alugar" id="OPCalugar" [checked]="customSearch.categoria === 'alugar'" (change)="categoriaCheckboxChange('alugar')"
-                             >
+                      <input type="checkbox" class="checkbox-s2" value="alugar" id="OPCalugar"
+                             [checked]="customSearch.categoria === 'alugar'"
+                             (change)="categoriaCheckboxChange('alugar')"
+                      >
                       <label for="OPCalugar"><span>Alugar</span></label>
                     </li>
                   </ul>
                 </div>
-              </div >
+              </div>
               <!-- END FINALIDADE DE IMOVEL -->
               <!--  CIDADE OU BAIRRO DE IMOVEL -->
-              <div class="btn-cidade" ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div class="btn-cidade" ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
                 <a
-                   class="MenuItem dropdown-toggle" id="CityMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false" ngbDropdownToggle><i class="icon-pin"></i> Cidade ou Bairro <i
+                  class="MenuItem dropdown-toggle" id="CityMenu" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" ngbDropdownToggle><i class="icon-pin"></i> Cidade ou Bairro <i
                   class="fas fa-chevron-down small-icon"></i></a>
                 <div class="CityMenu dropdown-menu" ngbDropdownMenu>
                   <div class="row selectiona_local" style="">
                     <div class="col-6" *ngIf="locais">
                       <span class="TitleCityMobHome">Cidade</span>
                       <div class="cidades_botoes">
-                        <button *ngFor="let local of locaisGeral;  let i = index" (click)="changeCidade(local)" [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
+                        <button *ngFor="let local of locaisGeral;  let i = index" (click)="changeCidade(local)"
+                                [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
                       </div>
                     </div>
                     <div class="col-6" *ngIf="locais">
@@ -113,7 +124,8 @@
                       <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2">
                         <ul>
                           <li *ngFor="let local of customSearch.bairros;  let i = index">
-                            <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i" ([ngModel])="local.selected"
+                            <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
+                                   ([ngModel])="local.selected"
                                    (change)="changeBairro($event, i)"/>
                             <label [attr.for]="'bairro' + i"><span>{{local.key}}</span></label>
                           </li>
@@ -126,10 +138,12 @@
               </div>
               <!-- END CIDADE OU BAIRRO DE IMOVEL -->
               <!-- QUARTOS DE IMOVEL -->
-              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'" *ngIf="queryParams && queryParams.finalidade === 'residencial'">
+              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'"
+                   *ngIf="queryParams && queryParams.finalidade === 'residencial'">
                 <a
-                   class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false" ngbDropdownToggle><i class="icon-bed"></i> Quartos <i class="fas fa-chevron-down small-icon"></i></a>
+                  class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" ngbDropdownToggle><i class="icon-bed"></i> Quartos <i
+                  class="fas fa-chevron-down small-icon"></i></a>
                 <div class=" RoomMenu  BALLCheckStyle dropdown-menu" ngbDropdownMenu>
                   <div class="BALLCheckStyle pt-5 pb-3 ">
                     <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
@@ -137,13 +151,15 @@
                       <li>
 
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0"> <span>0</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">
+                          <span>0</span>
                         </label>
                       </li>
                       <li>
 
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1"> <span>1</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">
+                          <span>1</span>
                         </label>
                       </li>
                       <li>
@@ -158,7 +174,8 @@
                       </li>
                       <li>
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="4"><span>+4</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"
+                                 value="4"><span>+4</span>
                         </label>
                       </li>
                     </ul>
@@ -167,10 +184,12 @@
               </div>
               <!-- END QUARTO DE IMOVEIS -->
               <!-- SALAS DE IMOVEL -->
-              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'" *ngIf="queryParams.finalidade === 'comercial'">
+              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'"
+                   *ngIf="queryParams.finalidade === 'comercial'">
                 <a
                   class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false" ngbDropdownToggle><i class="icon2-salas"></i> Salas <i class="fas fa-chevron-down small-icon"></i></a>
+                  aria-expanded="false" ngbDropdownToggle><i class="icon2-salas"></i> Salas <i
+                  class="fas fa-chevron-down small-icon"></i></a>
                 <div class=" RoomMenu  BALLCheckStyle dropdown-menu" ngbDropdownMenu>
                   <div class="BALLCheckStyle pt-5 pb-3 ">
                     <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
@@ -178,13 +197,15 @@
                       <li>
 
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0"> <span>0</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">
+                          <span>0</span>
                         </label>
                       </li>
                       <li>
 
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1"> <span>1</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">
+                          <span>1</span>
                         </label>
                       </li>
                       <li>
@@ -199,7 +220,8 @@
                       </li>
                       <li>
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="4"><span>+4</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"
+                                 value="4"><span>+4</span>
                         </label>
                       </li>
                     </ul>
@@ -208,10 +230,10 @@
               </div>
               <!-- END SALAS DE IMOVEIS -->
               <!-- PRECO DE IMOVEL -->
-              <div ngbDropdown  (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
                 <a
-                   class="MenuItem dropdown-toggle" id="PriceMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false" ngbDropdownToggle><i class="icon-dollar"></i> Preço <i
+                  class="MenuItem dropdown-toggle" id="PriceMenu" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" ngbDropdownToggle><i class="icon-dollar"></i> Preço <i
                   class="fas fa-chevron-down small-icon"></i></a>
                 <div class=" PriceMenu dropdown-menu " ngbDropdownMenu>
                   <div class="row pt-3">
@@ -220,11 +242,13 @@
                       <div class="row">
                         <div class="col-6">
                           <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                                 [(ngModel)]="customSearch.precos.min" placeholder="M²" [ngModelOptions]="{standalone: true}">
+                                                 [(ngModel)]="customSearch.precos.min" placeholder="M²"
+                                                 [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="col-6">
                           <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                                  [(ngModel)]="customSearch.precos.max" placeholder="M²" [ngModelOptions]="{standalone: true}">
+                                                  [(ngModel)]="customSearch.precos.max" placeholder="M²"
+                                                  [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
                     </div>
@@ -235,9 +259,9 @@
                                   [options]="options" *ngIf="options"></ng5-slider>
                     </div>
                   </div>
-<!--                  <div class="col-12 text-right px-0 pt-3">-->
-<!--                    <a class="btn btn-block btn-apply checkbox-s">Aplicar</a>-->
-<!--                  </div>-->
+                  <!--                  <div class="col-12 text-right px-0 pt-3">-->
+                  <!--                    <a class="btn btn-block btn-apply checkbox-s">Aplicar</a>-->
+                  <!--                  </div>-->
                 </div>
               </div>
               <!-- END PRECO DE IMOVEL -->
@@ -249,8 +273,8 @@
               <!-- BANEIROS DO IMOVEL -->
               <div ngbDropdown>
                 <a
-                   class="MenuItem dropdown-toggle" id="BathMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false" ngbDropdownToggle><i class="icon-bathtub"></i> Banheiros <i
+                  class="MenuItem dropdown-toggle" id="BathMenu" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" ngbDropdownToggle><i class="icon-bathtub"></i> Banheiros <i
                   class="fas fa-chevron-down small-icon"></i></a>
                 <div class=" BathMenu dropdown-menu" ngbDropdownMenu>
                   <ul class="CheckHorizontal">
@@ -286,8 +310,8 @@
               <!-- AREA M2 DE IMOVEL -->
               <div ngbDropdown>
                 <a
-                   class="MenuItem dropdown-toggle" id="AreaM2" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false" ngbDropdownToggle><i class="icon-area"></i> M<SUP>2</SUP> <i
+                  class="MenuItem dropdown-toggle" id="AreaM2" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" ngbDropdownToggle><i class="icon-area"></i> M<SUP>2</SUP> <i
                   class="fas fa-chevron-down small-icon"></i></a>
                 <div class="dropdown-menu AreaM2 " ngbDropdownMenu>
                   <div class="row pt-3">
@@ -296,11 +320,13 @@
                       <div class="row">
                         <div class="col-6">
                           <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                                 [(ngModel)]="customSearch.area.min" placeholder="M²" [ngModelOptions]="{standalone: true}">
+                                                 [(ngModel)]="customSearch.area.min" placeholder="M²"
+                                                 [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="col-6">
                           <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                                  [(ngModel)]="customSearch.area.max" placeholder="M²" [ngModelOptions]="{standalone: true}">
+                                                  [(ngModel)]="customSearch.area.max" placeholder="M²"
+                                                  [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
                     </div>
@@ -317,8 +343,8 @@
               <!-- VAGAS DE GARAGEM DE IMOVEL -->
               <div ngbDropdown>
                 <a
-                   class="MenuItem dropdown-toggle" id="CarMenu" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false" ngbDropdownToggle><i class="icon-car"></i> Vagas de Garagem <i
+                  class="MenuItem dropdown-toggle" id="CarMenu" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false" ngbDropdownToggle><i class="icon-car"></i> Vagas de Garagem <i
                   class="fas fa-chevron-down small-icon"></i></a>
                 <div class="dropdown-menu CarMenu " ngbDropdownMenu>
                   <div class="BALLCheckStyle pt-5 pb-3 ">
@@ -327,13 +353,15 @@
                       <li>
 
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0"> <span>0</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">
+                          <span>0</span>
                         </label>
                       </li>
                       <li>
 
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1"> <span>1</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">
+                          <span>1</span>
                         </label>
                       </li>
                       <li>
@@ -348,7 +376,8 @@
                       </li>
                       <li>
                         <label ngbButtonLabel class="CheckHorizontalLabel">
-                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="4"><span>+4</span>
+                          <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"
+                                 value="4"><span>+4</span>
                         </label>
                       </li>
                     </ul>
@@ -367,10 +396,10 @@
       <div class="MobileFilterBar container-fluid ">
         <div class="row MobileFilterBarHeader">
           <div class="col-8">
-            <span><i class="fas fa-search"></i> Campinas - SP</span>
+<!--            <span><i class="fas fa-search"></i> Campinas - SP</span>-->
           </div>
           <div class="col-4 text-center">
-            <button class="BTN-MobileFilter" type="button" data-toggle="modal" data-target=".InternalModalFilter">
+            <button class="BTN-MobileFilter" type="button" (click)="open(modalmobile)">
               Filtrar
             </button>
           </div>
@@ -385,20 +414,23 @@
               IMÓVEIS {{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : ''}} </div>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"  *ngIf="queryParams?.query"><a> Pesquisa </a></li>
-                <li class="breadcrumb-item"  *ngIf="!queryParams?.query"><a> Imóveis </a></li>
+                <li class="breadcrumb-item"><a href="">Home</a></li>
+                <li class="breadcrumb-item" *ngIf="queryParams?.query"><a> Pesquisa </a></li>
+                <li class="breadcrumb-item" *ngIf="!queryParams?.query"><a> Imóveis </a></li>
                 <li
-                  class='breadcrumb-item active' *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : 'GERAL'}} </li>
+                  class='breadcrumb-item active'
+                  *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : 'GERAL'}} </li>
                 <li
                   class='breadcrumb-item active' *ngIf="queryParams?.query">{{queryParams?.query}} </li>
               </ol>
             </nav>
             <div class="filter-badges">
-              <span class="badge badge-pill" *ngFor="let badge of badges" (click)="badgeClose(badge.query)">{{badge.label}}<button class="btn-badge" (click)="badgeClose(badge.query)">x</button></span>
+              <span class="badge badge-pill" *ngFor="let badge of badges"
+                    (click)="badgeClose(badge.query)">{{badge.label}}
+                <button class="btn-badge" (click)="badgeClose(badge.query)">x</button></span>
             </div>
           </div>
-          <div class="col-lg-8 properties-list" >
+          <div class="col-lg-8 properties-list">
             <div class="d-block d-sm-flex item" *ngIf="noResults">
               <h4>Nenhum imóvel encontrado!</h4>
             </div>
@@ -406,7 +438,8 @@
               <div class="col-lg-5 pos-slider">
                 <owl-carousel [options]="mySlideOptions" [items]="imagensCarousel(imovel?.midia?.imagens)"
                               [carouselClasses]="['PropertyCardCarousel', 'owl-theme', 'sliding']">
-                  <div class="item" *ngFor="let image of imagensCarousel(imovel.midia.imagens);let i = index" style="height: 100%;">
+                  <div class="item" *ngFor="let image of imagensCarousel(imovel.midia.imagens);let i = index"
+                       style="height: 100%;">
                     <div class="img" style="height: 100%;">
                       <img src={{image}}/>
                     </div>
@@ -420,9 +453,13 @@
                 <span class="code">Cód: <b>{{imovel.sigla}}</b></span>
                 <div class="middle-info">
                   <!-- Info Type -->
-                  <div class="info-item">
+                  <div class="info-item" *ngIf="imovel.tipo !== 'sala'">
                     <span class="field-label label-change">Quartos</span>
                     <div><i class="icon-bed text-orange"></i> {{toDormis(imovel)}}</div>
+                  </div>
+                  <div class="info-item" *ngIf="imovel.tipo === 'sala'">
+                    <span class="field-label label-change">Salas</span>
+                    <div><i class="icon-bed text-orange"></i> {{toSalas(imovel)}}</div>
                   </div>
                   <div class="info-item">
                     <span class="field-label label-change">Área</span>
@@ -432,7 +469,8 @@
                     </div>
                   </div>
                   <div class="info-item">
-                    <span class="field-label label-change">Preço</span>
+                    <span class="field-label label-change" *ngIf="queryParams.categoria === 'comprar'">Preço</span>
+                    <span class="field-label label-change" *ngIf="queryParams.categoria === 'alugar'">Aluguel</span>
                     <div><i class="icon-dollar text-orange"></i> {{getprice(imovel)}}</div>
                   </div>
                 </div>
@@ -537,3 +575,319 @@
     </div>
   </section>
 </div>
+
+
+<ng-template #modalmobile let-modal>
+
+  <!--  <div class="modal fade InternalModalFilter show" tabindex="-1" role="dialog"-->
+  <!--       aria-labelledby="InternalModalFilterLabel" style="display: block;">-->
+  <!--    <div class="modal-dialog">-->
+<!--  <div class="modal-content">-->
+
+
+    <div class="row MobileFilterBarOptions">
+
+      <div class="col-12 MobileFilterBarTitle text-center">
+        <span>FILTRAR</span>
+
+        <button type="button" class="close pull-right" (click)="modal.close('')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="col-12 MobileFilterBarMenu px-0 py-0">
+        <ngb-accordion #acc="ngbAccordion">
+          <ngb-panel class="MBFilterOptions" *ngIf="!queryParams.categoria">
+            <ng-template ngbPanelTitle>
+              <i class="icon-building"></i> Categoria <i
+              class="fas fa-chevron-down small-icon"></i>
+            </ng-template>
+            <ng-template ngbPanelContent>
+
+              <div class="FilterBarCheckBoxFIELDS2" >
+                <ul>
+                  <li>
+                    <input type="checkbox" class="checkbox-s2" id="categoria-1-mobile"
+                           (change)="changeFinalidade($event, 'residencial')"
+                           [checked]="customSearch.categoria === 'residencial'"/>
+                    <label for="categoria-1-mobile"><span>Residencial</span></label>
+                  </li>
+                  <li>
+                    <input type="checkbox" class="checkbox-s2" id="categoria-2-mobile"
+                           (change)="changeFinalidade($event, 'comercial')"
+                           [checked]="customSearch.categoria === 'comercial'"/>
+                    <label for="categoria-2-mobile"><span>Comercial</span></label>
+                  </li>
+                </ul>
+
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle>
+              <i class="icon-house"></i> Tipo <i
+              class="fas fa-chevron-down small-icon"></i>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="FilterBarCheckBoxFIELDS2" >
+                <ul>
+                  <li *ngFor="let tipo of customSearch.tipos;  let i = index">
+                    <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" [checked]="tipo.selected"
+                           (change)="changeTipo($event, i)"/>
+                    <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle>
+            <i class="icon-key"></i> Finalidade <i
+              class="fas fa-chevron-down small-icon"></i>
+            </ng-template>
+            <ng-template ngbPanelContent>
+
+              <div class="FilterBarCheckBoxFIELDS2" >
+                <ul>
+                  <li>
+                    <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'comprar'"
+                           (change)="categoriaCheckboxChange('comprar')" id="OPCcomprarMObile"/>
+                    <label for="OPCcomprarMObile"><span>Comprar</span></label>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'alugar'"
+                           (change)="categoriaCheckboxChange('alugar')" id="OPCalugarMObile"/>
+                    <label for="OPCalugarMObile"><span>Alugar</span></label>
+                  </li>
+                </ul>
+
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle><i class="icon-pin"></i> Cidade  <i class="fas fa-chevron-down small-icon"></i></ng-template>
+
+
+            <ng-template ngbPanelContent>
+              <div class="cidades_botoes" *ngIf="locais">
+                <button *ngFor="let local of locaisGeral;  let i = index" (click)="changeCidade(local)"
+                        [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
+              </div>
+
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle><i class="icon-pin"></i> Bairro  <i class="fas fa-chevron-down small-icon"></i></ng-template>
+            <ng-template ngbPanelContent>
+                <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" *ngIf="locais">
+                  <ul>
+                    <li *ngFor="let local of customSearch.bairros;  let i = index">
+                      <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
+                             [checked]="local.selected"
+                             (change)="changeBairro($event, i)"/>
+                      <label [attr.for]="'bairro' + i"><span>{{local.key}}</span></label>
+                    </li>
+                  </ul>
+                </div>
+
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel class="MBFilterOptions">
+
+            <ng-template ngbPanelTitle><i class="icon-bed"></i> Quartos <i
+              class="fas fa-chevron-down small-icon"></i></ng-template>
+
+
+            <ng-template ngbPanelContent>
+              <div class="BALLCheckStyle pt-5 pb-3 ">
+                <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
+                    [(ngModel)]="customSearch.dormitorios">
+                  <li>
+
+                    <label ngbButtonLabel class="CheckHorizontalLabel">
+                      <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">
+                      <span>0</span>
+                    </label>
+                  </li>
+                  <li>
+
+                    <label ngbButtonLabel class="CheckHorizontalLabel">
+                      <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">
+                      <span>1</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label ngbButtonLabel class="CheckHorizontalLabel">
+                      <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label ngbButtonLabel class="CheckHorizontalLabel">
+                      <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label ngbButtonLabel class="CheckHorizontalLabel">
+                      <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"
+                             value="4"><span>+4</span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle><i class="icon-dollar"></i> Preço <i
+              class="fas fa-chevron-down small-icon"></i></ng-template>
+            <ng-template ngbPanelContent>
+
+                <div class="row pt-3">
+                  <div class="col-12 ">
+                    <h6 class="text-left mb-4">Preço</h6>
+                    <div class="row">
+                      <div class="col-6">
+                        <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
+                                               [(ngModel)]="customSearch.precos.min" placeholder="M²"
+                                               [ngModelOptions]="{standalone: true}">
+                      </div>
+                      <div class="col-6">
+                        <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
+                                                [(ngModel)]="customSearch.precos.max" placeholder="M²"
+                                                [ngModelOptions]="{standalone: true}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pt-3 mt-4 pl-3 pr-3">
+                  <div class="col-12 ">
+                    <ng5-slider [(value)]="customSearch.precos.min" [(highValue)]="customSearch.precos.max"
+                                [options]="options" *ngIf="options"></ng5-slider>
+                  </div>
+                </div>
+            </ng-template>
+          </ngb-panel>
+
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle><i class="icon-bathtub"></i> Banheiros <i
+              class="fas fa-chevron-down small-icon"></i></ng-template>
+            <ng-template ngbPanelContent>
+              <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
+                  [(ngModel)]="customSearch.quartos">
+                <li>
+
+                  <label ngbButtonLabel class="CheckHorizontalLabel">
+                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">
+                    <span>0</span>
+                  </label>
+                </li>
+                <li>
+
+                  <label ngbButtonLabel class="CheckHorizontalLabel">
+                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">
+                    <span>1</span>
+                  </label>
+                </li>
+                <li>
+                  <label ngbButtonLabel class="CheckHorizontalLabel">
+                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>
+                  </label>
+                </li>
+                <li>
+                  <label ngbButtonLabel class="CheckHorizontalLabel">
+                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>
+                  </label>
+                </li>
+                <li>
+                  <label ngbButtonLabel class="CheckHorizontalLabel">
+                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"
+                           value="4"><span>+4</span>
+                  </label>
+                </li>
+              </ul>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle><i class="icon-area"></i> M<sup>2</sup>
+              <i class="fas fa-chevron-down small-icon"></i></ng-template>
+            <ng-template ngbPanelContent>
+
+
+              <div class="row pt-3">
+                <div class="col-12 ">
+                  <div class="row">
+                    <div class="col-6">
+                      <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
+                                             [(ngModel)]="customSearch.area.min" placeholder="M²"
+                                             [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="col-6">
+                      <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
+                                              [(ngModel)]="customSearch.area.max" placeholder="M²"
+                                              [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row pt-3 mt-4 pl-3 pr-3">
+                <div class="col-12 ">
+                  <ng5-slider [(value)]="customSearch.area.min" [(highValue)]="customSearch.area.max"
+                              [options]="optionsArea" *ngIf="optionsArea"></ng5-slider>
+                </div>
+              </div>
+
+            </ng-template>
+          </ngb-panel>
+
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle><i class="icon-car"></i> Vagas de
+              Garagem <i class="fas fa-chevron-down small-icon"></i></ng-template>
+            <ng-template ngbPanelContent>
+              <ul class="HorizontalCheckBoxMobile">
+
+
+                <li>
+                  <input type="radio" name="vagas" id="vagas_0" value="0"
+                         class="HorizontalCheckBoxMobileInput checkbox-s">
+                  <label for="vagas_0" class="HorizontalCheckBoxMobileLabel"><span>0</span></label>
+                </li>
+
+
+                <li>
+                  <input type="radio" name="vagas" id="vagas_1" value="1"
+                         class="HorizontalCheckBoxMobileInput checkbox-s">
+                  <label for="vagas_1" class="HorizontalCheckBoxMobileLabel"><span>1</span></label>
+                </li>
+
+
+                <li>
+                  <input type="radio" name="vagas" id="vagas_2" value="2"
+                         class="HorizontalCheckBoxMobileInput checkbox-s">
+                  <label for="vagas_2" class="HorizontalCheckBoxMobileLabel"><span>2</span></label>
+                </li>
+
+
+                <li>
+                  <input type="radio" name="vagas" id="vagas_3" value="3"
+                         class="HorizontalCheckBoxMobileInput checkbox-s">
+                  <label for="vagas_3" class="HorizontalCheckBoxMobileLabel"><span>3</span></label>
+                </li>
+
+
+                <li>
+                  <input type="radio" name="vagas" id="vagas_4" value="4"
+                         class="HorizontalCheckBoxMobileInput checkbox-s">
+                  <label for="vagas_4" class="HorizontalCheckBoxMobileLabel"><span>+4</span></label>
+                </li>
+
+
+              </ul>
+            </ng-template>
+          </ngb-panel>
+
+        </ngb-accordion>
+      </div>
+    </div>
+<!--  </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+</ng-template>

@@ -8,6 +8,7 @@ import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {Options} from 'ng5-slider';
 import {GeneralService} from './general.service';
 import {CurrencyPipe, formatCurrency} from '@angular/common';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-imoveis',
@@ -79,7 +80,23 @@ export class ImoveisComponent implements OnInit {
   optionsArea: Options;
 
   constructor(private imoveisService: ImoveisService, private route: ActivatedRoute, private ngxService: NgxUiLoaderService,
-              private generalService: GeneralService, private router: Router) {
+              private generalService: GeneralService, private router: Router, private modalService: NgbModal) {
+  }
+
+  open(content) {
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      // @ts-ignore
+      size: 'xl',
+      scrollable: false,
+      centered: true,
+      windowClass: 'InternalModalFilter'
+    }).result.then((result) => {
+      console.log(result);
+      this.dropDownChange(false);
+    }, (reason) => {
+
+    });
   }
 
   ngOnInit() {
@@ -380,20 +397,45 @@ export class ImoveisComponent implements OnInit {
     return '?';
   }
 
-  getprice(imovel: Imovel) {
+  toSalas(imovel: Imovel) {
     if (!imovel) {
       return '?';
     }
     try {
-      if (imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
-        return this.getFormattedPrice(imovel.comercializacao.locacao.preco);
-      } else if (imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
-        return this.getFormattedPrice(imovel.comercializacao.venda.preco);
+      if (imovel && imovel.tipo === 'sala') {
+        return imovel.numeros.salas;
+      } else if (imovel) {
+        return imovel.numeros.salas;
       }
     } catch (e) {
       // console.error(e);
     }
+    return '?';
+  }
 
+  getprice(imovel: Imovel): string {
+    if (!imovel) {
+      return '?';
+    }
+    try {
+      if (this.queryParams.categoria === 'comprar') {
+        if (imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
+          return this.getFormattedPrice(imovel.comercializacao.venda.preco);
+        }
+      } else if (this.queryParams.categoria === 'alugar') {
+        if (imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
+          return this.getFormattedPrice(imovel.comercializacao.locacao.preco);
+        }
+      } else {
+        if (imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
+          return this.getFormattedPrice(imovel.comercializacao.locacao.preco);
+        } else if (imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
+          return this.getFormattedPrice(imovel.comercializacao.venda.preco);
+        }
+      }
+    } catch (e) {
+      // console.error(e);
+    }
     return '?';
   }
 
