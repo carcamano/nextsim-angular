@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
     tipos: [],
     precos: {
       min: 0,
-      max: 39000000,
+      max: 4000000,
     },
     area: {
       min: 0,
@@ -48,6 +48,8 @@ export class HeaderComponent implements OnInit {
   tipos_residencial = [];
   tipos_comercial = [];
   locais: any;
+  locais_residencial: any;
+  locais_comercial: any;
 
   locaisGeral: string[];
   bairrosSelecionados: any[] = [];
@@ -227,9 +229,12 @@ export class HeaderComponent implements OnInit {
   finalidadeChange(event: any) {
     if (this.customSearch.finalidade === 'residencial') {
       this.customSearch.tipos = this.tipos_residencial;
+      this.locais = this.locais_residencial;
     } else {
       this.customSearch.tipos = this.tipos_comercial;
+      this.locais = this.locais_comercial;
     }
+    this.buildLocais();
   }
 
 
@@ -249,11 +254,18 @@ export class HeaderComponent implements OnInit {
     });
 
 
-    this.generalService.locais().subscribe((res: HttpResponse<any>) => {
-      if (!this.locais) {
-        this.locais = res.body;
+    this.generalService.locais_residencial().subscribe((res: HttpResponse<any>) => {
+      if (!this.locais_residencial) {
+        this.locais_residencial = res.body;
+        this.locais = this.locais_residencial;
         this.buildLocais();
 
+      }
+    });
+
+    this.generalService.locais_comercial().subscribe((res: HttpResponse<any>) => {
+      if (!this.locais_comercial) {
+        this.locais_comercial = res.body;
       }
     });
 
@@ -270,13 +282,11 @@ export class HeaderComponent implements OnInit {
 
 
   buildLocais() {
-    if (!this.locaisGeral) {
       this.locaisGeral = [];
       _.forIn(this.locais, (value, key) => {
         this.locaisGeral.push(key);
       });
       console.log(this.locaisGeral);
-    }
   }
 
   filterLocaisBairros(cidade: string) {

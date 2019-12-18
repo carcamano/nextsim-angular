@@ -50,7 +50,7 @@ export class ImoveisComponent implements OnInit {
     tipos: [],
     precos: {
       min: 0,
-      max: 39000000,
+      max: 4000000,
     },
     area: {
       min: 0,
@@ -61,14 +61,16 @@ export class ImoveisComponent implements OnInit {
   };
 
   minPrice = 0;
-  maxPrice = 0;
+  maxPrice = 4000000;
 
   minArea = 0;
-  maxArea = 0;
+  maxArea = 61000;
 
   tipos_residencial = [];
   tipos_comercial = [];
   locais: any;
+  locais_residencial: any;
+  locais_comercial: any;
 
   removeParams: string[] = [];
 
@@ -92,7 +94,6 @@ export class ImoveisComponent implements OnInit {
       centered: true,
       windowClass: 'InternalModalFilter'
     }).result.then((result) => {
-      console.log(result);
       this.dropDownChange(false);
     }, (reason) => {
 
@@ -102,7 +103,6 @@ export class ImoveisComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
-      console.log(this.queryParams);
       if (this.queryParams.finalidade) {
         this.customSearch.finalidade = this.queryParams.finalidade;
 
@@ -116,12 +116,10 @@ export class ImoveisComponent implements OnInit {
 
 
   categoriaCheckboxChange(categoria: string) {
-    console.log('categoriaCheckboxChange');
     this.customSearch.categoria = categoria;
   }
 
   badgeClose(param: any) {
-    console.log('badgeClose');
     console.log(param);
 
     this.removeParams.push(param);
@@ -130,11 +128,8 @@ export class ImoveisComponent implements OnInit {
   }
 
   dropDownChange(event: boolean) {
-    console.log(event);
-
 
     if (!event) {
-      console.log(this.customSearch);
       let tipos = [];
       if (!this.removeParams.includes('tipo')) {
         tipos = this.customSearch.tipos.filter(value => {
@@ -151,7 +146,6 @@ export class ImoveisComponent implements OnInit {
           return value.key;
         });
       }
-      console.log(bairros);
       let area: string;
       if (!this.removeParams.includes('bairros')) {
         area = this.customSearch.area.min + ',' + this.customSearch.area.max;
@@ -230,6 +224,7 @@ export class ImoveisComponent implements OnInit {
 
       if (this.queryParams.bairros) {
         const values = this.queryParams.bairros.split(',');
+
         if (values.length > 0 && values.includes(imovel.local.bairro)) {
           f.push('t');
         } else {
@@ -249,6 +244,7 @@ export class ImoveisComponent implements OnInit {
       if (this.queryParams.precos) {
         const values = this.queryParams.precos.split(',');
         if (values.length === 2) {
+          if(values[1] === this.maxPrice) values[1] = 999999999;
           if (imovel.comercializacao.venda && imovel.comercializacao.venda.preco >= values[0] &&
             imovel.comercializacao.venda.preco <= values[1]) {
             f.push('t');
@@ -264,18 +260,18 @@ export class ImoveisComponent implements OnInit {
       }
 
       // areas
-      if (this.queryParams.area) {
-        const values = this.queryParams.area.split(',');
-        if (values.length === 2) {
-          if (imovel.numeros && imovel.numeros.areas && imovel.numeros.areas.util >= values[0] && imovel.numeros.areas.util <= values[1]) {
-            f.push('t');
-          } else {
-            f.push('f');
-          }
-        } else {
-          f.push('f');
-        }
-      }
+      // if (this.queryParams.area) {
+      //   const values = this.queryParams.area.split(',');
+      //   if (values.length === 2) {
+      //     if (imovel.numeros && imovel.numeros.areas && imovel.numeros.areas.util >= values[0] && imovel.numeros.areas.util <= values[1]) {
+      //       f.push('t');
+      //     } else {
+      //       f.push('f');
+      //     }
+      //   } else {
+      //     f.push('f');
+      //   }
+      // }
 
       // dormitorios
       if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'residencial') {
@@ -298,7 +294,6 @@ export class ImoveisComponent implements OnInit {
       return !f.includes('f');
     });
 
-    console.log(filtred);
     this.pages = filtred.length;
     this.imoveis = _.chunk(filtred, this.itensPerPage)[this.currentPage - 1];
 
@@ -457,7 +452,6 @@ export class ImoveisComponent implements OnInit {
 
   changeTipo(event: any, i: number) {
     this.customSearch.tipos[i].selected = event.currentTarget.checked;
-    console.log(this.customSearch.tipos);
   }
 
   changeFinalidade(event: any, finalidade: string) {
@@ -477,9 +471,13 @@ export class ImoveisComponent implements OnInit {
   finalidadeChange() {
     if (this.queryParams.finalidade === 'residencial') {
       this.customSearch.tipos = this.tipos_residencial;
+      this.locais = this.locais_residencial;
     } else if (this.queryParams.finalidade === 'comercial') {
       this.customSearch.tipos = this.tipos_comercial;
+      this.locais = this.locais_comercial;
     }
+    this.buildLocais();
+
   }
 
 
@@ -500,13 +498,21 @@ export class ImoveisComponent implements OnInit {
     });
 
 
-    this.generalService.locais().subscribe((res: HttpResponse<any>) => {
-      if (!this.locais) {
-        this.locais = res.body;
+    this.generalService.locais_residencial().subscribe((res: HttpResponse<any>) => {
+      if (!this.locais_residencial) {
+        this.locais_residencial = res.body;
+        this.locais = this.locais_residencial;
         this.buildLocais();
 
       }
     });
+
+    this.generalService.locais_comercial().subscribe((res: HttpResponse<any>) => {
+      if (!this.locais_comercial) {
+        this.locais_comercial = res.body;
+      }
+    });
+
 
     this.generalService.area().subscribe((res: HttpResponse<any>) => {
       this.customSearch.area.max = res.body.max;
@@ -524,9 +530,8 @@ export class ImoveisComponent implements OnInit {
     });
 
     this.generalService.precos().subscribe((res: HttpResponse<any>) => {
-      console.log(res);
-      this.customSearch.precos.max = res.body.max;
-      this.maxPrice = res.body.max;
+      this.customSearch.precos.max = 4000000;
+      this.maxPrice = 4000000;
       this.customSearch.precos.min = res.body.min;
       this.minPrice = res.body.min;
 
@@ -616,13 +621,10 @@ export class ImoveisComponent implements OnInit {
   }
 
   buildLocais() {
-    if (!this.locaisGeral) {
-      this.locaisGeral = [];
-      _.forIn(this.locais, (value, key) => {
-        this.locaisGeral.push(key);
-      });
-      console.log(this.locaisGeral);
-    }
+    this.locaisGeral = [];
+    _.forIn(this.locais, (value, key) => {
+      this.locaisGeral.push(key);
+    });
   }
 
   filterLocaisBairros(cidade: string) {

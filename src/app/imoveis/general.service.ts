@@ -44,6 +44,18 @@ export class GeneralService {
 
   }
 
+  locais_residencial(): Observable<HttpResponse<any>> {
+    return this.http
+      .get<string[]>(`${API_URL}/locais_residencial`, {observe: 'response'});
+
+  }
+
+  locais_comercial(): Observable<HttpResponse<any>> {
+    return this.http
+      .get<string[]>(`${API_URL}/locais_comercial`, {observe: 'response'});
+
+  }
+
 
   autocomplete(): Observable<HttpResponse<any>> {
     return this.http

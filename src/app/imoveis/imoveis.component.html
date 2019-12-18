@@ -39,8 +39,7 @@
             </div>
             <div class="box-filter-1">
               <!-- TIPO DE CATEGORIA -->
-              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'"
-                   *ngIf="!queryParams.categoria">
+              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
                 <a
                   class="MenuItem dropdown-toggle" id="CategoryMenu"
                   ngbDropdownToggle><i class="icon-building"></i> Categoria <i
@@ -596,7 +595,7 @@
       </div>
       <div class="col-12 MobileFilterBarMenu px-0 py-0">
         <ngb-accordion #acc="ngbAccordion">
-          <ngb-panel class="MBFilterOptions" *ngIf="!queryParams.categoria">
+          <ngb-panel class="MBFilterOptions" >
             <ng-template ngbPanelTitle>
               <i class="icon-building"></i> Categoria <i
               class="fas fa-chevron-down small-icon"></i>
