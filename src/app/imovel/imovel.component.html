@@ -77,13 +77,13 @@
 
                 <p class="PropertyCardType">
                   <span class="first_letter">{{imovel.tipo}}</span> |
-                  <span *ngIf="imovel.tipo ==='apartamento'">Área útil {{imovel.numeros?.areas?.util.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
-                  <span *ngIf="imovel.tipo ==='casa'">Área do Terreno {{imovel.numeros?.areas?.terreno.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
-                  <span *ngIf="imovel.tipo ==='casa'">Área Construída {{imovel.numeros?.areas?.construida.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
-                  <span *ngIf="imovel.tipo ==='galpão'">Área do Terreno {{imovel.numeros?.areas?.terreno.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
-                  <span *ngIf="imovel.tipo ==='galpão'">Área Construída {{imovel.numeros?.areas?.construida.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
-                  <span *ngIf="imovel.tipo ==='terreno'">Área do Terreno {{imovel.numeros?.areas?.terreno.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
-                  <span *ngIf="imovel.tipo ==='área'">Área do Terreno {{imovel.numeros?.areas?.terreno.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='apartamento'">Área útil {{imovel.numeros?.areas?.util?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='casa' && imovel.numeros?.areas?.terreno">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
+                  <span *ngIf="imovel.tipo ==='casa' && imovel.numeros?.areas?.construida">Área Construída {{imovel.numeros?.areas?.construida?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='galpão'">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
+                  <span *ngIf="imovel.tipo ==='galpão'">Área Construída {{imovel.numeros?.areas?.construida?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='terreno'">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='área'">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
 
 
                   <span *ngIf="imovel.tipo !=='apartamento' && imovel.tipo !=='casa' && imovel.tipo !=='galpão' && imovel.tipo !=='terreno' && imovel.tipo !=='área'">Área total {{imovel.numeros?.areas?.total?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>

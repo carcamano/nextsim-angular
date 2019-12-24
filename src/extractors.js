@@ -23,11 +23,11 @@ $.getJSON( "https://solo-json-server.herokuapp.com/imoveis", function( data ) {
       delete items[el]
     }
   });
-  console.log(JSON.stringify(items)); // resultado
+  console.log(JSON.stringify(items));
 });
 
 function checkAndAdd(items, bairro, city, checker) {
-  if(!items[city].includes(bairro) && checker === 'residencial')
+  if(!items[city].includes(bairro) && checker === 'residencial' && bairro !== '')
     items[city].push(bairro);
 
 }

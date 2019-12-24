@@ -39,7 +39,7 @@
             </div>
             <div class="box-filter-1">
               <!-- TIPO DE CATEGORIA -->
-              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div ngbDropdown [autoClose]="'outside'">
                 <a
                   class="MenuItem dropdown-toggle" id="CategoryMenu"
                   ngbDropdownToggle><i class="icon-building"></i> Categoria <i
@@ -63,7 +63,7 @@
               </div>
               <!-- END TIPO DE CATEGORIA -->
               <!-- TIPO DE IMOVEL -->
-              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div ngbDropdown  [autoClose]="'outside'">
                 <a
                   class="MenuItem dropdown-toggle" id="TypeMenu"
                   ngbDropdownToggle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i></a>
@@ -79,7 +79,7 @@
               </div>
               <!-- END TIPO DE IMOVEL -->
               <!-- FINALIDADE DE IMOVEL -->
-              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div ngbDropdown  [autoClose]="'outside'">
                 <a
                   class="MenuItem dropdown-toggle" id="GoalMenu" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false" ngbDropdownToggle><i class="icon-key"></i> Finalidade <i
@@ -104,7 +104,7 @@
               </div>
               <!-- END FINALIDADE DE IMOVEL -->
               <!--  CIDADE OU BAIRRO DE IMOVEL -->
-              <div class="btn-cidade" ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div class="btn-cidade" ngbDropdown  [autoClose]="'outside'">
                 <a
                   class="MenuItem dropdown-toggle" id="CityMenu" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false" ngbDropdownToggle><i class="icon-pin"></i> Cidade ou Bairro <i
@@ -137,7 +137,7 @@
               </div>
               <!-- END CIDADE OU BAIRRO DE IMOVEL -->
               <!-- QUARTOS DE IMOVEL -->
-              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'"
+              <div ngbDropdown  [autoClose]="'outside'"
                    *ngIf="queryParams && queryParams.finalidade === 'residencial'">
                 <a
                   class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
@@ -183,7 +183,7 @@
               </div>
               <!-- END QUARTO DE IMOVEIS -->
               <!-- SALAS DE IMOVEL -->
-              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'"
+              <div ngbDropdown  [autoClose]="'outside'"
                    *ngIf="queryParams.finalidade === 'comercial'">
                 <a
                   class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
@@ -229,7 +229,7 @@
               </div>
               <!-- END SALAS DE IMOVEIS -->
               <!-- PRECO DE IMOVEL -->
-              <div ngbDropdown (openChange)="dropDownChange($event)" [autoClose]="'outside'">
+              <div ngbDropdown  [autoClose]="'outside'">
                 <a
                   class="MenuItem dropdown-toggle" id="PriceMenu" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false" ngbDropdownToggle><i class="icon-dollar"></i> Preço <i
