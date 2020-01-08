@@ -6,6 +6,7 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ImovelService} from './imovel.service';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
+import {AllImoveis} from "../all-imoveis.service";
 
 @Component({
   selector: 'app-imovel',
@@ -23,7 +24,7 @@ export class ImovelComponent implements OnInit {
   form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ');
 
 
-  constructor(private route: ActivatedRoute, private imoveisService: ImoveisService,
+  constructor(private route: ActivatedRoute, private all: AllImoveis,
               private modalService: NgbModal, private service: ImovelService, private toastr: ToastrService) {
 
   }
@@ -32,15 +33,29 @@ export class ImovelComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       console.log(params)
-      this.imoveisService.imoveisBySigla(params.id).subscribe((value: Imovel) => {
-      console.log(value)
-        this.imovel = value[0];
-        this.form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ' + this.imovel.sigla);
-        console.log(this.imovel);
-      });
+      if (!this.all.imoveis) {
+
+        this.all.getBySigla(params.id, im => {
+          console.log(im);
+          this.imovel = im;
+          this.buildForm();
+        })
+
+      } else {
+        this.all.imoveis.forEach(imovel => {
+          if (params.id === imovel.sigla) {
+            this.imovel = imovel;
+            this.buildForm();
+          }
+        })
+      }
     });
 
     // cd-google-map
+  }
+
+  buildForm() {
+    this.form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ' + this.imovel.sigla);
   }
 
   submitForm() {

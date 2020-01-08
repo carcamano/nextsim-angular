@@ -34,6 +34,7 @@ import localePt from '@angular/common/locales/pt';
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {AllImoveis} from "./all-imoveis.service";
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -93,7 +94,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     RouterModule.forRoot(ROUTES),
     FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    NgxUiLoaderRouterModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
   ],
@@ -102,6 +102,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ImovelService,
     GeneralService,
     LancamentoService,
+    AllImoveis,
     {provide: LOCALE_ID, useValue: 'pt-BR'},
     {provide: ComponentFixtureAutoDetect, useValue: true}
   ],

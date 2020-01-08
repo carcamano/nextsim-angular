@@ -7,10 +7,10 @@ import {HttpResponse} from '@angular/common/http';
 import {Imovel} from '../imoveis/models/imovel.model';
 import {Options} from 'ng5-slider';
 import * as _ from 'lodash';
-import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {formatCurrency} from '@angular/common';
 import {AngularFireDatabase, DatabaseSnapshot, SnapshotAction} from "@angular/fire/database";
 import {Observable} from "rxjs";
+import {AllImoveis} from "../all-imoveis.service";
 
 @Component({
   selector: 'app-header',
@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit {
 
   mobileMenuAlugar = false;
 
-  constructor(private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private ngxService: NgxUiLoaderService) {
+  constructor(private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private globals: AllImoveis) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
         this.rootView = false;
