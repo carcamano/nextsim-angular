@@ -31,6 +31,9 @@ import {ComponentFixtureAutoDetect} from '@angular/core/testing';
 import {NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule} from 'ngx-ui-loader';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../environments/environment";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -91,6 +94,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [
     ImoveisService,

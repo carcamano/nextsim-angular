@@ -9,6 +9,8 @@ import {Options} from 'ng5-slider';
 import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {formatCurrency} from '@angular/common';
+import {AngularFireDatabase, DatabaseSnapshot, SnapshotAction} from "@angular/fire/database";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -54,7 +56,7 @@ export class HeaderComponent implements OnInit {
   locaisGeral: string[];
   bairrosSelecionados: any[] = [];
 
-  autocompletes: string[];
+  autocompletes: string[] = [];
 
   options: Options = {
     floor: 0,
@@ -79,7 +81,7 @@ export class HeaderComponent implements OnInit {
 
   mobileMenuAlugar = false;
 
-  constructor(private router: Router, private modalService: NgbModal, private generalService: GeneralService, private ngxService: NgxUiLoaderService) {
+  constructor(private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private ngxService: NgxUiLoaderService) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
         this.rootView = false;
@@ -99,13 +101,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.router);
-    // this.rootView = this.router.url;
     this.loadDefaults();
+    this.db.list('autocomplete').snapshotChanges().subscribe((action: any[]) => {
+      action.forEach((value: SnapshotAction<any[]>) => {
+        this.autocompletes.push(value.payload.val().toString())
 
-    this.generalService.autocomplete().subscribe(value => {
-      console.log(value.body);
-      this.autocompletes = value.body;
+      })
     });
   }
 
@@ -239,54 +240,64 @@ export class HeaderComponent implements OnInit {
 
 
   private loadDefaults() {
-    this.generalService.tipos_residencial().subscribe((res: HttpResponse<string[]>) => {
-      this.tipos_residencial = res.body.map((value, index, array) => {
-        return {key: value, selected: false, i: index};
+    this.db.list('tipos_residencial').snapshotChanges().subscribe((action: any[]) => {
+      this.customSearch.tipos = [];
+      this.tipos_residencial = action.map((value:SnapshotAction<any[]>, index, array) => {
+        return {key: value.payload.val(), selected: false, i: index};
       });
       this.customSearch.tipos = this.tipos_residencial;
     });
 
-
-    this.generalService.tipos_comercial().subscribe((res: HttpResponse<string[]>) => {
-      this.tipos_comercial = res.body.map((value, index, array) => {
-        return {key: value, selected: false, i: index};
+    this.db.list('tipos_comercial').snapshotChanges().subscribe((action: any[]) => {
+      this.tipos_comercial = action.map((value:SnapshotAction<any[]>, index, array) => {
+        return {key: value.payload.val(), selected: false, i: index};
       });
     });
 
-
-    this.generalService.locais_residencial().subscribe((res: HttpResponse<any>) => {
+    this.db.list('locais_residencial').snapshotChanges().subscribe((action: any[]) => {
       if (!this.locais_residencial) {
-        this.locais_residencial = res.body;
+        this.locais_residencial = action.map((value:SnapshotAction<any[]>) => value.payload.val());
         this.locais = this.locais_residencial;
         this.buildLocais();
 
       }
     });
 
-    this.generalService.locais_comercial().subscribe((res: HttpResponse<any>) => {
+    this.db.list('locais_comercial').snapshotChanges().subscribe((action: any[]) => {
       if (!this.locais_comercial) {
-        this.locais_comercial = res.body;
+        this.locais_comercial = action.map((value:SnapshotAction<any[]>) => value.payload.val());
       }
     });
 
-    this.generalService.area().subscribe((res: HttpResponse<any>) => {
-      this.customSearch.area.max = res.body.max;
-      this.customSearch.area.min = res.body.min;
+    this.db.list('area').snapshotChanges().subscribe((action: SnapshotAction<{}>[]) => {
+      action.forEach(value => {
+        if (value.key === 'min') {
+          this.customSearch.area.min = value.payload.val() as number;
+
+        } else if (value.key === 'max') {
+          this.customSearch.area.max = value.payload.val() as number;
+
+        }
+      })
     });
 
-    this.generalService.precos().subscribe((res: HttpResponse<any>) => {
-      this.customSearch.precos.max = res.body.max;
-      this.customSearch.precos.min = res.body.min;
+    this.db.list('precos').snapshotChanges().subscribe((action: SnapshotAction<{}>[]) => {
+      action.forEach(value => {
+        if (value.key === 'min') {
+          this.customSearch.precos.min = value.payload.val() as number;
+        } else if (value.key === 'max') {
+          this.customSearch.precos.max = value.payload.val() as number;
+        }
+      });
     });
   }
 
 
   buildLocais() {
-      this.locaisGeral = [];
-      _.forIn(this.locais, (value, key) => {
-        this.locaisGeral.push(key);
-      });
-      console.log(this.locaisGeral);
+    this.locaisGeral = [];
+    _.forIn(this.locais, (value, key) => {
+      this.locaisGeral.push(key);
+    });
   }
 
   filterLocaisBairros(cidade: string) {
