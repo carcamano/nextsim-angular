@@ -11,6 +11,7 @@ import {CurrencyPipe, formatCurrency} from '@angular/common';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireAction, AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
 import {AllImoveis} from "../all-imoveis.service";
+import {remove as removeAccents} from 'remove-accents';
 
 @Component({
   selector: 'app-imoveis',
@@ -302,8 +303,10 @@ export class ImoveisComponent implements OnInit {
       if (this.queryParams.query) {
         if (imovel.sigla.toLocaleUpperCase() === this.queryParams.query.toLocaleUpperCase()) {
           f.push('t');
-        } else if (imovel.local && imovel.local.bairro.toLocaleLowerCase().search()) {
-
+        } else if (imovel.local && imovel.local.bairro && removeAccents(imovel.local.bairro.toLocaleLowerCase()).search(removeAccents(this.queryParams.query.toLocaleLowerCase())) > -1) {
+          f.push('t');
+        } else if (imovel.local && imovel.local.cidade && removeAccents(imovel.local.cidade.toLocaleLowerCase()).search(removeAccents(this.queryParams.query.toLocaleLowerCase())) > -1) {
+          f.push('t');
         } else {
           f.push('f');
         }
