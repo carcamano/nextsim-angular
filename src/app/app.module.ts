@@ -35,6 +35,7 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AllImoveis} from "./all-imoveis.service";
+import { FabComponent } from './fab/fab.component';
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -73,7 +74,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FooterComponent,
     ImovelComponent,
     QueroNegociarComponent,
-    SobreComponent
+    SobreComponent,
+    FabComponent
   ],
   imports: [
     BrowserModule,
