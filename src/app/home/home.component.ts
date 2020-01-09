@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.lancamentoService.all().subscribe(value => {
-      console.log(value.body);
-      this.lancamentos = value.body;
-    });
+    // this.lancamentoService.all().subscribe(value => {
+    //   console.log(value.body);
+    //   this.lancamentos = value.body;
+    // });
 
 
   }

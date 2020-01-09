@@ -1,0 +1,27 @@
+
+<div class="homeContactButtonMark" id="sectionRelease">
+  <button id="buttonContato" class="btn btn-contact-chat btn-rounded btn-contact-me-NEW d-none d-sm-none d-md-block" *ngIf="!showFab"
+          type="button" (click)="showHide()"><span class="chat-icon"></span> <span><span style="color:#575656;">Entre em</span><br> CONTATO</span>
+  </button>
+  <a class="btn btn-contact-chat btn-circle btn-xl btn-contact-me-NEW d-block d-sm-block d-md-none" *ngIf="!showFab"
+     data-toggle="modal" data-target="#contactMe"(click)="showHide()"><span class="chat-icon"></span></a>
+  <div class="" id="groupButtomContact" style="" *ngIf="showFab">
+    <a class="btn btn-secondary-action btn-sca-phone btn-rounded text-uppercase" (click)="showHide('tel:01925120000')">
+      <img class="mr-1" alt="" title="" width="22" src="assets/img/icons/icon-phone.svg"/> <span><span
+      style="color:#575656;">LIGUE AGORA</span><br>2512-0000</span>
+    </a>
+    <a target="_blank" rel=”noopener”
+       class="btn btn-secondary-action btn-sca-whatsapp btn-rounded text-uppercase"
+       (click)="showHide('https://api.whatsapp.com/send?phone=5519999120030&text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20seus%20im%C3%B3veis!%20')">
+      <img class="mr-1" alt="" title="" width="22" src="assets/img/icons/icon-whatsapp.svg"/> <span><span
+      style="color:#575656;">whatsapp</span><br>(19) 99912-0030</span>
+    </a>
+    <a href="" class="btn btn-secondary-action btn-sca-contact btn-rounded text-uppercase"
+       data-toggle="modal" data-target="#contactMe" (click)="showHide()">
+      <img class="mr-1" width="22" alt="" title="" src="assets/img/icons/icon-contact-pq.svg"> MENSAGEM
+    </a>
+    <button type="button" id="btnContactTimes" class="btn bnt-sca-times" (click)="showHide()"><img width="22" alt="" title=""
+                                                                              src="assets/img/icons/icon-times-contact.svg">
+    </button>
+  </div>
+</div>
