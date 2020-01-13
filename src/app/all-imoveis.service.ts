@@ -16,7 +16,6 @@ export class AllImoveis {
   }
 
   getAll(callback?: () => void) {
-
     try {
       let lastUpdate = localStorage.getItem('nextsim_lastUpdate');
       const localImoveis = localStorage.getItem('nextsim_imoveis');

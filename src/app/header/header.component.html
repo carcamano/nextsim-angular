@@ -146,7 +146,7 @@
         <div class="col-md-12">
           <div class="filter-bar-home centerObject">
             <div class="goal" ngbDropdown>
-              <div class="goal-title" ngbDropdownToggle id="dropdownForm1"><span
+              <div class="goal-title finalidade" ngbDropdownToggle id="dropdownForm1"><span
                 class="icon-goal arrow-down-icon"></span> <span
                 class="goal-title-in">{{simpleSearch.categoria || 'Finalidade'}}</span>
               </div>
@@ -243,7 +243,7 @@
               <h4>Finalidade</h4>
             </div>
             <div class="col-auto barra">
-              <ul class="HorizontalCheckBoxMobile" ngbRadioGroup name="radioBasic" [(ngModel)]="customSearch.categoria">
+              <ul class="HorizontalCheckBoxMobile" ngbRadioGroup name="radioBasic" [(ngModel)]="customSearch.categoria" (ngModelChange)="rebuildFilter($event)">
                 <li>
                   <label ngbButtonLabel class="HorizontalCheckBoxMobileLabel">
                     <input ngbButton type="radio" value="comprar" class="HorizontalCheckBoxMobileInput"> Comprar
@@ -267,7 +267,7 @@
             </div>
             <div class="col-auto barra">
               <ul class="HorizontalCheckBoxMobile" ngbRadioGroup name="radioBasic" [(ngModel)]="customSearch.finalidade"
-                  (ngModelChange)="finalidadeChange($event)">
+                  (ngModelChange)="rebuildFilter($event)">
                 <li>
                   <label ngbButtonLabel class="HorizontalCheckBoxMobileLabel">
                     <input ngbButton type="radio" value="residencial" class="HorizontalCheckBoxMobileInput"> Residencial
@@ -291,14 +291,14 @@
       <div class="row selectiona_local" style="">
 
 
-        <div class="col-4" *ngIf="locais">
+        <div class="col-4" *ngIf="cidades.length > 0">
           <span class="TitleCityMobHome">Cidade</span>
           <div class="cidades_botoes">
-            <button *ngFor="let local of locaisGeral;  let i = index" (click)="changeCidade(local)"
-                    [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
+            <button *ngFor="let cidade of cidades;  let i = index" (click)="changeCidade(cidade)"
+                    [ngClass]="{'active' : cidade === customSearch.cidade}">{{cidade}}</button>
           </div>
         </div>
-        <div class="col-4" *ngIf="locais">
+        <div class="col-4" *ngIf="cidades.length > 0">
           <span class="TitleCityMobHome">Bairro</span>
           <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2">
             <ul>
@@ -319,7 +319,7 @@
           </div>
         </div>
       </div>
-      <div class="row" *ngIf="tipos_residencial.length > 0">
+      <div class="row" *ngIf="customSearch.tipos.length > 0">
         <ngb-tabset justify="start" class="modal-search-footer">
           <ngb-tab>
             <ng-template ngbTabTitle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i>

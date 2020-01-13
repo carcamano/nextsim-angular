@@ -36,6 +36,7 @@ import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AllImoveis} from "./all-imoveis.service";
 import { FabComponent } from './fab/fab.component';
+import { CustomSearchComponent } from './custom-search/custom-search.component';
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -75,7 +76,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ImovelComponent,
     QueroNegociarComponent,
     SobreComponent,
-    FabComponent
+    FabComponent,
+    CustomSearchComponent
   ],
   imports: [
     BrowserModule,

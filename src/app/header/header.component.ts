@@ -1,16 +1,12 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {GeneralService} from '../imoveis/general.service';
-import {HttpResponse} from '@angular/common/http';
-import {Imovel} from '../imoveis/models/imovel.model';
 import {Options} from 'ng5-slider';
 import * as _ from 'lodash';
 import {formatCurrency} from '@angular/common';
-import {AngularFireDatabase, DatabaseSnapshot, SnapshotAction} from "@angular/fire/database";
-import {Observable} from "rxjs";
+import {AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
 import {AllImoveis} from "../all-imoveis.service";
+import {Imovel} from "../imoveis/models/imovel.model";
 
 @Component({
   selector: 'app-header',
@@ -47,13 +43,9 @@ export class HeaderComponent implements OnInit {
     cidade: ''
   };
 
-  tipos_residencial = [];
-  tipos_comercial = [];
-  locais: any;
-  locais_residencial: any;
-  locais_comercial: any;
+  filtred: any[] = [];
 
-  locaisGeral: string[];
+  cidades: string[] = [];
   bairrosSelecionados: any[] = [];
 
   autocompletes: string[] = [];
@@ -81,7 +73,7 @@ export class HeaderComponent implements OnInit {
 
   mobileMenuAlugar = false;
 
-  constructor(private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private globals: AllImoveis) {
+  constructor(private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private allImoveis: AllImoveis) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
         this.rootView = false;
@@ -96,7 +88,7 @@ export class HeaderComponent implements OnInit {
         this.rootView = true;
       }
       this.showMobileMenu = false;
-      this.loadDefaults();
+
     });
   }
 
@@ -112,6 +104,7 @@ export class HeaderComponent implements OnInit {
 
 
   open(content) {
+    this.rebuildFilter();
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       // @ts-ignore
@@ -204,11 +197,7 @@ export class HeaderComponent implements OnInit {
 
   changeCidade(cidade: string) {
     this.customSearch.cidade = cidade;
-    this.locaisGeral.map((value, index) => {
-      if (value === cidade) {
-        this.buildLocaisBairros(value);
-      }
-    });
+    this.buildLocaisBairros(cidade);
   }
 
   changeTipo(event: any, i: number) {
@@ -227,47 +216,35 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  finalidadeChange(event: any) {
-    if (this.customSearch.finalidade === 'residencial') {
-      this.customSearch.tipos = this.tipos_residencial;
-      this.locais = this.locais_residencial;
-    } else {
-      this.customSearch.tipos = this.tipos_comercial;
-      this.locais = this.locais_comercial;
-    }
-    this.buildLocais();
-  }
-
-
   private loadDefaults() {
-    this.db.list('tipos_residencial').snapshotChanges().subscribe((action: any[]) => {
-      this.customSearch.tipos = [];
-      this.tipos_residencial = action.map((value:SnapshotAction<any[]>, index, array) => {
-        return {key: value.payload.val(), selected: false, i: index};
-      });
-      this.customSearch.tipos = this.tipos_residencial;
-    });
+    // this.db.list('tipos_residencial').snapshotChanges().subscribe((action: any[]) => {
+    //   this.customSearch.tipos = [];
+    //   this.tipos_residencial = action.map((value:SnapshotAction<any[]>, index, array) => {
+    //     return {key: value.payload.val(), selected: false, i: index};
+    //   });
+    //   this.customSearch.tipos = this.tipos_residencial;
+    // });
+    //
+    // this.db.list('tipos_comercial').snapshotChanges().subscribe((action: any[]) => {
+    //   this.tipos_comercial = action.map((value:SnapshotAction<any[]>, index, array) => {
+    //     return {key: value.payload.val(), selected: false, i: index};
+    //   });
+    // });
 
-    this.db.list('tipos_comercial').snapshotChanges().subscribe((action: any[]) => {
-      this.tipos_comercial = action.map((value:SnapshotAction<any[]>, index, array) => {
-        return {key: value.payload.val(), selected: false, i: index};
-      });
-    });
-
-    this.db.list('locais_residencial').snapshotChanges().subscribe((action: any[]) => {
-      if (!this.locais_residencial) {
-        this.locais_residencial = action.map((value:SnapshotAction<any[]>) => value.payload.val());
-        this.locais = this.locais_residencial;
-        this.buildLocais();
-
-      }
-    });
-
-    this.db.list('locais_comercial').snapshotChanges().subscribe((action: any[]) => {
-      if (!this.locais_comercial) {
-        this.locais_comercial = action.map((value:SnapshotAction<any[]>) => value.payload.val());
-      }
-    });
+    // this.db.list('locais_residencial').snapshotChanges().subscribe((action: any[]) => {
+    //   if (!this.locais_residencial) {
+    //     this.locais_residencial = action.map((value:SnapshotAction<any[]>) => value.payload.val());
+    //     this.locais = this.locais_residencial;
+    //     this.buildLocais();
+    //
+    //   }
+    // });
+    //
+    // this.db.list('locais_comercial').snapshotChanges().subscribe((action: any[]) => {
+    //   if (!this.locais_comercial) {
+    //     this.locais_comercial = action.map((value:SnapshotAction<any[]>) => value.payload.val());
+    //   }
+    // });
 
     this.db.list('area').snapshotChanges().subscribe((action: SnapshotAction<{}>[]) => {
       action.forEach(value => {
@@ -293,30 +270,66 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  buildLocais() {
-    this.locaisGeral = [];
-    _.forIn(this.locais, (value, key) => {
-      this.locaisGeral.push(key);
-    });
-  }
-
-  filterLocaisBairros(cidade: string) {
-    return this.customSearch.bairros.filter(value => value.c === cidade);
-  }
-
   buildLocaisBairros(cidade: string) {
-    // if (!this.customSearch.bairros.length) {
-    //   this.locaisBairro = [];
-    // }
     this.customSearch.bairros = [];
-    _.forIn(this.locais, (value, key) => {
-      if (key === cidade) {
-        value.map((value2, index, array) => {
-          this.customSearch.bairros.push({key: value2, selected: false, i: index, c: cidade});
-        });
+    _.union(_.compact(_.map(this.filtred, (im: Imovel, key) => {
+      if (_.get(im, "local.cidade") === cidade) {
+        return im.local.bairro;
+      }
+      return null;
+    }))).forEach((value, index) => {
+      this.customSearch.bairros.push({key: value, selected: false, i: index, c: cidade});
+    });
+
+    console.log(this.customSearch.bairros);
+  }
+
+
+  rebuildFilter(event?: any) {
+    console.log(this.allImoveis.imoveis);
+    this.filtred = this.allImoveis.imoveis.filter((imovel: Imovel) => {
+      let add = false;
+      if (this.customSearch.categoria === 'comprar' && _.get(imovel, "comercializacao.venda.ativa")) {
+        add = true;
+      }
+      if (this.customSearch.categoria === 'alugar' && _.get(imovel, "comercializacao.locacao.ativa")) {
+        add = true;
+      }
+
+      if (!add) return add;
+
+      if (this.customSearch.finalidade === 'residencial' && imovel.finalidade !== 'residencial') {
+        add = false;
+      }
+      if (this.customSearch.finalidade === 'comercial' && imovel.finalidade !== 'comercial') {
+        add = false;
+      }
+
+      return add;
+    });
+
+
+    this.customSearch.tipos = [];
+    this.cidades = [];
+
+    this.filtred.forEach((im: Imovel, i: number) => {
+      this.cidades.push(im.local.cidade);
+      if (i === 0) {
+        this.customSearch.cidade = im.local.cidade;
+        this.buildLocaisBairros(im.local.cidade);
       }
     });
-    console.log(this.customSearch.bairros);
+
+
+    _.union(_.compact(_.map(this.filtred, (im: Imovel, key) => {
+      return im.tipo;
+    }))).forEach((value, index) => {
+      this.customSearch.tipos.push({key: value, selected: false, i: index});
+    });
+
+    this.cidades = _.union(this.cidades)
+    console.log(this.cidades);
+    console.log(this.filtred);
   }
 
 }

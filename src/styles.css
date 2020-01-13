@@ -12073,6 +12073,10 @@ Date: 17/09/2018
   z-index: 10;
 }
 
+.goal .goal-title.finalidade {
+  min-width: 152px;
+}
+
 .goal .goal-title-in {
   font-size: 16px;
   font-weight: 600;
