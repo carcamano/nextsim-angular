@@ -22388,7 +22388,7 @@ h3.blog-result {
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  width: calc(100% - 200px);
+  width: calc(100% - 380px);
 }
 
 .box-filter-1 > div,
@@ -25178,6 +25178,7 @@ main {
 
 @media (max-width: 768px) {
   #buttonContato.btn-contact-chat.d-md-block {
+    display: none !important;
   }
 }
 
@@ -26721,8 +26722,13 @@ main {
   color: #FFFFFF;
   font-weight: 400;
   font-size: 26px;
-  padding: 3% 0 3% 0;
+  padding: 6px 0;
   border-radius: 8px;
+}
+
+.PropertyCardBTN img {
+  filter: grayscale(100%) brightness(100%) contrast(10000000%);
+   -webkit-filter: grayscale(100%) brightness(100%) contrast(10000000%);
 }
 
 .btn-wishlist:hover {
@@ -27684,6 +27690,28 @@ main {
     background: #f69731;
     color: #fff;
   }
+
+  .bnt-sca-times {
+    right: 8px;
+    padding: 16px;
+    bottom: 55px;
+  }
+
+  #groupButtomContact .btn.btn-secondary-action.btn-sca-contact {
+    right: 90px;
+    bottom: 50px;
+  }
+
+  #groupButtomContact .btn.btn-secondary-action.btn-sca-whatsapp {
+    right: 90px;
+    bottom: 130px;
+  }
+
+  #groupButtomContact .btn.btn-secondary-action.btn-sca-phone {
+    right: 90px;
+    bottom: 210px;
+  }
+
 
 
 }

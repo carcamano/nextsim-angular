@@ -96,6 +96,13 @@ export class ImovelComponent implements OnInit {
     });
   }
 
+  whatsapp() {
+
+      window.open("https://api.whatsapp.com/send?text=http://nextsim.com.br/imoveis/" + this.imovel.sigla, "_blank");
+
+    // https://api.whatsapp.com/send?phone=1996099999&text=https://postcron.com/en/blog/landings/whatsapp-link-generator/#page-block-he6t7wyxoh
+  }
+
 }
 
 

@@ -12,46 +12,6 @@
                   *ngIf="showExtraFilter">Menos filtros</b></a>
             </div>
             <div class="box-filter-1">
-              <!-- TIPO DE CATEGORIA -->
-              <div ngbDropdown [autoClose]="'outside'">
-                <a
-                  class="MenuItem dropdown-toggle" id="CategoryMenu"
-                  ngbDropdownToggle><i class="icon-building"></i> Categoria <i
-                  class="fas fa-chevron-down small-icon"></i></a>
-                <div class="GoalMenu dropdown-menu FilterBarCheckBoxFIELDS2 tiny" ngbDropdownMenu>
-                  <ul>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="categoria-1"
-                             (change)="changeFinalidade($event, 'residencial')"
-                             [checked]="customSearch.categoria === 'residencial'"/>
-                      <label for="categoria-1"><span>Residencial</span></label>
-                    </li>
-                    <li>
-                      <input type="checkbox" class="checkbox-s2" id="categoria-2"
-                             (change)="changeFinalidade($event, 'comercial')"
-                             [checked]="customSearch.categoria === 'comercial'"/>
-                      <label for="categoria-2"><span>Comercial</span></label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- END TIPO DE CATEGORIA -->
-              <!-- TIPO DE IMOVEL -->
-              <div ngbDropdown  [autoClose]="'outside'">
-                <a
-                  class="MenuItem dropdown-toggle" id="TypeMenu"
-                  ngbDropdownToggle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i></a>
-                <div class="TypeMenu dropdown-menu FilterBarCheckBoxFIELDS2" ngbDropdownMenu>
-                  <ul>
-                    <li *ngFor="let tipo of customSearch.tipos;  let i = index">
-                      <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" ([ngModel])="tipo.selected"
-                             (change)="changeTipo($event, i)"/>
-                      <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- END TIPO DE IMOVEL -->
               <!-- FINALIDADE DE IMOVEL -->
               <div ngbDropdown  [autoClose]="'outside'">
                 <a
@@ -77,6 +37,47 @@
                 </div>
               </div>
               <!-- END FINALIDADE DE IMOVEL -->
+              <!-- TIPO DE CATEGORIA -->
+              <div ngbDropdown [autoClose]="'outside'">
+                <a
+                  class="MenuItem dropdown-toggle" id="CategoryMenu"
+                  ngbDropdownToggle><i class="icon-building"></i> Categoria <i
+                  class="fas fa-chevron-down small-icon"></i></a>
+                <div class="GoalMenu dropdown-menu FilterBarCheckBoxFIELDS2 tiny" ngbDropdownMenu>
+                  <ul>
+                    <li>
+                      <input type="checkbox" class="checkbox-s2" id="categoria-1"
+                             (change)="changeFinalidade($event, 'residencial')"
+                             [checked]="customSearch.finalidade === 'residencial'"/>
+                      <label for="categoria-1"><span>Residencial</span></label>
+                    </li>
+                    <li>
+                      <input type="checkbox" class="checkbox-s2" id="categoria-2"
+                             (change)="changeFinalidade($event, 'comercial')"
+                             [checked]="customSearch.finalidade === 'comercial'"/>
+                      <label for="categoria-2"><span>Comercial</span></label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- END TIPO DE CATEGORIA -->
+              <!-- TIPO DE IMOVEL -->
+              <div ngbDropdown  [autoClose]="'outside'">
+                <a
+                  class="MenuItem dropdown-toggle" id="TypeMenu"
+                  ngbDropdownToggle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i></a>
+                <div class="TypeMenu dropdown-menu FilterBarCheckBoxFIELDS2" ngbDropdownMenu>
+                  <ul>
+                    <li *ngFor="let tipo of customSearch.tipos;  let i = index">
+                      <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" ([ngModel])="tipo.selected"
+                             (change)="changeTipo($event, i)"/>
+                      <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- END TIPO DE IMOVEL -->
+
               <!--  CIDADE OU BAIRRO DE IMOVEL -->
               <div class="btn-cidade" ngbDropdown  [autoClose]="'outside'">
                 <a
@@ -85,14 +86,14 @@
                   class="fas fa-chevron-down small-icon"></i></a>
                 <div class="CityMenu dropdown-menu" ngbDropdownMenu>
                   <div class="row selectiona_local" style="">
-                    <div class="col-6" *ngIf="locais">
+                    <div class="col-6" *ngIf="cidades.length > 0">
                       <span class="TitleCityMobHome">Cidade</span>
                       <div class="cidades_botoes">
-                        <button *ngFor="let local of locaisGeral;  let i = index" (click)="changeCidade(local)"
-                                [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
+                        <button *ngFor="let cidade of cidades;  let i = index" (click)="changeCidade(cidade)"
+                                [ngClass]="{'active' : cidade === customSearch.cidade }">{{cidade}}</button>
                       </div>
                     </div>
-                    <div class="col-6" *ngIf="locais">
+                    <div class="col-6" *ngIf="cidades.length > 0">
                       <span class="TitleCityMobHome">Bairro</span>
                       <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2">
                         <ul>
@@ -112,7 +113,7 @@
               <!-- END CIDADE OU BAIRRO DE IMOVEL -->
               <!-- QUARTOS DE IMOVEL -->
               <div ngbDropdown  [autoClose]="'outside'"
-                   *ngIf="queryParams && queryParams.finalidade === 'residencial'">
+                   *ngIf="customSearch && customSearch.finalidade === 'residencial'">
                 <a
                   class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false" ngbDropdownToggle><i class="icon-bed"></i> Quartos <i
@@ -158,7 +159,7 @@
               <!-- END QUARTO DE IMOVEIS -->
               <!-- SALAS DE IMOVEL -->
               <div ngbDropdown  [autoClose]="'outside'"
-                   *ngIf="queryParams.finalidade === 'comercial'">
+                   *ngIf="customSearch.finalidade === 'comercial'">
                 <a
                   class="MenuItem dropdown-toggle " id="RoomMenu" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false" ngbDropdownToggle><i class="icon2-salas"></i> Salas <i
@@ -238,6 +239,12 @@
                 </div>
               </div>
               <!-- END PRECO DE IMOVEL -->
+            </div>
+            <div class="text-center align-content-center ">
+              <a class="btn btn-more-filters btn-semi-rounded FiltersBTN "
+                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN"
+                 (click)="dropDownChange(false)">
+                <b >Aplicar</b></a>
             </div>
           </div>
           <div class="FilterBarLineTop justify-content-between" id="MoreFiltersBTN" [hidden]="!showExtraFilter">
@@ -551,13 +558,6 @@
 
 
 <ng-template #modalmobile let-modal>
-
-  <!--  <div class="modal fade InternalModalFilter show" tabindex="-1" role="dialog"-->
-  <!--       aria-labelledby="InternalModalFilterLabel" style="display: block;">-->
-  <!--    <div class="modal-dialog">-->
-<!--  <div class="modal-content">-->
-
-
     <div class="row MobileFilterBarOptions">
 
       <div class="col-12 MobileFilterBarTitle text-center">
@@ -569,6 +569,31 @@
       </div>
       <div class="col-12 MobileFilterBarMenu px-0 py-0">
         <ngb-accordion #acc="ngbAccordion">
+          <ngb-panel class="MBFilterOptions">
+            <ng-template ngbPanelTitle>
+              <i class="icon-key"></i> Finalidade <i
+              class="fas fa-chevron-down small-icon"></i>
+            </ng-template>
+            <ng-template ngbPanelContent>
+
+              <div class="FilterBarCheckBoxFIELDS2" >
+                <ul>
+                  <li>
+                    <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'comprar'"
+                           (change)="categoriaCheckboxChange('comprar')" id="OPCcomprarMObile"/>
+                    <label for="OPCcomprarMObile"><span>Comprar</span></label>
+                  </li>
+
+                  <li>
+                    <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'alugar'"
+                           (change)="categoriaCheckboxChange('alugar')" id="OPCalugarMObile"/>
+                    <label for="OPCalugarMObile"><span>Alugar</span></label>
+                  </li>
+                </ul>
+
+              </div>
+            </ng-template>
+          </ngb-panel>
           <ngb-panel class="MBFilterOptions" >
             <ng-template ngbPanelTitle>
               <i class="icon-building"></i> Categoria <i
@@ -581,13 +606,13 @@
                   <li>
                     <input type="checkbox" class="checkbox-s2" id="categoria-1-mobile"
                            (change)="changeFinalidade($event, 'residencial')"
-                           [checked]="customSearch.categoria === 'residencial'"/>
+                           [checked]="customSearch.finalidade === 'residencial'"/>
                     <label for="categoria-1-mobile"><span>Residencial</span></label>
                   </li>
                   <li>
                     <input type="checkbox" class="checkbox-s2" id="categoria-2-mobile"
                            (change)="changeFinalidade($event, 'comercial')"
-                           [checked]="customSearch.categoria === 'comercial'"/>
+                           [checked]="customSearch.finalidade === 'comercial'"/>
                     <label for="categoria-2-mobile"><span>Comercial</span></label>
                   </li>
                 </ul>
@@ -612,38 +637,14 @@
               </div>
             </ng-template>
           </ngb-panel>
-          <ngb-panel class="MBFilterOptions">
-            <ng-template ngbPanelTitle>
-            <i class="icon-key"></i> Tipo <i
-              class="fas fa-chevron-down small-icon"></i>
-            </ng-template>
-            <ng-template ngbPanelContent>
 
-              <div class="FilterBarCheckBoxFIELDS2" >
-                <ul>
-                  <li>
-                    <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'comprar'"
-                           (change)="categoriaCheckboxChange('comprar')" id="OPCcomprarMObile"/>
-                    <label for="OPCcomprarMObile"><span>Comprar</span></label>
-                  </li>
-
-                  <li>
-                    <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'alugar'"
-                           (change)="categoriaCheckboxChange('alugar')" id="OPCalugarMObile"/>
-                    <label for="OPCalugarMObile"><span>Alugar</span></label>
-                  </li>
-                </ul>
-
-              </div>
-            </ng-template>
-          </ngb-panel>
           <ngb-panel class="MBFilterOptions">
             <ng-template ngbPanelTitle><i class="icon-pin"></i> Cidade  <i class="fas fa-chevron-down small-icon"></i></ng-template>
 
 
             <ng-template ngbPanelContent>
-              <div class="cidades_botoes" *ngIf="locais">
-                <button *ngFor="let local of locaisGeral;  let i = index" (click)="changeCidade(local)"
+              <div class="cidades_botoes" *ngIf="cidades.length > 0">
+                <button *ngFor="let local of cidades;  let i = index" (click)="changeCidade(local)"
                         [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
               </div>
 
@@ -652,7 +653,7 @@
           <ngb-panel class="MBFilterOptions">
             <ng-template ngbPanelTitle><i class="icon-pin"></i> Bairro  <i class="fas fa-chevron-down small-icon"></i></ng-template>
             <ng-template ngbPanelContent>
-                <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" *ngIf="locais">
+                <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" *ngIf="cidades.length > 0">
                   <ul>
                     <li *ngFor="let local of customSearch.bairros;  let i = index">
                       <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
@@ -860,7 +861,4 @@
         </ngb-accordion>
       </div>
     </div>
-<!--  </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
 </ng-template>
