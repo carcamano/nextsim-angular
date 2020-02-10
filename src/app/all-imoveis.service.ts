@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from "@angular/fire/database";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import * as jsonpack from "jsonpack";
+import * as moment from 'moment';
+import {MomentModule} from "ngx-moment";
 
 
 @Injectable({
@@ -15,13 +17,20 @@ export class AllImoveis {
     this.getAll();
   }
 
-  getAll(callback?: () => void) {
+  getAll(callback?: () => void, force: boolean = false) {
     try {
       let lastUpdate = localStorage.getItem('nextsim_lastUpdate');
       const localImoveis = localStorage.getItem('nextsim_imoveis');
-      if (localImoveis) {
+
+      if (lastUpdate) {
+        const date = moment(lastUpdate);
+        if(!date.isSame(moment(), 'day')) {
+          lastUpdate = null
+        }
+      }
+      if (lastUpdate && localImoveis) {
         this.imoveis = jsonpack.unpack(localImoveis);
-      } else {
+      } else if (force) {
         this.getFromDb(callback);
       }
     } catch (e) {
@@ -33,17 +42,18 @@ export class AllImoveis {
   }
 
   private getFromDb(callback?: () => void): void {
-    this.ngxService.start('AllImoveisgetAll');
+    // this.ngxService.start('AllImoveisgetAll');
 
     this.db.list('imoveis').valueChanges().subscribe(value => {
-      this.ngxService.stop('AllImoveisgetAll');
       this.imoveis = value;
       try {
+        localStorage.setItem('nextsim_lastUpdate', moment().format("MM-DD-YYYY"));
         localStorage.setItem('nextsim_imoveis', jsonpack.pack(value));
       } catch (e) {
         console.log(e);
         localStorage.clear();
         try {
+          localStorage.setItem('nextsim_lastUpdate', moment().format("MM-DD-YYYY"));
           localStorage.setItem('nextsim_imoveis', jsonpack.pack(value));
         } catch (ee) {
           console.log(ee);

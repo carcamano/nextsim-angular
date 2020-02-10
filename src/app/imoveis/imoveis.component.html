@@ -420,8 +420,11 @@
                               [carouselClasses]="['PropertyCardCarousel', 'owl-theme', 'sliding']">
                   <div class="item" *ngFor="let image of imagensCarousel(imovel.midia.imagens);let i = index"
                        style="height: 100%;">
-                    <div class="img" style="height: 100%;">
+                    <div class="img" [class.opacity-filter]="i === 3" style="height: 100%;">
                       <img src={{image}}/>
+                      <a [routerLink]="'/imoveis/' + imovel.sigla" class="btn btn-see-more btn-rounded" *ngIf="i === 3">
+                        VER MAIS <span class="arrow-icon"></span>
+                      </a>
                     </div>
                   </div>
                 </owl-carousel>

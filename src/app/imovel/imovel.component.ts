@@ -33,22 +33,11 @@ export class ImovelComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       console.log(params)
-      if (!this.all.imoveis) {
-
-        this.all.getBySigla(params.id, im => {
+        this.all.getBySigla(String(params.id).toLocaleUpperCase(), im => {
           console.log(im);
           this.imovel = im;
           this.buildForm();
         })
-
-      } else {
-        this.all.imoveis.forEach(imovel => {
-          if (params.id === imovel.sigla) {
-            this.imovel = imovel;
-            this.buildForm();
-          }
-        })
-      }
     });
 
     // cd-google-map

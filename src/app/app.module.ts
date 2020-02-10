@@ -37,6 +37,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AllImoveis} from "./all-imoveis.service";
 import { FabComponent } from './fab/fab.component';
 import { CustomSearchComponent } from './custom-search/custom-search.component';
+import { MomentModule } from 'ngx-moment';
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -85,6 +86,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     OwlModule,
     NgbModule,
     FormsModule,
+    MomentModule,
     ReactiveFormsModule,
     IsotopeModule,
     Ng5SliderModule,

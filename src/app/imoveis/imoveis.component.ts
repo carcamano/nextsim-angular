@@ -120,7 +120,7 @@ export class ImoveisComponent implements OnInit {
           this.getImoveis()
           this.ngxService.stopAll();
           this.ngxService.stop();
-        });
+        }, true);
       } else {
         this.getImoveis();
       }
@@ -360,7 +360,7 @@ export class ImoveisComponent implements OnInit {
   }
 
   imagensCarousel(images: string[]) {
-    return _.slice(images, 0, 3);
+    return _.slice(images, 0, 4);
   }
 
 
