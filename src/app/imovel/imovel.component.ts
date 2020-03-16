@@ -33,11 +33,16 @@ export class ImovelComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       console.log(params)
-        this.all.getBySigla(String(params.id).toLocaleUpperCase(), im => {
-          console.log(im);
-          this.imovel = im;
-          this.buildForm();
-        })
+      this.all.getBySigla(String(params.id).toLocaleUpperCase(), im => {
+        console.log(im);
+        this.imovel = im;
+        this.buildForm();
+        try {
+          window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
+        } catch (e) {
+          window.scrollTo(0, 0);
+        }
+      });
     });
 
     // cd-google-map
@@ -59,6 +64,14 @@ export class ImovelComponent implements OnInit {
 
   getFormattedPrice(price: number) {
     return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price).replace(',00', '');
+  }
+
+  anualOrMonth(label?: string) {
+    let l = 'mês';
+    if (label === 'anual') {
+      l = 'anual'
+    }
+    return l;
   }
 
 
@@ -87,7 +100,7 @@ export class ImovelComponent implements OnInit {
 
   whatsapp() {
 
-      window.open("https://api.whatsapp.com/send?text=http://nextsim.com.br/imoveis/" + this.imovel.sigla, "_blank");
+    window.open("https://api.whatsapp.com/send?text=http://nextsim.com.br/imoveis/" + this.imovel.sigla, "_blank");
 
     // https://api.whatsapp.com/send?phone=1996099999&text=https://postcron.com/en/blog/landings/whatsapp-link-generator/#page-block-he6t7wyxoh
   }

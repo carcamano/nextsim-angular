@@ -114,17 +114,13 @@ export class ImoveisComponent implements OnInit {
         this.customSearch.finalidade = this.queryParams.finalidade;
       }
       this.buildBadges();
-      if (!this.all.imoveis) {
-        this.ngxService.start();
-        this.all.getAll(() => {
-          this.getImoveis()
-          this.ngxService.stopAll();
-          this.ngxService.stop();
-        }, true);
-      } else {
-        this.getImoveis();
-      }
-      this.loadDefaults();
+
+      this.all.getAll(() => {
+        this.getImoveis()
+        this.ngxService.stopAll();
+        this.ngxService.stop();
+        this.loadDefaults();
+      });
 
 
     });
@@ -143,7 +139,6 @@ export class ImoveisComponent implements OnInit {
 
 
   badgeClose(param: any) {
-    console.log(param);
 
     this.removeParams.push(param);
     this.dropDownChange(false);
@@ -208,8 +203,6 @@ export class ImoveisComponent implements OnInit {
   }
 
   private filterAll() {
-    console.log(this.imoveis.length);
-    console.log(this.allImoveis.length);
 
     this.imoveis = [];
 
@@ -329,6 +322,7 @@ export class ImoveisComponent implements OnInit {
     this.pages = filtred.length;
     this.imoveis = _.chunk(filtred, this.itensPerPage)[this.currentPage - 1];
 
+    console.log(filtred);
     this.checkResults();
     // }, 2000);
 
@@ -341,12 +335,12 @@ export class ImoveisComponent implements OnInit {
 
     this.noResults = false;
 
-    console.log(this.all.imoveis);
-
-    this.allImoveis = this.all.imoveis;
-    this.filterAll();
-    this.checkResults();
-    this.rebuildFilter();
+    this.all.getAll(imoveis => {
+      this.allImoveis = imoveis;
+      this.filterAll();
+      this.checkResults();
+      this.rebuildFilter();
+    });
   }
 
 
@@ -373,21 +367,26 @@ export class ImoveisComponent implements OnInit {
   }
 
   toArea(imovel: Imovel) {
-    if (!imovel) {
-      return '?';
-    }
-    try {
-      if (imovel && imovel.tipo === 'casa') {
-        return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-      } else if (imovel && imovel.tipo === 'apartamento' || imovel.tipo === 'sala') {
-        return imovel.numeros.areas.util.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-      } else if (imovel && imovel.tipo === 'terreno') {
-        return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+    if (imovel) {
+      try {
+        if (imovel && imovel.tipo === 'casa') {
+          return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+        } else if (imovel && imovel.tipo === 'apartamento' || imovel.tipo === 'sala' || imovel.tipo === 'cobertura') {
+          return imovel.numeros.areas.util.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+        } else if (imovel && imovel.tipo === 'terreno') {
+          return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+        } else if (imovel && imovel.tipo === 'chácara') {
+          return imovel.numeros.areas.terreno.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+        } else if (imovel && imovel.tipo === 'galpão') {
+          return imovel.numeros.areas.construida.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+        } else if (imovel && imovel.tipo === 'prédio') {
+          return imovel.numeros.areas.construida.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+        }
+      } catch (e) {
+        // console.error(e);
       }
-    } catch (e) {
-      // console.error(e);
     }
-    return '?';
+    return null;
   }
 
   toDormis(imovel: Imovel) {
@@ -411,7 +410,7 @@ export class ImoveisComponent implements OnInit {
       return '?';
     }
     try {
-      if (imovel && imovel.tipo === 'sala') {
+      if (imovel && (imovel.tipo === 'sala' || imovel.tipo === 'prédio')) {
         return imovel.numeros.salas;
       } else if (imovel) {
         return imovel.numeros.salas;
@@ -537,11 +536,9 @@ export class ImoveisComponent implements OnInit {
 
   changeTipo(event: any, i: number) {
     this.customSearch.tipos[i].selected = event.currentTarget.checked;
-    console.log(this.customSearch.tipos);
   }
 
   changeBairro(event: any, i: number) {
-    console.log('changeBairro');
     this.customSearch.bairros[i].selected = event.currentTarget.checked;
     this.bairrosSelecionados = this.customSearch.bairros.filter(value => {
       return value.selected === true;
@@ -588,15 +585,14 @@ export class ImoveisComponent implements OnInit {
       this.customSearch.bairros.push({key: value, selected: false, i: index, c: cidade});
     });
 
-    console.log(this.customSearch.bairros);
   }
 
 
   rebuildFilter(event?: any) {
 
-    if (!this.all.imoveis) return;
+    if (!this.allImoveis) return;
 
-    this.filtred = this.all.imoveis.filter((imovel: Imovel) => {
+    this.filtred = this.allImoveis.filter((imovel: Imovel) => {
       let add = false;
       if (this.customSearch.categoria === 'comprar' && _.get(imovel, "comercializacao.venda.ativa")) {
         add = true;
@@ -636,8 +632,6 @@ export class ImoveisComponent implements OnInit {
     });
 
     this.cidades = _.union(this.cidades)
-    console.log(this.cidades);
-    console.log(this.filtred);
   }
 
 

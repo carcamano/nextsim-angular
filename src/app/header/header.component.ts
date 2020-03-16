@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit {
 
   rootView = true;
 
+  imoveis: Imovel[];
+
   simpleSearch = {
     finalidade: null,
     categoria: null,
@@ -104,36 +106,39 @@ export class HeaderComponent implements OnInit {
 
 
   open(content) {
-    this.rebuildFilter();
-    this.modalService.open(content, {
-      ariaLabelledBy: 'modal-basic-title',
-      // @ts-ignore
-      size: 'xl',
-      scrollable: true,
-      centered: true
-    }).result.then((result) => {
-      console.log(this.customSearch);
-      const tipos = this.customSearch.tipos.filter(value => {
-        return value.selected === true;
-      }).map(value => {
-        return value.key;
-      });
-      const bairros = this.customSearch.bairros.filter(value => {
-        return value.selected === true;
-      }).map(value => {
-        return value.key;
-      });
-      console.log(bairros);
-      const area: string = this.customSearch.area.min + ',' + this.customSearch.area.max;
-      const precos: string = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
-      this.search({
-        finalidade: this.customSearch.finalidade, tipo: tipos.join(','),
-        categoria: this.customSearch.categoria, precos: precos, area: area, custom: true,
-        dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas,
-        bairros: bairros.join(','), cidade: this.customSearch.cidade
-      });
-    }, (reason) => {
+    this.allImoveis.getAll((imoveis: Imovel[]) => {
+      this.imoveis = imoveis;
+      this.rebuildFilter();
+      this.modalService.open(content, {
+        ariaLabelledBy: 'modal-basic-title',
+        // @ts-ignore
+        size: 'xl',
+        scrollable: true,
+        centered: true
+      }).result.then((result) => {
+        console.log(this.customSearch);
+        const tipos = this.customSearch.tipos.filter(value => {
+          return value.selected === true;
+        }).map(value => {
+          return value.key;
+        });
+        const bairros = this.customSearch.bairros.filter(value => {
+          return value.selected === true;
+        }).map(value => {
+          return value.key;
+        });
+        console.log(bairros);
+        const area: string = this.customSearch.area.min + ',' + this.customSearch.area.max;
+        const precos: string = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
+        this.search({
+          finalidade: this.customSearch.finalidade, tipo: tipos.join(','),
+          categoria: this.customSearch.categoria, precos: precos, area: area, custom: true,
+          dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas,
+          bairros: bairros.join(','), cidade: this.customSearch.cidade
+        });
+      }, (reason) => {
 
+      });
     });
   }
 
@@ -286,8 +291,7 @@ export class HeaderComponent implements OnInit {
 
 
   rebuildFilter(event?: any) {
-    console.log(this.allImoveis.imoveis);
-    this.filtred = this.allImoveis.imoveis.filter((imovel: Imovel) => {
+    this.filtred = this.imoveis.filter((imovel: Imovel) => {
       let add = false;
       if (this.customSearch.categoria === 'comprar' && _.get(imovel, "comercializacao.venda.ativa")) {
         add = true;

@@ -37,15 +37,21 @@
                 <p class="PropertyCardType">
                   <span class="first_letter">{{imovel.tipo}}</span> |
                   <span *ngIf="imovel.tipo ==='apartamento'">Área útil {{imovel.numeros?.areas?.util?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='sala'">Área útil {{imovel.numeros?.areas?.util?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='cobertura'">Área útil {{imovel.numeros?.areas?.util?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
                   <span *ngIf="imovel.tipo ==='casa' && imovel.numeros?.areas?.terreno">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
                   <span *ngIf="imovel.tipo ==='casa' && imovel.numeros?.areas?.construida">Área Construída {{imovel.numeros?.areas?.construida?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='chácara' && imovel.numeros?.areas?.terreno">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
+                  <span *ngIf="imovel.tipo ==='chácara' && imovel.numeros?.areas?.construida">Área Construída {{imovel.numeros?.areas?.construida?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo ==='prédio' && imovel.numeros?.areas?.terreno">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
+                  <span *ngIf="imovel.tipo ==='prédio' && imovel.numeros?.areas?.construida">Área Construída {{imovel.numeros?.areas?.construida?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
                   <span *ngIf="imovel.tipo ==='galpão'">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}} | </span>
                   <span *ngIf="imovel.tipo ==='galpão'">Área Construída {{imovel.numeros?.areas?.construida?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
                   <span *ngIf="imovel.tipo ==='terreno'">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
                   <span *ngIf="imovel.tipo ==='área'">Área do Terreno {{imovel.numeros?.areas?.terreno?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
 
 
-                  <span *ngIf="imovel.tipo !=='apartamento' && imovel.tipo !=='casa' && imovel.tipo !=='galpão' && imovel.tipo !=='terreno' && imovel.tipo !=='área'">Área total {{imovel.numeros?.areas?.total?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
+                  <span *ngIf="imovel.tipo !=='apartamento' && imovel.tipo !=='casa' && imovel.tipo !=='galpão' && imovel.tipo !=='terreno' && imovel.tipo !=='área' && imovel.tipo !=='chácara' && imovel.tipo !=='sala' && imovel.tipo !=='prédio' && imovel.tipo !=='cobertura'">Área total {{imovel.numeros?.areas?.total?.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>
 <!--                  <span>Área útil {{imovel.numeros?.areas?.util.toFixed(0)}} {{imovel.numeros?.areas?.unidade}}</span>-->
                 </p>
                 <p class="PropertyCardTitle">{{imovel.local.bairro}}</p>
@@ -54,27 +60,28 @@
                   {{imovel.local.cidade}}</p>
 
                 <ul class="PropertyOptions">
-                  <li><img src="../../assets/img/imovel/bed-orange.svg"/>
+                  <li *ngIf="imovel.numeros.dormitorios || imovel.numeros.salas"><img src="../../assets/img/imovel/bed-orange.svg"/>
                     <span>{{imovel.finalidade === 'residencial' ? imovel.numeros.dormitorios : imovel.numeros.salas }}</span>
                   </li>
-                  <li><img src="../../assets/img/imovel/shower-orange.svg"/>
+                  <li *ngIf="imovel.numeros.banheiros"><img src="../../assets/img/imovel/shower-orange.svg"/>
                     <span>{{imovel.numeros.banheiros}}</span>
                   </li>
-                  <li class="last-item"><img src="../../assets/img/imovel/car-orange.svg"/>
+                  <li class="last-item" *ngIf="imovel.numeros.vagas"><img src="../../assets/img/imovel/car-orange.svg"/>
                     <span>{{imovel.numeros.vagas}}</span>
                   </li>
                 </ul>
 
                 <div class="PropertyCardValues pt-4 row" *ngIf="imovel?.comercializacao?.taxa">
-                  <img src="../../assets/img/imovel/coin-orange.svg"/>
+                  <img src="../../assets/img/imovel/coin-orange.svg" style="margin-top: 7px;"/>
                   <div class="" style="display: inline-block;">
 
-                  <span *ngIf="imovel?.comercializacao?.taxa?.iptu">IPTU: R$ {{imovel?.comercializacao?.taxa?.iptu}}
-                    <span *ngIf="imovel?.comercializacao?.taxa?.mes">/mês</span></span>
-                    <br *ngIf="imovel?.comercializacao?.taxa?.iptu && imovel?.comercializacao?.taxa?.condominio"/>
+                  <span *ngIf="imovel?.comercializacao?.taxa?.iptu && imovel?.comercializacao?.locacao?.ativa">IPTU: R$ {{imovel?.comercializacao?.taxa?.iptu}}
+                    <span *ngIf="imovel?.comercializacao?.taxa?.mes">/{{anualOrMonth(imovel?.comercializacao?.taxa?.mes)}}</span></span>
+                    <br *ngIf="imovel?.comercializacao?.taxa?.iptu  && imovel?.comercializacao?.locacao?.ativa && imovel?.comercializacao?.taxa?.condominio"/>
                     <span
                       *ngIf="imovel?.comercializacao?.taxa?.condominio">Condomínio: R$ {{imovel?.comercializacao?.taxa?.condominio}}
-                      <span *ngIf="imovel?.comercializacao?.taxa?.mes">/mês</span></span>
+<!--                      <span *ngIf="imovel?.comercializacao?.taxa?.mes">/{{anualOrMonth(imovel?.comercializacao?.taxa?.mes)}}</span></span>-->
+                      <span *ngIf="imovel?.comercializacao?.taxa?.mes"></span></span>
                   </div>
                 </div>
               </div>
@@ -83,15 +90,15 @@
             <div class="col-8 col-sm-8 col-lg-9 col-xl-9  pt-1 mt-2">
               <div class="PropertyCard PropertyCardShadowBox" style="flex-direction: column;">
 
-                <p class="PropertyCardValues " *ngIf="imovel?.comercializacao?.locacao?.ativa">
-                  <img
-                    src="../../assets/img/imovel/coin-gray.svg"/> Aluguel:
-                  <b>{{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</b>
-                </p>
                 <p class="PropertyCardValues " *ngIf="imovel?.comercializacao?.venda?.ativa">
                   <img
                     src="../../assets/img/imovel/coin-gray.svg"/> Venda:
                   <b>{{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</b>
+                </p>
+                <p class="PropertyCardValues " *ngIf="imovel?.comercializacao?.locacao?.ativa">
+                  <img
+                    src="../../assets/img/imovel/coin-gray.svg"/> Aluguel:
+                  <b>{{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</b>
                 </p>
 
               </div>

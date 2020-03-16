@@ -4,6 +4,7 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import * as jsonpack from "jsonpack";
 import * as moment from 'moment';
 import {MomentModule} from "ngx-moment";
+import {Imovel} from "./imoveis/models/imovel.model";
 
 
 @Injectable({
@@ -11,39 +12,41 @@ import {MomentModule} from "ngx-moment";
 })
 export class AllImoveis {
 
-  imoveis: any[];
+  private imoveis: any[];
 
   constructor(private db: AngularFireDatabase, private ngxService: NgxUiLoaderService) {
-    this.getAll();
+
   }
 
-  getAll(callback?: () => void, force: boolean = false) {
+  getAll(callback?: (imoveis?: Imovel[]) => void, force: boolean = false) {
     try {
       let lastUpdate = localStorage.getItem('nextsim_lastUpdate');
       const localImoveis = localStorage.getItem('nextsim_imoveis');
 
       if (lastUpdate) {
         const date = moment(lastUpdate);
-        if(!date.isSame(moment(), 'day')) {
+        if (!date.isSame(moment(), 'day')) {
           lastUpdate = null
         }
       }
-      if (lastUpdate && localImoveis) {
+      if (force) {
+        this.getFromDb(callback);
+      } else if (lastUpdate && localImoveis) {
         this.imoveis = jsonpack.unpack(localImoveis);
-      } else if (force) {
+        if (callback) callback(this.imoveis);
+      } else {
         this.getFromDb(callback);
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
       this.getFromDb(callback);
     }
 
 
   }
 
-  private getFromDb(callback?: () => void): void {
-    // this.ngxService.start('AllImoveisgetAll');
-
+  private getFromDb(callback?: (imoveis?: Imovel[]) => void): void {
+    this.ngxService.start('getFromDb');
     this.db.list('imoveis').valueChanges().subscribe(value => {
       this.imoveis = value;
       try {
@@ -59,14 +62,22 @@ export class AllImoveis {
           console.log(ee);
         }
       }
-      if (callback) callback();
+      this.ngxService.stop('getFromDb');
+      if (callback) callback(this.imoveis);
     });
   }
 
   getBySigla(sigla: string, callback?: (imovel?: any) => void) {
-    this.db.list('/imoveis', ref => ref.orderByChild('sigla').equalTo(sigla)).valueChanges().subscribe(value => {
-      if (callback) callback(value ? value[0] : null);
-    });
+    if (this.imoveis && this.imoveis.length > 0) {
+      if (callback) callback(this.imoveis.find((value: Imovel) => value.sigla === sigla));
+    } else {
+
+      this.ngxService.start('getBySigla');
+      this.db.list('/imoveis', ref => ref.orderByChild('sigla').equalTo(sigla)).valueChanges().subscribe(value => {
+        this.ngxService.stop('getBySigla')
+        if (callback) callback(value ? value[0] : null);
+      });
+    }
   }
 
 
