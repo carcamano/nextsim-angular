@@ -44,7 +44,7 @@ export class ImoveisComponent implements OnInit {
     categoria: 'comprar',
     finalidade: 'residencial',
     quartos: 0,
-    salas: 0,
+    salas: 2,
     garagem: 0,
     dormitorios: 0,
     banheiros: 0,
@@ -190,6 +190,7 @@ export class ImoveisComponent implements OnInit {
 
 
   search(query) {
+    debugger
     this.removeParams = [];
     if (query) {
       this.router.navigate(['imoveis'], {
@@ -366,6 +367,8 @@ export class ImoveisComponent implements OnInit {
   private checkResults() {
     if (!this.imoveis || this.imoveis.length === 0) {
       this.noResults = true;
+    } else if(this.imoveis.length === 1 && Object.keys(this.queryParams).length === 1 && this.queryParams.query) {
+      this.router.navigateByUrl('/imoveis/' + this.imoveis[0].sigla);
     } else {
       this.noResults = false;
     }
