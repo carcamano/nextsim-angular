@@ -1,15 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ImoveisService} from './imoveis.service';
 import {Imovel} from './models/imovel.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {HttpResponse} from '@angular/common/http';
 import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {Options} from 'ng5-slider';
-import {GeneralService} from './general.service';
-import {CurrencyPipe, formatCurrency} from '@angular/common';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AngularFireAction, AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
+import {formatCurrency} from '@angular/common';
+import {NgbDropdownConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
 import {AllImoveis} from "../all-imoveis.service";
 import {remove as removeAccents} from 'remove-accents';
 
@@ -50,6 +47,7 @@ export class ImoveisComponent implements OnInit {
     salas: 0,
     garagem: 0,
     dormitorios: 0,
+    banheiros: 0,
     tipos: [],
     precos: {
       min: 0,
@@ -89,7 +87,7 @@ export class ImoveisComponent implements OnInit {
   removeParams: string[] = [];
 
   constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private all: AllImoveis,
-              private router: Router, private modalService: NgbModal, private db: AngularFireDatabase) {
+              private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private config: NgbDropdownConfig) {
   }
 
   open(content) {
@@ -147,6 +145,7 @@ export class ImoveisComponent implements OnInit {
 
   dropDownChange(event: boolean) {
 
+    console.log(this.customSearch);
     if (!event) {
       let tipos = [];
       if (!this.removeParams.includes('tipo')) {
@@ -180,6 +179,8 @@ export class ImoveisComponent implements OnInit {
         area,
         custom: true,
         dormitorios: !this.removeParams.includes('dormitorios') ? (this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '') : '',
+        garagem: !this.removeParams.includes('garagem') ? (this.customSearch.garagem > 0 ? this.customSearch.garagem : '') : '',
+        banheiros: !this.removeParams.includes('banheiros') ? (this.customSearch.banheiros > 0 ? this.customSearch.banheiros : '') : '',
         salas: !this.removeParams.includes('salas') ? (this.customSearch.salas > 0 ? this.customSearch.salas : '') : '',
         bairros: bairros.join(','),
         cidade: !this.removeParams.includes('cidade') ? this.customSearch.cidade : ''
@@ -273,18 +274,18 @@ export class ImoveisComponent implements OnInit {
       }
 
       // areas
-      // if (this.queryParams.area) {
-      //   const values = this.queryParams.area.split(',');
-      //   if (values.length === 2) {
-      //     if (imovel.numeros && imovel.numeros.areas && imovel.numeros.areas.util >= values[0] && imovel.numeros.areas.util <= values[1]) {
-      //       f.push('t');
-      //     } else {
-      //       f.push('f');
-      //     }
-      //   } else {
-      //     f.push('f');
-      //   }
-      // }
+      if (this.queryParams.area) {
+        const values = this.queryParams.area.split(',');
+        if (values.length === 2) {
+          if (imovel.numeros && imovel.numeros.areas && imovel.numeros.areas.util >= values[0] && imovel.numeros.areas.util <= values[1]) {
+            f.push('t');
+          } else {
+            f.push('f');
+          }
+        } else {
+          f.push('f');
+        }
+      }
 
       // dormitorios
       if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'residencial') {
@@ -298,6 +299,24 @@ export class ImoveisComponent implements OnInit {
       // salas
       if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'comercial') {
         if (imovel.numeros && imovel.numeros.salas && imovel.numeros.salas === Number(this.queryParams.salas)) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+
+      // banheiros
+      if (this.queryParams.banheiros && this.queryParams.banheiros > 0 ) {
+        if (imovel.numeros && imovel.numeros.banheiros && imovel.numeros.banheiros === Number(this.queryParams.banheiros)) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+
+      // garagem
+      if (this.queryParams.garagem && this.queryParams.garagem > 0 ) {
+        if (imovel.numeros && imovel.numeros.vagas && imovel.numeros.vagas === Number(this.queryParams.garagem)) {
           f.push('t');
         } else {
           f.push('f');
@@ -492,6 +511,31 @@ export class ImoveisComponent implements OnInit {
         this.badges.push(this.badge(`Com ${n} ou mais dormitórios`, 'dormitorios'));
       } else if (n !== 0) {
         this.badges.push(this.badge(`Com ${n}  dormitórios`, 'dormitorios'));
+      }
+
+    }
+
+    if (this.queryParams.banheiros) {
+      const n = Number(this.queryParams.banheiros);
+      if (n === 1) {
+        this.badges.push(this.badge(`Com ${n} banheiro`, 'banheiros'));
+      } else if (n === 4) {
+        this.badges.push(this.badge(`Com ${n} ou mais banheiros`, 'banheiros'));
+      } else if (n !== 0) {
+        this.badges.push(this.badge(`Com ${n}  banheiros`, 'banheiros'));
+      }
+
+    }
+
+
+    if (this.queryParams.garagem) {
+      const n = Number(this.queryParams.garagem);
+      if (n === 1) {
+        this.badges.push(this.badge(`Com ${n} vaga de garagem`, 'garagem'));
+      } else if (n === 4) {
+        this.badges.push(this.badge(`Com ${n} ou mais vagas de garagem`, 'garagem'));
+      } else if (n !== 0) {
+        this.badges.push(this.badge(`Com ${n}  vagas de garagem`, 'garagem'));
       }
 
     }
