@@ -438,7 +438,7 @@
                   <!-- Info Type -->
                   <div class="info-item" *ngIf="(imovel.tipo === 'casa' && imovel.finalidade === 'comercial') && toSalas(imovel)">
                     <span class="field-label label-change">Salas</span>
-                    <div><i class="icon-bed text-orange"></i> {{toSalas(imovel)}}</div>
+                    <div><i class="icon2-salas text-orange"></i> {{toSalas(imovel)}}</div>
                   </div>
                   <div class="info-item" *ngIf="(imovel.tipo !== 'sala' && imovel.tipo !== 'prédio' && imovel.tipo !== 'casa' && imovel.finalidade !== 'comercial') && toDormis(imovel)">
                     <span class="field-label label-change">Quartos</span>
@@ -446,7 +446,7 @@
                   </div>
                   <div class="info-item" *ngIf="(imovel.tipo === 'sala' || imovel.tipo === 'prédio') && toSalas(imovel)">
                     <span class="field-label label-change">Salas</span>
-                    <div><i class="icon-bed text-orange"></i> {{toSalas(imovel)}}</div>
+                    <div><i class="icon2-salas text-orange" ></i> {{toSalas(imovel)}}</div>
                   </div>
                   <div class="info-item" *ngIf="toArea(imovel)">
                     <span class="field-label label-change" *ngIf="imovel.tipo !== 'cobertura'">Área</span>

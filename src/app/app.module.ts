@@ -38,6 +38,7 @@ import {AllImoveis} from "./all-imoveis.service";
 import { FabComponent } from './fab/fab.component';
 import { CustomSearchComponent } from './custom-search/custom-search.component';
 import { MomentModule } from 'ngx-moment';
+import {NgImageSliderModule} from "ng-image-slider";
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -93,6 +94,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    NgImageSliderModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB8F9P_r8OgBfXItSsOAGNB5LnIHWw-Jbw'

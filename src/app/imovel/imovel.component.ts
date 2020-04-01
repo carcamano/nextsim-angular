@@ -19,6 +19,8 @@ export class ImovelComponent implements OnInit {
   mySlideOptions = {items: 1, dots: true, nav: false};
   myCarouselOptions = {items: 3, dots: true, nav: true};
 
+  imgs: Array<object>;
+
   @ViewChild('content') public childModal: NgbModalRef;
 
   form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ');
@@ -36,6 +38,7 @@ export class ImovelComponent implements OnInit {
       this.all.getBySigla(String(params.id).toLocaleUpperCase(), im => {
         console.log(im);
         this.imovel = im;
+        this.imageObject();
         this.buildForm();
         try {
           window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
@@ -46,6 +49,16 @@ export class ImovelComponent implements OnInit {
     });
 
     // cd-google-map
+  }
+
+  imageObject(): Array<object> {
+    this.imgs = this.imovel.midia.imagens.map(value => {
+      return {
+        image: value,
+        thumbImage: value
+      }
+    });
+    return this.imgs;
   }
 
   buildForm() {

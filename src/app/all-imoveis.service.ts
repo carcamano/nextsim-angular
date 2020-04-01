@@ -68,6 +68,7 @@ export class AllImoveis {
   }
 
   getBySigla(sigla: string, callback?: (imovel?: any) => void) {
+    debugger
     if (this.imoveis && this.imoveis.length > 0) {
       if (callback) callback(this.imoveis.find((value: Imovel) => value.sigla === sigla));
     } else {
