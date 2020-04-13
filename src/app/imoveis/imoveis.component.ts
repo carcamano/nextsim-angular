@@ -40,10 +40,9 @@ export class ImoveisComponent implements OnInit {
 
   /// filtro
 
-  customSearch = {
+  customSearch: { dormitorios: number | undefined; precos: { min: number; max: number }; area: { min: number; max: number }; salas: any; cidade: string; banheiros: any; finalidade: any; categoria: any; garagem: any; tipos: any; bairros: any[] } = {
     categoria: 'comprar',
     finalidade: 'residencial',
-    quartos: 0,
     salas: 2,
     garagem: 0,
     dormitorios: 0,
@@ -108,6 +107,14 @@ export class ImoveisComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(queryParams => {
       this.queryParams = queryParams;
+
+
+      this.customSearch.categoria = this.queryParams.tipo || 'comprar';
+      this.customSearch.salas = this.queryParams.salas || 0;
+      this.customSearch.garagem = this.queryParams.garagem || 0 ,
+        this.customSearch.dormitorios = this.queryParams.dormitorios || 0,
+        this.customSearch.banheiros = this.queryParams.banheiros || 0,
+        this.customSearch.cidade = this.queryParams.bairro || ''
       if (this.queryParams.finalidade) {
         this.customSearch.finalidade = this.queryParams.finalidade;
       }
@@ -190,7 +197,6 @@ export class ImoveisComponent implements OnInit {
 
 
   search(query) {
-    debugger
     this.removeParams = [];
     if (query) {
       this.router.navigate(['imoveis'], {
@@ -307,7 +313,7 @@ export class ImoveisComponent implements OnInit {
       }
 
       // banheiros
-      if (this.queryParams.banheiros && this.queryParams.banheiros > 0 ) {
+      if (this.queryParams.banheiros && this.queryParams.banheiros > 0) {
         if (imovel.numeros && imovel.numeros.banheiros && imovel.numeros.banheiros === Number(this.queryParams.banheiros)) {
           f.push('t');
         } else {
@@ -316,7 +322,7 @@ export class ImoveisComponent implements OnInit {
       }
 
       // garagem
-      if (this.queryParams.garagem && this.queryParams.garagem > 0 ) {
+      if (this.queryParams.garagem && this.queryParams.garagem > 0) {
         if (imovel.numeros && imovel.numeros.vagas && imovel.numeros.vagas === Number(this.queryParams.garagem)) {
           f.push('t');
         } else {
@@ -367,7 +373,7 @@ export class ImoveisComponent implements OnInit {
   private checkResults() {
     if (!this.imoveis || this.imoveis.length === 0) {
       this.noResults = true;
-    } else if(this.imoveis.length === 1 && Object.keys(this.queryParams).length === 1 && this.queryParams.query) {
+    } else if (this.imoveis.length === 1 && Object.keys(this.queryParams).length === 1 && this.queryParams.query) {
       this.router.navigateByUrl('/imoveis/' + this.imoveis[0].sigla);
     } else {
       this.noResults = false;
@@ -629,7 +635,17 @@ export class ImoveisComponent implements OnInit {
       }
       return null;
     }))).forEach((value, index) => {
-      this.customSearch.bairros.push({key: value, selected: false, i: index, c: cidade});
+      let selected = false;
+      if (this.queryParams.bairros) {
+        const find = this.queryParams.bairros.split(',').find(value1 => {
+          return value1 === value;
+        });
+        if (find) {
+          selected = true;
+        }
+      }
+
+      this.customSearch.bairros.push({key: value, selected: selected, i: index, c: cidade});
     });
 
   }
@@ -639,6 +655,7 @@ export class ImoveisComponent implements OnInit {
 
     if (!this.allImoveis) return;
 
+    console.log(this.filtred)
     this.filtred = this.allImoveis.filter((imovel: Imovel) => {
       let add = false;
       if (this.customSearch.categoria === 'comprar' && _.get(imovel, "comercializacao.venda.ativa")) {
@@ -660,6 +677,8 @@ export class ImoveisComponent implements OnInit {
       return add;
     });
 
+    console.log(this.filtred)
+
 
     this.customSearch.tipos = [];
     this.cidades = [];
@@ -672,11 +691,26 @@ export class ImoveisComponent implements OnInit {
     });
 
 
+    console.log(this.filtred)
     _.union(_.compact(_.map(this.filtred, (im: Imovel, key) => {
       return im.tipo;
     }))).forEach((value, index) => {
-      this.customSearch.tipos.push({key: value, selected: false, i: index});
+      console.log(value);
+      let selected = false;
+      if (this.queryParams.tipo) {
+        const find = this.queryParams.tipo.split(',').find(value1 => {
+          if (value1 === value)
+            console.log(value1)
+          return value1 === value;
+        });
+        if (find) {
+
+          selected = true;
+        }
+      }
+      this.customSearch.tipos.push({key: value, selected: selected, i: index});
     });
+    console.log(this.customSearch.tipos);
 
     this.cidades = _.union(this.cidades)
   }

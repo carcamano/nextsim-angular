@@ -1,3 +1,11 @@
+
+.item {
+  height: 230px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 30px;
+}
+
 .lancamento_nome {
   position: absolute;
   top: 0;

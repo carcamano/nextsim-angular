@@ -14,15 +14,20 @@ export class HomeComponent implements OnInit {
     itemSelector: '.grid-item'
   };
 
-  lancamentos = []
-  constructor(private lancamentoService: LancamentoService) { }
+  lancamentos:any[] = []
+  constructor(private lancamentoService: LancamentoService) {
+  }
 
   ngOnInit() {
 
-    // this.lancamentoService.all().subscribe(value => {
-    //   console.log(value.body);
-    //   this.lancamentos = value.body;
-    // });
+    this.lancamentoService.all().subscribe(value => {
+      console.log(value.body);
+      this.lancamentos = value.body;
+      if (this.lancamentos.length > 6) {
+        this.lancamentos = this.lancamentos.slice(0, 5);
+      }
+
+    });
 
 
   }

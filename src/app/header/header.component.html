@@ -1,4 +1,4 @@
-<header class="" [ngClass]="{'home-header': rootView, 'container-fluid PropertyListHeader': !rootView }">
+<header class="" [ngClass]="{'home-header': rootView, 'container-fluid PropertyListHeader': !rootView }" [style.background-image]="rootView ? ('url(' + image + ')') : 'none'">
   <div class="row NextMobileMenu d-lg-none mt-4">
     <div class="col-2 text-left">
       <a class="toggleMenu" (click)="showMobileMenu = !showMobileMenu">
@@ -129,14 +129,13 @@
     <a href="index.html#" class="logo">
       <img src="assets/img/logo-next.svg" alt="" width="145">
     </a>
-    <h3>
-      Sua melhor forma de acessar imóveis<br> de alto padrão com suporte.
+    <h3 [innerHTML]="title">
+
     </h3>
     <h4 class="font-weight-semibold">Encontre o lugar dos seus sonhos em Campinas e região:</h4>
   </div>
   <div class="container title-home-section d-none d-lg-block" *ngIf="rootView">
-    <h3>
-      Sua melhor forma de acessar imóveis<br> de alto padrão com suporte.
+    <h3 [innerHTML]="title">
     </h3>
     <h4 class="font-weight-semibold">Encontre o lugar dos seus sonhos em Campinas e região:</h4>
   </div>

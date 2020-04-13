@@ -4,6 +4,7 @@ import {ImoveisComponent} from './imoveis/imoveis.component';
 import {ImovelComponent} from './imovel/imovel.component';
 import {SobreComponent} from './sobre/sobre.component';
 import {QueroNegociarComponent} from './quero-negociar/quero-negociar.component';
+import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
 
 export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
@@ -18,6 +19,10 @@ export const ROUTES: Routes = [
       {
         path: ':id',
         component: ImovelComponent
+      },
+      {
+        path: 'lancamentos/:slug',
+        component: LancamentoComponent
       }
     ]}
 ];

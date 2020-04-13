@@ -1,0 +1,286 @@
+<section class="container-fluid featured_header" *ngIf="lancamento"
+         [style.background-image]="'url(' + lancamento.image + ')'">
+  <!--        <div class="title_container">-->
+  <!--            <h1 class="title">--><!--</h1>-->
+  <!--            <h6>--><!--</h6>-->
+  <!--        </div>-->
+</section>
+<section class="container portifolio_about top" style="margin-top: -256px;" *ngIf="lancamento">
+  <div class="">
+
+    <div class="row h-100 portifolio_about_title">
+      <div class="col-xs-6 col-md-5 left">
+        <div class="row h-100 align-items-center title">
+          <h6>Lançamento</h6>
+          <h2 *ngIf="lancamento.fields.portfolio_header_repeater.length > 0"><b
+            [innerHTML]="lancamento.fields.portfolio_header_repeater[0].texto"></b></h2>
+          <h5
+            *ngIf="lancamento.fields.portfolio_header_repeater.length > 1">{{ lancamento.fields.portfolio_header_repeater[1].texto}}</h5>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-3 middle">
+        <div class="row h-100 align-items-center justify-content-center">
+          <button type="button" class="btn btn-share" (click)="whatsapp()">
+            <img class="mr-1" src="assets/img/icons/icon-whatsapp.svg" title=""
+                 width="22">
+            Compartilhar
+          </button>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <div class="row h-100 about_status align-items-center justify-content-center">
+          <button class="btn btn-default btn-next" data-toggle="modal" data-target="#propContactMe"
+                  (click)="open(content)">Entre em Contato
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<div class="top_divider" *ngIf="lancamento">
+  <i class="arrow"></i>
+</div>
+<section class="container-fluid content_portfolio" *ngIf="lancamento">
+  <div class="row">
+    <div class="col-md-12 c_left">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>Conceito</h2>
+            <p>{{lancamento.fields.conceito}}
+
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container-fluid content_portfolio content_galeria" *ngIf="lancamento">
+  <div class="row">
+    <div class="col-md-12 c_left">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <h2>Galeria</h2>
+
+            <!--            <div class="galeria_container owl-carousel owl-theme owl-loaded owl-drag">-->
+            <!--              <owl-carousel-o [options]="customOptions">-->
+            <!--                <ng-template carouselSlide>-->
+            <!--                  <div class="galeria_item item">-->
+            <!--                    <a href="#">-->
+            <!--                      <img class="img-fluid " src="{{lancamento.fields.galeria.imagem_em_pe.url}}">-->
+            <!--                    </a>-->
+            <!--                    <span class="name">{{lancamento.fields.galeria.imagem_em_pe.title}}</span>-->
+            <!--                  </div>-->
+            <!--                  <div class="galeria_item item" *ngFor="let galeria of lancamento.fields.galeria.galeria;">-->
+            <!--                    <a href="#">-->
+            <!--                      <img class="img-fluid " src="{{galeria.url}}">-->
+            <!--                    </a>-->
+            <!--                    <span class="name">{{galeria.title}}</span>-->
+            <!--                  </div>-->
+            <!--                </ng-template>-->
+
+            <!--              </owl-carousel-o>-->
+            <!--&lt;!&ndash;            </div>&#45;&#45;-->
+
+            <div class="galeria_container row">
+              <div class="col-12 col-sm-4" *ngIf="lancamento.fields.galeria.imagem_em_pe">
+                <img class="img-fluid " src="{{lancamento.fields.galeria.imagem_em_pe.url}}">
+                <span class="name">{{lancamento.fields.galeria.imagem_em_pe.title}}</span>
+              </div>
+              <div [ngClass]="{'col-12': !lancamento.fields.galeria.imagem_em_pe, 'col-8': lancamento.fields.galeria.imagem_em_pe}">
+                <div class="row">
+
+                  <div [ngClass]="{'col-12 col-sm-4': !lancamento.fields.galeria.imagem_em_pe, 'col-12 col-sm-6': lancamento.fields.galeria.imagem_em_pe}" *ngFor="let galeria of lancamento.fields.galeria.galeria | slice:0:(!lancamento.fields.galeria.imagem_em_pe ? 6 : 4); let i=index">
+                    <div class="galeria_item item" >
+                      <a href="#">
+                        <img class="img-fluid " src="{{galeria.url}}">
+                      </a>
+                      <span class="name">{{galeria.title}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container-fluid content_portfolio" *ngIf="lancamento">
+  <div class="row">
+    <div class="col-md-12 c_left">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <h2>Plantas</h2>
+
+            <div class="planta_container row">
+              <div class="col-sm-6">
+                <ngb-carousel *ngIf="imgs" #plantas (slide)="onSlide($event)" [interval]="50000">
+                  <ng-template ngbSlide *ngFor="let img of imgs;  let i = index" [id]="'plant' + i">
+                    <div class="picsum-img-wrapper">
+                      <img [src]="img.image" alt="{{img.title}}" class="img-fluid"/>
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+
+              </div>
+
+
+              <div class="col-sm-6">
+                <div class="md-radio" *ngFor="let img of imgs;  let i = index">
+                  <input id="md-radio-{{i}}" type="radio" name="platacheck" [checked]="currentPlant == 'plant' + i"
+                         (click)="changePlanta(i)">
+                  <label for="md-radio-{{i}}">{{img.title}}</label>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <hr>
+          <h2>Informações</h2>
+          <div class="row informacoes">
+            <div class="col-12 col-sm-4" *ngFor="let ficha of lancamento.fields.ficha_tecnica;  let i = index">
+              <h6><b>{{ficha.atributo}}</b></h6>
+              <p [innerHTML]="ficha.valor"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<section class="container-fluid content_portfolio no_padding" *ngIf="lancamento">
+  <div class="row">
+    <div class="col-md-12 c_left">
+      <div class="row">
+
+        <div class="embed-responsive ">
+          <!--          -22.8960933,-47.0485381,15z-->
+          <agm-map [latitude]="-22.8960933" [longitude]="-47.0485381" [zoom]="14" [gestureHandling]="'none'">
+            <agm-circle [latitude]="-22.8960933" [longitude]="-47.0485381"
+                        [radius]="500"
+                        [fillColor]="'#ff9820'">
+            </agm-circle>
+
+            <agm-circle [latitude]="-22.8960933" [longitude]="-47.0485381"
+                        [radius]="1000"
+                        [fillColor]="'#ff9820'">
+            </agm-circle>
+
+            <agm-circle [latitude]="-22.8960933" [longitude]="-47.0485381"
+                        [radius]="1500"
+                        [fillColor]="'#ff9820'">
+            </agm-circle>
+          </agm-map>
+        </div>
+
+        <div class="col-12">
+          <div class="row orange justify-content-center">
+            <div class="col-4">
+              <h6>Conheça esse lançamento com um dos nossos corretores ou tire suas dúvidas pelo <b>fale
+                com a gente.</b></h6>
+              <button class="btn btn-default btn-next" (click)="open(content)">Quero visitar
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<ng-template #content let-modal>
+  <div class="modal-content">
+    <form method="POST" class="form-card " action="apartamento-residencial-alphaville-campinas-sp-AP001588.html"
+          id="form-negotiate-property">
+
+      <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
+      <input type="hidden" value="propriedade" name="contact_type" id="form-contact-contact_type">
+
+      <input type="hidden" value="Venda" name="form-contact-category" id="form-contact-category">
+
+      <div class="card text-center">
+        <div class="card-header text-dark-gray bg-gray-100 font-weight-bolder text-uppercase py-3">
+          Entre em contato
+          <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="card-body text-left bg-gray-100 p-2 pt-5">
+          <div class="row">
+            <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+              <div class="form-group">
+                <div class="form-icon">
+                  <span id="validate_contact_name"></span>
+                  <input type="text" class="form-control orange-input" name="form-contact-name"
+                         id="form-contact-name"
+                         [(ngModel)]="form.nome" placeholder="Nome completo" autocomplete="off" required="required">
+                  <span id="alert_contact_name" class="float-left blur-error"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+              <div class="form-group">
+                <div class="form-icon">
+                  <span id="validate_contact_phone"></span>
+                  <input type="text" class="form-control phone orange-input" name="form-contact-phone"
+                         id="form-contact-phone" placeholder="Telefone" autocomplete="off" required="required"
+                         [(ngModel)]="form.telefone">
+                </div>
+                <span id="alert_contact_phone" class="float-left blur-error"></span>
+              </div>
+            </div>
+
+            <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+              <div class="form-group">
+                <div class="form-icon">
+                  <span id="validate_contact_email"></span>
+                  <input type="email" class="form-control orange-input" name="form-contact-email"
+                         id="form-contact-email" value="" placeholder="Digite seu e-mail aqui" autocomplete="off"
+                         [(ngModel)]="form.email"
+                         required="required">
+                </div>
+                <span id="alert_contact_email" class="float-left blur-error"></span>
+              </div>
+            </div>
+
+            <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+              <div class="form-group ">
+                <label for="form-contact-message">Mensagem</label>
+                <span id="alert_message" class="float-right blur-error"></span>
+                <textarea class="form-control orange-textarea" name="form-contact-message" id="form-contact-message"
+                          rows="3"
+                          placeholder="Mensagem (Opcional)" [(ngModel)]="form.texto"></textarea>
+              </div>
+            </div>
+            <div class="col-12 text-center my-4">
+              <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
+                      id="btn-negotiate-modal" [disabled]="form.nome === '' || form.email === ''"
+                      (click)="submitForm()">
+                Enviar
+                <img class="btn-invisible" src="../../assets/img/spinner.gif" id="negotiate_modal_spinner"
+                     width="23"/>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

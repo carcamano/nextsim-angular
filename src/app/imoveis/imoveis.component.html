@@ -69,7 +69,7 @@
                 <div class="TypeMenu dropdown-menu FilterBarCheckBoxFIELDS2" ngbDropdownMenu>
                   <ul>
                     <li *ngFor="let tipo of customSearch.tipos;  let i = index">
-                      <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" ([ngModel])="tipo.selected"
+                      <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" [checked]="tipo.selected"
                              (change)="changeTipo($event, i)"/>
                       <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>
                     </li>
@@ -99,7 +99,7 @@
                         <ul>
                           <li *ngFor="let local of customSearch.bairros;  let i = index">
                             <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
-                                   ([ngModel])="local.selected"
+                                   [checked]="local.selected"
                                    (change)="changeBairro($event, i)"/>
                             <label [attr.for]="'bairro' + i"><span>{{local.key}}</span></label>
                           </li>

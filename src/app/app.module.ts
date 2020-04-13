@@ -39,6 +39,8 @@ import { FabComponent } from './fab/fab.component';
 import { CustomSearchComponent } from './custom-search/custom-search.component';
 import { MomentModule } from 'ngx-moment';
 import {NgImageSliderModule} from "ng-image-slider";
+import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
+import {CarouselModule} from "ngx-owl-carousel-o";
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -79,7 +81,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     QueroNegociarComponent,
     SobreComponent,
     FabComponent,
-    CustomSearchComponent
+    CustomSearchComponent,
+    LancamentoComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    CarouselModule,
     NgImageSliderModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({

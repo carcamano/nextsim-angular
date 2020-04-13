@@ -16,7 +16,7 @@ export class ImovelService {
   }
 
 
-  sendGrid(form: any, imovel: Imovel): Observable<HttpResponse<any>> {
+  sendGrid(form: any, imovel?: Imovel): Observable<HttpResponse<any>> {
 
     return this.http
       .post<any>('https://us-central1-promocao-bosch-service.cloudfunctions.net/sendEmailNext', {
