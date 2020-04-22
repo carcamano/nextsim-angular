@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IsotopeOptions} from 'ngx-isotopee';
 import {LancamentoService} from './lancamento.service';
 

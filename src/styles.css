@@ -26418,6 +26418,7 @@ main {
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin: 0 0 20px 0;
+  align-items: flex-end;
 }
 
 .properties .properties-list .item .middle-info div {

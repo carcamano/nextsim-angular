@@ -108,16 +108,18 @@ export class HeaderComponent implements OnInit {
       })
     });
 
-    this.lancamentoService.header().subscribe(value => {
-      if(value.acf.texto_home) {
 
-      this.title = value.acf.texto_home;
-      }
-      if(value.acf.imagem_home) {
-
-      this.image = value.acf.imagem_home;
-      }
-    })
+    // ADMIN title
+    // this.lancamentoService.header().subscribe(value => {
+    //   if(value.acf.texto_home) {
+    //
+    //   this.title = value.acf.texto_home;
+    //   }
+    //   if(value.acf.imagem_home) {
+    //
+    //   this.image = value.acf.imagem_home;
+    //   }
+    // })
   }
 
 
