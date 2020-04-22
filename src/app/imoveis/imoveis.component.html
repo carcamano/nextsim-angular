@@ -34,6 +34,9 @@
                       <label for="OPCalugar"><span>Alugar</span></label>
                     </li>
                   </ul>
+                  <div class="col-12 text-right px-0 pt-3">
+                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                  </div>
                 </div>
               </div>
               <!-- END FINALIDADE DE IMOVEL -->
@@ -58,6 +61,9 @@
                       <label for="categoria-2"><span>Comercial</span></label>
                     </li>
                   </ul>
+                  <div class="col-12 text-right px-0 pt-3">
+                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                  </div>
                 </div>
               </div>
               <!-- END TIPO DE CATEGORIA -->
@@ -74,6 +80,9 @@
                       <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>
                     </li>
                   </ul>
+                  <div class="col-12 text-right px-0 pt-3">
+                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                  </div>
                 </div>
               </div>
               <!-- END TIPO DE IMOVEL -->
@@ -107,6 +116,9 @@
                       </div>
                     </div>
 
+                    <div class="col-12 text-right px-0 pt-3">
+                      <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -153,6 +165,9 @@
                         </label>
                       </li>
                     </ul>
+                  <div class="col-12 text-right px-0 pt-3">
+                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -199,6 +214,9 @@
                         </label>
                       </li>
                     </ul>
+                    <div class="col-12 text-right px-0 pt-3">
+                      <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -227,25 +245,25 @@
                       </div>
                     </div>
                   </div>
-                  <!--                  <div class="col-12 text-right px-0 pt-3">-->
-                  <!--                    <a class="btn btn-block btn-apply checkbox-s">Aplicar</a>-->
-                  <!--                  </div>-->
+                  <div class="col-12 text-right px-0 pt-3">
+                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                  </div>
                 </div>
               </div>
               <!-- END PRECO DE IMOVEL -->
             </div>
-            <div class="text-center align-content-center ">
-              <a class="btn btn-more-filters btn-semi-rounded FiltersBTN "
-                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN"
-                 (click)="dropDownChange(false)">
-                <b>Aplicar</b></a>
-            </div>
+<!--            <div class="text-center align-content-center ">-->
+<!--              <a class="btn btn-more-filters btn-semi-rounded FiltersBTN "-->
+<!--                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN"-->
+<!--                 (click)="dropDownChange(false)">-->
+<!--                <b>Aplicar</b></a>-->
+<!--            </div>-->
           </div>
           <div class="FilterBarLineTop justify-content-between" id="MoreFiltersBTN" [hidden]="!showExtraFilter">
             <!-- INICIO MAIS FILTRO -->
             <div class="box-filter-2">
               <!-- BANEIROS DO IMOVEL -->
-              <div ngbDropdown>
+              <div ngbDropdown [autoClose]="'outside'">
                 <a
                   class="MenuItem dropdown-toggle" id="BathMenu" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false" ngbDropdownToggle><i class="icon-bathtub"></i> Banheiros <i
@@ -281,6 +299,9 @@
                     </li>
 
                   </ul>
+                  <div class="col-12 text-right px-0 pt-3">
+                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                  </div>
                 </div>
               </div>
               <!-- END BANHEIROS DO IMOVEL -->
@@ -307,6 +328,9 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div class="col-12 text-right px-0 pt-3">
+                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
                   </div>
 
                 </div>
@@ -353,6 +377,9 @@
                         </label>
                       </li>
                     </ul>
+                  </div>
+                  <div class="col-12 text-right px-0 pt-3">
+                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
                   </div>
                 </div>
               </div>
@@ -428,17 +455,20 @@
                 <span class="code">Cód: <b>{{imovel.sigla}}</b></span>
                 <div class="middle-info">
                   <!-- Info Type -->
-                  <div class="info-item" *ngIf="(imovel.tipo === 'casa' && imovel.finalidade === 'comercial') && toSalas(imovel)">
+                  <div class="info-item"
+                       *ngIf="(imovel.tipo === 'casa' && imovel.finalidade === 'comercial') && toSalas(imovel)">
                     <span class="field-label label-change">Salas</span>
                     <div><i class="icon2-salas text-orange"></i> {{toSalas(imovel)}}</div>
                   </div>
-                  <div class="info-item" *ngIf="(imovel.tipo !== 'sala' && imovel.tipo !== 'prédio' && imovel.tipo !== 'casa' && imovel.finalidade !== 'comercial') && toDormis(imovel)">
+                  <div class="info-item"
+                       *ngIf="(imovel.tipo !== 'sala' && imovel.tipo !== 'prédio' && imovel.tipo !== 'casa' && imovel.finalidade !== 'comercial') && toDormis(imovel)">
                     <span class="field-label label-change">Quartos</span>
                     <div><i class="icon-bed text-orange"></i> {{toDormis(imovel)}}</div>
                   </div>
-                  <div class="info-item" *ngIf="(imovel.tipo === 'sala' || imovel.tipo === 'prédio') && toSalas(imovel)">
+                  <div class="info-item"
+                       *ngIf="(imovel.tipo === 'sala' || imovel.tipo === 'prédio') && toSalas(imovel)">
                     <span class="field-label label-change">Salas</span>
-                    <div><i class="icon2-salas text-orange" ></i> {{toSalas(imovel)}}</div>
+                    <div><i class="icon2-salas text-orange"></i> {{toSalas(imovel)}}</div>
                   </div>
                   <div class="info-item" *ngIf="toArea(imovel)">
                     <span class="field-label label-change" *ngIf="imovel.tipo !== 'cobertura'">Área</span>

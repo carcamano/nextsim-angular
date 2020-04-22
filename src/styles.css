@@ -22388,7 +22388,7 @@ h3.blog-result {
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  width: calc(100% - 380px);
+  width: calc(100% - 200px);
 }
 
 .box-filter-1 > div,
@@ -22568,7 +22568,6 @@ h3.blog-result {
   width: auto !important;
   height: auto !important;
   position: absolute;
-  top: -2px !important;
   left: -50px;
   background: #ffffff;
   padding: 30px;

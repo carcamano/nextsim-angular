@@ -29,18 +29,21 @@ import {ImovelService} from './imovel/imovel.service';
 import {ToastrModule} from 'ngx-toastr';
 import {ComponentFixtureAutoDetect} from '@angular/core/testing';
 import {NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule} from 'ngx-ui-loader';
-import { registerLocaleData } from '@angular/common';
+import {registerLocaleData} from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AllImoveis} from "./all-imoveis.service";
-import { FabComponent } from './fab/fab.component';
-import { CustomSearchComponent } from './custom-search/custom-search.component';
-import { MomentModule } from 'ngx-moment';
+import {FabComponent} from './fab/fab.component';
+import {CustomSearchComponent} from './custom-search/custom-search.component';
+import {MomentModule} from 'ngx-moment';
 import {NgImageSliderModule} from "ng-image-slider";
 import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
 import {CarouselModule} from "ngx-owl-carousel-o";
+// import {TextMaskModule} from "angular2-text-mask";
+// import {NgBrazil} from "ng-brazil";
+
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -107,7 +110,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    // TextMaskModule,
+    // NgBrazil
   ],
   providers: [
     ImoveisService,

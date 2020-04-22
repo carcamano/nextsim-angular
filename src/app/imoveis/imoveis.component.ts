@@ -1,21 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Imovel} from './models/imovel.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {Options} from 'ng5-slider';
 import {formatCurrency} from '@angular/common';
-import {NgbDropdownConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdown, NgbDropdownConfig, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
 import {AllImoveis} from "../all-imoveis.service";
 import {remove as removeAccents} from 'remove-accents';
+// import { MASKS, NgBrazilValidators } from 'ng-brazil';
 
 @Component({
   selector: 'app-imoveis',
   templateUrl: './imoveis.component.html',
   styleUrls: ['./imoveis.component.css']
 })
-export class ImoveisComponent implements OnInit {
+export class ImoveisComponent implements OnInit, AfterViewInit {
 
   pages = 0;
   currentPage = 1;
@@ -26,6 +27,7 @@ export class ImoveisComponent implements OnInit {
 
   private itensPerPage = 10;
 
+  // MASKS = MASKS;
 
   imoveis: Imovel[] = [];
   allImoveis: Imovel[] = [];
@@ -83,7 +85,7 @@ export class ImoveisComponent implements OnInit {
     }
   };
 
-  removeParams: string[] = [];
+  removeParams: any[] = [];
 
   constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private all: AllImoveis,
               private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private config: NgbDropdownConfig) {
@@ -109,7 +111,7 @@ export class ImoveisComponent implements OnInit {
       this.queryParams = queryParams;
 
 
-      this.customSearch.categoria = this.queryParams.tipo || 'comprar';
+      this.customSearch.categoria = this.queryParams.categoria || 'comprar';
       this.customSearch.salas = this.queryParams.salas || 0;
       this.customSearch.garagem = this.queryParams.garagem || 0 ,
         this.customSearch.dormitorios = this.queryParams.dormitorios || 0,
@@ -129,6 +131,11 @@ export class ImoveisComponent implements OnInit {
 
 
     });
+
+
+  }
+
+  ngAfterViewInit(): void {
   }
 
 
@@ -145,52 +152,54 @@ export class ImoveisComponent implements OnInit {
 
   badgeClose(param: any) {
 
-    this.removeParams.push(param);
+    param.split(',')
+    this.removeParams.push({
+      query: param.split(',')[0],
+      label: param.split(',').length > 1 ? param.split(',')[1] : null
+    });
     this.dropDownChange(false);
 
   }
 
   dropDownChange(event: boolean) {
 
-    console.log(this.customSearch);
     if (!event) {
+      let querys = this.removeParams.map(value => value.query);
       let tipos = [];
-      if (!this.removeParams.includes('tipo')) {
-        tipos = this.customSearch.tipos.filter(value => {
-          return value.selected === true;
-        }).map(value => {
-          return value.key;
-        });
-      }
-      let bairros;
-      if (!this.removeParams.includes('bairros')) {
-        bairros = this.customSearch.bairros.filter(value => {
-          return value.selected === true;
-        }).map(value => {
-          return value.key;
-        });
-      }
+      tipos = this.customSearch.tipos.filter(value => {
+        return value.selected === true && !this.removeParams.filter(value => value.query === 'tipo').map(value => value.label).includes(value.key);
+      }).map(value => {
+        return value.key;
+      });
+      let bairros = [];
+      bairros = this.customSearch.bairros.filter(value => {
+        return value.selected === true && !this.removeParams.filter(value => value.query === 'bairros').map(value => value.label).includes(value.key);
+      }).map(value => {
+        return value.key;
+      });
       let area: string;
-      if (!this.removeParams.includes('bairros')) {
+      if (!querys.includes('area')) {
         area = this.customSearch.area.min + ',' + this.customSearch.area.max;
       }
       let precos: string;
-      if (!this.removeParams.includes('precos')) {
+      if (!querys.includes('precos')) {
         precos = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
       }
+      console.log(this.customSearch);
+      console.log(querys);
       this.search({
-        finalidade: !this.removeParams.includes('finalidade') ? this.customSearch.finalidade : '',
+        finalidade: !querys.includes('finalidade') ? this.customSearch.finalidade : '',
         tipo: tipos.join(','),
-        categoria: !this.removeParams.includes('categoria') ? this.customSearch.categoria : '',
+        categoria: !querys.includes('categoria') ? this.customSearch.categoria : '',
         precos,
         area,
         custom: true,
-        dormitorios: !this.removeParams.includes('dormitorios') ? (this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '') : '',
-        garagem: !this.removeParams.includes('garagem') ? (this.customSearch.garagem > 0 ? this.customSearch.garagem : '') : '',
-        banheiros: !this.removeParams.includes('banheiros') ? (this.customSearch.banheiros > 0 ? this.customSearch.banheiros : '') : '',
-        salas: !this.removeParams.includes('salas') ? (this.customSearch.salas > 0 ? this.customSearch.salas : '') : '',
+        dormitorios: !querys.includes('dormitorios') ? (this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '') : '',
+        garagem: !querys.includes('garagem') ? (this.customSearch.garagem > 0 ? this.customSearch.garagem : '') : '',
+        banheiros: !querys.includes('banheiros') ? (this.customSearch.banheiros > 0 ? this.customSearch.banheiros : '') : '',
+        salas: !querys.includes('salas') ? (this.customSearch.salas > 0 ? this.customSearch.salas : '') : '',
         bairros: bairros.join(','),
-        cidade: !this.removeParams.includes('cidade') ? this.customSearch.cidade : ''
+        cidade: !querys.includes('cidade') ? this.customSearch.cidade : ''
       });
     }
   }
@@ -348,7 +357,6 @@ export class ImoveisComponent implements OnInit {
     this.pages = filtred.length;
     this.imoveis = _.chunk(filtred, this.itensPerPage)[this.currentPage - 1];
 
-    console.log(filtred);
     this.checkResults();
     // }, 2000);
 
@@ -501,11 +509,7 @@ export class ImoveisComponent implements OnInit {
 
     if (this.queryParams.bairros) {
       const ss = this.queryParams.bairros.split(',');
-      if (ss.length > 1) {
-        this.badges.push(this.badge(`Nos bairros: ${ss.join(', ')}`, 'bairros'));
-      } else {
-        this.badges.push(this.badge(`No bairro: ${ss.join(', ')}`, 'bairros'));
-      }
+      ss.forEach(b => this.badges.push(this.badge(`No bairro: ${b}`, `bairros,${b}`)));
     }
 
     if (this.queryParams.cidade) {
@@ -551,11 +555,7 @@ export class ImoveisComponent implements OnInit {
 
     if (this.queryParams.tipo) {
       const ss = this.queryParams.tipo.split(',');
-      if (ss.length > 1) {
-        this.badges.push(this.badge(`Tipos: ${ss.join(', ')}`, 'tipo'));
-      } else {
-        this.badges.push(this.badge(`Tipo: ${ss.join(', ')}`, 'tipo'));
-      }
+      ss.forEach(b => this.badges.push(this.badge(`Tipo: ${b}`, `tipo,${b}`)));
     }
 
     if (this.queryParams.precos) {
@@ -655,7 +655,6 @@ export class ImoveisComponent implements OnInit {
 
     if (!this.allImoveis) return;
 
-    console.log(this.filtred)
     this.filtred = this.allImoveis.filter((imovel: Imovel) => {
       let add = false;
       if (this.customSearch.categoria === 'comprar' && _.get(imovel, "comercializacao.venda.ativa")) {
@@ -677,8 +676,6 @@ export class ImoveisComponent implements OnInit {
       return add;
     });
 
-    console.log(this.filtred)
-
 
     this.customSearch.tipos = [];
     this.cidades = [];
@@ -691,16 +688,12 @@ export class ImoveisComponent implements OnInit {
     });
 
 
-    console.log(this.filtred)
     _.union(_.compact(_.map(this.filtred, (im: Imovel, key) => {
       return im.tipo;
     }))).forEach((value, index) => {
-      console.log(value);
       let selected = false;
       if (this.queryParams.tipo) {
         const find = this.queryParams.tipo.split(',').find(value1 => {
-          if (value1 === value)
-            console.log(value1)
           return value1 === value;
         });
         if (find) {
@@ -710,7 +703,6 @@ export class ImoveisComponent implements OnInit {
       }
       this.customSearch.tipos.push({key: value, selected: selected, i: index});
     });
-    console.log(this.customSearch.tipos);
 
     this.cidades = _.union(this.cidades)
   }
