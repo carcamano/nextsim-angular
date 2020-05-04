@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {LancamentoService} from "../home/lancamento.service";
 
 @Component({
   selector: 'app-sobre',
@@ -10,7 +11,9 @@ export class SobreComponent implements OnInit {
   latitude = -22.902578;
   longitude = -47.041508;
 
-  constructor() { }
+  historias: Historia[] = [];
+
+  constructor(private lancamentoService: LancamentoService) { }
 
   ngOnInit() {
 
@@ -19,6 +22,17 @@ export class SobreComponent implements OnInit {
     } catch (e) {
       window.scrollTo(0, 0);
     }
+
+    this.lancamentoService.sobreNos().subscribe(value => {
+      this.historias = value[0].acf.historia;
+    });
+
+
   }
 
+}
+
+export interface Historia {
+  data: string;
+  texto: string;
 }

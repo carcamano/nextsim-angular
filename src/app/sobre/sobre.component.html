@@ -106,48 +106,13 @@
 
     <section class="container-fluid d-block d-sm-block d-md-none bg-ice">
       <ul class="list-unstyled pt-5 mt-3">
-        <li class="media">
+        <li class="media" *ngFor="let historia of historias">
           <img class="img-fluid ml-1 mt-1" src="assets/img/icons/icon-tl-start.png"
                alt="EscritórioNext Soluções Imobiliárias">
           <div class="media-body mx-4">
-            <p class="text-dark-gray mr-4 tl-title">1981</p>
+            <p class="text-dark-gray mr-4 tl-title">{{historia.data}}</p>
             <p class="text-gray-300 tl-text">
-              Roberto Mangabeira, formado em Engenharia Civil pela Puc Campinas,
-              com especialização em Administração pela EAESP - FGV, e fundador da Next, iniciou sua carreira
-              em 1981 como Engenheiro Civil em uma construtora, onde ficou por 3 anos.
-            </p>
-          </div>
-        </li>
-        <li class="media">
-          <img class="img-fluid ml-1" src="assets/img/icons/icon-tl-cont.png"
-               alt="EscritórioNext Soluções Imobiliárias">
-          <div class="media-body mx-4">
-            <p class="text-dark-gray mr-4 mt-3 tl-title">1985</p>
-            <p class="text-gray-300 tl-text">
-              Em 1985, fundou a Bomteto Engenharia e Planejamento, tendo incorporado e construído
-              edifícios residenciais e industriais.
-            </p>
-          </div>
-        </li>
-        <li class="media">
-          <img class="img-fluid ml-1" src="assets/img/icons/icon-tl-cont.png"
-               alt="EscritórioNext Soluções Imobiliárias">
-          <div class="media-body mx-4">
-            <p class="text-dark-gray mr-4 mt-3 tl-title">1990</p>
-            <p class="text-gray-300 tl-text">
-              Em 1990, Mangabeira trabalhou na Medley, atuando por 10 anos como Vice-presidente Administrativo
-              Financeiro.
-            </p>
-          </div>
-        </li>
-        <li class="media">
-          <img class="img-fluid ml-1" src="assets/img/icons/icon-tl-cont.png"
-               alt="EscritórioNext Soluções Imobiliárias">
-          <div class="media-body mx-4">
-            <p class="text-dark-gray mr-4 mt-3 tl-title">2010</p>
-            <p class="text-gray-300 tl-text">
-              Roberto fundou a Next Soluções Imobiliárias em 2010, tendo incorporado e construído 6 empreendimentos e 2
-              parcelamentos de solo.
+              {{historia.texto}}
             </p>
           </div>
         </li>
@@ -304,39 +269,12 @@
         <div class="row">
           <div class="col-md-10 offset-1">
             <ul class="list-unstyled ul-nopadding">
-              <li class="media">
-                <p class="text-dark-gray mr-4 tl-title">1981</p>
+              <li class="media" *ngFor="let historia of historias">
+                <p class="text-dark-gray mr-4 tl-title">{{historia.data}}</p>
                 <img src="assets/img/icon-timeline.png" alt="EscritórioNext Soluções Imobiliárias"
                      class="img-fluid ml-1">
                 <div class="media-body mx-4">
-                  <p class="text-gray-300 tl-text">Roberto Mangabeira, formado em Engenharia Civil pela Puc Campinas,
-                    com especialização em Administração pela EAESP - FGV, e fundador da Next, iniciou sua carreira em
-                    1981 como Engenheiro Civil em uma construtora, onde ficou por 3 anos.</p>
-                </div>
-              </li>
-              <li class="media">
-                <p class="text-dark-gray mr-4 tl-title">1985</p>
-                <img src="assets/img/icon-timeline.png" alt="EscritórioNext Soluções Imobiliárias" class="img-fluid">
-                <div class="media-body mx-4">
-                  <p class="text-gray-300 tl-text">Em 1985, fundou a Bomteto Engenharia e Planejamento, tendo
-                    incorporado e construído edifícios residenciais e industriais.</p>
-                </div>
-              </li>
-              <li class="media">
-                <p class="text-dark-gray mr-4 tl-title">1990</p>
-                <img src="assets/img/icon-timeline.png" alt="EscritórioNext Soluções Imobiliárias" class="img-fluid">
-                <div class="media-body mx-4">
-                  <p class="text-gray-300 tl-text">Em 1990, Mangabeira trabalhou na Medley, atuando por 10 anos como
-                    Vice-presidente Administrativo Financeiro.</p>
-                </div>
-              </li>
-              <li class="media">
-                <p class="text-dark-gray mr-4 tl-title last-item">2010</p>
-                <img src="assets/img/icon-timeline.png" alt="EscritórioNext Soluções Imobiliárias"
-                     class="img-fluid ml-1">
-                <div class="media-body mx-4">
-                  <p class="text-gray-300 tl-text">Roberto fundou a Next Soluções Imobiliárias em 2010, tendo
-                    incorporado e construído 6 empreendimentos e 2 parcelamentos de solo.</p>
+                  <p class="text-gray-300 tl-text">{{historia.texto}}</p>
                 </div>
               </li>
             </ul>

@@ -7,7 +7,7 @@ import {Lancamento} from "../imoveis/models/lancamento.model";
 
 // const LANCAMENTO_URL = 'http://localhost/buildingeng.com.br';
 // const LANCAMENTO_URL = 'http://homolog.nextsim.com.br/lancamentos';
-const LANCAMENTO_URL = 'http://admin.nextsim.com.br';
+const LANCAMENTO_URL = 'https://admin.nextsim.com.br';
 @Injectable()
 export class LancamentoService {
 
@@ -38,6 +38,17 @@ export class LancamentoService {
     return new Observable(subscriber => {
       this.http
         .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/acf/v3/options/acf-options`, {observe: 'response'})
+        .subscribe(value => {
+          subscriber.next(value.body);
+        }, error => subscriber.error(error));
+
+    });
+  }
+
+  sobreNos(): Observable<any> {
+    return new Observable(subscriber => {
+      this.http
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/pages?slug=sobre-nos`, {observe: 'response'})
         .subscribe(value => {
           subscriber.next(value.body);
         }, error => subscriber.error(error));

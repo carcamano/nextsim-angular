@@ -418,7 +418,7 @@
                 <li class="breadcrumb-item" *ngIf="!queryParams?.query"><a> Imóveis </a></li>
                 <li
                   class='breadcrumb-item active'
-                  *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : 'GERAL'}} </li>
+                  *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : (queryParams?.featured ? 'DESTAQUES' :'GERAL')}} </li>
                 <li
                   class='breadcrumb-item active' *ngIf="queryParams?.query">{{queryParams?.query}} </li>
               </ol>
@@ -510,73 +510,77 @@
                               [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
             </div>
           </div>
-          <div class="col-12 col-sm-12 col-md-12">
-            <div class="mood">
-              <div class="mood-title">
-                <p>Imóveis para</p>
-                <h4>Todos os momentos</h4>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12">
+        <div class="mood">
+          <div class="mood-title">
+            <p>Imóveis para</p>
+            <h4>Todos os momentos</h4>
+          </div>
+          <div class="mood-content">
+            <div class="row mood">
+              <div class="col-12 col-md mood-bg mood-card building px-0 mx-0" style="cursor:pointer;">
+                <a
+                  [routerLink]="['/imoveis/']"
+                  [queryParams]="{finalidade: 'residencial', categoria: 'comprar', tipo: 'terreno'}">
+                  <div class="blend-mode">
+                    <div class="mood-description">
+                      <i class="icon-wall h4"></i>
+                      <h3>Para construir</h3>
+                    </div>
+                  </div>
+                </a>
               </div>
-              <div class="mood-content">
-                <div class="row mood">
-                  <div class="col-12 col-md mood-bg mood-card building px-0 mx-0" style="cursor:pointer;">
-                    <a
-                      [routerLink]="['/imoveis/']"
-                      [queryParams]="{finalidade: 'residencial', categoria: 'comprar', tipo: 'terreno'}">
-                      <div class="blend-mode">
-                        <div class="mood-description">
-                          <i class="icon-wall h4"></i>
-                          <h3>Para construir</h3>
-                        </div>
-                      </div>
-                    </a>
+              <div class="col-12 col-md mood-bg mood-card highlight px-0 mx-0" style="cursor:pointer;">
+                <a href="#" [routerLink]="['/imoveis/']" [queryParams]="{featured: true}">
+                  <div class="blend-mode">
+                    <div class="mood-description">
+                      <i class="icon-featured h4"></i>
+                      <h3>Destaques</h3>
+                    </div>
                   </div>
-                  <div class="col-12 col-md mood-bg mood-card highlight px-0 mx-0" style="cursor:pointer;">
-                    <a href="imoveis@featured=1.html" [routerLink]="['/imoveis/']" [queryParams]="{featured: 'true'}">
-                      <div class="blend-mode">
-                        <div class="mood-description">
-                          <i class="icon-featured h4"></i>
-                          <h3>Destaques</h3>
-                        </div>
-                      </div>
-                    </a>
+                </a>
+              </div>
+              <div class="col-12 col-md mood-bg mood-card for-family px-0 mx-0" style="cursor:pointer;">
+                <a
+                  [routerLink]="['/imoveis/']"
+                  [queryParams]="{finalidade: 'residencial', dormitorios: '3'}">
+                  <div class="blend-mode">
+                    <div class="mood-description">
+                      <i class="icon-house-heart h4"></i>
+                      <h3>Para família</h3>
+                    </div>
                   </div>
-                  <div class="col-12 col-md mood-bg mood-card for-family px-0 mx-0" style="cursor:pointer;">
-                    <a
-                      [routerLink]="['/imoveis/']"
-                      [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '3'}">
-                      <div class="blend-mode">
-                        <div class="mood-description">
-                          <i class="icon-house-heart h4"></i>
-                          <h3>Para família</h3>
-                        </div>
-                      </div>
-                    </a>
+                </a>
+              </div>
+              <div class="col-12 col-md mood-bg mood-card for-couple px-0 mx-0" style="cursor:pointer;">
+                <a
+                  [routerLink]="['/imoveis/']"
+                  [queryParams]="{finalidade: 'residencial', dormitorios: '2'}">
+                  <div class="blend-mode">
+                    <div class="mood-description">
+                      <i class="icon-alliance h4"></i>
+                      <h3>Para casal</h3>
+                    </div>
                   </div>
-                  <div class="col-12 col-md mood-bg mood-card for-couple px-0 mx-0" style="cursor:pointer;">
-                    <a
-                      [routerLink]="['/imoveis/']"
-                      [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '2'}">
-                      <div class="blend-mode">
-                        <div class="mood-description">
-                          <i class="icon-alliance h4"></i>
-                          <h3>Para casal</h3>
-                        </div>
-                      </div>
-                    </a>
+                </a>
+              </div>
+              <div class="col-12 col-md mood-bg mood-card alone px-0 mx-0" style="cursor:pointer;">
+                <a
+                  [routerLink]="['/imoveis/']"
+                  [queryParams]="{finalidade: 'residencial', dormitorios: '1'}">
+                  <div class="blend-mode">
+                    <div class="mood-description">
+                      <i class="icon-avatar-alone"></i>
+                      <h3>Morando sozinho</h3>
+                    </div>
                   </div>
-                  <div class="col-12 col-md mood-bg mood-card alone px-0 mx-0" style="cursor:pointer;">
-                    <a
-                      [routerLink]="['/imoveis/']"
-                      [queryParams]="{finalidade: 'residencial', categoria: 'alugar,comprar', quartos: '1'}">
-                      <div class="blend-mode">
-                        <div class="mood-description">
-                          <i class="icon-avatar-alone"></i>
-                          <h3>Morando sozinho</h3>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>

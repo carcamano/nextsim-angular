@@ -351,6 +351,14 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         }
       }
 
+      if (this.queryParams.featured ) {
+        if(imovel.site && imovel.site.imobiliaria && imovel.site.imobiliaria.destaque && imovel.site.imobiliaria.destaque === true) {
+          f.push('t');
+        } else {
+          f.push('f');
+        }
+      }
+
       return !f.includes('f');
     });
 

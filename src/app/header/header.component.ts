@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
   mobileMenuAlugar = false;
 
   title = 'Sua melhor forma de acessar imóveis<br> de alto padrão com suporte.';
-  image= 'http://admin.nextsim.com.br/wp-content/themes/theme/img/house-bg.jpg';
+  image= 'https://admin.nextsim.com.br/wp-content/themes/theme/img/house-bg.jpg';
 
   constructor(private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private allImoveis: AllImoveis,
               private lancamentoService: LancamentoService) {

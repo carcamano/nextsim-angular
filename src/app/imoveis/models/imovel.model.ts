@@ -2,6 +2,7 @@ export interface Imovel {
   _id: string;
   sigla: string;
   tipo: string;
+  site: Site;
   local: Local;
   comercializacao: Comercializacao;
   numeros: Numeros;
@@ -12,6 +13,17 @@ export interface Imovel {
     imagens: [string],
     fotoscond: [string]
   };
+}
+
+export interface Site {
+  imobiliaria: Imobiliaria;
+}
+
+export interface Imobiliaria {
+  destaque: boolean;
+  optnegocio: boolean;
+  publicar: boolean;
+  superdestaque: string;
 }
 
 export interface Recursos {
