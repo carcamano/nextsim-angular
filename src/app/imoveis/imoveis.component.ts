@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Imovel} from './models/imovel.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {Options} from 'ng5-slider';
 import {formatCurrency} from '@angular/common';
-import {NgbDropdown, NgbDropdownConfig, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
 import {AllImoveis} from "../all-imoveis.service";
 import {remove as removeAccents} from 'remove-accents';
@@ -42,7 +42,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   /// filtro
 
-  customSearch: { dormitorios: number | undefined; precos: { min: number; max: number }; area: { min: number; max: number }; salas: any; cidade: string; banheiros: any; finalidade: any; categoria: any; garagem: any; tipos: any; bairros: any[] } = {
+  customSearch: { dormitorios: number | undefined; precos: { min: number; max: number }; area: { min: number; max: number }; salas: any; cidade: string; banheiros: any; finalidade: any; categoria: any; garagem: any; tipos: any; bairros: any[], page: number } = {
     categoria: 'comprar',
     finalidade: 'residencial',
     salas: 2,
@@ -59,7 +59,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       max: 61000,
     },
     bairros: [],
-    cidade: ''
+    cidade: '',
+    page: 1
   };
 
   filtred: any[] = [];
@@ -120,6 +121,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       if (this.queryParams.finalidade) {
         this.customSearch.finalidade = this.queryParams.finalidade;
       }
+      this.customSearch.page = this.queryParams.page || 1;
+      this.currentPage = parseInt(localStorage.getItem(location.search) || '1');
       this.buildBadges();
 
       this.all.getAll(() => {
@@ -128,6 +131,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         this.ngxService.stop();
         this.loadDefaults();
       });
+
 
 
     });
@@ -199,7 +203,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         banheiros: !querys.includes('banheiros') ? (this.customSearch.banheiros > 0 ? this.customSearch.banheiros : '') : '',
         salas: !querys.includes('salas') ? (this.customSearch.salas > 0 ? this.customSearch.salas : '') : '',
         bairros: bairros.join(','),
-        cidade: !querys.includes('cidade') ? this.customSearch.cidade : ''
+        cidade: !querys.includes('cidade') ? this.customSearch.cidade : '',
+        page: this.customSearch.page
       });
     }
   }
@@ -216,6 +221,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   changePage(page: number) {
     this.currentPage = page;
+    this.customSearch.page = this.currentPage;
+    localStorage.setItem(location.search, page.toString());
     this.getImoveis();
   }
 
