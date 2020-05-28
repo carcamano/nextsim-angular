@@ -9,7 +9,7 @@ import {NgbDropdownConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
 import {AllImoveis} from "../all-imoveis.service";
 import {remove as removeAccents} from 'remove-accents';
-// import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import { MASKS, NgBrazilValidators } from 'ng-brazil';
 
 @Component({
   selector: 'app-imoveis',
@@ -27,7 +27,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   private itensPerPage = 10;
 
-  // MASKS = MASKS;
+  MASKS = MASKS;
 
   imoveis: Imovel[] = [];
   allImoveis: Imovel[] = [];
@@ -183,10 +183,33 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       });
       let area: string;
       if (!querys.includes('area')) {
+        if(this.customSearch.area.min) {
+          this.customSearch.area.min = parseInt(this.customSearch.area.min.toString()
+            .replace('R$ ', '').replace('.', '')
+            .replace(',', '.'));
+        }
+        if(this.customSearch.area.max) {
+          this.customSearch.area.max = parseInt(this.customSearch.area.max.toString()
+            .replace('R$ ', '').replace('.', '')
+            .replace(',', '.'));
+        }
         area = this.customSearch.area.min + ',' + this.customSearch.area.max;
       }
       let precos: string;
       if (!querys.includes('precos')) {
+        console.log(this.customSearch.precos.min);
+
+        if(this.customSearch.precos.min) {
+          this.customSearch.precos.min = parseInt(this.customSearch.precos.min.toString()
+            .replace('R$ ', '').replace('.', '')
+            .replace(',', '.'));
+        }
+        if(this.customSearch.precos.max) {
+          this.customSearch.precos.max = parseInt(this.customSearch.precos.max.toString()
+            .replace('R$ ', '').replace('.', '')
+            .replace(',', '.'));
+        }
+        console.log(this.customSearch.precos.max);
         precos = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
       }
       console.log(this.customSearch);

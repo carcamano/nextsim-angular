@@ -21,7 +21,7 @@ export class ImovelComponent implements OnInit {
 
   imgs: Array<object>;
 
-  @ViewChild('content') public childModal: NgbModalRef;
+  @ViewChild('content', { static: false }) public childModal: NgbModalRef;
 
   form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ');
 

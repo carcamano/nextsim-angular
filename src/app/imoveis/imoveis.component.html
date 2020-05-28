@@ -234,12 +234,12 @@
                       <div class="row">
                         <div class="col-6">
                           <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                                 [(ngModel)]="customSearch.precos.min" placeholder="M²"
+                                                 [(ngModel)]="customSearch.precos.min" placeholder="M²" [textMask]="{mask: MASKS.currency.textMask}"
                                                  [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="col-6">
                           <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                                  [(ngModel)]="customSearch.precos.max" placeholder="M²"
+                                                  [(ngModel)]="customSearch.precos.max" placeholder="M²" [textMask]="{mask: MASKS.currency.textMask}"
                                                   [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
@@ -318,12 +318,12 @@
                       <div class="row">
                         <div class="col-6">
                           <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                                 [(ngModel)]="customSearch.area.min" placeholder="M²"
+                                                 [(ngModel)]="customSearch.area.min" placeholder="M²" [textMask]="{mask: MASKS.number.textMask}"
                                                  [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="col-6">
                           <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                                  [(ngModel)]="customSearch.area.max" placeholder="M²"
+                                                  [(ngModel)]="customSearch.area.max" placeholder="M²" [textMask]="{mask: MASKS.number.textMask}"
                                                   [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
@@ -757,12 +757,12 @@
                 <div class="row">
                   <div class="col-6">
                     <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                           [(ngModel)]="customSearch.precos.min" placeholder="M²"
+                                           [(ngModel)]="customSearch.precos.min" placeholder="M²" [textMask]="{mask: MASKS.currency.textMask}"
                                            [ngModelOptions]="{standalone: true}">
                   </div>
                   <div class="col-6">
                     <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                            [(ngModel)]="customSearch.precos.max" placeholder="M²"
+                                            [(ngModel)]="customSearch.precos.max" placeholder="M²" [textMask]="{mask: MASKS.currency.textMask}"
                                             [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>

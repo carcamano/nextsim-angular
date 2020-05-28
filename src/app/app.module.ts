@@ -41,8 +41,8 @@ import {MomentModule} from 'ngx-moment';
 import {NgImageSliderModule} from "ng-image-slider";
 import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
 import {CarouselModule} from "ngx-owl-carousel-o";
-// import {TextMaskModule} from "angular2-text-mask";
-// import {NgBrazil} from "ng-brazil";
+import {NgBrazil} from "ng-brazil";
+import {TextMaskModule} from "angular2-text-mask";
 
 registerLocaleData(localePt);
 
@@ -111,8 +111,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    // TextMaskModule,
-    // NgBrazil
+    TextMaskModule,
+    NgBrazil
   ],
   providers: [
     ImoveisService,

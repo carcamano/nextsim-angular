@@ -13,7 +13,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class FabComponent implements OnInit {
 
-  @ViewChild('content') public childModal: NgbModalRef;
+  @ViewChild('content', { static: true }) public childModal: NgbModalRef;
   form = new ContactForm('', '', '', '');
 
   showFab = false;

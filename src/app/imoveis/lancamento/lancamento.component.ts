@@ -22,7 +22,7 @@ export class LancamentoComponent implements OnInit {
   imgs: Array<object>;
   currentPlant = 'plant0';
 
-  @ViewChild('plantas') plantas: NgbCarousel;
+  @ViewChild('plantas', { static: false }) plantas: NgbCarousel;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
