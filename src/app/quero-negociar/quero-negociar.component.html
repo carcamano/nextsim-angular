@@ -218,15 +218,12 @@
         <div class="offset-0 col-12 offset-sm-0 col-sm-12 col-md-12 offset-md-3 col-lg-6 offset-lg-3">
           <div class="card shadow">
             <div class="card-body p-4 m-4 p-md-5 m-md-5 ">
-              <form method="POST" action="quero-negociar.html" id="form-negotiate" name="form-negotiate">
-                <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
-                <input type="hidden" value="negociacao" name="contact_type" id="form-contact-contact_type">
-
+              <form [formGroup]="form">
                 <div class="form-group">
                   <div class="form-icon">
                     <span id="validate_contact_name"></span>
                     <input type="text" class="form-control" name="name" id="form-contact-name" value=""
-                           placeholder="Nome completo" autocomplete="off" required="required" [(ngModel)]="form.nome">
+                           formControlName="nome" placeholder="Nome completo" autocomplete="off" required="required">
                     <span id="alert_contact_name" class="float-left blur-error"></span>
                   </div>
                 </div>
@@ -235,7 +232,8 @@
                   <div class="form-icon">
                     <span id="validate_contact_phone"></span>
                     <input type="text" class="form-control" name="phone" id="form-contact-phone" value=""
-                           placeholder="Telefone" required="required" [(ngModel)]="form.telefone">
+                           id="form-contact-phone" placeholder="Celular" autocomplete="off" required="required"
+                           formControlName="telefone" [textMask]="{mask: MASKS.celular.textMask}">
                     <span id="alert_contact_phone" class="float-left blur-error"></span>
                   </div>
                 </div>
@@ -243,8 +241,9 @@
                 <div class="form-group">
                   <div class="form-icon">
                     <span id="validate_contact_email"></span>
-                    <input type="email" class="form-control" name="email" id="form-contact-email" value=""
-                           placeholder="Digite seu e-mail aqui" autocomplete="off" required="required" [(ngModel)]="form.email">
+                    <input type="email" class="form-control" name="email" id="form-contact-email"
+                           id="form-contact-email" value="" placeholder="Digite seu e-mail aqui" autocomplete="off"
+                           formControlName="email">
                   </div>
                   <span id="alert_contact_email" class="float-left blur-error"></span>
 
@@ -252,7 +251,7 @@
 
                 <div class="form-group">
                   <span id="validate_contact_category"></span>
-                  <select class="form-control" id="form-contact-category" required="required" name="category" [(ngModel)]="form.categoria">
+                  <select class="form-control" id="form-contact-category" required="required" name="category" formControlName="categoria">
                     <option disabled selected>Categoria</option>
                     <option value="Locação">Locação</option>
                     <option value="Venda">Venda</option>
@@ -264,11 +263,11 @@
                 <div class="form-group mt-4">
                   <span id="alert_contact_message" class="float-right blur-error"></span>
                   <textarea class="form-control" name="message" id="form-contact-message" rows="3"
-                            placeholder="Mensagem (Opcional)" [(ngModel)]="form.texto"></textarea>
+                            placeholder="Mensagem (Opcional)" formControlName="mensagem"></textarea>
                 </div>
                 <p class="text-right">
                   <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
-                           id="btn-negotiate-modal" [disabled]="form.nome === '' || form.email === ''" (click)="submitForm()">
+                           id="btn-negotiate-modal" [disabled]="!form.valid" (click)="submitForm()">
                     Enviar
                     <img class="btn-invisible" src="assets/img/spinner.gif" id="negotiate_modal_spinner" width="23"/>
                   </button>

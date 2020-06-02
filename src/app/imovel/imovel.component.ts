@@ -7,6 +7,8 @@ import {ImovelService} from './imovel.service';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {AllImoveis} from "../all-imoveis.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MASKS} from "ng-brazil";
 
 @Component({
   selector: 'app-imovel',
@@ -23,10 +25,11 @@ export class ImovelComponent implements OnInit {
 
   @ViewChild('content', { static: false }) public childModal: NgbModalRef;
 
-  form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ');
+  form: FormGroup;
+  MASKS = MASKS;
 
 
-  constructor(private route: ActivatedRoute, private all: AllImoveis,
+  constructor(private route: ActivatedRoute, private all: AllImoveis, private formBuilder: FormBuilder,
               private modalService: NgbModal, private service: ImovelService, private toastr: ToastrService) {
 
   }
@@ -62,12 +65,22 @@ export class ImovelComponent implements OnInit {
   }
 
   buildForm() {
-    this.form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ' + this.imovel.sigla);
+    this.form = this.formBuilder.group({
+      nome: [, Validators.required],
+      email: [, [Validators.required, Validators.email]],
+      telefone: [],
+      mensagem: ['Quero saber mais sobre o imovél: ' + this.imovel.sigla],
+    })
   }
 
   submitForm() {
     console.log(this.form);
-    this.service.sendGrid(this.form, this.imovel).subscribe(value => {
+    const form = new FormData();
+    form.append('nome', this.form.get('nome').value);
+    form.append('email', this.form.get('email').value);
+    form.append('telefone', this.form.get('telefone').value);
+    form.append('mensagem', this.form.get('mensagem').value);
+    this.service.sendToContactForm(form, 504).subscribe(value => {
       console.log(value);
       this.modalService.dismissAll();
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');

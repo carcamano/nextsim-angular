@@ -29,6 +29,11 @@ export class ImovelService {
       });
   }
 
+  sendToContactForm(form: FormData, formId: number) {
+    return this.http
+      .post<any>(`https://admin.nextsim.com.br/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`, form);
+  }
+
 
   incluir(form: ContactForm, imovel: Imovel): Observable<HttpResponse<any>> {
 

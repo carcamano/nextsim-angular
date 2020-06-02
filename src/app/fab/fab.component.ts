@@ -2,9 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {ContactForm} from "../imovel/imovel.component";
 import {ActivatedRoute} from "@angular/router";
-import {AllImoveis} from "../all-imoveis.service";
 import {ImovelService} from "../imovel/imovel.service";
 import {ToastrService} from "ngx-toastr";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MASKS, NgBrazilValidators} from "ng-brazil";
 
 @Component({
   selector: 'app-fab',
@@ -14,10 +15,11 @@ import {ToastrService} from "ngx-toastr";
 export class FabComponent implements OnInit {
 
   @ViewChild('content', { static: true }) public childModal: NgbModalRef;
-  form = new ContactForm('', '', '', '');
+  form: FormGroup;
+  MASKS = MASKS;
 
   showFab = false;
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
               private modalService: NgbModal, private service: ImovelService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -32,12 +34,22 @@ export class FabComponent implements OnInit {
   }
 
   buildForm() {
-    this.form = new ContactForm('', '', '', '' );
+    this.form = this.formBuilder.group({
+      nome: [, Validators.required],
+      email: [, [Validators.required, Validators.email]],
+      telefone: [],
+      mensagem: [],
+    })
   }
 
   submitForm() {
     console.log(this.form);
-    this.service.sendGrid(this.form).subscribe(value => {
+    const form = new FormData();
+    form.append('nome', this.form.get('nome').value);
+    form.append('email', this.form.get('email').value);
+    form.append('telefone', this.form.get('telefone').value);
+    form.append('mensagem', this.form.get('mensagem').value);
+    this.service.sendToContactForm(form, 504).subscribe(value => {
       console.log(value);
       this.modalService.dismissAll();
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');
