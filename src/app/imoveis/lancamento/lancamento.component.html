@@ -206,13 +206,8 @@
 
 <ng-template #content let-modal>
   <div class="modal-content">
-    <form method="POST" class="form-card " action="apartamento-residencial-alphaville-campinas-sp-AP001588.html"
+    <form  class="form-card" [formGroup]="form"
           id="form-negotiate-property">
-
-      <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV">
-      <input type="hidden" value="propriedade" name="contact_type" id="form-contact-contact_type">
-
-      <input type="hidden" value="Venda" name="form-contact-category" id="form-contact-category">
 
       <div class="card text-center">
         <div class="card-header text-dark-gray bg-gray-100 font-weight-bolder text-uppercase py-3">
@@ -229,7 +224,7 @@
                   <span id="validate_contact_name"></span>
                   <input type="text" class="form-control orange-input" name="form-contact-name"
                          id="form-contact-name"
-                         [(ngModel)]="form.nome" placeholder="Nome completo" autocomplete="off" required="required">
+                         formControlName="nome" placeholder="Nome completo" autocomplete="off" required="required">
                   <span id="alert_contact_name" class="float-left blur-error"></span>
                 </div>
               </div>
@@ -241,7 +236,7 @@
                   <span id="validate_contact_phone"></span>
                   <input type="text" class="form-control phone orange-input" name="form-contact-phone"
                          id="form-contact-phone" placeholder="Telefone" autocomplete="off" required="required"
-                         [(ngModel)]="form.telefone">
+                         formControlName="telefone" [textMask]="{mask: MASKS.celular.textMask}">
                 </div>
                 <span id="alert_contact_phone" class="float-left blur-error"></span>
               </div>
@@ -253,7 +248,7 @@
                   <span id="validate_contact_email"></span>
                   <input type="email" class="form-control orange-input" name="form-contact-email"
                          id="form-contact-email" value="" placeholder="Digite seu e-mail aqui" autocomplete="off"
-                         [(ngModel)]="form.email"
+                         formControlName="email"
                          required="required">
                 </div>
                 <span id="alert_contact_email" class="float-left blur-error"></span>
@@ -266,12 +261,12 @@
                 <span id="alert_message" class="float-right blur-error"></span>
                 <textarea class="form-control orange-textarea" name="form-contact-message" id="form-contact-message"
                           rows="3"
-                          placeholder="Mensagem (Opcional)" [(ngModel)]="form.texto"></textarea>
+                          placeholder="Mensagem (Opcional)" formControlName="mensagem"></textarea>
               </div>
             </div>
             <div class="col-12 text-center my-4">
               <button class="btn btn-sing-up btn-rounded btn-primary text-uppercase mt-3 btn-negotiate-modal"
-                      id="btn-negotiate-modal" [disabled]="form.nome === '' || form.email === ''"
+                      id="btn-negotiate-modal" [disabled]="!form.valid"
                       (click)="submitForm()">
                 Enviar
                 <img class="btn-invisible" src="../../assets/img/spinner.gif" id="negotiate_modal_spinner"

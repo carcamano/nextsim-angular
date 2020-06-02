@@ -352,7 +352,7 @@ agm-map {
 }
 
 .content_portfolio .informacoes h6:before {
-  content: "\A";
+  /*content: "\A";*/
   width: 4px;
   height: 4px;
   background: #575656;

@@ -9,6 +9,8 @@ import {ToastrService} from "ngx-toastr";
 import {NgImageSliderComponent} from "ng-image-slider";
 import {NgbSlideEvent} from "@ng-bootstrap/ng-bootstrap/carousel/carousel";
 import {OwlOptions} from "ngx-owl-carousel-o";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MASKS} from "ng-brazil";
 
 @Component({
   selector: 'app-lancamento',
@@ -18,7 +20,8 @@ import {OwlOptions} from "ngx-owl-carousel-o";
 export class LancamentoComponent implements OnInit {
 
   lancamento: Lancamento;
-  form = new ContactForm('', '', '', 'Quero saber mais sobre o imovél: ');
+  form: FormGroup;
+  MASKS = MASKS;
   imgs: Array<object>;
   currentPlant = 'plant0';
 
@@ -48,7 +51,7 @@ export class LancamentoComponent implements OnInit {
     nav: true
   }
 
-  constructor(private route: ActivatedRoute, private lancamentoService: LancamentoService,
+  constructor(private route: ActivatedRoute, private lancamentoService: LancamentoService, private formBuilder: FormBuilder,
               private modalService: NgbModal, private toastr: ToastrService,  private service: ImovelService) { }
 
 
@@ -71,17 +74,29 @@ export class LancamentoComponent implements OnInit {
   }
 
   buildForm() {
-    this.form = new ContactForm('', '', '', 'Quero saber mais sobre o lançamento: ' + this.lancamento.title.rendered);
+    this.form = this.formBuilder.group({
+      nome: [, Validators.required],
+      email: [, [Validators.required, Validators.email]],
+      telefone: [],
+      mensagem: [],
+    })
   }
 
+
   submitForm() {
-    console.log(this.form);
-    this.service.sendGrid(this.form).subscribe(value => {
+    const form = new FormData();
+    form.append('nome', this.form.get('nome').value);
+    form.append('email', this.form.get('email').value);
+    form.append('telefone', this.form.get('telefone').value);
+    form.append('mensagem', this.form.get('mensagem').value);
+    this.service.sendToContactForm(form, 505).subscribe(value => {
       console.log(value);
       this.modalService.dismissAll();
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');
+      this.form.reset();
     });
   }
+
   open(content) {
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',

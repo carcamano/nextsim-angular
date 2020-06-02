@@ -43,6 +43,8 @@ import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {NgBrazil} from "ng-brazil";
 import {TextMaskModule} from "angular2-text-mask";
+import { BlogComponent } from './blog/blog.component';
+import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 
 registerLocaleData(localePt);
 
@@ -85,7 +87,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SobreComponent,
     FabComponent,
     CustomSearchComponent,
-    LancamentoComponent
+    LancamentoComponent,
+    BlogComponent,
+    BlogDetailComponent
   ],
   imports: [
     BrowserModule,
