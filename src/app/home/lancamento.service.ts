@@ -56,4 +56,27 @@ export class LancamentoService {
     });
   }
 
+  posts(): Observable<any> {
+    return new Observable(subscriber => {
+      this.http
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/posts?status=publish`, {observe: 'response'})
+        .subscribe(value => {
+          subscriber.next(value.body);
+        }, error => subscriber.error(error));
+
+    });
+  }
+
+  post(slug: string) {
+    return new Observable(subscriber => {
+      this.http
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/posts?status=publish&slug=${slug}`, {observe: 'response'})
+        .subscribe(value => {
+          subscriber.next(value.body);
+        }, error => subscriber.error(error));
+
+    });
+
+  }
+
 }

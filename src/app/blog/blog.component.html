@@ -1,34 +1,34 @@
 <div id="backdrop">
   <section class="content">
-    <div class="container bg-gray my-5">
+    <div class="container bg-gray">
       <div class="row py-5">
         <div class="col-lg-2 sidebar text-right">
 
           <h3 class="blog-title-menu-lateral">Blog Next</h3>
 
           <ul id="blog-menu-lateral">
-            <li><a href="blog.html" class="active">TODOS</a></li>
+<!--            <li><a href="blog.html" class="active">TODOS</a></li>-->
 
 
-            <li><a href="blog/categoria/decoracao.html"> Decoração</a></li>
+<!--            <li><a href="blog/categoria/decoracao.html"> Decoração</a></li>-->
 
-            <li><a href="blog/categoria/design-de-interior.html"> Design de Interior</a></li>
+<!--            <li><a href="blog/categoria/design-de-interior.html"> Design de Interior</a></li>-->
 
-            <li><a href="blog/categoria/lancamentos.html"> Lançamento</a></li>
+<!--            <li><a href="blog/categoria/lancamentos.html"> Lançamento</a></li>-->
 
-            <li><a data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-search"></i> PESQUISAR</a>
-            </li>
+<!--            <li><a data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-search"></i> PESQUISAR</a>-->
+<!--            </li>-->
           </ul>
         </div>
         <div class="col-lg-9 offset-lg-1 blog-list">
 
 
           <div class="row BlogCard BlogCardShadowBox animated fadeIn all_slides_hook" style="" id="slide_"
-               data-slide="">
+               data-slide="" *ngFor="let post of posts">
 
             <div class="col-lg-5 px-0 " style="overflow: hidden;">
-              <a href="blog/noticia6.html" title="">
-                <div class="BlogCardCover" style="background-image: url('storage/news/noticia6-thumb.jpeg');">
+              <a  title="">
+                <div class="BlogCardCover" [ngStyle]="{'background-image': 'url(' + post?.image + ')'}">
                 </div>
               </a>
             </div>
@@ -38,10 +38,10 @@
 
               <div class="row margin-top-30">
                 <div class="col-12">
-                  <h6 class="text-orange text-uppercase font-weight-bold" style="letter-spacing: 2px;">Decoração</h6>
-                  <h2 class="text-dark-gray blog-title pt-2 pb-3 ">Noticia 6</h2>
-                  <p class="text-gray-300">Sub Noticia 6</p>
-                  <a href="blog/noticia6.html" class="btn btn-see-more btn-rounded" title="">
+                  <h6 class="text-orange text-uppercase font-weight-bold" style="letter-spacing: 2px;"></h6>
+                  <h2 class="text-dark-gray blog-title pt-2 pb-3 ">{{post?.title?.rendered}}</h2>
+                  <p class="text-gray-300">{{removeHTML(post?.excerpt?.rendered)}}</p>
+                  <a [routerLink]="'/blog/' + post?.slug" class="btn btn-see-more btn-rounded" title="">
                     VER MAIS <span class="arrow-icon"></span>
                   </a>
                 </div>
@@ -50,156 +50,6 @@
 
             </div>
           </div>
-
-
-          <div class="row BlogCard BlogCardShadowBox animated fadeIn all_slides_hook" style="" id="slide_"
-               data-slide="">
-
-            <div class="col-lg-5 px-0 " style="overflow: hidden;">
-              <a href="blog/noticia5.html" title="">
-                <div class="BlogCardCover" style="background-image: url('storage/news/noticia5-thumb.jpeg');">
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-7 blog-padding-left-50">
-
-
-              <div class="row margin-top-30">
-                <div class="col-12">
-                  <h6 class="text-orange text-uppercase font-weight-bold" style="letter-spacing: 2px;">Decoração</h6>
-                  <h2 class="text-dark-gray blog-title pt-2 pb-3 ">Noticia 5</h2>
-                  <p class="text-gray-300">Sub Noticia 5</p>
-                  <a href="blog/noticia5.html" class="btn btn-see-more btn-rounded" title="">
-                    VER MAIS <span class="arrow-icon"></span>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="row BlogCard BlogCardShadowBox animated fadeIn all_slides_hook" style="" id="slide_"
-               data-slide="">
-
-            <div class="col-lg-5 px-0 " style="overflow: hidden;">
-              <a href="blog/noticia1.html" title="">
-                <div class="BlogCardCover" style="background-image: url('storage/news/noticia1-thumb.jpeg');">
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-7 blog-padding-left-50">
-
-
-              <div class="row margin-top-30">
-                <div class="col-12">
-                  <h6 class="text-orange text-uppercase font-weight-bold" style="letter-spacing: 2px;">Design de
-                    Interior</h6>
-                  <h2 class="text-dark-gray blog-title pt-2 pb-3 ">Noticia 1</h2>
-                  <p class="text-gray-300">Sub Noticia 1</p>
-                  <a href="blog/noticia1.html" class="btn btn-see-more btn-rounded" title="">
-                    VER MAIS <span class="arrow-icon"></span>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="row BlogCard BlogCardShadowBox animated fadeIn all_slides_hook" style="" id="slide_"
-               data-slide="">
-
-            <div class="col-lg-5 px-0 " style="overflow: hidden;">
-              <a href="blog/noticia2.html" title="">
-                <div class="BlogCardCover" style="background-image: url('storage/news/noticia2-thumb.jpeg');">
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-7 blog-padding-left-50">
-
-
-              <div class="row margin-top-30">
-                <div class="col-12">
-                  <h6 class="text-orange text-uppercase font-weight-bold" style="letter-spacing: 2px;">Lançamento</h6>
-                  <h2 class="text-dark-gray blog-title pt-2 pb-3 ">Noticia 2</h2>
-                  <p class="text-gray-300">Sub Noticia 3</p>
-                  <a href="blog/noticia2.html" class="btn btn-see-more btn-rounded" title="">
-                    VER MAIS <span class="arrow-icon"></span>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="row BlogCard BlogCardShadowBox animated fadeIn all_slides_hook" style="" id="slide_"
-               data-slide="">
-
-            <div class="col-lg-5 px-0 " style="overflow: hidden;">
-              <a href="blog/noticia3.html" title="">
-                <div class="BlogCardCover"
-                     style="background-image: url('storage/news/lorem-ipsum-dolor-sit-amet-thumb.jpeg');">
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-7 blog-padding-left-50">
-
-
-              <div class="row margin-top-30">
-                <div class="col-12">
-                  <h6 class="text-orange text-uppercase font-weight-bold" style="letter-spacing: 2px;">Lançamento</h6>
-                  <h2 class="text-dark-gray blog-title pt-2 pb-3 ">Noticia 3</h2>
-                  <p class="text-gray-300">Sub Noticia 3</p>
-                  <a href="blog/noticia3.html" class="btn btn-see-more btn-rounded" title="">
-                    VER MAIS <span class="arrow-icon"></span>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="row BlogCard BlogCardShadowBox animated fadeIn all_slides_hook" style="" id="slide_"
-               data-slide="">
-
-            <div class="col-lg-5 px-0 " style="overflow: hidden;">
-              <a href="blog/noticia4.html" title="">
-                <div class="BlogCardCover"
-                     style="background-image: url('storage/news/design-de-interiores-10-lindos-apartamentos-thumb.jpeg');">
-                </div>
-              </a>
-            </div>
-
-            <div class="col-lg-7 blog-padding-left-50">
-
-
-              <div class="row margin-top-30">
-                <div class="col-12">
-                  <h6 class="text-orange text-uppercase font-weight-bold" style="letter-spacing: 2px;">Design de
-                    Interior</h6>
-                  <h2 class="text-dark-gray blog-title pt-2 pb-3 ">Noticia 4</h2>
-                  <p class="text-gray-300">Sub Noticia 4</p>
-                  <a href="blog/noticia4.html" class="btn btn-see-more btn-rounded" title="">
-                    VER MAIS <span class="arrow-icon"></span>
-                  </a>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
 
         </div>
 

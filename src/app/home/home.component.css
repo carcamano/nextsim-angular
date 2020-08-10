@@ -5,7 +5,9 @@
   background-position: center;
   margin-bottom: 30px;
 }
-
+.blog-thumb img {
+  cursor: pointer;
+}
 .lancamento_nome {
   position: absolute;
   top: 0;
