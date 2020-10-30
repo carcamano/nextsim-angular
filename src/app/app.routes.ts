@@ -7,6 +7,7 @@ import {QueroNegociarComponent} from './quero-negociar/quero-negociar.component'
 import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
 import {BlogComponent} from "./blog/blog.component";
 import {BlogDetailComponent} from "./blog/blog-detail/blog-detail.component";
+import { ServicosFormulariosComponent } from './servicos-formularios/servicos-formularios.component';
 
 export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
@@ -14,6 +15,7 @@ export const ROUTES: Routes = [
   {path: 'blog/:post', component: BlogDetailComponent},
   {path: 'sobre-nos', component: SobreComponent},
   {path: 'quero-negociar', component: QueroNegociarComponent},
+  {path: 'servicos', component: ServicosFormulariosComponent},
   {path: 'imoveis',
     children: [
       {

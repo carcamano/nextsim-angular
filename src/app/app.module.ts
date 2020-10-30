@@ -45,6 +45,7 @@ import {NgBrazil} from "ng-brazil";
 import {TextMaskModule} from "angular2-text-mask";
 import { BlogComponent } from './blog/blog.component';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
+import { ServicosFormulariosComponent } from './servicos-formularios/servicos-formularios.component';
 
 registerLocaleData(localePt);
 
@@ -89,7 +90,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CustomSearchComponent,
     LancamentoComponent,
     BlogComponent,
-    BlogDetailComponent
+    BlogDetailComponent,
+    ServicosFormulariosComponent
   ],
   imports: [
     BrowserModule,
