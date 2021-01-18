@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer, Renderer2, ViewEncapsulation} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Options} from 'ng5-slider';
@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit {
   image= 'https://admin.nextsim.com.br/wp-content/themes/theme/img/house-bg.jpg';
 
   constructor(private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private allImoveis: AllImoveis,
-              private lancamentoService: LancamentoService) {
+              private lancamentoService: LancamentoService, private elementRef : ElementRef, private renderer: Renderer2) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
         this.rootView = false;
@@ -89,7 +89,8 @@ export class HeaderComponent implements OnInit {
           categoria: null,
           campo: null
         };
-      } else if (event instanceof NavigationEnd && ((event.url.includes('/sobre-nos') || event.url.includes('/quero-negociar') || event.url.includes('/blog')))) {
+      } else if (event instanceof NavigationEnd && ((event.url.includes('/sobre-nos') ||
+        event.url.includes('/quero-negociar') || event.url.includes('/blog') || event.url.includes('/servicos')))) {
         this.rootView = false;
       } else if (event instanceof NavigationEnd && !event.url.includes('/imoveis')) {
         this.rootView = true;
@@ -158,6 +159,11 @@ export class HeaderComponent implements OnInit {
 
       });
     });
+  }
+
+  scroll() {
+    document.getElementById('backdrop').scrollIntoView({behavior: "smooth"});
+
   }
 
   openSearchMobile(content) {

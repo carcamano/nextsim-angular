@@ -1,0 +1,34 @@
+.property_launches .item {
+  height: 230px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 30px; }
+.property_launches .blog-thumb img {
+  cursor: pointer; }
+.property_launches .lancamento_nome {
+  position: absolute;
+  top: 0;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-animation: all 0.5s ease-out;
+  -moz-animation: all 0.5s ease-out;
+  -o-animation: all 0.5s ease-out;
+  animation: all 0.5s ease-out; }
+.property_launches .lancamento_nome:hover {
+  background: rgba(0, 0, 0, 0.6); }
+.property_launches .lancamento_nome span {
+  opacity: 0;
+  color: #f69731;
+  -webkit-animation: all 0.5s ease-out;
+  -moz-animation: all 0.5s ease-out;
+  -o-animation: all 0.5s ease-out;
+  animation: all 0.5s ease-out; }
+.property_launches .lancamento_nome:hover span {
+  opacity: 1; }
+.property_launches .property_releases_nav ul li a {
+  cursor: pointer; }
+
+/*# sourceMappingURL=next.css.map */

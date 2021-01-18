@@ -32,6 +32,9 @@
                 </a>
               </div>
             </div>
+            <div class="blog-btn">
+              <a class="btn btn-see-all btn-rounded" [routerLink]="'/imoveis/lancamentos'">VER TODOS</a>
+            </div>
           </div>
         </div>
       </div>
@@ -50,7 +53,8 @@
           <div class="blog-gradient animated fadeIn">
             <a id="link-banner" class="animation animated fadeIn">
               <h2 class="blog-h2  animated fadeInDown" id="b-title">{{posts[currentPost]?.title?.rendered}}</h2>
-              <h3 class="blog-h3  animated fadeInDown" id="b-subtitle">{{removeHTML(posts[currentPost]?.excerpt?.rendered)}}</h3>
+              <h3 class="blog-h3  animated fadeInDown"
+                  id="b-subtitle">{{removeHTML(posts[currentPost]?.excerpt?.rendered)}}</h3>
               <a class="blog-btnAction btn btn-generic-white btn-rounded mt-4  animated fadeInDown" id="blog_btnAction"
                  [routerLink]="'/blog/' + posts[currentPost]?.slug">Ver mais <i class="GenericArrowWhite"></i></a>
             </a>

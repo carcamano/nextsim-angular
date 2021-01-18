@@ -1,0 +1,40 @@
+<div id="backdrop">
+  <section class="container">
+    <!--  <section class="container" >-->
+    <div class="property_launches">
+      <h3>Confira os Nossos</h3>
+      <h2>Lançamentos</h2>
+      <span class="orange_bar_decoration"></span>
+
+
+      <div class="property_releases_nav">
+        <!--        <ul>-->
+        <!--          <li><a [class.active]="" class="active">Todos</a></li>-->
+        <!--          <li><a>Residencial</a></li>-->
+        <!--          <li><a>Comercial</a></li>-->
+        <!--        </ul>-->
+      </div>
+      <div class="property_releases_content">
+        <div class="container">
+          <div class="col-lg-10 offset-lg-1">
+            <div class="row">
+              <div class="col-4" *ngFor="let lancamento of lancamentos">
+                <a [routerLink]="['/imoveis/lancamentos/' + lancamento.slug]">
+                  <div class="item" [style.background-image]="'url(' + lancamento.image + ')'">
+                    <div class="lancamento_nome">
+                      <div class="row">
+                        <div class="col">
+                          <span>{{lancamento.title.rendered}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

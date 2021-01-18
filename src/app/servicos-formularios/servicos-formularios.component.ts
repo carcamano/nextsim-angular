@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-servicos-formularios',
   templateUrl: './servicos-formularios.component.html',
-  styleUrls: ['./servicos-formularios.component.css']
+  styleUrls: ['./servicos-formularios.component.scss']
 })
 export class ServicosFormulariosComponent implements OnInit {
 
@@ -21,5 +21,5 @@ export class ServicosFormulariosComponent implements OnInit {
     this.location.back();
   }
 
-  
+
 }

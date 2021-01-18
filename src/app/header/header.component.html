@@ -177,7 +177,7 @@
                     Comercial
                   </label>
                 </div>
-                <div class="form-check category-option" (click)="simpleSearch.finalidade = 'lancamentos'">
+                <div class="form-check category-option" (click)="scroll()">
                   <label class="form-check-label">
                     Lançamentos
                   </label>
@@ -219,7 +219,7 @@
     </form>
   </div>
   <div class="container scroll-btn" *ngIf="rootView">
-    <span href=""><img src="assets/img/arrow-01.png" width="50" id="down-arrow"></span>
+    <span href=""><img src="assets/img/arrow-01.png" width="50" id="down-arrow" (click)="scroll()"></span>
   </div>
   <!--  <div class="owl-carousel" *ngIf="rootView"  [ngStyle]="{'height.px': divStyle}">-->
   <!--    <img src="assets/img/house-bg.jpg" alt="">-->
@@ -584,7 +584,7 @@
                     Comercial
                   </label>
                 </div>
-                <div class="form-check category-option" (click)="simpleSearch.finalidade = 'lancamentos'">
+                <div class="form-check category-option" (click)="goLancamento()">
                   <label class="form-check-label">
                     Lançamentos
                   </label>

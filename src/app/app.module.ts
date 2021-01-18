@@ -46,6 +46,8 @@ import {TextMaskModule} from "angular2-text-mask";
 import { BlogComponent } from './blog/blog.component';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { ServicosFormulariosComponent } from './servicos-formularios/servicos-formularios.component';
+import { FormPessoaFisicaComponent } from './servicos-formularios/form-pessoa-fisica/form-pessoa-fisica.component';
+import { LancamentosComponent } from './imoveis/lancamentos/lancamentos.component';
 
 registerLocaleData(localePt);
 
@@ -91,7 +93,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LancamentoComponent,
     BlogComponent,
     BlogDetailComponent,
-    ServicosFormulariosComponent
+    ServicosFormulariosComponent,
+    FormPessoaFisicaComponent,
+    LancamentosComponent
   ],
   imports: [
     BrowserModule,

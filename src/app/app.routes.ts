@@ -8,6 +8,7 @@ import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
 import {BlogComponent} from "./blog/blog.component";
 import {BlogDetailComponent} from "./blog/blog-detail/blog-detail.component";
 import { ServicosFormulariosComponent } from './servicos-formularios/servicos-formularios.component';
+import {LancamentosComponent} from "./imoveis/lancamentos/lancamentos.component";
 
 export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
@@ -23,12 +24,17 @@ export const ROUTES: Routes = [
         component: ImoveisComponent
       },
       {
-        path: ':id',
-        component: ImovelComponent
+        path: 'lancamentos',
+        component: LancamentosComponent
       },
       {
         path: 'lancamentos/:slug',
         component: LancamentoComponent
-      }
-    ]}
+      },
+      {
+        path: ':id',
+        component: ImovelComponent
+      },
+    ]},
+  {path: 'servicos', component: ServicosFormulariosComponent},
 ];

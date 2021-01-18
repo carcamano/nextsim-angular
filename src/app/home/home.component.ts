@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
       console.log(value.body);
       this.lancamentos = value.body;
       if (this.lancamentos.length > 6) {
-        this.lancamentos = this.lancamentos.slice(0, 5);
+        this.lancamentos = this.lancamentos.slice(0, 6);
       }
 
     });
