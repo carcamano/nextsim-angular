@@ -163,7 +163,6 @@ export class HeaderComponent implements OnInit {
 
   scroll() {
     document.getElementById('backdrop').scrollIntoView({behavior: "smooth"});
-
   }
 
   openSearchMobile(content) {

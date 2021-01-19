@@ -1,76 +1,83 @@
 <footer>
   <div class="footer">
     <div class="container">
-      <img src="assets/img/logo-next-rodape.svg" alt="" class="logo-rodape">
-      <div class="row">
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3 footer-col">
-          <ul class="footer-links">
-            <li class="title">Sobre nós</li>
-            <li><a [routerLink]="['/sobre-nos/']">Nossa História</a></li>
-            <li><a [routerLink]="['/quero-negociar/']">Como Fazemos</a></li>
-          </ul>
-          <ul class="footer-links">
-            <!--            <li class="title"><a href="blog.html">Blog Next</a></li>-->
-          </ul>
+      <div class="row justify-content-between">
+        <div class="col-auto">
+          <img src="assets/img/logo-next-rodape.svg" alt="" class="logo-rodape">
         </div>
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3 footer-col">
-          <ul class="footer-links">
-            <li class="title">Quero Alugar</li>
-            <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar'}">Imóveis
-              Residenciais</a></li>
-            <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'alugar'}">Imóveis
-              Comerciais</a></li>
-          </ul>
-          <ul class="footer-links">
-            <li class="title">Quero Comprar</li>
-            <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar'}">Imóveis
-              Residenciais</a></li>
-            <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'comprar'}">Imóveis
-              Comerciais</a></li>
-          </ul>
-          <ul class="footer-links">
-            <li class="title"><a [routerLink]="['/quero-negociar/']">Quero anunciar</a></li>
-          </ul>
-        </div>
-        <div class="col-12 col-sm-6 col-md-3 col-lg-3 footer-col">
-<!--          <ul class="footer-links d-none d-sm-none d-md-none d-lg-block">-->
-<!--            <li class="title">Contato</li>-->
-<!--            <li><a href="fale-conosco.html">Fale Conosco</a></li>-->
-<!--            &lt;!&ndash; <li><a href="">Trabalhe na Next</a></li> &ndash;&gt;-->
-<!--          </ul>-->
-          <ul class="footer-links">
-            <li class="title">Telefone</li>
-            <li class="numtel"><img class="social" src="assets/img/tel-icon.svg" alt=""> <a
-              href="callto:+55192512-0000">2512-0000</a></li>
-          </ul>
-          <ul class="footer-links" style="margin-bottom: 30px;">
-            <li class="title">Whatsapp</li>
-            <li class="numtel"><img src="assets/img/zap-icon.svg" alt=""> <a
-              href="https://api.whatsapp.com/send?phone=5519999120030">(19) 99912-0030</a></li>
-          </ul>
-          <ul class="footer-links">
-            <li class="title">Redes Sociais</li>
-            <ul class="list-inline">
-              <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.facebook.com/nextsim"
-                                                               data-toggle="tooltip" data-placement="bottom"
-                                                               title="Facebook"><img class="social-media-img"
-                                                                                     src="assets/img/Caminho&#32;354.png"
-                                                                                     alt=""></a></li>
-              <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.instagram.com/next_sim/"
-                                                               data-toggle="tooltip" data-placement="bottom"
-                                                               title="Instagram"><img class="social-media-img"
-                                                                                      src="assets/img/Caminho&#32;355.png"
-                                                                                      alt=""></a></li>
-            </ul>
-          </ul>
+        <div class="col-auto">
+          <div class="row">
+            <div class="col-12 col-sm-auto footer-col">
+              <ul class="footer-links">
+                <li class="title">Sobre nós</li>
+                <li><a [routerLink]="['/sobre-nos/']">Nossa História</a></li>
+                <li><a [routerLink]="['/quero-negociar/']">Como Fazemos</a></li>
+              </ul>
+              <ul class="footer-links">
+                <!--            <li class="title"><a href="blog.html">Blog Next</a></li>-->
+              </ul>
+            </div>
+            <div class="col-12 col-sm-auto footer-col">
+              <ul class="footer-links">
+                <li class="title">Quero Alugar</li>
+                <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'alugar'}">Imóveis
+                  Residenciais</a></li>
+                <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'alugar'}">Imóveis
+                  Comerciais</a></li>
+              </ul>
+              <ul class="footer-links">
+                <li class="title">Quero Comprar</li>
+                <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'residencial', categoria: 'comprar'}">Imóveis
+                  Residenciais</a></li>
+                <li><a [routerLink]="['/imoveis/']" [queryParams]="{finalidade: 'comercial', categoria: 'comprar'}">Imóveis
+                  Comerciais</a></li>
+              </ul>
+              <ul class="footer-links">
+                <li class="title"><a [routerLink]="['/quero-negociar/']">Quero anunciar</a></li>
+              </ul>
+            </div>
+            <div class="col-12 col-sm-auto footer-col">
+              <!--          <ul class="footer-links d-none d-sm-none d-md-none d-lg-block">-->
+              <!--            <li class="title">Contato</li>-->
+              <!--            <li><a href="fale-conosco.html">Fale Conosco</a></li>-->
+              <!--            &lt;!&ndash; <li><a href="">Trabalhe na Next</a></li> &ndash;&gt;-->
+              <!--          </ul>-->
+              <ul class="footer-links">
+                <li class="title">Telefone</li>
+                <li class="numtel"><img class="social" src="assets/img/tel-icon.svg" alt=""> <a
+                  href="callto:+55192512-0000">2512-0000</a></li>
+              </ul>
+              <ul class="footer-links" style="margin-bottom: 30px;">
+                <li class="title">Whatsapp</li>
+                <li class="numtel"><img src="assets/img/zap-icon.svg" alt=""> <a
+                  href="https://api.whatsapp.com/send?phone=5519999120030">(19) 99912-0030</a></li>
+              </ul>
+              <ul class="footer-links">
+                <li class="title">Redes Sociais</li>
+                <ul class="list-inline">
+                  <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.facebook.com/nextsim"
+                                                                   data-toggle="tooltip" data-placement="bottom"
+                                                                   title="Facebook"><img class="social-media-img"
+                                                                                         src="assets/img/Caminho&#32;354.png"
+                                                                                         alt=""></a></li>
+                  <li class="list-inline-item px-md-0 px-lg-1 "><a href="https://www.instagram.com/next_sim/"
+                                                                   data-toggle="tooltip" data-placement="bottom"
+                                                                   title="Instagram"><img class="social-media-img"
+                                                                                          src="assets/img/Caminho&#32;355.png"
+                                                                                          alt=""></a></li>
+                </ul>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="footer-bar">
     <div class="container">
-      <p class="creditos">Next soluçōes imobiliárias - Av. Dr. Jesuíno Marcondes Machado, 440 - Nova Campinas, Campinas - SP, 13092-108 <span
-        class="breakcnpj"><br>CNPJ 03.492.692/0001-20 | CRECI: 17.452 J </span></p>
+      <p class="creditos">Next soluçōes imobiliárias - Av. Dr. Jesuíno Marcondes Machado, 440 - Nova Campinas, Campinas
+        - SP, 13092-108 <span
+          class="breakcnpj"><br>CNPJ 03.492.692/0001-20 | CRECI: 17.452 J </span></p>
     </div>
   </div>
 </footer>

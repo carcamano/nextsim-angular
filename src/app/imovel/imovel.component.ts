@@ -54,6 +54,10 @@ export class ImovelComponent implements OnInit {
     // cd-google-map
   }
 
+  scroll() {
+    document.getElementById('down-arrow').scrollIntoView({behavior: "smooth"});
+  }
+
   imageObject(): Array<object> {
     this.imgs = this.imovel.midia.imagens.map(value => {
       return {

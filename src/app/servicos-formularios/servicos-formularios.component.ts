@@ -16,6 +16,10 @@ export class ServicosFormulariosComponent implements OnInit {
   ngOnInit() {
   }
 
+  mToggle(event) {
+
+  }
+
 
   goBack() {
     this.location.back();

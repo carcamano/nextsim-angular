@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
       console.log(value);
       this.posts = value;
       if (this.posts.length > 6) {
-        this.posts = this.posts.slice(0, 5);
+        this.posts = this.posts.slice(0, 6);
       }
     });
 

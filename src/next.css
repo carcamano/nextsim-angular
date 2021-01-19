@@ -1,3 +1,20 @@
+.property_releases_nav {
+  height: 40px;
+  padding: 0;
+  margin: 0; }
+
+.how-we-do {
+  background: #575656;
+  padding-bottom: 4px; }
+  .how-we-do .title_right, .how-we-do .title_left, .how-we-do .HWD-text {
+    color: #fff; }
+
+.footer .container {
+  max-width: 1190px; }
+
+.about-us.content-internal {
+  max-height: 800px; }
+
 .property_launches .item {
   height: 230px;
   background-size: cover;
@@ -30,5 +47,38 @@
   opacity: 1; }
 .property_launches .property_releases_nav ul li a {
   cursor: pointer; }
+
+#down-arrow {
+  cursor: pointer; }
+
+.PropertyCardValues.valores img {
+  margin-top: 0 !important; }
+.PropertyCardValues.valores.iptu.condominio img {
+  margin-top: 0 !important;
+  width: 40px;
+  margin-right: 10px; }
+
+.recursos ul {
+  columns: 4;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+  /* Medium Devices, Desktops */
+  /* Small Devices, Tablets */
+  /* Extra Small Devices, Phones */ }
+  @media only screen and (max-width: 992px) {
+    .recursos ul {
+      columns: 3;
+      -webkit-columns: 3;
+      -moz-columns: 3; } }
+  @media only screen and (max-width: 768px) {
+    .recursos ul {
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2; } }
+  @media only screen and (max-width: 480px) {
+    .recursos ul {
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1; } }
 
 /*# sourceMappingURL=next.css.map */

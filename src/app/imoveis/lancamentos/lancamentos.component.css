@@ -46,3 +46,9 @@
 .property_releases_nav ul li a {
   cursor: pointer;
 }
+
+
+.property_launches {
+  justify-content: start;
+  padding-top: 160px;
+}

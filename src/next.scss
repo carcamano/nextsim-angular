@@ -1,5 +1,30 @@
 
+.property_releases_nav {
+  height: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+.how-we-do {
+  background: #575656;
+  padding-bottom: 4px;
+
+  .title_right, .title_left, .HWD-text {
+    color: #fff;
+  }
+}
+
+.footer .container {
+  max-width: 1190px;
+}
+
+.about-us.content-internal {
+  max-height: 800px;
+}
+
+
 .property_launches {
+
 
   .item {
     height: 230px;
@@ -51,4 +76,52 @@
     cursor: pointer;
   }
 
+}
+
+#down-arrow {
+  cursor: pointer;
+}
+
+.PropertyCardValues.valores {
+  img {
+    margin-top: 0 !important;
+  }
+
+  &.iptu.condominio {
+    img {
+      margin-top: 0 !important;
+      width: 40px;
+      margin-right: 10px;
+    }
+  }
+}
+
+
+.recursos ul {
+  columns: 4;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+
+  /* Medium Devices, Desktops */
+  @media only screen and (max-width: 992px) {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+  }
+
+  /* Small Devices, Tablets */
+  @media only screen and (max-width: 768px) {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+
+  }
+
+  /* Extra Small Devices, Phones */
+  @media only screen and (max-width: 480px) {
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+
+  }
 }
