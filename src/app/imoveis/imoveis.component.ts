@@ -101,7 +101,9 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       centered: true,
       windowClass: 'InternalModalFilter'
     }).result.then((result) => {
-      this.dropDownChange(false);
+      if( result) {
+        this.dropDownChange(false);
+      }
     }, (reason) => {
 
     });

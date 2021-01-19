@@ -72,7 +72,7 @@
                 <a
                   class="MenuItem dropdown-toggle" id="TypeMenu"
                   ngbDropdownToggle><i class="icon-house"></i> Tipo <i class="fas fa-chevron-down small-icon"></i></a>
-                <div class="TypeMenu dropdown-menu FilterBarCheckBoxFIELDS2" ngbDropdownMenu>
+                <div class="TypeMenu dropdown-menu FilterBarCheckBoxFIELDS2 dropdown-tipo-desktop" ngbDropdownMenu>
                   <ul>
                     <li *ngFor="let tipo of customSearch.tipos;  let i = index">
                       <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" [checked]="tipo.selected"
@@ -595,9 +595,11 @@
   <div class="row MobileFilterBarOptions">
 
     <div class="col-12 MobileFilterBarTitle text-center">
+      <button type="button" class=" pull-left btn btn-block btn-apply checkbox-s" (click)="modal.close(true)">
+        Aplicar
+      </button>
       <span>FILTRAR</span>
-
-      <button type="button" class="close pull-right" (click)="modal.close('')">
+      <button type="button" class="close pull-right" (click)="modal.close(false)">
         <span aria-hidden="true">×</span>
       </button>
     </div>

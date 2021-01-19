@@ -21,6 +21,8 @@ export class ImovelComponent implements OnInit {
   mySlideOptions = {items: 1, dots: true, nav: false};
   myCarouselOptions = {items: 3, dots: true, nav: true};
 
+  imageheight = (window.innerWidth > 1300 ? 500 : (window.innerWidth > 992 ? 480 : 300)) + 'px';
+
   imgs: Array<object>;
 
   @ViewChild('content', { static: false }) public childModal: NgbModalRef;

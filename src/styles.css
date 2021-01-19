@@ -10656,7 +10656,7 @@ body {
 }
 
 .search-icon {
-  background-image: url(assets/images/white-search-icon.svg@b17ed94937f9f7901ac213afb0c90417);
+  background-image: url(assets/images/white-search-icon.svg);
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
@@ -10770,7 +10770,7 @@ body {
 }
 
 .arrow-icon {
-  background-image: url(assets/images/orange-arrow-icon.svg@429ccfd03b8f106cccff1f8b5c32a1fa);
+  background-image: url(assets/images/orange-arrow-icon.svg);
   background-repeat: no-repeat;
   width: 36px;
   height: 13px;
@@ -10779,7 +10779,7 @@ body {
 }
 
 .btn-see-more:hover .arrow-icon {
-  background-image: url(assets/images/white-arrow-icon.svg@23bbc96dc6bbd911bd2069ef858a8e68);
+  background-image: url(assets/images/white-arrow-icon.svg);
 }
 
 .custom-your-search-icon {
@@ -10792,7 +10792,7 @@ body {
 }
 
 .btn-custom-your-search:hover .custom-your-search-icon {
-  background-image: url(assets/images/custom-white-search-icon.svg@954f4296f32c0e8edeaa2abc0ba6c713);
+  background-image: url(assets/images/custom-white-search-icon.svg);
 }
 
 .btn-more-filters {
@@ -10901,7 +10901,7 @@ body {
 }
 
 .zoom-icon {
-  background-image: url(assets/images/orange-zoom-icon.svg@1517f267015eb9a8bc669c9f2fc7ce1e);
+  background-image: url(assets/images/orange-zoom-icon.svg);
   background-repeat: no-repeat;
   width: 14px;
   height: 14px;
@@ -19091,7 +19091,7 @@ body {
 }
 
 .arrow-icon-to-left {
-  background-image: url(assets/images/orange-arrow-icon-to-left.svg@57ef63e33e8bddea046ad3dad3e1dba7);
+  background-image: url(assets/images/orange-arrow-icon-to-left.svg);
   background-repeat: no-repeat;
   width: 36px;
   height: 13px;
@@ -23298,12 +23298,13 @@ body {
 }
 
 .FilterBarCheckBoxFIELDS2 ul {
-  width: 900px !important;
-  display: block;
-  margin: 25px 0 10px 0px;
+
+  /* width: 900px !important; */
+  /* display: block; */
+  margin: 10px 0 10px 0px;
   padding: 0;
   list-style: none;
-  height: 90px;
+   /*height: 90px; */
   overflow: hidden;
 }
 
@@ -27209,4 +27210,3 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-/*# sourceMappingURL=styles.css.map */

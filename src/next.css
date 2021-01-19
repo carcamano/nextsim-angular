@@ -81,4 +81,31 @@
       -webkit-columns: 1;
       -moz-columns: 1; } }
 
+.dropdown-tipo-desktop ul li {
+  display: block;
+  float: unset;
+  width: unset; }
+
+.MobileFilterBarTitle .btn-apply {
+  width: 63px;
+  position: absolute;
+  left: 27px;
+  text-align: center;
+  padding: unset;
+  margin-top: 6px; }
+
+.modal-dialog {
+  margin: 0; }
+
+.MobileFilterBarTitle {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%; }
+
+.MobileFilterBarMenu {
+  padding-top: 60px !important; }
+
 /*# sourceMappingURL=next.css.map */

@@ -21,6 +21,10 @@ agm-map {
   align-self: center;
 }
 
+::ng-deep .img-div.image-popup .custom-image-main img {
+  object-fit: cover;
+}
+
 ::ng-deep .img-div.image-popup .custom-image-main:after {
   content: '';
   background-image: url("src/assets/img/propertyZoom.png") ;
