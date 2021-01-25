@@ -11257,14 +11257,14 @@ body {
 
 .top-session {
   width: 100%;
-  background: url(assets/images/blog-top-session.png@6df78759fd6f4796c2865d08cc6a0fb9);
+  background: url(assets/images/blog-top-session.png);
   height: 13vw;
   background-size: cover;
 }
 
 .base-session {
   width: 100%;
-  background: url(assets/images/blog-base-session.png@ac2c7aa68c2bfed43e0c5ddfad3d9d88);
+  background: url(assets/images/blog-base-session.png);
   background-size: cover;
   height: 23vw;
 }
@@ -11531,14 +11531,14 @@ body {
 
   .top-session {
     width: 100%;
-    background: url(assets/images/blog-top-session.png@6df78759fd6f4796c2865d08cc6a0fb9);
+    background: url(assets/images/blog-top-session.png);
     height: 70px;
     background-size: cover;
   }
 
   .base-session {
     width: 100%;
-    background: url(assets/images/blog-base-session.png@ac2c7aa68c2bfed43e0c5ddfad3d9d88);
+    background: url(assets/images/blog-base-session.png);
     background-size: cover;
     height: 109px;
   }
@@ -11975,7 +11975,7 @@ button.ribbon:after {
 }
 
 .btn-back-blog {
-  background: url(assets/images/arrow-orange.svg@48184c3848a81d7509837e9c41a25f56);
+  background: url(assets/images/arrow-orange.svg);
   background-repeat: no-repeat;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -12113,14 +12113,14 @@ Date: 17/09/2018
 }
 
 .arrow-down-icon-up {
-  background: url(assets/images/arrow-up-icon.svg@4447041c44c0b4d6d938a6322b42f2f1);
+  background: url(assets/images/arrow-up-icon.svg);
   width: 15px;
   height: 10px;
   display: inline-block;
 }
 
 .arrow-down-icon-orange {
-  background: url(assets/images/arrow-down-orange-icon.svg@679361eaebbc5b9319a12898e2fad663);
+  background: url(assets/images/arrow-down-orange-icon.svg);
   width: 15px;
   height: 10px;
   display: inline-block;
@@ -12297,7 +12297,7 @@ Date: 17/09/2018
   background-repeat: no-repeat;
   height: 15px;
   width: 15px;
-  background-image: url(assets/images/Path_6.svg@def91f9c45cf0ba2d89431219f379146);
+  background-image: url(assets/images/Path_6.svg);
 }
 
 .form-icon .icon-validate-success {
@@ -12308,7 +12308,7 @@ Date: 17/09/2018
   background-repeat: no-repeat;
   height: 15px;
   width: 15px;
-  background-image: url(assets/images/Path_7.svg@6e98a2d44e907c84b41a24f04c053832);
+  background-image: url(assets/images/Path_7.svg);
 }
 
 form.form-card .form-group .has-error {
@@ -12324,7 +12324,7 @@ form.form-card .form-group .has-success {
 @font-face {
   font-family: 'Next';
   src: url(assets/fonts/Next.eot@0191974be89d3856583de646d60db3a7);
-  src: url(assets/fonts/Next.eot@0191974be89d3856583de646d60db3a7) format("embedded-opentype"), url(assets/fonts/Next.ttf@010637b7acddedc028310fcc7b474d60) format("truetype"), url(assets/fonts/Next.woff@caac00c40f1d486932d4b9acdc324976) format("woff"), url(assets/fonts/Next.svg@e16a52e5a6cc216a4c7e81385444c894) format("svg");
+  src: url(assets/fonts/Next.eot@0191974be89d3856583de646d60db3a7) format("embedded-opentype"), url(assets/fonts/Next.ttf@010637b7acddedc028310fcc7b474d60) format("truetype"), url(assets/fonts/Next.woff@caac00c40f1d486932d4b9acdc324976) format("woff"), url(assets/fonts/Next.svg) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -12332,7 +12332,7 @@ form.form-card .form-group .has-success {
 @font-face {
   font-family: 'NextIcons';
   src: url(assets/fonts/NextIcons.eot@e67d37a61959f44fedb446d3e980c0e2);
-  src: url(assets/fonts/NextIcons.eot@e67d37a61959f44fedb446d3e980c0e2) format("embedded-opentype"), url(assets/fonts/NextIcons.ttf@07b822b3ad1f9c2dc5f8a7e6e9a4e252) format("truetype"), url(assets/fonts/NextIcons.woff@d34b14dda0f414e45e77654f75bb958a) format("woff"), url(assets/fonts/NextIcons.svg@54023461b18111fe93ccf86839727b73) format("svg");
+  src: url(assets/fonts/NextIcons.eot@e67d37a61959f44fedb446d3e980c0e2) format("embedded-opentype"), url(assets/fonts/NextIcons.ttf@07b822b3ad1f9c2dc5f8a7e6e9a4e252) format("truetype"), url(assets/fonts/NextIcons.woff@d34b14dda0f414e45e77654f75bb958a) format("woff"), url(assets/fonts/NextIcons.svg) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -12787,7 +12787,7 @@ a:hover {
 @media (max-width: 991.98px) {
   .blog-decoration.top-session {
     width: 100%;
-    background: url(assets/images/blog-top-session-mobile.jpg@5cb7c77885f8c23a79b235a3b07b6ca9) top right;
+    background: url(assets/images/blog-top-session-mobile.jpg) top right;
     height: 296px;
     background-size: cover;
   }
@@ -13064,7 +13064,7 @@ form.form-card .form-group input {
 
 .rounded-circle {
   height: auto;
-  background-image: url(assets/images/bg-roudness.svg@8767af17655d17736838bf991d5753e5);
+  background-image: url(assets/images/bg-roudness.svg);
   background-position: middle center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -13319,7 +13319,7 @@ form.form-card .form-group input {
 }
 
 .faleconosco {
-  background: url(assets/images/escritorio-next-solucoes-imobiliarias1.jpg@1d6d2719d27ab7e342e02d46b7b795d2);
+  background: url(assets/images/escritorio-next-solucoes-imobiliarias1.jpg);
   background-color: #383737;
   background-size: cover;
 }
@@ -13342,7 +13342,7 @@ form.form-card .form-group input {
   -ms-flex-align: center;
   align-items: center;
   text-align: center;
-  background: url(assets/images/escritorio-next-solucoes-imobiliarias1.jpg@1d6d2719d27ab7e342e02d46b7b795d2);
+  background: url(assets/images/escritorio-next-solucoes-imobiliarias1.jpg);
   background-color: #383737;
   background-size: cover;
 }
@@ -13350,7 +13350,7 @@ form.form-card .form-group input {
 .bg-workus {
   min-height: 90vh;
   height: auto;
-  background: url(assets/images/shutterstock_420895078.png@191c9509cecaca6854e0ecf813971c23);
+  background: url(assets/images/shutterstock_420895078.png);
   background-repeat: no-repeat;
   background-attachment: none;
   background-position: right center;
@@ -14036,7 +14036,7 @@ h3.blog-result {
   }
 
   .bg-team {
-    background-image: url(assets/images/shutterstock_719542471.png@c4a662c50144fad8a49cc63fc1958b97);
+    background-image: url(assets/images/shutterstock_719542471.png);
     background-size: cover !important;
     height: 100vh;
     -webkit-box-shadow: inset 79px 200px 300px -50px rgba(0, 0, 0, 0.87);
@@ -14114,7 +14114,7 @@ h3.blog-result {
 @font-face {
   font-family: "next-icons2";
   src: url(assets/fonts/Glyphter.eot@7d842b189fa1afeb011e0b29615328ae);
-  src: url(assets/fonts/Glyphter.eot@7d842b189fa1afeb011e0b29615328ae) format("embedded-opentype"), url(assets/fonts/Glyphter.woff@60d364af6681e1841aa738154e1c5fe5) format("woff"), url(assets/fonts/Glyphter.ttf@11bcfba04356bfb5d112250621cf3e93) format("truetype"), url(assets/fonts/Glyphter.svg@1afe96162a6ce01acebff48e6ce0a1e6) format("svg");
+  src: url(assets/fonts/Glyphter.eot@7d842b189fa1afeb011e0b29615328ae) format("embedded-opentype"), url(assets/fonts/Glyphter.woff@60d364af6681e1841aa738154e1c5fe5) format("woff"), url(assets/fonts/Glyphter.ttf@11bcfba04356bfb5d112250621cf3e93) format("truetype"), url(assets/fonts/Glyphter.svg) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -14681,39 +14681,39 @@ header.property-menu nav ul li a {
 
 /* mood images */
 .mood-bg.alone {
-  background-image: url(assets/images/img-sozinho.png@1fd3b78a3b44d12a9f00b1779c107994);
+  background-image: url(assets/images/img-sozinho.png);
 }
 
 .mood-bg.for-couple {
-  background-image: url(assets/images/img-couple.png@f732b84a41e31d5b60ea967e52ef1886);
+  background-image: url(assets/images/img-couple.png);
 }
 
 .mood-bg.for-family {
-  background-image: url(assets/images/img-family.png@83d336ce06f3be49bae8d30d82471ab2);
+  background-image: url(assets/images/img-family.png);
 }
 
 .mood-bg.highlight {
-  background-image: url(assets/images/img-highlight.png@d85be1cf952ff1977d2b927309511cf9);
+  background-image: url(assets/images/img-highlight.png);
 }
 
 .mood-bg.building {
-  background-image: url(assets/images/img-building.png@0fd50706c420734581ddc702abf840ea);
+  background-image: url(assets/images/img-building.png);
 }
 
 .mood-bg.more-space-comercial {
-  background-image: url(assets/images/moreSpace.png@468d6ffec891618ce83a815ae0c691f7);
+  background-image: url(assets/images/moreSpace.png);
 }
 
 .mood-bg.informalSpaces {
-  background-image: url(assets/images/informalSpaces.png@701f7dac31866dbe8060fcf1d859d490);
+  background-image: url(assets/images/informalSpaces.png);
 }
 
 .mood-bg.for-Industries {
-  background-image: url(assets/images/forIndustries.png@7ee3d5498c29289ed0c2e11e2614dedd);
+  background-image: url(assets/images/forIndustries.png);
 }
 
 .mood-bg.comercial-center {
-  background-image: url(assets/images/ComercialCenter.png@5e69e521994b4c5526c8e3073d56ef9c);
+  background-image: url(assets/images/ComercialCenter.png);
 }
 
 /* icons mood property list */
@@ -14923,13 +14923,13 @@ header.property-menu nav ul li a {
 .form-icon .icon-validate-success-sm,
 .form-icon .icon-validate-success-lg,
 .form-icon .icon-validate-success-col6 {
-  background-image: url(assets/images/Path_7.svg@6e98a2d44e907c84b41a24f04c053832) !important;
+  background-image: url(assets/images/Path_7.svg) !important;
 }
 
 .form-icon .icon-validate-error-sm,
 .form-icon .icon-validate-error-lg,
 .form-icon .icon-validate-error-col6 {
-  background-image: url(assets/images/Path_6.svg@def91f9c45cf0ba2d89431219f379146) !important;
+  background-image: url(assets/images/Path_6.svg) !important;
 }
 
 .orange-select {
@@ -15159,7 +15159,7 @@ header.property-menu nav ul li a {
 }
 
 .icon-morespace {
-  background-image: url(assets/images/icon-morespace.svg@b2c0208f8d30e881afb00918e7ab76f4);
+  background-image: url(assets/images/icon-morespace.svg);
 }
 
 .radio-area .titule {
@@ -19495,7 +19495,7 @@ body {
 }
 
 .mood-content .mood .mood-bg.highlight {
-  background-image: url(assets/images/mood-highlight-house.jpg@ac5463c283d73df2b6af0f0988c56033);
+  background-image: url(assets/images/mood-highlight-house.jpg);
 }
 
 @media (max-width: 1200px) {
@@ -20612,7 +20612,7 @@ h3.blog-result {
     top: 0;
     left: 0;
     z-index: 10;
-    background-image: url(assets/images/TriangleBgMobile.svg@3cd88ff8ddf2d9cdf6b2170e7993b220);
+    background-image: url(assets/images/TriangleBgMobile.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -20988,7 +20988,7 @@ h3.blog-result {
   }
 
   .MobHomeFilterModal .modal-content {
-    background: url(assets/images/bg-step.png@abb6f677ddab6da04fa754ec148db443);
+    background: url(assets/images/bg-step.png);
     /*background: rgba(0, 0, 0, 0.3) !important;*/
     color: #ffffff;
     margin: 0 !important;
@@ -21623,7 +21623,7 @@ h3.blog-result {
     top: 0;
     left: 0;
     z-index: 10;
-    background-image: url(assets/images/triangleBgTablet.svg@fcc71191dc90d158b639b453224879ed);
+    background-image: url(assets/images/triangleBgTablet.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -24178,7 +24178,7 @@ div.col-12.col-lg-6.mt-5.pl-5 > div {
 }
 
 #backdrop > section.container-fluid > div.blog-single-content.container > div > div.col-12.col-lg-10 > div.blog-footer > div > div.col-12.col-lg-6.text-left.blog-footer-sm-center > a > i {
-  background: url(assets/images/arrow-orange.svg@48184c3848a81d7509837e9c41a25f56);
+  background: url(assets/images/arrow-orange.svg);
   background-repeat: no-repeat;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -24429,7 +24429,7 @@ div.col-12.col-lg-6.mt-5.pl-5 > div {
   top: 50%;
   margin-left: -40px;
   margin-top: -40px;
-  background: url(assets/images/owl.video.play.png@4a37f8008959c75f619bf0a3a4e2d7a2) no-repeat;
+  background: url(assets/images/owl.video.play.png) no-repeat;
   cursor: pointer;
   z-index: 1;
   -webkit-backface-visibility: hidden;
@@ -25542,7 +25542,7 @@ main {
 
   .home-header-fixed.fixed .logo {
     background-size: 100% auto;
-    background-image: url(assets/images/logo-next-header.svg@aa0c6629a745ad6477ebf454f28c7477);
+    background-image: url(assets/images/logo-next-header.svg);
     height: 70px;
     width: 145px;
   }
@@ -26303,7 +26303,7 @@ main {
 .PropertyArrowBackBtn {
   width: 37px;
   height: 13px;
-  background-image: url(assets/images/arrow-left-property-back.png@67d978280f227902553f594304969505);
+  background-image: url(assets/images/arrow-left-property-back.png);
   background-repeat: no-repeat;
   background-size: auto;
   display: inline-block;
@@ -26314,7 +26314,7 @@ main {
   transform: rotate(180deg);
   width: 37px;
   height: 13px;
-  background-image: url(assets/images/arrow-left-property-back.png@67d978280f227902553f594304969505);
+  background-image: url(assets/images/arrow-left-property-back.png);
   background-repeat: no-repeat;
   background-size: auto;
   display: inline-block;
@@ -26330,7 +26330,7 @@ main {
   transform: rotate(180deg);
   width: 37px;
   height: 13px;
-  background-image: url(assets/images/arrow-left-property-back.png@67d978280f227902553f594304969505);
+  background-image: url(assets/images/arrow-left-property-back.png);
   background-repeat: no-repeat;
   background-size: auto;
   display: inline-block;
@@ -26473,7 +26473,7 @@ main {
   top: 0;
   left: 0;
   z-index: 10;
-  background-image: url(assets/images/triangleBG.svg@53173458df3d13fe10fb36baa67e6f17);
+  background-image: url(assets/images/triangleBG.svg);
   background-repeat: no-repeat;
   background-position: right center;
   display: -webkit-box;
@@ -26951,8 +26951,7 @@ main {
 .Services form .form-group select.form-control:valid:not(:placeholder-shown) + span,
 .Services .form-control:focus:valid + span,
 .Services .form-control:valid:not(:placeholder-shown) + span {
-  /*background-image: url(assets/images/input-valid.svg@e23afdafcb2b95780b084ee1a64ed7a7);*/
-  background-image: url(assets/images/input-valid.svg@e23afdafcb2b95780b084ee1a64ed7a7);
+  background-image: url(assets/images/input-valid.svg);
 }
 
 .Services form .form-group input.form-control:focus:invalid,
@@ -26970,7 +26969,7 @@ main {
 .Services form .form-group select.form-control:invalid:not(:placeholder-shown):not(select) + span,
 .Services .form-control:focus:invalid + span,
 .Services .form-control:invalid:not(:placeholder-shown):not(select) + span {
-  background-image: url(assets/images/input-error.svg@e33f43374f8cfffc0fd53d28bad2b422);
+  background-image: url(assets/images/input-error.svg);
 }
 
 .Services textarea.form-control {
