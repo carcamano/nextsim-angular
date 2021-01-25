@@ -16001,7 +16001,8 @@ body {
 @media (max-width: 768px) {
   .ResidencialHeaderContainer {
     margin-top: 0;
-    padding-top: 15px; } }
+    padding-top: 60px;
+    padding-bottom: 15px; } }
 .BlogSingleHeader .darkIcon {
   -webkit-filter: brightness(0.3) !important;
   filter: brightness(0.3) !important; }
@@ -19042,8 +19043,12 @@ body {
   display: inline;
   float: left;
   margin: 5px 0 5px 0;
-  width: 25%; }
+  width: 25%;
+  overflow: hidden; }
 
+@media only screen and (max-width: 480px) {
+  .FilterBarCheckBoxFIELDS2 li {
+    background: #eff0f1; } }
 .FilterBarCheckBoxFIELDS2 input[type='checkbox'] {
   opacity: 0;
   position: absolute;
@@ -19056,7 +19061,8 @@ body {
   font-weight: 500;
   padding-left: 18px;
   position: absolute;
-  top: -3px; }
+  top: -3px;
+  white-space: nowrap; }
 
 .FilterBarCheckBoxFIELDS2 label span:hover {
   color: #f69731; }

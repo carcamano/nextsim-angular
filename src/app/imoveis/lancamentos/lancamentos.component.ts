@@ -19,6 +19,11 @@ export class LancamentosComponent implements OnInit {
     this.lancamentoService.all().subscribe(value => {
       console.log(value.body);
       this.lancamentos = value.body;
+      try {
+        window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
+      } catch (e) {
+        window.scrollTo(0, 0);
+      }
 
     });
   }

@@ -74,15 +74,15 @@
             <!--                <ng-template carouselSlide>-->
             <!--                  <div class="galeria_item item">-->
             <!--                    <a href="#">-->
-            <!--                      <img class="img-fluid " src="{{lancamento.fields.galeria.imagem_em_pe.url}}">-->
+            <!--                      <img class="img-fluid " src="{{lancamento?.fields?.galeria?.imagem_em_pe?.url}}">-->
             <!--                    </a>-->
-            <!--                    <span class="name">{{lancamento.fields.galeria.imagem_em_pe.title}}</span>-->
+            <!--                    <span class="name">{{lancamento?.fields?.galeria?.imagem_em_pe?.title}}</span>-->
             <!--                  </div>-->
-            <!--                  <div class="galeria_item item" *ngFor="let galeria of lancamento.fields.galeria.galeria;">-->
+            <!--                  <div class="galeria_item item" *ngFor="let galeria of lancamento?.fields?.galeria?.galeria;">-->
             <!--                    <a href="#">-->
-            <!--                      <img class="img-fluid " src="{{galeria.url}}">-->
+            <!--                      <img class="img-fluid " src="{{galeria?.url}}">-->
             <!--                    </a>-->
-            <!--                    <span class="name">{{galeria.title}}</span>-->
+            <!--                    <span class="name">{{galeria?.title}}</span>-->
             <!--                  </div>-->
             <!--                </ng-template>-->
 
@@ -90,19 +90,19 @@
             <!--&lt;!&ndash;            </div>&#45;&#45;-->
 
             <div class="galeria_container row">
-              <div class="col-12 col-sm-4" *ngIf="lancamento.fields.galeria.imagem_em_pe">
-                <img class="img-fluid " src="{{lancamento.fields.galeria.imagem_em_pe.url}}">
-                <span class="name">{{lancamento.fields.galeria.imagem_em_pe.title}}</span>
+              <div class="col-12 col-sm-4" *ngIf="lancamento?.fields?.galeria?.imagem_em_pe">
+                <img class="img-fluid " src="{{lancamento?.fields?.galeria?.imagem_em_pe?.url}}">
+                <span class="name">{{lancamento?.fields?.galeria?.imagem_em_pe?.title}}</span>
               </div>
-              <div [ngClass]="{'col-12': !lancamento.fields.galeria.imagem_em_pe, 'col-8': lancamento.fields.galeria.imagem_em_pe}">
+              <div [ngClass]="{'col-12': !lancamento?.fields?.galeria?.imagem_em_pe, 'col-8': lancamento?.fields?.galeria?.imagem_em_pe}">
                 <div class="row">
 
-                  <div [ngClass]="{'col-12 col-sm-4': !lancamento.fields.galeria.imagem_em_pe, 'col-12 col-sm-6': lancamento.fields.galeria.imagem_em_pe}" *ngFor="let galeria of lancamento.fields.galeria.galeria | slice:0:(!lancamento.fields.galeria.imagem_em_pe ? 6 : 4); let i=index">
+                  <div [ngClass]="{'col-12 col-sm-4': !lancamento?.fields?.galeria?.imagem_em_pe, 'col-12 col-sm-6': lancamento?.fields?.galeria?.imagem_em_pe}" *ngFor="let galeria of lancamento?.fields?.galeria?.galeria | slice:0:(!lancamento?.fields?.galeria?.imagem_em_pe ? 6 : 4); let i=index">
                     <div class="galeria_item item" >
                       <a href="#">
-                        <img class="img-fluid " src="{{galeria.url}}">
+                        <img class="img-fluid " src="{{galeria?.url}}">
                       </a>
-                      <span class="name">{{galeria.title}}</span>
+                      <span class="name">{{galeria?.title}}</span>
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@
 
         <div class="col-12">
           <div class="row orange justify-content-center">
-            <div class="col-4">
+            <div class="col-12 col-sm-4">
               <h6>Conheça esse lançamento com um dos nossos corretores ou tire suas dúvidas pelo <b>fale
                 com a gente.</b></h6>
               <button class="btn btn-default btn-next" (click)="open(content)">Quero visitar

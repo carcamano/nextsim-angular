@@ -38,7 +38,7 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-.sss{
+.sss {
   display: none;
 }
 
@@ -18497,11 +18497,13 @@ form .form-group select.form-control.selectForms {
   -webkit-animation-delay: 5s;
   animation-delay: 5s;
 }
-.ssds{
+
+.ssds {
   .sdsd {
 
   }
 }
+
 .animated.fast {
   -webkit-animation-duration: 800ms;
   animation-duration: 800ms;
@@ -19782,7 +19784,8 @@ body {
 @media (max-width: 768px) {
   .ResidencialHeaderContainer {
     margin-top: 0;
-    padding-top: 15px;
+    padding-top: 60px;
+    padding-bottom: 15px;
   }
 }
 
@@ -23317,6 +23320,18 @@ body {
   float: left;
   margin: 5px 0 5px 0;
   width: 25%;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 480px) {
+  .FilterBarCheckBoxFIELDS2 label span {
+
+  }
+  .FilterBarCheckBoxFIELDS2 li {
+
+    background: #eff0f1;
+  }
+
 }
 
 .FilterBarCheckBoxFIELDS2 input[type='checkbox'] {
@@ -23333,6 +23348,7 @@ body {
   padding-left: 18px;
   position: absolute;
   top: -3px;
+  white-space: nowrap;
 }
 
 .FilterBarCheckBoxFIELDS2 label span:hover {

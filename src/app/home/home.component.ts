@@ -59,8 +59,6 @@ export class HomeComponent implements OnInit {
   }
 
   anotherPosts(): any[] {
-    console.log(this.posts);
-    console.log(_.remove(this.posts, this.currentPost));
     return this.posts.filter((value, index) => index !== this.currentPost);
   }
 

@@ -11,6 +11,9 @@
 
 .footer .container {
   max-width: 1190px; }
+  .footer .container .footer-links .instagram {
+    position: absolute;
+    left: 60px; }
 
 .about-us.content-internal {
   max-height: 800px; }

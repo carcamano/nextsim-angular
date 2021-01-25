@@ -16,6 +16,13 @@
 
 .footer .container {
   max-width: 1190px;
+
+  .footer-links {
+    .instagram {
+      position: absolute;
+      left: 60px;
+    }
+  }
 }
 
 .about-us.content-internal {

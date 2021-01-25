@@ -18,7 +18,7 @@
         <div class="container">
           <div class="col-lg-10 offset-lg-1">
             <div class="row">
-              <div class="col-4" *ngFor="let lancamento of lancamentos">
+              <div class="col-12 col-sm-4" *ngFor="let lancamento of lancamentos">
                 <a [routerLink]="['/imoveis/lancamentos/' + lancamento.slug]">
                   <div class="item" [style.background-image]="'url(' + lancamento.image + ')'">
                     <div class="lancamento_nome">

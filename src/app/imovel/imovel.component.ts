@@ -25,7 +25,7 @@ export class ImovelComponent implements OnInit {
 
   imgs: Array<object>;
 
-  @ViewChild('content', { static: false }) public childModal: NgbModalRef;
+  @ViewChild('content', {static: false}) public childModal: NgbModalRef;
 
   form: FormGroup;
   MASKS = MASKS;
@@ -61,12 +61,23 @@ export class ImovelComponent implements OnInit {
   }
 
   imageObject(): Array<object> {
-    this.imgs = this.imovel.midia.imagens.map(value => {
-      return {
-        image: value,
-        thumbImage: value
-      }
-    });
+    if (this.imovel.midia.imagens) {
+      this.imgs = this.imovel.midia.imagens.map(value => {
+        return {
+          image: value,
+          thumbImage: value
+        }
+      });
+    }
+    if (this.imovel.midia.fotoscond) {
+      this.imovel.midia.fotoscond.map(value => {
+        return {
+          image: value,
+          thumbImage: value
+        }
+      }).forEach(value => this.imgs.push(value));
+    }
+    console.log(this.imgs);
     return this.imgs;
   }
 

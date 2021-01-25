@@ -25,7 +25,7 @@ export class LancamentoComponent implements OnInit {
   imgs: Array<object>;
   currentPlant = 'plant0';
 
-  @ViewChild('plantas', { static: false }) plantas: NgbCarousel;
+  @ViewChild('plantas', {static: false}) plantas: NgbCarousel;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -52,7 +52,8 @@ export class LancamentoComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private lancamentoService: LancamentoService, private formBuilder: FormBuilder,
-              private modalService: NgbModal, private toastr: ToastrService,  private service: ImovelService) { }
+              private modalService: NgbModal, private toastr: ToastrService, private service: ImovelService) {
+  }
 
 
   ngOnInit() {
@@ -60,14 +61,22 @@ export class LancamentoComponent implements OnInit {
       this.lancamentoService.slug(params.slug).subscribe(value => {
         console.log(value);
         this.lancamento = value;
-        this.imgs = this.lancamento.fields.planta.map(value1 => {
-          return {
-            image: value1.url,
-            thumbImage: value1.url,
-            title: value1.title
-          };
-        });
-        this.buildForm()
+        if (this.lancamento && this.lancamento.fields && this.lancamento.fields.planta) {
+
+          this.imgs = this.lancamento.fields.planta.map(value1 => {
+            return {
+              image: value1.url,
+              thumbImage: value1.url,
+              title: value1.title
+            };
+          });
+        }
+        this.buildForm();
+        try {
+          window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
+        } catch (e) {
+          window.scrollTo(0, 0);
+        }
       })
 
     })
