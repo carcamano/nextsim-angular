@@ -11072,7 +11072,8 @@ form.form-card .form-group input {
   font-weight: 600;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  cursor: pointer !important; }
 
 #blog-menu-lateral a:hover {
   color: #F69731;

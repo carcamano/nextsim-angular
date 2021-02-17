@@ -20,13 +20,13 @@ export class LancamentoService {
 
   all(): Observable<HttpResponse<any>> {
     return this.http
-      .get<any>(`${LANCAMENTO_URL}/wp-json/wp/v2/portfolio/?_fields[]=id&_fields[]=title&_fields[]=image&_fields[]=slug`, {observe: 'response'});
+      .get<any>(`${LANCAMENTO_URL}/wp-json/wp/v2/portfolio/?_fields[]=id&_fields[]=title&_fields[]=image&_fields[]=slug&per_page=100`, {observe: 'response'});
   }
 
   slug(slug: string): Observable<Lancamento> {
     return new Observable(subscriber => {
       this.http
-        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/portfolio/?slug=${slug}`, {observe: 'response'})
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/portfolio/?slug=${slug}&per_page=100`, {observe: 'response'})
         .subscribe(value => {
           subscriber.next(value.body[0]);
         }, error => subscriber.error(error));
@@ -48,7 +48,7 @@ export class LancamentoService {
   sobreNos(): Observable<any> {
     return new Observable(subscriber => {
       this.http
-        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/pages?slug=sobre-nos`, {observe: 'response'})
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/pages?slug=sobre-nos&per_page=100`, {observe: 'response'})
         .subscribe(value => {
           subscriber.next(value.body);
         }, error => subscriber.error(error));
@@ -56,10 +56,21 @@ export class LancamentoService {
     });
   }
 
-  posts(): Observable<any> {
+  posts(categoryId?: number): Observable<any> {
     return new Observable(subscriber => {
       this.http
-        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/posts?status=publish`, {observe: 'response'})
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/posts?status=publish&per_page=100${categoryId ? `&categories=${categoryId}` : ''}`, {observe: 'response'})
+        .subscribe(value => {
+          subscriber.next(value.body);
+        }, error => subscriber.error(error));
+
+    });
+  }
+
+  taxonomies(): Observable<any> {
+    return new Observable(subscriber => {
+      this.http
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/categories`, {observe: 'response'})
         .subscribe(value => {
           subscriber.next(value.body);
         }, error => subscriber.error(error));
@@ -70,7 +81,7 @@ export class LancamentoService {
   post(slug: string) {
     return new Observable(subscriber => {
       this.http
-        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/posts?status=publish&slug=${slug}`, {observe: 'response'})
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/wp/v2/posts?status=publish&slug=${slug}&per_page=100`, {observe: 'response'})
         .subscribe(value => {
           subscriber.next(value.body);
         }, error => subscriber.error(error));

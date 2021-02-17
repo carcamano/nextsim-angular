@@ -395,6 +395,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     });
 
     this.pages = filtred.length;
+    console.log(this.pages);
     this.imoveis = _.chunk(filtred, this.itensPerPage)[this.currentPage - 1];
 
     this.checkResults();
