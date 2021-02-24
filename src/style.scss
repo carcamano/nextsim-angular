@@ -23324,6 +23324,7 @@ body {
   overflow: hidden;
 }
 
+
 @media only screen and (max-width: 480px) {
   .FilterBarCheckBoxFIELDS2 label span {
 
@@ -23399,13 +23400,13 @@ body {
 
 .selectiona_local .FilterBarCheckBoxFIELDS2, .selectiona_local .checkboxes, .selectiona_local .cidades_botoes {
   max-height: 200px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .selectiona_local ul {
   width: 100% !important;
   margin: 0;
-  overflow: scroll;
+  overflow: hidden;
   height: auto;
 }
 

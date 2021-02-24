@@ -18,6 +18,15 @@
 .about-us.content-internal {
   max-height: 800px; }
 
+#FilterBar .FilterBarCheckBoxFIELDS2 li {
+  width: 100%; }
+
+.RoomMenu.BALLCheckStyle, .BathMenu {
+  width: 300px !important; }
+
+.HomePersonalFilterBar .HorizontalCheckBoxMobileLabel, .HomePersonalFilterBar .HorizontalCheckBoxMobileLabel {
+  margin-right: 5px !important; }
+
 .property_launches .item {
   height: 230px;
   background-size: cover;
@@ -99,6 +108,9 @@
 
 .modal-dialog {
   margin: 0; }
+
+.modal-dialog.modal-xl.modal-dialog-centered {
+  margin: auto; }
 
 .MobileFilterBarTitle {
   position: fixed;

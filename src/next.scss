@@ -29,6 +29,17 @@
   max-height: 800px;
 }
 
+#FilterBar .FilterBarCheckBoxFIELDS2 li {
+  width: 100%;
+}
+
+.RoomMenu.BALLCheckStyle, .BathMenu {
+  width: 300px !important;
+}
+
+.HomePersonalFilterBar .HorizontalCheckBoxMobileLabel, .HomePersonalFilterBar .HorizontalCheckBoxMobileLabel {
+  margin-right: 5px !important;
+}
 
 .property_launches {
 
@@ -159,6 +170,10 @@
   margin: 0;
 }
 
+.modal-dialog.modal-xl.modal-dialog-centered {
+  margin: auto;
+}
+
 .MobileFilterBarTitle {
   position: fixed;
   width: 100%;
@@ -167,6 +182,7 @@
   right: 0;
   width: 100%;
 }
+
 .MobileFilterBarMenu {
   padding-top: 60px !important;
 }

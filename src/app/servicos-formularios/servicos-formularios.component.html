@@ -1,124 +1,2065 @@
-<section class="content bg-gray animated fadeInUp col-md-12 col-12 col-lg-12">
+<div id="backdrop">
+
+  <div class="container-fluid Services">
+    <div class="row">
+      <div class="col-10 offset-1  mt-5 mb-5">
+        <a class="btn btn-see-more btn-rounded" href="javascript:history.back();"><i class="PropertyArrowBackBtn"></i>
+          VOLTAR</a>
+      </div>
+
+      <div class="col-10 offset-1 text-center mt-0 mt-sm-5">
+        <h1>SERVIÇOS E FORMULÁRIOS</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-lg-8 offset-lg-2 mt-5 mb-5">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+                 aria-expanded="true" aria-controls="collapseOne">
+              <div class="row py-3">
+                <div class="col-10"><h2>SEGUNDA VIA DE BOLETO</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="my-5 text-center">
+                  <a href="http://gerenciadordeimobiliarias.com.br/boletos/next"
+                     class="btn btn-access text-uppercase"> Acessar Sistema </a>
+
+                  <p class="mt-5 searchContratcLink">
+                    <a href="servicos.html#" data-toggle="modal" data-target="#seachContract"><u>Como localizar o
+                      número do seu contrato.</u></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
+                 aria-expanded="false" aria-controls="collapseTwo">
+              <div class="row py-3">
+                <div class="col-10"><h2>EXTRATO DO PROPRIETÁRIO</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="my-5 text-center">
+
+                  <a href="http://gerenciadordeimobiliarias.com.br/boletos/next/extrato"
+                     class="btn btn-access text-uppercase"> Acessar Sistema </a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree"
+                 aria-expanded="false" aria-controls="collapseThree">
+              <div class="row py-3">
+                <div class="col-10"><h2>CADASTRO DE PESSOA FÍSICA</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="form-card">
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                        id="FormSevicos">
+                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
+                    type="hidden" name="assunto" value="Cadastro Pessoa Física">
+                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
+                    <input type="hidden" name="success-text"
+                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
+                    <p>Preencha e envie o formulário abaixo para se cadastrar.</p>
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="sou-um">Sou um:</label>
+                          <div class="form-check form-check-inline main-checkbox">
+                            <input class="form-check-input" type="radio" name="tipo" id="locatario" value="Locatário">
+                            <span></span>
+                            <label class="form-check-label" for="locatario">Locatário</label>
+                          </div>
+                          <div class="form-check form-check-inline main-checkbox">
+                            <input class="form-check-input" type="radio" name="tipo" id="fiador" value="Fiador">
+                            <span></span>
+                            <label class="form-check-label" for="fiador">Fiador</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="matricula">Matrícula do imóvel</label>
+                          <input type="text" class="form-control" placeholder="Número da matrícula" id="matricula"
+                                 name="matricula">
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="nome">Nome</label>
+                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome" name="nome"
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="email">E-mail</label>
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                                 id="email" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="telefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="telefone" id="telefone"
+                                 placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="dataDeNascimento">Data de nascimento</label>
+                          <input type="text" class="form-control js-mask-date" name="data-de-nascimento"
+                                 id="dataDeNascimento" placeholder="Dia / Mês / Ano" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="nacionalidade">Nacionalidade</label>
+                          <input type="text" class="form-control" name="nacionalidade" id="nacionalidade"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="rg">RG</label>
+                          <input type="text" class="form-control" name="rg" id="rg" placeholder="00000000-0" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cpf">CPF</label>
+                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cpf"
+                                 placeholder="000.000.000-00" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="estadoCivil">Estado civíl</label>
+                          <select class="form-control" name="estado-civil" id="estadoCivil" required>
+                            <span></span>
+                            <option value=""></option>
+                            <option value="Casado">Casado</option>
+                            <option value="Solteiro">Solteiro</option>
+                            <option value="Divorciado">Divorciado</option>
+                            <option value="Viúvo">Viúvo</option>
+                          </select>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="profissao">Profissão</label>
+                          <input type="text" class="form-control" name="profissao" id="profissao" placeholder=" "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="localDeTrabalho">Local de trabalho</label>
+                          <input type="text" class="form-control" name="local-de-Trabalho" id="localDeTrabalho"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="funcao">Função</label>
+                          <input type="text" class="form-control" name="funcao" id="funcao" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="salario">Salário</label>
+                          <input type="text" class="form-control js-mask-money" name="salario" id="salario"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="enderecoDoTrabalho">Endereço do trabalho</label>
+                          <input type="text" class="form-control" name="endereco-do-trabalho" id="enderecoDoTrabalho"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cartorio">Cartório para reconhecimento de firma</label>
+                          <input type="text" class="form-control" name="cartorio" id="cartorio" placeholder=" "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="parentescoFiador">Grau de parentesco com o fiador</label>
+                          <input type="text" class="form-control" name="parentesco-fiador" id="parentescoFiador"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">DADOS DO CONJUGUE</h6>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="nome">Nome</label>
+                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome"
+                                 name="conjuge-nome" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="telefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="conjuge-telefone" id="telefone"
+                                 placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="dataDeNascimento">Data de nascimento</label>
+                          <input type="text" class="form-control js-mask-date" name="conjuge-data-de-nascimento"
+                                 id="dataDeNascimento" placeholder="Dia / Mês / Ano">
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="nacionalidade">Nacionalidade</label>
+                          <input type="text" class="form-control" name="conjuge-nacionalidade" id="nacionalidade"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="rg">RG</label>
+                          <input type="text" class="form-control" name="conjuge-rg" id="rg" placeholder="00000000-0"
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cpf">CPF</label>
+                          <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf" id="cpf"
+                                 placeholder="00000000-0" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="estadoCivil">Estado civíl</label>
+                          <select class="form-control" name="conjuge-estado-civil" id="estadoCivil" required>
+                            <span></span>
+                            <option value=""></option>
+                            <option value="Casado">Casado</option>
+                            <option value="Solteiro">Solteiro</option>
+                            <option value="Divorciado">Divorciado</option>
+                            <option value="Viúvo">Viúvo</option>
+                          </select>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="profissao">Profissão</label>
+                          <input type="text" class="form-control" name="conjuge-profissao" id="profissao"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="localDeTrabalho">Local de trabalho</label>
+                          <input type="text" class="form-control" name="conjuge-local-de-trabalho"
+                                 id="localDeTrabalho" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="funcao">Função</label>
+                          <input type="text" class="form-control" name="conjuge-funcao" id="funcao" placeholder=" "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="salario">Salário</label>
+                          <input type="text" class="form-control js-mask-money" name="conjuge-salario" id="salario"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="enderecoDoTrabalho">Endereço do trabalho</label>
+                          <input type="text" class="form-control" name="conjuge-endereco-do-trabalho"
+                                 id="enderecoDoTrabalho" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cartorio">Cartório para reconhecimento de firma</label>
+                          <input type="text" class="form-control" name="conjuge-cartorio" id="cartorio"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="parentescoFiador">Grau de parentesco com o fiador</label>
+                          <input type="text" class="form-control" name="conjuge-parentesco-fiador"
+                                 id="parentescoFiador" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">INFORMAÇÕES BANCÁRIAS</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="banco">Banco</label>
+                          <input type="text" class="form-control" name="banco" id="banco" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="conta">Conta</label>
+                          <input type="text" class="form-control" name="conta" id="conta" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="contatoBancario">Contato bancário</label>
+                          <input type="text" class="form-control" name="contato-bancario" id="contatoBancario"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">REFERÊNCIA COMERCIAL</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="referenciaComercialempresa">Empresa</label>
+                          <input type="text" class="form-control" name="referencia-comercial-empresa"
+                                 id="referenciaComercialempresa" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="referenciaComercialtelefone">Telefone</label>
+                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone"
+                                 id="referenciaComercialtelefone" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-1 col-12">DOCUMENTAÇÃO</h6>
+                        <p class="col-12">Anexe abaixo cópias da documentação necessária para o andamento do
+                          cadastro.</p>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="rg-cpf">RG e CPF</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-rg-cpf">
+                            <input type="file" id="rg-cpf">
+                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="certidaoCasamento">Certidão de casamento</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-certidao-casamento">
+                            <input type="file" id="certidaoCasamento">
+                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="holerite">Holerite</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-holerite">
+                            <input type="file" id="holerite">
+                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="declaracaoIr">Última declaração do IR (renda de 3x o valor do aluguel)</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-declaracao-ir">
+                            <input type="file" id="declaracaoIr">
+                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
+                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                    </div>
+                  </form>
+                  <div class="form-return"></div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-  <div class="buttonGoBack">
-    <a (click)="goBack()" class="btn-go-back btn-rounded" title="">
-      <span class="arrow-icon"></span> VOLTAR
-    </a>
+          <div class="card">
+            <div class="card-header" id="heading4" data-toggle="collapse" data-target="#collapse4"
+                 aria-expanded="false" aria-controls="collapse4">
+              <div class="row py-3">
+                <div class="col-10"><h2>CADASTRO DE PESSOA JURÍDICA</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+            <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="form-card">
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                        id="cadastro-pjFormSevicos">
+                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
+                    type="hidden" name="assunto" value="Cadastro Pessoa Jurídica">
+                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
+                    <input type="hidden" name="success-text"
+                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
+                    <p>Preencha e envie o formulário abaixo para se cadastrar.</p>
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjsou-um">Sou um:</label>
+                          <div class="form-check form-check-inline main-checkbox">
+                            <input class="form-check-input" type="radio" name="tipo" id="cadastro-pjlocatario"
+                                   value="Locatário">
+                            <span></span>
+                            <label class="form-check-label" for="cadastro-pjlocatario">Locatário</label>
+                          </div>
+                          <div class="form-check form-check-inline main-checkbox">
+                            <input class="form-check-input" type="radio" name="tipo" id="cadastro-pjfiador"
+                                   value="Fiador">
+                            <span></span>
+                            <label class="form-check-label" for="cadastro-pjfiador">Fiador</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjrazao-social">Razão Social</label>
+                          <input type="text" class="form-control" placeholder=" " id="cadastro-pjrazao-social"
+                                 name="razao-social">
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjemail">E-mail</label>
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                                 id="cadastro-pjemail" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjtelefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="telefone"
+                                 id="cadastro-pjtelefone" placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjcnpj">CNPJ</label>
+                          <input type="text" class="form-control js-mask-cnpj" name="cnpj" id="cadastro-pjcnpj"
+                                 placeholder="00.000.000/0000-00 " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjie">IE</label>
+                          <input type="text" class="form-control" name="ie" id="cadastro-pjie"
+                                 placeholder="Número de inscrição estadual" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjramo-de-atividade">Ramo de atividade</label>
+                          <input type="text" class="form-control" name="ramo-de-atividade"
+                                 id="cadastro-pjramo-de-atividade" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjcapital-anual">Capital anual</label>
+                          <input type="text" class="form-control js-mask-money" name="capital-anual"
+                                 id="cadastro-pjcapital-anual" placeholder="R$ " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjcep">CEP</label>
+                          <input type="text" class="form-control js-mask-cep" name="cep" id="cadastro-pjcep"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjpais">País</label>
+                          <input type="text" class="form-control" name="pais" id="cadastro-pjpais" placeholder=" "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjestado">Estado</label>
+                          <input type="text" class="form-control" name="estado" id="cadastro-pjestado" placeholder=" "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjcidade">Cidade</label>
+                          <input type="text" class="form-control" name="cidade" id="cadastro-pjcidade" placeholder=" "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjendereco">Endereço</label>
+                          <input type="text" class="form-control" name="endereco" id="cadastro-pjendereco"
+                                 placeholder="Digite aqui o endereço" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjbairro">Bairro</label>
+                          <input type="text" class="form-control" name="bairro" id="cadastro-pjbairro"
+                                 placeholder="Nome do bairro" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjnumero">Número</label>
+                          <input type="text" class="form-control" name="numero" id="cadastro-pjnumero"
+                                 placeholder="Número do imóvel" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjcomplemento">Complemento</label>
+                          <input type="text" class="form-control" name="complemento" id="cadastro-pjcomplemento"
+                                 placeholder="Ex: Bloco xxx , Número xxx" required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">INFORMAÇÕES BANCÁRIAS</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjbanco">Banco</label>
+                          <input type="text" class="form-control" name="banco" id="cadastro-pjbanco" placeholder=" "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjconta">Conta</label>
+                          <input type="text" class="form-control" name="conta" id="cadastro-pjconta" placeholder=" "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjcontatoBancario">Contato bancário</label>
+                          <input type="text" class="form-control" name="contato-bancario"
+                                 id="cadastro-pjcontatoBancario" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">REFERÊNCIAIS COMERCIAIS</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjreferenciaComercialempresa">Empresa 1</label>
+                          <input type="text" class="form-control" name="referencia-comercial-empresa"
+                                 id="cadastro-pjreferenciaComercialempresa" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjreferenciaComercialtelefone">Telefone</label>
+                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone"
+                                 id="cadastro-pjreferenciaComercialtelefone" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjreferenciaComercialempresa">Empresa 2</label>
+                          <input type="text" class="form-control" name="referencia-comercial-empresa-2"
+                                 id="cadastro-pjreferenciaComercialempresa" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-pjreferenciaComercialtelefone">Telefone</label>
+                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone-2"
+                                 id="cadastro-pjreferenciaComercialtelefone" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-1 col-12">DOCUMENTAÇÃO</h6>
+                        <p class="col-12">Anexe abaixo cópias da documentação necessária para o andamento do
+                          cadastro.</p>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjcartao-cnpj">Cartão CNPJ</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-cartao-cnpj">
+                            <input type="file" id="cadastro-pjcartao-cnpj">
+                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjcontrato-social">Contrato social</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-certidao-casamento">
+                            <input type="file" id="cadastro-pjcontrato-social">
+                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjcpf-e-rg-dos-socios">CPF/RG dos sócios</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-cpf-e-rg-dos-socios">
+                            <input type="file" id="cadastro-pjcpf-e-rg-dos-socios">
+                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjultimo-balanco-contabil">Último balanço contábil (com C.R.C)</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-ultimo-balanco-contabil">
+                            <input type="file" id="cadastro-pjultimo-balanco-contabil">
+                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-pjprocuracao-para-o-assinante">Procuração para o assinante (caso não
+                            sócio) </label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-procuracao-para-o-assinante">
+                            <input type="file" id="cadastro-pjprocuracao-para-o-assinante">
+                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
+                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                    </div>
+                  </form>
+                  <div class="form-return"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="card-header" id="heading5" data-toggle="collapse" data-target="#collapse5"
+                 aria-expanded="false" aria-controls="collapse5">
+              <div class="row py-3">
+                <div class="col-10"><h2>LOCADOR</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+            <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="form-card">
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                        id="cadastro-locadorFormSevicos">
+                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
+                    type="hidden" name="assunto" value="Cadastro Locador">
+                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
+                    <input type="hidden" name="success-text"
+                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
+                    <h6>CADASTRO DO LOCADOR</h6>
+                    <p>Preencha e envie o formulário abaixo para se cadastrar.</p>
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorsou-um">Sou um:</label>
+                          <div class="form-check form-check-inline main-checkbox">
+                            <input class="form-check-input" type="radio" name="tipo" id="cadastro-locadorlocatario"
+                                   value="Locador Pessoa Física">
+                            <span></span>
+                            <label class="form-check-label" for="cadastro-locadorlocatario">Locador Pessoa
+                              Física</label>
+                          </div>
+                          <div class="form-check form-check-inline main-checkbox">
+                            <input class="form-check-input" type="radio" name="tipo" id="cadastro-locadorfiador"
+                                   value="Locador Pessoa Jurídica">
+                            <span></span>
+                            <label class="form-check-label" for="cadastro-locadorfiador">Locador Pessoa
+                              Jurídica</label>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <h6>DADOS DO IMÓVEL</h6>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcep">CEP</label>
+                          <input type="text" class="form-control js-mask-cep" name="cep" id="cadastro-locadorcep"
+                                 placeholder="00000-000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorpais">País</label>
+                          <input type="text" class="form-control" name="pais" id="cadastro-locadorpais"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorestado">Estado</label>
+                          <input type="text" class="form-control" name="estado" id="cadastro-locadorestado"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcidade">Cidade</label>
+                          <input type="text" class="form-control" name="cidade" id="cadastro-locadorcidade"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorendereco">Endereço</label>
+                          <input type="text" class="form-control" name="endereco" id="cadastro-locadorendereco"
+                                 placeholder="Digite aqui o endereço" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorbairro">Bairro</label>
+                          <input type="text" class="form-control" name="bairro" id="cadastro-locadorbairro"
+                                 placeholder="Nome do bairro" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadornumero">Número</label>
+                          <input type="text" class="form-control" name="numero" id="cadastro-locadornumero"
+                                 placeholder="Número do imóvel" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorcomplemento">Complemento</label>
+                          <input type="text" class="form-control" name="complemento" id="cadastro-locadorcomplemento"
+                                 placeholder="Ex: Bloco xxx , Número xxx" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcod-iptu">Código IPTU</label>
+                          <input type="text" class="form-control" name="cod-iptu" id="cadastro-locadorcod-iptu"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcod-cpfl">Código CPFL</label>
+                          <input type="text" class="form-control" name="cod-cpfl" id="cadastro-locadorcod-cpfl"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcod-sanasa">Código SANASA</label>
+                          <input type="text" class="form-control" name="cod-sanasa" id="cadastro-locadorcod-sanasa"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcod-gas">Código de gás</label>
+                          <input type="text" class="form-control" name="cod-gas" id="cadastro-locadorcod-gas"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">DADOS DO LACADOR</h6>
+
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadornome">Nome</label>
+                          <input type="text" class="form-control" placeholder="Nome Completo"
+                                 id="cadastro-locadornome" name="nome" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadoremail">E-mail</label>
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                                 id="cadastro-locadoremail" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadortelefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="telefone"
+                                 id="cadastro-locadortelefone" placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadordataDeNascimento">Data de nascimento</label>
+                          <input type="text" class="form-control js-mask-date" name="data-de-nascimento"
+                                 id="cadastro-locadordataDeNascimento" placeholder="Dia / Mês / Ano" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadornacionalidade">Nacionalidade</label>
+                          <input type="text" class="form-control" name="nacionalidade"
+                                 id="cadastro-locadornacionalidade" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorrg">RG</label>
+                          <input type="text" class="form-control" name="rg" id="cadastro-locadorrg"
+                                 placeholder="00000000-0" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcpf">CPF</label>
+                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cadastro-locadorcpf"
+                                 placeholder="000.000.000-00" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorestadoCivil">Estado civíl</label>
+                          <select class="form-control" name="estado-civil" id="cadastro-locadorestadoCivil" required>
+                            <span></span>
+                            <option value=""></option>
+                            <option value="Casado">Casado</option>
+                            <option value="Solteiro">Solteiro</option>
+                            <option value="Divorciado">Divorciado</option>
+                            <option value="Viúvo">Viúvo</option>
+                          </select>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorprofissao">Profissão</label>
+                          <input type="text" class="form-control" name="profissao" id="cadastro-locadorprofissao"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorlocalDeTrabalho">Local de trabalho</label>
+                          <input type="text" class="form-control" name="local-de-Trabalho"
+                                 id="cadastro-locadorlocalDeTrabalho" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorfuncao">Função</label>
+                          <input type="text" class="form-control" name="funcao" id="cadastro-locadorfuncao"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorendereco-do-trabalho">Endereço do trabalho</label>
+                          <input type="text" class="form-control" name="endereco-do-trabalho"
+                                 id="cadastro-locadorendereco-do-trabalho" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorcartorio-para-reconhecimento-de-firma">Cartório para
+                            reconhecimento de firma</label>
+                          <input type="text" class="form-control" name="cartorio-para-reconhecimento-de-firma"
+                                 id="cadastro-locadorcartorio-para-reconhecimento-de-firma" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">DADOS DO CONJUGUE</h6>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadornome">Nome</label>
+                          <input type="text" class="form-control" placeholder="Nome Completo"
+                                 id="cadastro-locadornome" name="conjuge-nome" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadortelefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="conjuge-telefone"
+                                 id="cadastro-locadortelefone" placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadordataDeNascimento">Data de nascimento</label>
+                          <input type="text" class="form-control js-mask-date" name="conjuge-data-de-nascimento"
+                                 id="cadastro-locadordataDeNascimento" placeholder="Dia / Mês / Ano">
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadornacionalidade">Nacionalidade</label>
+                          <input type="text" class="form-control" name="conjuge-nacionalidade"
+                                 id="cadastro-locadornacionalidade" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorrg">RG</label>
+                          <input type="text" class="form-control" name="conjuge-rg" id="cadastro-locadorrg"
+                                 placeholder="00000000-0" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcpf">CPF</label>
+                          <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf"
+                                 id="cadastro-locadorcpf" placeholder="00000000-0" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorestadoCivil">Estado civíl</label>
+                          <select class="form-control" name="conjuge-estado-civil" id="cadastro-locadorestadoCivil"
+                                  required>
+                            <span></span>
+                            <option value=""></option>
+                            <option value="Casado">Casado</option>
+                            <option value="Solteiro">Solteiro</option>
+                            <option value="Divorciado">Divorciado</option>
+                            <option value="Viúvo">Viúvo</option>
+                          </select>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorprofissao">Profissão</label>
+                          <input type="text" class="form-control" name="conjuge-profissao"
+                                 id="cadastro-locadorprofissao" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorlocalDeTrabalho">Local de trabalho</label>
+                          <input type="text" class="form-control" name="conjuge-local-de-trabalho"
+                                 id="cadastro-locadorlocalDeTrabalho" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorfuncao">Função</label>
+                          <input type="text" class="form-control" name="conjuge-funcao" id="cadastro-locadorfuncao"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorsalario">Salário</label>
+                          <input type="text" class="form-control js-mask-money" name="conjuge-salario"
+                                 id="cadastro-locadorsalario" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorenderecoDoTrabalho">Endereço do trabalho</label>
+                          <input type="text" class="form-control" name="conjuge-endereco-do-trabalho"
+                                 id="cadastro-locadorenderecoDoTrabalho" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcartorio">Cartório para reconhecimento de firma</label>
+                          <input type="text" class="form-control" name="conjuge-cartorio"
+                                 id="cadastro-locadorcartorio" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorparentescoFiador">Grau de parentesco com o fiador</label>
+                          <input type="text" class="form-control" name="conjuge-parentesco-fiador"
+                                 id="cadastro-locadorparentescoFiador" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">INFORMAÇÕES BANCÁRIAS</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorbanco">Banco</label>
+                          <input type="text" class="form-control" name="banco" id="cadastro-locadorbanco"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-2 form-group">
+                          <label for="cadastro-locadoragencia">Agência</label>
+                          <input type="text" class="form-control" name="agencia" id="cadastro-locadoragencia"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-4 form-group">
+                          <label for="cadastro-locadorconta">Conta</label>
+                          <input type="text" class="form-control" name="conta" id="cadastro-locadorconta"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadortipo-de-conta">Tipo de conta</label>
+                          <input type="text" class="form-control" name="tipo-de-conta"
+                                 id="cadastro-locadortipo-de-conta" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadortitulo">Titular</label>
+                          <input type="text" class="form-control" name="titulo" id="cadastro-locadortitulo"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcheque-nominal-a">Cheque nominal à:</label>
+                          <input type="text" class="form-control" name="cheque-nominal-a"
+                                 id="cadastro-locadorcheque-nominal-a" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorimposto-de-renda">Imposto de renda</label>
+                          <input type="text" class="form-control" name="imposto-de-renda"
+                                 id="cadastro-locadorimposto-de-renda" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-1 col-12">DOCUMENTAÇÃO</h6>
+                        <p class="col-12">Anexe abaixo cópias da documentação necessária para o andamento do
+                          cadastro.</p>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorcarne-iptu-do-imovel">Carnê do IPTU do imóvel</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-carne-iptu-do-imovel">
+                            <input type="file" id="cadastro-locadorcartao-cnpj">
+                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorplanta-do-imovel">Planta do imóvel</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-planta-do-imovel">
+                            <input type="file" id="cadastro-locadorplanta-do-imovel">
+                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadormatrituca-do-imovel">Matrícula do imóvel</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-matrituca-do-imovel">
+                            <input type="file" id="cadastro-locadormatrituca-do-imovel">
+                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorrg-e-cpf">RG e CPF</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-rg-e-cpf">
+                            <input type="file" id="cadastro-locadorrg-e-cpf">
+                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorcomprovante-de-endereco">Comprovante de endereço</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-comprovante-de-endereco">
+                            <input type="file" id="cadastro-locadorcomprovante-de-endereco">
+                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorultima-conta-de-luz">Última conta de luz</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-ultima-conta-de-luz">
+                            <input type="file" id="cadastro-locadorultima-conta-de-luz">
+                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorultima-conta-de-agua">Última conta de água</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-ultima-conta-de-agua">
+                            <input type="file" id="cadastro-locadorultima-conta-de-agua">
+                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="cadastro-locadorultima-conta-de-gas">Última conta de gás</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="doc-ultima-conta-de-gas">
+                            <input type="file" id="cadastro-locadorultima-conta-de-gas">
+                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
+                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                    </div>
+                  </form>
+                  <div class="form-return"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="card-header" id="heading6" data-toggle="collapse" data-target="#collapse6"
+                 aria-expanded="false" aria-controls="collapse6">
+              <div class="row py-3">
+                <div class="col-10"><h2>AVISO DE DESOCUPAÇÃO</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+            <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="form-card">
+                  <div class="form-fieldset col-12 col-lg-10 offset-lg-1 mb-0 mb-md-5">
+                    <h6>Procedimentos para a Rescisão Contratual: IMPORTANTE:</h6>
+                    <p>-Quando a Locação for de imóvel em Edifício ou Condomínio, o locatário
+                      deve solicitar junto a administradora do condomínio, a autorização de
+                      mudança;</p>
+
+                    <p>- Ainda dentro do prazo dos 30 (trinta) dias do Aviso da Desocupação, o
+                      locatário deverá entrar em contato com a Next (Zilda) com 4(quatro) dias
+                      de antecedência, após o imóvel livre e desembaraçado de pessoas e
+                      coisas, com pintura nova, conforme vistoria inicial (portas, batentes,
+                      paredes, tetos, gola de gesso/sanca) e outros locais (quando for o caso),
+                      faxina, reparos (quando for o caso), para agendarmos a vistoria;</p>
+
+                    <p>- Apresentar as 3 (três) últimas contas de condomínio (boletos e
+                      comprovantes de pagamento), CPFL (contas e comprovantes de
+                      pagamento), Gás (se houver), Sanasa (se houver); obrigatório</p>
+
+                    <p>- Não solicitar o desligamento da luz, água (se houver) e gás (se houver)
+                      junto as empresas responsáveis. A transferência de titularidade, caso as
+                      contas estejam em nome do locatário, serão feitas pela Next ou no caso
+                      da proprietária ser pessoa jurídica, pelo seu representante.</p>
+
+                    <p>- Caso tenha alguma assinatura de TV, internet e telefone (exemplo: NET,
+                      Sky, Telefônica, etc), que tenha sido solicitada pelo locatário, a solicitação
+                      de desligamento e retirada do aparelho deve ser feita pelo mesmo antes
+                      da vistoria.</p>
+
+                    <p>- Após a vistoria, caso seja aprovada, o locatário fará a entrega das chaves,
+                      controle do portão, cartão do carrinho de compras, etc., aqui na Next.
+                      Após, dentro do prazo de 5 (cinco) dias úteis, será preparada a Rescisão do
+                      Contrato e enviada via e-mail para os acertos finais, que deverão ser feitos
+                      através de boletos bancários;</p>
+
+
+                    <p>Ressaltamos que, caso a vistoria não seja aprovada, continuarão correndo
+                      por conta do locatário, aluguel e acessórios da locação.</p>
+                  </div>
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                        id="aviso-desocupacaoFormSevicos">
+                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
+                    type="hidden" name="assunto" value="Aviso desocupação">
+                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
+                    <input type="hidden" name="success-text"
+                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
+                    <h6>FORMULÁRIO</h6>
+                    <p>Preencha os campos abaixo e envie o formulário para dar início ao processo de desocupação:</p>
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="nome">Nome</label>
+                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome" name="nome"
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="email">E-mail</label>
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                                 id="email" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="telefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="telefone" id="telefone"
+                                 placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaotipo-de-imovel">Tipo de imóvel</label>
+                          <select class="form-control" name="tipo-de-imovel" id="aviso-desocupacaotipo-de-imovel"
+                                  required>
+                            <span></span>
+                            <option value=""></option>
+                            <option value="Apartamento">Apartamento</option>
+                            <option value="Loft">Loft</option>
+                            <option value="Flat">Flat</option>
+                            <option value="Casa">Casa</option>
+                          </select>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaovalor-atual-do-aluguel">Valor atual do aluguel</label>
+                          <input type="text" class="form-control js-mask-money" name="valor-atual-do-aluguel"
+                                 id="aviso-desocupacaovalor-atual-do-aluguel" placeholder="R$" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaonome-do-edificio-ou-condominio">Nome do
+                            edifício/condomínio</label>
+                          <input type="text" class="form-control" name="nome-do-edificio-ou-condominio"
+                                 id="aviso-desocupacaonome-do-edificio-ou-condominio" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaonome-da-administradora-do-condominio">Nome da administradora do
+                            condomínio</label>
+                          <input type="text" class="form-control" name="nome-da-administradora-do-condominio"
+                                 id="aviso-desocupacaonome-da-administradora-do-condominio" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaodata-de-entrada">Data de entrada</label>
+                          <input type="text" class="form-control js-mask-date" name="data-de-entrada"
+                                 id="aviso-desocupacaodata-de-entrada" placeholder="Dia / Mês / Ano" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaodata-prevista-para-a-desocupacao">Data prevista para a
+                            desocupação</label>
+                          <input type="text" class="form-control js-mask-date" name="data-prevista-para-a-desocupacao"
+                                 id="aviso-desocupacaodata-prevista-para-a-desocupacao" placeholder="Dia / Mês / Ano"
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaovalor-do-ultimo-condominio-pago">Valor do último condomínio
+                            pago</label>
+                          <input type="text" class="form-control js-mask-money" name="valor-do-ultimo-condominio-pago"
+                                 id="aviso-desocupacaovalor-do-ultimo-condominio-pago" placeholder="R$" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaovalor-do-ultimo-iptu-pago">Valor do último IPTU pago</label>
+                          <input type="text" class="form-control js-mask-money" name="valor-do-ultimo-iptu-pago"
+                                 id="aviso-desocupacaovalor-do-ultimo-iptu-pago" placeholder="R$" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaoendereco-do-imovel">Endereço do imóvel</label>
+                          <input type="text" class="form-control" name="endereco-do-imovel"
+                                 id="aviso-desocupacaoendereco-do-imovel"
+                                 placeholder="Ex: Av. xxxx, Bairro xxx, Nº xx, Campinas- SP. Bloco xx, apartamento xxx "
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaomotivo-da-desocupacao">Motivo da desocupação</label>
+                          <textarea class="form-control" name="motivo-da-desocupacao"
+                                    id="aviso-desocupacaomotivo-da-desocupacao" placeholder="Opcional"></textarea>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
+                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                    </div>
+                  </form>
+                  <div class="form-return"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="heading7" data-toggle="collapse" data-target="#collapse7"
+                 aria-expanded="false" aria-controls="collapse7">
+              <div class="row py-3">
+                <div class="col-10"><h2>ANUNCIE O SEU IMÓVEL</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+            <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="form-card">
+                  <div class="col-12 col-lg-10 offset-lg-1 mb-5 pb-2 form-fieldset">
+                    <p>Preencha e envie o formulário abaixo para vender ou alugar o seu imóvel com a NEXT.</p>
+                  </div>
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                        id="aviso-desocupacaoFormSevicos">
+                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
+                    type="hidden" name="success-heading" value="Dados enviados com sucesso!">
+                    <input type="hidden" name="success-text"
+                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
+                    <input type="hidden" name="assunto" value="Proposta de locação">
+                    <h6>DADOS DO PROPRIETÁRIO</h6>
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="aviso-desocupacaonome">Nome</label>
+                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome" name="nome"
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaoemail">E-mail</label>
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                                 id="email" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaotelefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="telefone"
+                                 id="aviso-desocupacaotelefone" placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="col-12">LOCALIZAÇÃO</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaocep">CEP</label>
+                          <input type="text" class="form-control js-mask-cep" name="cep" id="aviso-desocupacaocep"
+                                 placeholder="00000-000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaopais">País</label>
+                          <input type="text" class="form-control" name="pais" id="aviso-desocupacaopais"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaoestado">Estado</label>
+                          <input type="text" class="form-control" name="estado" id="aviso-desocupacaoestado"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaocidade">Cidade</label>
+                          <input type="text" class="form-control" name="cidade" id="aviso-desocupacaocidade"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="aviso-desocupacaoendereco">Endereço</label>
+                          <input type="text" class="form-control" name="endereco" id="aviso-desocupacaoendereco"
+                                 placeholder="Digite aqui o endereço" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaobairro">Bairro</label>
+                          <input type="text" class="form-control" name="bairro" id="aviso-desocupacaobairro"
+                                 placeholder="Nome do bairro" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaonumero">Número</label>
+                          <input type="text" class="form-control" name="numero" id="aviso-desocupacaonumero"
+                                 placeholder="Número do imóvel" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="aviso-desocupacaocomplemento">Complemento</label>
+                          <input type="text" class="form-control" name="complemento" id="aviso-desocupacaocomplemento"
+                                 placeholder="Ex: Bloco xxx , Número xxx" required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="col-12">CARACTERÍSTICAS</h6>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaotipo-de-imovel">Tipo de imóvel</label>
+                          <select class="form-control" name="estado-civil" id="aviso-desocupacaotipo-de-imovel"
+                                  required>
+                            <span></span>
+                            <option value=""></option>
+                            <option value="Casa">Casa</option>
+                            <option value="Apartamento">Apartamento</option>
+                            <option value="Terreno">Terreno</option>
+                            <option value="Outro">Outro</option>
+                          </select>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaoandar">Andar</label>
+                          <input type="text" class="form-control" placeholder="Número do andar" name="andar"
+                                 id="aviso-desocupacaoandar" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 d-flex">
+                          <div class="services-form-line d-flex flex-column mt-md-3">
+                            <div class="form-group row">
+                              <div class="col-md-8 d-flex">
+                                <label class="d-flex align-items-center" for="aviso-desocupacaon-domitorios">Nº de
+                                  dormitórios</label>
+                              </div>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control text-center" placeholder="00"
+                                       name="n-domitorios" id="aviso-desocupacaon-domitorios" required>
+                                <span></span>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-md-8 d-flex">
+                                <label class="d-flex align-items-center" for="aviso-desocupacaon-suites">Nº de
+                                  suites</label>
+                              </div>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control text-center" placeholder="00" name="n-suites"
+                                       id="aviso-desocupacaon-suites" required>
+                                <span></span>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-md-8 d-flex">
+                                <label class="d-flex align-items-center" for="aviso-desocupacaon-banheiros">Nº de
+                                  banheiro</label>
+                              </div>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control text-center" placeholder="00"
+                                       name="n-banheiros" id="aviso-desocupacaon-banheiros" required>
+                                <span></span>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-md-8 d-flex">
+                                <label class="d-flex align-items-center" for="aviso-desocupacaon-salas">Nº de
+                                  salas</label>
+                              </div>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control text-center" placeholder="00" name="n-salas"
+                                       id="aviso-desocupacaon-salas" required>
+                                <span></span>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-md-8 d-flex">
+                                <label class="d-flex align-items-center" for="aviso-desocupacaon-de-vagas">Nº de
+                                  vagas</label>
+                              </div>
+                              <div class="col-md-4">
+                                <input type="text" class="form-control text-center" placeholder="00" name="n-de-vagas"
+                                       id="aviso-desocupacaon-de-vagas" required>
+                                <span></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-6 d-flex">
+                          <div class="services-form-line d-flex flex-column justify-content-between mt-md-3">
+                            <div class="form-group row">
+                              <label for="aviso-desocupacaoarmarios-imbutidos-sim" class="col-12">Armários
+                                embutidos</label>
+                              <div class="col-12">
+                                <div class="form-check form-check-inline main-checkbox">
+                                  <input class="form-check-input" type="radio" name="armarios-imbutidos"
+                                         id="aviso-desocupacaoarmarios-imbutidos-sim" value="Sim">
+                                  <span></span>
+                                  <label class="form-check-label"
+                                         for="aviso-desocupacaoarmarios-imbutidos-sim">Sim</label>
+                                </div>
+                                <div class="form-check form-check-inline main-checkbox">
+                                  <input class="form-check-input" type="radio" name="armarios-imbutidos"
+                                         id="aviso-desocupacaoarmarios-imbutidos-nao" value="Não">
+                                  <span></span>
+                                  <label class="form-check-label"
+                                         for="aviso-desocupacaoarmarios-imbutidos-nao">Não</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="aviso-desocupacaosala-de-jantar-sim" class="col-12">Sala de jantar</label>
+                              <div class="col-12">
+                                <div class="form-check form-check-inline main-checkbox">
+                                  <input class="form-check-input" type="radio" name="sala-de-jantar"
+                                         id="aviso-desocupacaosala-de-jantar-sim" value="Sim">
+                                  <span></span>
+                                  <label class="form-check-label"
+                                         for="aviso-desocupacaosala-de-jantar-sim">Sim</label>
+                                </div>
+                                <div class="form-check form-check-inline main-checkbox">
+                                  <input class="form-check-input" type="radio" name="sala-de-jantar"
+                                         id="aviso-desocupacaosala-de-jantar-nao" value="Não">
+                                  <span></span>
+                                  <label class="form-check-label"
+                                         for="aviso-desocupacaosala-de-jantar-nao">Não</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="aviso-desocupacaodependencia-de-empregada-sim" class="col-12">Dependência de
+                                empregada</label>
+                              <div class="col-12">
+                                <div class="form-check form-check-inline main-checkbox">
+                                  <input class="form-check-input" type="radio" name="dependencia-de-empregada"
+                                         id="aviso-desocupacaodependencia-de-empregada-sim" value="Sim">
+                                  <span></span>
+                                  <label class="form-check-label" for="aviso-desocupacaodependencia-de-empregada-sim">Sim</label>
+                                </div>
+                                <div class="form-check form-check-inline main-checkbox">
+                                  <input class="form-check-input" type="radio" name="dependencia-de-empregada"
+                                         id="aviso-desocupacaodependencia-de-empregada-nao" value="Não">
+                                  <span></span>
+                                  <label class="form-check-label" for="aviso-desocupacaodependencia-de-empregada-nao">Não</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="mt-3 mb-3 col-12">TRANSAÇÃO</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaovalor-de-venda">Valor de venda</label>
+                          <input type="text" class="form-control js-mask-money" name="valor-de-venda"
+                                 id="aviso-desocupacaovalor-de-venda" placeholder="R$ " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaovalor-de-aluguel">Valor de aluguel</label>
+                          <input type="text" class="form-control js-mask-money" name="valor-de-aluguel"
+                                 id="aviso-desocupacaovalor-de-aluguel" placeholder="R$ " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaovalor-de-condominio">Valor do condomínio</label>
+                          <input type="text" class="form-control js-mask-money" name="valor-de-condominio"
+                                 id="aviso-desocupacaovalor-de-condominio" placeholder="R$ " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="aviso-desocupacaoiptu-mensal">Valor do condomínio</label>
+                          <input type="text" class="form-control js-mask-money" name="iptu-mensal"
+                                 id="aviso-desocupacaoiptu-mensal" placeholder="R$ " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="aviso-desocupacaooutras-opcoes">Outras informações</label>
+                          <textarea class="form-control" name="outras-opcoes" id="aviso-desocupacaooutras-opcoes"
+                                    placeholder="Opcional"></textarea>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="aviso-desocupacaoanexo-foto-do-imovel">Anexe uma foto do imóvel</label>
+                          <label class="form-input-file">
+                            <input type="hidden" name="foto-do-imovel">
+                            <input type="file" id="aviso-desocupacaoanexo-foto-do-imovel">
+                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
+                            <small></small>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
+                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                    </div>
+                  </form>
+                  <div class="form-return"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="card-header" id="heading8" data-toggle="collapse" data-target="#collapse8"
+                 aria-expanded="false" aria-controls="collapse8">
+              <div class="row py-3">
+                <div class="col-10"><h2>PROPOSTA DE LOCAÇÃO</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+            <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="form-card">
+                  <div class="col-12 col-lg-10 offset-lg-1 mb-5 pb-2 form-fieldset">
+                    <h6>PROPOSTA DE LOCAÇÃO</h6>
+                    <p>Preencha e envie o formulário abaixo para realizar a proposta.</p>
+                  </div>
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                        id="proposta-de-locacaoFormSevicos">
+                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
+                    type="hidden" name="assunto" value="Proposta de locação">
+                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
+                    <input type="hidden" name="success-text"
+                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
+                    <h6>DADOS DO PROPONENTE</h6>
+                    <p>Essa é uma locação:</p>
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <div class="col-12 col-lg-12 form-group">
+                          <div class="form-check form-check-inline main-checkbox">
+                            <input class="form-check-input" type="radio" name="essa-e-uma-locacao"
+                                   id="proposta-de-locacaoresidencial" value="Residencial">
+                            <span></span>
+                            <label class="form-check-label" for="proposta-de-locacaoresidencial">Residencial</label>
+                          </div>
+                          <div class="form-check form-check-inline main-checkbox">
+                            <input class="form-check-input" type="radio" name="essa-e-uma-locacao"
+                                   id="proposta-de-locacaonao-fiador" value="Não Residencial">
+                            <span></span>
+                            <label class="form-check-label" for="proposta-de-locacaonao-fiador">Não
+                              Residencial</label>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaonome">Nome</label>
+                          <input type="text" class="form-control" placeholder="Nome Completo"
+                                 id="proposta-de-locacaonome" name="nome" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaoemail">E-mail</label>
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                                 id="proposta-de-locacaoemail" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaotelefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="telefone"
+                                 id="proposta-de-locacaotelefone" placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaorg">RG</label>
+                          <input type="text" class="form-control js-mask-rg" name="rg" id="proposta-de-locacaorg"
+                                 placeholder="00000000-0" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaocpf">CPF</label>
+                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="proposta-de-locacaocpf"
+                                 placeholder="000.000.000-00" required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="col-12">GARANTIAS</h6>
+                        <div class="col-12">
+                          <div class="services-form-line">
+                            <div class="col-12 col-lg-12 form-group">
+                              <div class="form-check form-check-inline main-checkbox">
+                                <input class="form-check-input" type="radio" name="garantias"
+                                       id="proposta-de-locacaopessoa-fisica" value="pessoa-fisica">
+                                <span></span>
+                                <label class="form-check-label" for="proposta-de-locacaopessoa-fisica">Pessoa
+                                  física</label>
+                              </div>
+                              <div class="form-check form-check-inline main-checkbox">
+                                <input class="form-check-input" type="radio" name="garantias"
+                                       id="proposta-de-locacaoseguro-fianca" value="Seguro fiança">
+                                <span></span>
+                                <label class="form-check-label" for="proposta-de-locacaoseguro-fianca">Seguro
+                                  fiança</label>
+                              </div>
+                              <div class="form-check form-check-inline main-checkbox">
+                                <input class="form-check-input" type="radio" name="garantias"
+                                       id="proposta-de-locacaotitulo-de-capitalizacao"
+                                       value="Título de capitalização">
+                                <span></span>
+                                <label class="form-check-label" for="proposta-de-locacaotitulo-de-capitalizacao">Título
+                                  de capitalização</label>
+                              </div>
+                              <div class="form-check form-check-inline main-checkbox">
+                                <input class="form-check-input" type="radio" name="garantias"
+                                       id="proposta-de-locacaopessoa-juridica" value="Pessoa jurídica">
+                                <span></span>
+                                <label class="form-check-label" for="proposta-de-locacaopessoa-juridica">Pessoa
+                                  jurídica</label>
+                              </div>
+                              <div class="form-check form-check-inline main-checkbox">
+                                <input class="form-check-input" type="radio" name="garantias"
+                                       id="proposta-de-locacaocaucao" value="Caução">
+                                <span></span>
+                                <label class="form-check-label" for="proposta-de-locacaocaucao">Caução</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="col-12">PROPOSTA</h6>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaocod-imovel">Código do imóvel</label>
+                          <input type="text" class="form-control" placeholder=" " id="proposta-de-locacaocod-imovel"
+                                 name="cod-imovel" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaovalor-da-locacao">Valor da locação</label>
+                          <input type="text" class="form-control" placeholder="R$ " name="valor-da-locacao"
+                                 id="proposta-de-locacaovalor-da-locacao" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaoprazo-do-contrato">Prazo do contrato</label>
+                          <input type="text" class="form-control js-mask-date" name="prazo-do-contrato"
+                                 id="proposta-de-locacaoprazo-do-contrato" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacaofinalidade-da-locacao">Finalidade da locação</label>
+                          <input type="text" class="form-control" name="finalidade-da-locacao"
+                                 id="proposta-de-locacaofinalidade-da-locacao" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
+                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                    </div>
+                  </form>
+                  <div class="form-return"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="card-header" id="heading9" data-toggle="collapse" data-target="#collapse9"
+                 aria-expanded="false" aria-controls="collapse9">
+              <div class="row py-3">
+                <div class="col-10"><h2>PROPOSTA DE COMPRA</h2></div>
+                <div class="col-2 text-right"><i class="fas pull-right fa-plus-circle"></i></div>
+              </div>
+            </div>
+            <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="form-card">
+                  <div class="col-12 col-lg-10 offset-lg-1 mb-5 pb-2 form-fieldset">
+                    <h6>PROPOSTA DE COMPRA</h6>
+                    <p>Preencha e envie o formulário abaixo para realizar a proposta.</p>
+                  </div>
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                        id="rand2-FormSevicos">
+                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
+                    type="hidden" name="assunto" value="Proposta de locação">
+                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
+                    <input type="hidden" name="success-text"
+                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
+                    <h6>DADOS DO PROPONENTE</h6>
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <div class="col-12 col-lg-12 form-group">
+                          <label for="rand2-razao-social">Razão Social</label>
+                          <input type="text" class="form-control" placeholder=" " id="rand2-razao-social"
+                                 name="razao-social">
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="rand2-cnpj">CNPJ</label>
+                          <input type="text" class="form-control js-mask-cnpj" name="cnpj" id="rand2-cnpj"
+                                 placeholder="00.000.000/0000-00 " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="rand2-ie">IE</label>
+                          <input type="text" class="form-control" name="ie" id="rand2-ie"
+                                 placeholder="Número de inscrição estadual" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="rand2-ramo-de-atividade">Ramo de atividade</label>
+                          <input type="text" class="form-control" name="ramo-de-atividade"
+                                 id="rand2-ramo-de-atividade" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="rand2-inicio-das-atividades">Inicio das atividades</label>
+                          <input type="text" class="form-control js-mask-date" name="inicio-das-atividades"
+                                 id="rand2-inicio-das-atividades" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="rand2-email">E-mail</label>
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                                 id="rand2-email" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="rand2-telefone">Telefone/celular</label>
+                          <input type="text" class="form-control js-mask-phone" name="telefone" id="rand2-telefone"
+                                 placeholder="( ) 00000-0000" required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                      <div class="row">
+                        <h6 class="col-12">PROPOSTA</h6>
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-cod-imovel">Código do imóvel</label>
+                          <input type="text" class="form-control" placeholder=" " id="rand2-cod-imovel"
+                                 name="cod-imovel" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-valor-da-locacao">Valor da locação</label>
+                          <input type="text" class="form-control" placeholder="R$ " name="valor-da-locacao"
+                                 id="rand2-valor-da-locacao" required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-prazo-do-contrato">Prazo do contrato</label>
+                          <input type="text" class="form-control js-mask-date" name="prazo-do-contrato"
+                                 id="rand2-prazo-do-contrato" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-data-do-inicio">Data do inicio</label>
+                          <input type="text" class="form-control js-mask-date" name="data-do-inicio"
+                                 id="rand2-data-do-inicio" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-vencimento-todo-dia">Vencimento todo dia</label>
+                          <input type="text" class="form-control js-mask-date" name="vencimento-todo-dia"
+                                 id="rand2-vencimento-todo-dia" placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-finalidade-da-locacao">Finalidade da locação</label>
+                          <input type="text" class="form-control js-mask-date" name="finalidade-da-locacao"
+                                 id="rand2-finalidade-da-locacao" placeholder=" " required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <div class="form-fieldset mt-5 pt-4">
+                      <h6>TERMOS DE ACEITE </h6>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
+                        Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar
+                        sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin
+                        sapien nunc accuan eget.</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
+                        Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar
+                        sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin
+                        sapien nunc accuan eget.</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
+                        Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar
+                        sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin
+                        sapien nunc accuan eget.</p>
+                    </div>
+
+                    <div class="form-check form-check-inline main-checkbox">
+                      <input class="form-check-input" type="radio" name="declaro-que-li-e-aceito-os-termos"
+                             id="rand2-declaro-que-li-e-aceito-os-termos-sim" value="Sim">
+                      <span></span>
+                      <label class="form-check-label" for="rand2-declaro-que-li-e-aceito-os-termos-sim">Declaro que li
+                        e aceito os termos estabelecidos acima.</label>
+                    </div>
+
+                    <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
+                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                    </div>
+                  </form>
+                  <div class="form-return"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="servicos-container">
-    <h2>Serviços e Formulários</h2>
+  <div class="modal fade" id="seachContract" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+       aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="card text-center">
+          <div class="text-dark-gray bg-gray-100 text-uppercase py-3">
+            <button type="button" class="close text-right pr-4" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"><img src="assets/img/icons/icon-times.svg" width="20"></span>
+            </button>
+          </div>
+          <div class="card-body bg-gray-100 p-5">
+            <p class="col-8 offset-2 text-uppercase">COMO LOCALIZAR SEU NÚMERO DE CONTRATO.</p>
+            <p class="col-8 offset-2 text-center resetpassword-text d-block">O código para gerar a 2ª via do seu
+              boleto está disponível em três lugares, como mostram as marcações laranjas das imagens abaixo: </p>
 
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6  mx-auto">
-        <div class="card m-collapse-head" (click)="mToggle($event)">
-          <div class="m-collapse-head-title">SEGUNDA VIA DO BOLETO</div>
-          <div class="m-collapse-head-icon active">
-            <i class="fas fa-minus"></i></div>
+            <div class="offset-md-1 offset-lg-1 col-12 col-md-10 col-lg-10">
+
+              <div class="FormStyle owl-carousel owl-theme">
+
+                <div class="item">
+                  <p> O número do seu contrato pode ser encontrado no Recibo. </p>
+                  <img src="assets/img/recibo.png" alt="" title="">
+                </div>
+                <div class="item">
+                  <p> O número do seu contrato pode ser encontrado no Boleto bancário.</p>
+                  <img src="assets/img/boleto.png" alt="" title="">
+                </div>
+
+                <div class="item">
+                  <p> O número do seu contrato pode ser encontrado no Contrato de locação. </p>
+                  <img src="assets/img/contrato.png" alt="" title="">
+                </div>
+
+              </div>
+
+
+            </div>
+
+            <div class="col-12 text-center my-4">
+              <button class="btn btn-login btn-rounded mt-3" data-dismiss="modal" aria-label="Close" type="button">
+                Ok
+              </button>
+            </div>
+
+          </div>
         </div>
 
-        <div class="card m-collapse-body buttoncenter">
-          <button class="button-collapse col-9 col-sm-8 col-lg-7 col-md-8">
-            ACESSAR SISTEMA
-          </button>
-        </div>
+
       </div>
     </div>
-
-
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6  mx-auto">
-        <div class="card m-collapse-head ">
-          <div class="m-collapse-head-title">EXTRATO DO PROPRIETÁRIO</div>
-          <div class="m-collapse-head-icon">
-            <i class="fas fa-plus"></i></div>
-        </div>
-        <div class="card m-collapse-body buttoncenter">
-          <button class="button-collapse col-9 col-sm-8 col-lg-7 col-md-8">
-            ACESSAR SISTEMA
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto">
-        <div class="card m-collapse-head ">
-          <div class="m-collapse-head-title">CADASTRO DE PESSOA FÍSICA</div>
-          <div class="m-collapse-head-icon">
-            <i class="fas fa-plus"></i></div>
-        </div>
-        <div class="card m-collapse-body">
-          <app-form-pessoa-fisica> </app-form-pessoa-fisica>
-        </div>
-      </div>
-    </div>
-
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">
-        <div class="card m-collapse-head ">
-          <div class="m-collapse-head-title">CADASTRO DE PESSOA JURÍDICA</div>
-          <div class="m-collapse-head-icon">
-            <i class="fas fa-plus"></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">
-        <div class="card m-collapse-head ">
-          <div class="m-collapse-head-title">LOCADOR</div>
-          <div class="m-collapse-head-icon">
-            <i class="fas fa-plus"></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">
-        <div class="card m-collapse-head ">
-          <div class="m-collapse-head-title">AVISO DE DESOCUPAÇÃO</div>
-          <div class="m-collapse-head-icon">
-            <i class="fas fa-plus"></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">
-        <div class="card m-collapse-head ">
-          <div class="m-collapse-head-title">ANUNCIE O SEU IMÓVEL</div>
-          <div class="m-collapse-head-icon">
-            <i class="fas fa-plus"></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">
-        <div class="card m-collapse-head ">
-          <div class="m-collapse-head-title">PROPOSTA DE LOCAÇÃO</div>
-          <div class="m-collapse-head-icon">
-            <i class="fas fa-plus"></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row pb-4">
-      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">
-        <div class="card m-collapse-head ">
-          <div class="m-collapse-head-title">PROPOSTA DE COMPRA</div>
-          <div class="m-collapse-head-icon">
-            <i class="fas fa-plus"></i></div>
-        </div>
-      </div>
-    </div>
-
-
   </div>
+  <div class="modal fade services-modal" id="login" tabindex="-1" role="dialog" aria-labelledby="modalSuccess"
+       aria-hidden="true">
+    <div class="modal-dialog modal-lg bg-gray-100" role="document">
+      <div class="modal-content">
+        <div class="card text-center">
+          <div class="card-header text-dark-gray bg-gray-100 font-weight-bolder text-uppercase py-3">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="card-body text-left p-5">
+            <h6>
+              <svg xmlns="http://www.w3.org/2000/svg" width="28.531" height="21.488" viewBox="0 0 28.531 21.488">
+                <path id="Caminho_361" data-name="Caminho 361"
+                      d="M28.183,2.742,25.883.3A1.128,1.128,0,0,0,24.3.3L10.647,13.953,4.323,7.485a1.128,1.128,0,0,0-1.581,0L.3,9.928a1.128,1.128,0,0,0,0,1.581l9.486,9.63a1.128,1.128,0,0,0,1.581,0L28.183,4.323A1.128,1.128,0,0,0,28.183,2.742Z"
+                      transform="translate(0.025 0.025)" fill="#f69731"/>
+              </svg>
+              <span class="s">Dados enviados com sucesso!</span>
+            </h6>
+            <p class="js-services-modal-text">Obrigada! Já recebemos seus dados e em breve entraremos em contato para
+              marcarmos uma conversa.</p>
+            <div class="col-12 text-center my-4">
+              <button class="btn btn-rounded mt-3 btn-login btn-login-send" data-dismiss="modal">
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-</section>
+<!--<section class="content bg-gray animated fadeInUp col-md-12 col-12 col-lg-12">-->
+
+
+<!--  <div class="buttonGoBack">-->
+<!--    <a (click)="goBack()" class="btn-go-back btn-rounded" title="">-->
+<!--      <span class="arrow-icon"></span> VOLTAR-->
+<!--    </a>-->
+<!--  </div>-->
+
+<!--  <div class="servicos-container">-->
+<!--    <h2>Serviços e Formulários</h2>-->
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6  mx-auto">-->
+<!--        <div class="card m-collapse-head" (click)="mToggle($event)">-->
+<!--          <div class="m-collapse-head-title">SEGUNDA VIA DO BOLETO</div>-->
+<!--          <div class="m-collapse-head-icon active">-->
+<!--            <i class="fas fa-minus"></i></div>-->
+<!--        </div>-->
+
+<!--        <div class="card m-collapse-body buttoncenter">-->
+<!--          <button class="button-collapse col-9 col-sm-8 col-lg-7 col-md-8">-->
+<!--            ACESSAR SISTEMA-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6  mx-auto">-->
+<!--        <div class="card m-collapse-head ">-->
+<!--          <div class="m-collapse-head-title">EXTRATO DO PROPRIETÁRIO</div>-->
+<!--          <div class="m-collapse-head-icon">-->
+<!--            <i class="fas fa-plus"></i></div>-->
+<!--        </div>-->
+<!--        <div class="card m-collapse-body buttoncenter">-->
+<!--          <button class="button-collapse col-9 col-sm-8 col-lg-7 col-md-8">-->
+<!--            ACESSAR SISTEMA-->
+<!--          </button>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto">-->
+<!--        <div class="card m-collapse-head ">-->
+<!--          <div class="m-collapse-head-title">CADASTRO DE PESSOA FÍSICA</div>-->
+<!--          <div class="m-collapse-head-icon">-->
+<!--            <i class="fas fa-plus"></i></div>-->
+<!--        </div>-->
+<!--        <div class="card m-collapse-body">-->
+<!--          <app-form-pessoa-fisica> </app-form-pessoa-fisica>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">-->
+<!--        <div class="card m-collapse-head ">-->
+<!--          <div class="m-collapse-head-title">CADASTRO DE PESSOA JURÍDICA</div>-->
+<!--          <div class="m-collapse-head-icon">-->
+<!--            <i class="fas fa-plus"></i></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">-->
+<!--        <div class="card m-collapse-head ">-->
+<!--          <div class="m-collapse-head-title">LOCADOR</div>-->
+<!--          <div class="m-collapse-head-icon">-->
+<!--            <i class="fas fa-plus"></i></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">-->
+<!--        <div class="card m-collapse-head ">-->
+<!--          <div class="m-collapse-head-title">AVISO DE DESOCUPAÇÃO</div>-->
+<!--          <div class="m-collapse-head-icon">-->
+<!--            <i class="fas fa-plus"></i></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">-->
+<!--        <div class="card m-collapse-head ">-->
+<!--          <div class="m-collapse-head-title">ANUNCIE O SEU IMÓVEL</div>-->
+<!--          <div class="m-collapse-head-icon">-->
+<!--            <i class="fas fa-plus"></i></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">-->
+<!--        <div class="card m-collapse-head ">-->
+<!--          <div class="m-collapse-head-title">PROPOSTA DE LOCAÇÃO</div>-->
+<!--          <div class="m-collapse-head-icon">-->
+<!--            <i class="fas fa-plus"></i></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row pb-4">-->
+<!--      <div class="m-collapse col-10 col-sm-10 col-lg-6 mx-auto m-hide">-->
+<!--        <div class="card m-collapse-head ">-->
+<!--          <div class="m-collapse-head-title">PROPOSTA DE COMPRA</div>-->
+<!--          <div class="m-collapse-head-icon">-->
+<!--            <i class="fas fa-plus"></i></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!--  </div>-->
+
+
+<!--</section>-->
