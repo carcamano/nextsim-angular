@@ -106,8 +106,14 @@
   padding: unset;
   margin-top: 6px; }
 
+.boleto-modal {
+  display: block !important; }
+
 .modal-dialog {
   margin: 0; }
+
+.modal-dialog-centered {
+  margin: auto; }
 
 .modal-dialog.modal-xl.modal-dialog-centered {
   margin: auto; }
