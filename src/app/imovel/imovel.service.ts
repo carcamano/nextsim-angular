@@ -29,6 +29,15 @@ export class ImovelService {
       });
   }
 
+  sendToContactFormAny(form: any, formId: number) {
+    var form_data = new FormData();
+
+    for ( var key in form ) {
+      form_data.append(key, form[key]);
+    }
+    return this.sendToContactForm(form_data, formId);
+
+  }
   sendToContactForm(form: FormData, formId: number) {
     return this.http
       .post<any>(`https://admin.nextsim.com.br/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`, form);

@@ -84,7 +84,7 @@
                  [class.show]="showForm3">
               <div class="card-body">
                 <div class="form-card">
-                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" [formGroup]="form1"
                         id="FormSevicos">
                     <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
                     type="hidden" name="assunto" value="Cadastro Pessoa Física">
@@ -96,13 +96,13 @@
                       <div class="row">
                         <div class="col-12 col-lg-12 form-group">
                           <label for="sou-um">Sou um:</label>
-                          <div class="form-check form-check-inline main-checkbox">
-                            <input class="form-check-input" type="radio" name="tipo" id="locatario" value="Locatário">
+                          <div class="form-check form-check-inline main-checkbox" style="margin-left: 5px">
+                            <input class="form-check-input" type="radio"  id="locatario" value="Locatário" [formControlName]="'radio1'">
                             <span></span>
                             <label class="form-check-label" for="locatario">Locatário</label>
                           </div>
                           <div class="form-check form-check-inline main-checkbox">
-                            <input class="form-check-input" type="radio" name="tipo" id="fiador" value="Fiador">
+                            <input class="form-check-input" type="radio" id="fiador" value="Fiador" [formControlName]="'radio1'">
                             <span></span>
                             <label class="form-check-label" for="fiador">Fiador</label>
                           </div>
@@ -110,53 +110,53 @@
                         <div class="col-12 col-lg-12 form-group">
                           <label for="matricula">Matrícula do imóvel</label>
                           <input type="text" class="form-control" placeholder="Número da matrícula" id="matricula"
-                                 name="matricula">
+                                 name="matricula" [formControlName]="'field1'">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="nome">Nome</label>
-                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome" name="nome"
+                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome" name="nome" [formControlName]="'field2'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="email">E-mail</label>
-                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email" [formControlName]="'field3'"
                                  id="email" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="telefone">Telefone/celular</label>
-                          <input type="text" class="form-control js-mask-phone" name="telefone" id="telefone"
+                          <input type="text" class="form-control js-mask-phone" name="telefone" id="telefone" [formControlName]="'field4'"
                                  placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="dataDeNascimento">Data de nascimento</label>
-                          <input type="text" class="form-control js-mask-date" name="data-de-nascimento"
+                          <input type="text" class="form-control js-mask-date" name="data-de-nascimento" [formControlName]="'field5'"
                                  id="dataDeNascimento" placeholder="Dia / Mês / Ano" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="nacionalidade">Nacionalidade</label>
-                          <input type="text" class="form-control" name="nacionalidade" id="nacionalidade"
+                          <input type="text" class="form-control" name="nacionalidade" id="nacionalidade" [formControlName]="'field6'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="rg">RG</label>
-                          <input type="text" class="form-control" name="rg" id="rg" placeholder="00000000-0" required>
+                          <input type="text" class="form-control" name="rg" id="rg" placeholder="00000000-0" required [formControlName]="'field7'">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cpf">CPF</label>
-                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cpf"
+                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cpf" [formControlName]="'field8'"
                                  placeholder="000.000.000-00" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="estadoCivil">Estado civíl</label>
-                          <select class="form-control" name="estado-civil" id="estadoCivil" required>
+                          <select class="form-control" name="estado-civil" id="estadoCivil" required [formControlName]="'field9'">
                             <span></span>
                             <option value=""></option>
                             <option value="Casado">Casado</option>
@@ -168,42 +168,42 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="profissao">Profissão</label>
-                          <input type="text" class="form-control" name="profissao" id="profissao" placeholder=" "
+                          <input type="text" class="form-control" name="profissao" id="profissao" placeholder=" " [formControlName]="'field10'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="localDeTrabalho">Local de trabalho</label>
-                          <input type="text" class="form-control" name="local-de-Trabalho" id="localDeTrabalho"
+                          <input type="text" class="form-control" name="local-de-Trabalho" id="localDeTrabalho" [formControlName]="'field11'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="funcao">Função</label>
-                          <input type="text" class="form-control" name="funcao" id="funcao" placeholder=" " required>
+                          <input type="text" class="form-control" name="funcao" id="funcao" placeholder=" " required [formControlName]="'field12'">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="salario">Salário</label>
-                          <input type="text" class="form-control js-mask-money" name="salario" id="salario"
+                          <input type="text" class="form-control js-mask-money" name="salario" id="salario" [formControlName]="'field13'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="enderecoDoTrabalho">Endereço do trabalho</label>
-                          <input type="text" class="form-control" name="endereco-do-trabalho" id="enderecoDoTrabalho"
+                          <input type="text" class="form-control" name="endereco-do-trabalho" id="enderecoDoTrabalho" [formControlName]="'field14'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cartorio">Cartório para reconhecimento de firma</label>
-                          <input type="text" class="form-control" name="cartorio" id="cartorio" placeholder=" "
+                          <input type="text" class="form-control" name="cartorio" id="cartorio" placeholder=" " [formControlName]="'field15'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="parentescoFiador">Grau de parentesco com o fiador</label>
-                          <input type="text" class="form-control" name="parentesco-fiador" id="parentescoFiador"
+                          <input type="text" class="form-control" name="parentesco-fiador" id="parentescoFiador" [formControlName]="'field16'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
@@ -215,42 +215,42 @@
                         <h6 class="mt-3 mb-3 col-12">DADOS DO CONJUGUE</h6>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="nome">Nome</label>
-                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome"
+                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome" [formControlName]="'field17'"
                                  name="conjuge-nome" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="telefone">Telefone/celular</label>
-                          <input type="text" class="form-control js-mask-phone" name="conjuge-telefone" id="telefone"
+                          <input type="text" class="form-control js-mask-phone" name="conjuge-telefone" id="telefone" [formControlName]="'field18'"
                                  placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="dataDeNascimento">Data de nascimento</label>
-                          <input type="text" class="form-control js-mask-date" name="conjuge-data-de-nascimento"
+                          <input type="text" class="form-control js-mask-date" name="conjuge-data-de-nascimento" [formControlName]="'field19'"
                                  id="dataDeNascimento" placeholder="Dia / Mês / Ano">
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="nacionalidade">Nacionalidade</label>
-                          <input type="text" class="form-control" name="conjuge-nacionalidade" id="nacionalidade"
+                          <input type="text" class="form-control" name="conjuge-nacionalidade" id="nacionalidade" [formControlName]="'field20'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="rg">RG</label>
-                          <input type="text" class="form-control" name="conjuge-rg" id="rg" placeholder="00000000-0"
+                          <input type="text" class="form-control" name="conjuge-rg" id="rg" placeholder="00000000-0" [formControlName]="'field21'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cpf">CPF</label>
-                          <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf" id="cpf"
+                          <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf" id="cpf" [formControlName]="'field22'"
                                  placeholder="00000000-0" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="estadoCivil">Estado civíl</label>
-                          <select class="form-control" name="conjuge-estado-civil" id="estadoCivil" required>
+                          <select class="form-control" name="conjuge-estado-civil" id="estadoCivil" required [formControlName]="'field23'">
                             <span></span>
                             <option value=""></option>
                             <option value="Casado">Casado</option>
@@ -262,43 +262,43 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="profissao">Profissão</label>
-                          <input type="text" class="form-control" name="conjuge-profissao" id="profissao"
+                          <input type="text" class="form-control" name="conjuge-profissao" id="profissao" [formControlName]="'field24'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="localDeTrabalho">Local de trabalho</label>
-                          <input type="text" class="form-control" name="conjuge-local-de-trabalho"
+                          <input type="text" class="form-control" name="conjuge-local-de-trabalho" [formControlName]="'field25'"
                                  id="localDeTrabalho" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="funcao">Função</label>
-                          <input type="text" class="form-control" name="conjuge-funcao" id="funcao" placeholder=" "
+                          <input type="text" class="form-control" name="conjuge-funcao" id="funcao" placeholder=" " [formControlName]="'field26'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="salario">Salário</label>
-                          <input type="text" class="form-control js-mask-money" name="conjuge-salario" id="salario"
+                          <input type="text" class="form-control js-mask-money" name="conjuge-salario" id="salario" [formControlName]="'field27'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="enderecoDoTrabalho">Endereço do trabalho</label>
-                          <input type="text" class="form-control" name="conjuge-endereco-do-trabalho"
+                          <input type="text" class="form-control" name="conjuge-endereco-do-trabalho" [formControlName]="'field28'"
                                  id="enderecoDoTrabalho" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cartorio">Cartório para reconhecimento de firma</label>
-                          <input type="text" class="form-control" name="conjuge-cartorio" id="cartorio"
+                          <input type="text" class="form-control" name="conjuge-cartorio" id="cartorio" [formControlName]="'field29'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="parentescoFiador">Grau de parentesco com o fiador</label>
-                          <input type="text" class="form-control" name="conjuge-parentesco-fiador"
+                          <input type="text" class="form-control" name="conjuge-parentesco-fiador"  [formControlName]="'field30'"
                                  id="parentescoFiador" placeholder=" " required>
                           <span></span>
                         </div>
@@ -310,17 +310,17 @@
                         <h6 class="mt-3 mb-3 col-12">INFORMAÇÕES BANCÁRIAS</h6>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="banco">Banco</label>
-                          <input type="text" class="form-control" name="banco" id="banco" placeholder=" " required>
+                          <input type="text" class="form-control" name="banco" id="banco" placeholder=" " required [formControlName]="'field31'">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="conta">Conta</label>
-                          <input type="text" class="form-control" name="conta" id="conta" placeholder=" " required>
+                          <input type="text" class="form-control" name="conta" id="conta" placeholder=" " required [formControlName]="'field32'">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="contatoBancario">Contato bancário</label>
-                          <input type="text" class="form-control" name="contato-bancario" id="contatoBancario"
+                          <input type="text" class="form-control" name="contato-bancario" id="contatoBancario" [formControlName]="'field33'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
@@ -332,13 +332,13 @@
                         <h6 class="mt-3 mb-3 col-12">REFERÊNCIA COMERCIAL</h6>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="referenciaComercialempresa">Empresa</label>
-                          <input type="text" class="form-control" name="referencia-comercial-empresa"
+                          <input type="text" class="form-control" name="referencia-comercial-empresa" [formControlName]="'field34'"
                                  id="referenciaComercialempresa" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="referenciaComercialtelefone">Telefone</label>
-                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone"
+                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone" [formControlName]="'field35'"
                                  id="referenciaComercialtelefone" placeholder=" " required>
                           <span></span>
                         </div>
@@ -353,43 +353,43 @@
                         <div class="col-12 col-lg-12 form-group">
                           <label for="rg-cpf">RG e CPF</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-rg-cpf">
-                            <input type="file" id="rg-cpf">
+                            <input type="hidden" name="doc-rg-cpf" [formControlName]="'field36'">
+                            <input type="file" id="rg-cpf" (change)="onFileChange($event, filename1, form1.controls.field36)">
                             <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #filename1></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="certidaoCasamento">Certidão de casamento</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-certidao-casamento">
-                            <input type="file" id="certidaoCasamento">
+                            <input type="hidden" name="doc-certidao-casamento" [formControlName]="'field37'">
+                            <input type="file" id="certidaoCasamento" (change)="onFileChange($event, filename2, form1.controls.field37)">
                             <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #filename2></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="holerite">Holerite</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-holerite">
-                            <input type="file" id="holerite">
+                            <input type="hidden" name="doc-holerite" [formControlName]="'field38'">
+                            <input type="file" id="holerite" (change)="onFileChange($event, filename3, form1.controls.field38)">
                             <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #filename3></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="declaracaoIr">Última declaração do IR (renda de 3x o valor do aluguel)</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-declaracao-ir">
-                            <input type="file" id="declaracaoIr">
+                            <input type="hidden" name="doc-declaracao-ir" [formControlName]="'field39'">
+                            <input type="file" id="declaracaoIr" (change)="onFileChange($event, filename4, form1.controls.field39)">
                             <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #filename4></small>
                           </label>
                         </div>
                       </div>
                     </fieldset>
                     <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit1()">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -415,7 +415,7 @@
                  [class.show]="showForm4">
               <div class="card-body">
                 <div class="form-card">
-                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" [formGroup]="form2"
                         id="cadastro-pjFormSevicos">
                     <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
                     type="hidden" name="assunto" value="Cadastro Pessoa Jurídica">
@@ -427,14 +427,14 @@
                       <div class="row">
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjsou-um">Sou um:</label>
-                          <div class="form-check form-check-inline main-checkbox">
-                            <input class="form-check-input" type="radio" name="tipo" id="cadastro-pjlocatario"
+                          <div class="form-check form-check-inline main-checkbox" style="margin-left: 5px">
+                            <input class="form-check-input" type="radio"  id="cadastro-pjlocatario" [formControlName]="'radio1'"
                                    value="Locatário">
                             <span></span>
                             <label class="form-check-label" for="cadastro-pjlocatario">Locatário</label>
                           </div>
                           <div class="form-check form-check-inline main-checkbox">
-                            <input class="form-check-input" type="radio" name="tipo" id="cadastro-pjfiador"
+                            <input class="form-check-input" type="radio" id="cadastro-pjfiador" [formControlName]="'radio1'"
                                    value="Fiador">
                             <span></span>
                             <label class="form-check-label" for="cadastro-pjfiador">Fiador</label>
@@ -442,91 +442,91 @@
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjrazao-social">Razão Social</label>
-                          <input type="text" class="form-control" placeholder=" " id="cadastro-pjrazao-social"
+                          <input type="text" class="form-control" placeholder=" " id="cadastro-pjrazao-social" [formControlName]="'field1'"
                                  name="razao-social">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjemail">E-mail</label>
-                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"  [formControlName]="'field2'"
                                  id="cadastro-pjemail" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjtelefone">Telefone/celular</label>
-                          <input type="text" class="form-control js-mask-phone" name="telefone"
+                          <input type="text" class="form-control js-mask-phone" name="telefone"  [formControlName]="'field3'"
                                  id="cadastro-pjtelefone" placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjcnpj">CNPJ</label>
-                          <input type="text" class="form-control js-mask-cnpj" name="cnpj" id="cadastro-pjcnpj"
+                          <input type="text" class="form-control js-mask-cnpj" name="cnpj" id="cadastro-pjcnpj"  [formControlName]="'field4'"
                                  placeholder="00.000.000/0000-00 " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjie">IE</label>
-                          <input type="text" class="form-control" name="ie" id="cadastro-pjie"
+                          <input type="text" class="form-control" name="ie" id="cadastro-pjie"  [formControlName]="'field5'"
                                  placeholder="Número de inscrição estadual" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjramo-de-atividade">Ramo de atividade</label>
-                          <input type="text" class="form-control" name="ramo-de-atividade"
+                          <input type="text" class="form-control" name="ramo-de-atividade"  [formControlName]="'field6'"
                                  id="cadastro-pjramo-de-atividade" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjcapital-anual">Capital anual</label>
-                          <input type="text" class="form-control js-mask-money" name="capital-anual"
+                          <input type="text" class="form-control js-mask-money" name="capital-anual"  [formControlName]="'field7'"
                                  id="cadastro-pjcapital-anual" placeholder="R$ " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjcep">CEP</label>
-                          <input type="text" class="form-control js-mask-cep" name="cep" id="cadastro-pjcep"
+                          <input type="text" class="form-control js-mask-cep" name="cep" id="cadastro-pjcep"  [formControlName]="'field8'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjpais">País</label>
-                          <input type="text" class="form-control" name="pais" id="cadastro-pjpais" placeholder=" "
+                          <input type="text" class="form-control" name="pais" id="cadastro-pjpais" placeholder=" "  [formControlName]="'field9'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjestado">Estado</label>
-                          <input type="text" class="form-control" name="estado" id="cadastro-pjestado" placeholder=" "
+                          <input type="text" class="form-control" name="estado" id="cadastro-pjestado" placeholder=" "  [formControlName]="'field10'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjcidade">Cidade</label>
-                          <input type="text" class="form-control" name="cidade" id="cadastro-pjcidade" placeholder=" "
+                          <input type="text" class="form-control" name="cidade" id="cadastro-pjcidade" placeholder=" "  [formControlName]="'field11'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjendereco">Endereço</label>
-                          <input type="text" class="form-control" name="endereco" id="cadastro-pjendereco"
+                          <input type="text" class="form-control" name="endereco" id="cadastro-pjendereco"  [formControlName]="'field12'"
                                  placeholder="Digite aqui o endereço" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjbairro">Bairro</label>
-                          <input type="text" class="form-control" name="bairro" id="cadastro-pjbairro"
+                          <input type="text" class="form-control" name="bairro" id="cadastro-pjbairro"  [formControlName]="'field13'"
                                  placeholder="Nome do bairro" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjnumero">Número</label>
-                          <input type="text" class="form-control" name="numero" id="cadastro-pjnumero"
+                          <input type="text" class="form-control" name="numero" id="cadastro-pjnumero"  [formControlName]="'field14'"
                                  placeholder="Número do imóvel" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjcomplemento">Complemento</label>
-                          <input type="text" class="form-control" name="complemento" id="cadastro-pjcomplemento"
+                          <input type="text" class="form-control" name="complemento" id="cadastro-pjcomplemento"  [formControlName]="'field15'"
                                  placeholder="Ex: Bloco xxx , Número xxx" required>
                           <span></span>
                         </div>
@@ -538,19 +538,19 @@
                         <h6 class="mt-3 mb-3 col-12">INFORMAÇÕES BANCÁRIAS</h6>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjbanco">Banco</label>
-                          <input type="text" class="form-control" name="banco" id="cadastro-pjbanco" placeholder=" "
+                          <input type="text" class="form-control" name="banco" id="cadastro-pjbanco" placeholder=" "  [formControlName]="'field16'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjconta">Conta</label>
-                          <input type="text" class="form-control" name="conta" id="cadastro-pjconta" placeholder=" "
+                          <input type="text" class="form-control" name="conta" id="cadastro-pjconta" placeholder=" "  [formControlName]="'field17'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjcontatoBancario">Contato bancário</label>
-                          <input type="text" class="form-control" name="contato-bancario"
+                          <input type="text" class="form-control" name="contato-bancario"  [formControlName]="'field18'"
                                  id="cadastro-pjcontatoBancario" placeholder=" " required>
                           <span></span>
                         </div>
@@ -562,25 +562,25 @@
                         <h6 class="mt-3 mb-3 col-12">REFERÊNCIAIS COMERCIAIS</h6>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjreferenciaComercialempresa">Empresa 1</label>
-                          <input type="text" class="form-control" name="referencia-comercial-empresa"
+                          <input type="text" class="form-control" name="referencia-comercial-empresa"  [formControlName]="'field19'"
                                  id="cadastro-pjreferenciaComercialempresa" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjreferenciaComercialtelefone">Telefone</label>
-                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone"
+                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone"  [formControlName]="'field20'"
                                  id="cadastro-pjreferenciaComercialtelefone" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjreferenciaComercialempresa">Empresa 2</label>
-                          <input type="text" class="form-control" name="referencia-comercial-empresa-2"
+                          <input type="text" class="form-control" name="referencia-comercial-empresa-2" [formControlName]="'field21'"
                                  id="cadastro-pjreferenciaComercialempresa" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjreferenciaComercialtelefone">Telefone</label>
-                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone-2"
+                          <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone-2" [formControlName]="'field22'"
                                  id="cadastro-pjreferenciaComercialtelefone" placeholder=" " required>
                           <span></span>
                         </div>
@@ -595,53 +595,53 @@
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjcartao-cnpj">Cartão CNPJ</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-cartao-cnpj">
-                            <input type="file" id="cadastro-pjcartao-cnpj">
+                            <input type="hidden" name="doc-cartao-cnpj" [formControlName]="'field23'">
+                            <input type="file" id="cadastro-pjcartao-cnpj" (change)="onFileChange($event, form2filename01, form2.controls.field23)">
                             <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form2filename01></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjcontrato-social">Contrato social</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-certidao-casamento">
-                            <input type="file" id="cadastro-pjcontrato-social">
+                            <input type="hidden" name="doc-certidao-casamento" [formControlName]="'field24'">
+                            <input type="file" id="cadastro-pjcontrato-social" (change)="onFileChange($event, form2filename02, form2.controls.field24)">
                             <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form2filename02></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjcpf-e-rg-dos-socios">CPF/RG dos sócios</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-cpf-e-rg-dos-socios">
-                            <input type="file" id="cadastro-pjcpf-e-rg-dos-socios">
+                            <input type="hidden" name="doc-cpf-e-rg-dos-socios" [formControlName]="'field25'">
+                            <input type="file" id="cadastro-pjcpf-e-rg-dos-socios" (change)="onFileChange($event, form2filename1, form2.controls.field25)">
                             <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form2filename1></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjultimo-balanco-contabil">Último balanço contábil (com C.R.C)</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-ultimo-balanco-contabil">
-                            <input type="file" id="cadastro-pjultimo-balanco-contabil">
+                            <input type="hidden" name="doc-ultimo-balanco-contabil" [formControlName]="'field26'">
+                            <input type="file" id="cadastro-pjultimo-balanco-contabil" (change)="onFileChange($event, form2filename2, form2.controls.field26)">
                             <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form2filename2></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjprocuracao-para-o-assinante">Procuração para o assinante (caso não
                             sócio) </label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-procuracao-para-o-assinante">
-                            <input type="file" id="cadastro-pjprocuracao-para-o-assinante">
+                            <input type="hidden" name="doc-procuracao-para-o-assinante" [formControlName]="'field27'">
+                            <input type="file" id="cadastro-pjprocuracao-para-o-assinante" (change)="onFileChange($event, form2filename3, form2.controls.field27)">
                             <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form2filename3></small>
                           </label>
                         </div>
                       </div>
                     </fieldset>
                     <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit2()">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -667,7 +667,7 @@
                  [class.show]="showForm5">
               <div class="card-body">
                 <div class="form-card">
-                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" [formGroup]="form3"
                         id="cadastro-locadorFormSevicos">
                     <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
                     type="hidden" name="assunto" value="Cadastro Locador">
@@ -680,15 +680,15 @@
                       <div class="row">
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorsou-um">Sou um:</label>
-                          <div class="form-check form-check-inline main-checkbox">
-                            <input class="form-check-input" type="radio" name="tipo" id="cadastro-locadorlocatario"
+                          <div class="form-check form-check-inline main-checkbox" style="margin-left: 5px">
+                            <input class="form-check-input" type="radio"  id="cadastro-locadorlocatario" [formControlName]="'radio1'"
                                    value="Locador Pessoa Física">
                             <span></span>
                             <label class="form-check-label" for="cadastro-locadorlocatario">Locador Pessoa
                               Física</label>
                           </div>
                           <div class="form-check form-check-inline main-checkbox">
-                            <input class="form-check-input" type="radio" name="tipo" id="cadastro-locadorfiador"
+                            <input class="form-check-input" type="radio" id="cadastro-locadorfiador"  [formControlName]="'radio1'"
                                    value="Locador Pessoa Jurídica">
                             <span></span>
                             <label class="form-check-label" for="cadastro-locadorfiador">Locador Pessoa
@@ -700,73 +700,73 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcep">CEP</label>
-                          <input type="text" class="form-control js-mask-cep" name="cep" id="cadastro-locadorcep"
+                          <input type="text" class="form-control js-mask-cep" name="cep" id="cadastro-locadorcep"  [formControlName]="'field1'"
                                  placeholder="00000-000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorpais">País</label>
-                          <input type="text" class="form-control" name="pais" id="cadastro-locadorpais"
+                          <input type="text" class="form-control" name="pais" id="cadastro-locadorpais" [formControlName]="'field2'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorestado">Estado</label>
-                          <input type="text" class="form-control" name="estado" id="cadastro-locadorestado"
+                          <input type="text" class="form-control" name="estado" id="cadastro-locadorestado" [formControlName]="'field3'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcidade">Cidade</label>
-                          <input type="text" class="form-control" name="cidade" id="cadastro-locadorcidade"
+                          <input type="text" class="form-control" name="cidade" id="cadastro-locadorcidade" [formControlName]="'field4'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorendereco">Endereço</label>
-                          <input type="text" class="form-control" name="endereco" id="cadastro-locadorendereco"
+                          <input type="text" class="form-control" name="endereco" id="cadastro-locadorendereco" [formControlName]="'field5'"
                                  placeholder="Digite aqui o endereço" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorbairro">Bairro</label>
-                          <input type="text" class="form-control" name="bairro" id="cadastro-locadorbairro"
+                          <input type="text" class="form-control" name="bairro" id="cadastro-locadorbairro" [formControlName]="'field6'"
                                  placeholder="Nome do bairro" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadornumero">Número</label>
-                          <input type="text" class="form-control" name="numero" id="cadastro-locadornumero"
+                          <input type="text" class="form-control" name="numero" id="cadastro-locadornumero" [formControlName]="'field7'"
                                  placeholder="Número do imóvel" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorcomplemento">Complemento</label>
-                          <input type="text" class="form-control" name="complemento" id="cadastro-locadorcomplemento"
+                          <input type="text" class="form-control" name="complemento" id="cadastro-locadorcomplemento" [formControlName]="'field8'"
                                  placeholder="Ex: Bloco xxx , Número xxx" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcod-iptu">Código IPTU</label>
-                          <input type="text" class="form-control" name="cod-iptu" id="cadastro-locadorcod-iptu"
+                          <input type="text" class="form-control" name="cod-iptu" id="cadastro-locadorcod-iptu" [formControlName]="'field9'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcod-cpfl">Código CPFL</label>
-                          <input type="text" class="form-control" name="cod-cpfl" id="cadastro-locadorcod-cpfl"
+                          <input type="text" class="form-control" name="cod-cpfl" id="cadastro-locadorcod-cpfl" [formControlName]="'field10'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcod-sanasa">Código SANASA</label>
-                          <input type="text" class="form-control" name="cod-sanasa" id="cadastro-locadorcod-sanasa"
+                          <input type="text" class="form-control" name="cod-sanasa" id="cadastro-locadorcod-sanasa" [formControlName]="'field11'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcod-gas">Código de gás</label>
-                          <input type="text" class="form-control" name="cod-gas" id="cadastro-locadorcod-gas"
+                          <input type="text" class="form-control" name="cod-gas" id="cadastro-locadorcod-gas" [formControlName]="'field12'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
@@ -779,49 +779,49 @@
 
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadornome">Nome</label>
-                          <input type="text" class="form-control" placeholder="Nome Completo"
+                          <input type="text" class="form-control" placeholder="Nome Completo" [formControlName]="'field13'"
                                  id="cadastro-locadornome" name="nome" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadoremail">E-mail</label>
-                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email" [formControlName]="'field14'"
                                  id="cadastro-locadoremail" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadortelefone">Telefone/celular</label>
-                          <input type="text" class="form-control js-mask-phone" name="telefone"
+                          <input type="text" class="form-control js-mask-phone" name="telefone" [formControlName]="'field15'"
                                  id="cadastro-locadortelefone" placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadordataDeNascimento">Data de nascimento</label>
-                          <input type="text" class="form-control js-mask-date" name="data-de-nascimento"
+                          <input type="text" class="form-control js-mask-date" name="data-de-nascimento" [formControlName]="'field16'"
                                  id="cadastro-locadordataDeNascimento" placeholder="Dia / Mês / Ano" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadornacionalidade">Nacionalidade</label>
-                          <input type="text" class="form-control" name="nacionalidade"
+                          <input type="text" class="form-control" name="nacionalidade" [formControlName]="'field17'"
                                  id="cadastro-locadornacionalidade" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorrg">RG</label>
-                          <input type="text" class="form-control" name="rg" id="cadastro-locadorrg"
+                          <input type="text" class="form-control" name="rg" id="cadastro-locadorrg" [formControlName]="'field18'"
                                  placeholder="00000000-0" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcpf">CPF</label>
-                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cadastro-locadorcpf"
+                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cadastro-locadorcpf" [formControlName]="'field19'"
                                  placeholder="000.000.000-00" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorestadoCivil">Estado civíl</label>
-                          <select class="form-control" name="estado-civil" id="cadastro-locadorestadoCivil" required>
+                          <select class="form-control" name="estado-civil" id="cadastro-locadorestadoCivil" required [formControlName]="'field20'">
                             <span></span>
                             <option value=""></option>
                             <option value="Casado">Casado</option>
@@ -833,32 +833,32 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorprofissao">Profissão</label>
-                          <input type="text" class="form-control" name="profissao" id="cadastro-locadorprofissao"
+                          <input type="text" class="form-control" name="profissao" id="cadastro-locadorprofissao" [formControlName]="'field21'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorlocalDeTrabalho">Local de trabalho</label>
-                          <input type="text" class="form-control" name="local-de-Trabalho"
+                          <input type="text" class="form-control" name="local-de-Trabalho" [formControlName]="'field22'"
                                  id="cadastro-locadorlocalDeTrabalho" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorfuncao">Função</label>
-                          <input type="text" class="form-control" name="funcao" id="cadastro-locadorfuncao"
+                          <input type="text" class="form-control" name="funcao" id="cadastro-locadorfuncao" [formControlName]="'field23'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorendereco-do-trabalho">Endereço do trabalho</label>
-                          <input type="text" class="form-control" name="endereco-do-trabalho"
+                          <input type="text" class="form-control" name="endereco-do-trabalho" [formControlName]="'field24'"
                                  id="cadastro-locadorendereco-do-trabalho" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorcartorio-para-reconhecimento-de-firma">Cartório para
                             reconhecimento de firma</label>
-                          <input type="text" class="form-control" name="cartorio-para-reconhecimento-de-firma"
+                          <input type="text" class="form-control" name="cartorio-para-reconhecimento-de-firma" [formControlName]="'field25'"
                                  id="cadastro-locadorcartorio-para-reconhecimento-de-firma" placeholder=" " required>
                           <span></span>
                         </div>
@@ -871,42 +871,42 @@
                         <h6 class="mt-3 mb-3 col-12">DADOS DO CONJUGUE</h6>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadornome">Nome</label>
-                          <input type="text" class="form-control" placeholder="Nome Completo"
+                          <input type="text" class="form-control" placeholder="Nome Completo" [formControlName]="'field26'"
                                  id="cadastro-locadornome" name="conjuge-nome" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadortelefone">Telefone/celular</label>
-                          <input type="text" class="form-control js-mask-phone" name="conjuge-telefone"
+                          <input type="text" class="form-control js-mask-phone" name="conjuge-telefone" [formControlName]="'field27'"
                                  id="cadastro-locadortelefone" placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadordataDeNascimento">Data de nascimento</label>
-                          <input type="text" class="form-control js-mask-date" name="conjuge-data-de-nascimento"
+                          <input type="text" class="form-control js-mask-date" name="conjuge-data-de-nascimento" [formControlName]="'field28'"
                                  id="cadastro-locadordataDeNascimento" placeholder="Dia / Mês / Ano">
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadornacionalidade">Nacionalidade</label>
-                          <input type="text" class="form-control" name="conjuge-nacionalidade"
+                          <input type="text" class="form-control" name="conjuge-nacionalidade" [formControlName]="'field29'"
                                  id="cadastro-locadornacionalidade" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorrg">RG</label>
-                          <input type="text" class="form-control" name="conjuge-rg" id="cadastro-locadorrg"
+                          <input type="text" class="form-control" name="conjuge-rg" id="cadastro-locadorrg" [formControlName]="'field30'"
                                  placeholder="00000000-0" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcpf">CPF</label>
-                          <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf"
+                          <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf" [formControlName]="'field31'"
                                  id="cadastro-locadorcpf" placeholder="00000000-0" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorestadoCivil">Estado civíl</label>
-                          <select class="form-control" name="conjuge-estado-civil" id="cadastro-locadorestadoCivil"
+                          <select class="form-control" name="conjuge-estado-civil" id="cadastro-locadorestadoCivil" [formControlName]="'field32'"
                                   required>
                             <span></span>
                             <option value=""></option>
@@ -919,43 +919,43 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorprofissao">Profissão</label>
-                          <input type="text" class="form-control" name="conjuge-profissao"
+                          <input type="text" class="form-control" name="conjuge-profissao" [formControlName]="'field33'"
                                  id="cadastro-locadorprofissao" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorlocalDeTrabalho">Local de trabalho</label>
-                          <input type="text" class="form-control" name="conjuge-local-de-trabalho"
+                          <input type="text" class="form-control" name="conjuge-local-de-trabalho" [formControlName]="'field34'"
                                  id="cadastro-locadorlocalDeTrabalho" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorfuncao">Função</label>
-                          <input type="text" class="form-control" name="conjuge-funcao" id="cadastro-locadorfuncao"
+                          <input type="text" class="form-control" name="conjuge-funcao" id="cadastro-locadorfuncao" [formControlName]="'field35'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorsalario">Salário</label>
-                          <input type="text" class="form-control js-mask-money" name="conjuge-salario"
+                          <input type="text" class="form-control js-mask-money" name="conjuge-salario" [formControlName]="'field36'"
                                  id="cadastro-locadorsalario" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorenderecoDoTrabalho">Endereço do trabalho</label>
-                          <input type="text" class="form-control" name="conjuge-endereco-do-trabalho"
+                          <input type="text" class="form-control" name="conjuge-endereco-do-trabalho" [formControlName]="'field37'"
                                  id="cadastro-locadorenderecoDoTrabalho" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcartorio">Cartório para reconhecimento de firma</label>
-                          <input type="text" class="form-control" name="conjuge-cartorio"
+                          <input type="text" class="form-control" name="conjuge-cartorio" [formControlName]="'field38'"
                                  id="cadastro-locadorcartorio" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorparentescoFiador">Grau de parentesco com o fiador</label>
-                          <input type="text" class="form-control" name="conjuge-parentesco-fiador"
+                          <input type="text" class="form-control" name="conjuge-parentesco-fiador" [formControlName]="'field39'"
                                  id="cadastro-locadorparentescoFiador" placeholder=" " required>
                           <span></span>
                         </div>
@@ -967,43 +967,43 @@
                         <h6 class="mt-3 mb-3 col-12">INFORMAÇÕES BANCÁRIAS</h6>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorbanco">Banco</label>
-                          <input type="text" class="form-control" name="banco" id="cadastro-locadorbanco"
+                          <input type="text" class="form-control" name="banco" id="cadastro-locadorbanco" [formControlName]="'field40'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-2 form-group">
                           <label for="cadastro-locadoragencia">Agência</label>
-                          <input type="text" class="form-control" name="agencia" id="cadastro-locadoragencia"
+                          <input type="text" class="form-control" name="agencia" id="cadastro-locadoragencia" [formControlName]="'field41'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-4 form-group">
                           <label for="cadastro-locadorconta">Conta</label>
-                          <input type="text" class="form-control" name="conta" id="cadastro-locadorconta"
+                          <input type="text" class="form-control" name="conta" id="cadastro-locadorconta" [formControlName]="'field42'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadortipo-de-conta">Tipo de conta</label>
-                          <input type="text" class="form-control" name="tipo-de-conta"
+                          <input type="text" class="form-control" name="tipo-de-conta" [formControlName]="'field43'"
                                  id="cadastro-locadortipo-de-conta" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadortitulo">Titular</label>
-                          <input type="text" class="form-control" name="titulo" id="cadastro-locadortitulo"
+                          <input type="text" class="form-control" name="titulo" id="cadastro-locadortitulo"  [formControlName]="'field44'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcheque-nominal-a">Cheque nominal à:</label>
-                          <input type="text" class="form-control" name="cheque-nominal-a"
+                          <input type="text" class="form-control" name="cheque-nominal-a" [formControlName]="'field45'"
                                  id="cadastro-locadorcheque-nominal-a" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorimposto-de-renda">Imposto de renda</label>
-                          <input type="text" class="form-control" name="imposto-de-renda"
+                          <input type="text" class="form-control" name="imposto-de-renda" [formControlName]="'field46'"
                                  id="cadastro-locadorimposto-de-renda" placeholder=" " required>
                           <span></span>
                         </div>
@@ -1018,79 +1018,79 @@
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorcarne-iptu-do-imovel">Carnê do IPTU do imóvel</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-carne-iptu-do-imovel">
-                            <input type="file" id="cadastro-locadorcartao-cnpj">
+                            <input type="hidden" name="doc-carne-iptu-do-imovel"  [formControlName]="'field47'">
+                            <input type="file" id="cadastro-locadorcartao-cnpj" (change)="onFileChange($event, form3filename1, form3.controls.field47)">
                             <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form3filename1></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorplanta-do-imovel">Planta do imóvel</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-planta-do-imovel">
-                            <input type="file" id="cadastro-locadorplanta-do-imovel">
+                            <input type="hidden" name="doc-planta-do-imovel"  [formControlName]="'field48'">
+                            <input type="file" id="cadastro-locadorplanta-do-imovel" (change)="onFileChange($event, form3filename2, form3.controls.field48)">
                             <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form3filename2></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadormatrituca-do-imovel">Matrícula do imóvel</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-matrituca-do-imovel">
-                            <input type="file" id="cadastro-locadormatrituca-do-imovel">
+                            <input type="hidden" name="doc-matrituca-do-imovel" [formControlName]="'field49'">
+                            <input type="file" id="cadastro-locadormatrituca-do-imovel" (change)="onFileChange($event, form3filename3, form3.controls.field49)">
                             <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form3filename3></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorrg-e-cpf">RG e CPF</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-rg-e-cpf">
-                            <input type="file" id="cadastro-locadorrg-e-cpf">
+                            <input type="hidden" name="doc-rg-e-cpf" [formControlName]="'field50'">
+                            <input type="file" id="cadastro-locadorrg-e-cpf" (change)="onFileChange($event, form3filename4, form3.controls.field50)">
                             <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form3filename4></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorcomprovante-de-endereco">Comprovante de endereço</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-comprovante-de-endereco">
-                            <input type="file" id="cadastro-locadorcomprovante-de-endereco">
+                            <input type="hidden" name="doc-comprovante-de-endereco" [formControlName]="'field51'">
+                            <input type="file" id="cadastro-locadorcomprovante-de-endereco"  (change)="onFileChange($event, form3filename5, form3.controls.field51)">
                             <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form3filename5></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorultima-conta-de-luz">Última conta de luz</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-ultima-conta-de-luz">
-                            <input type="file" id="cadastro-locadorultima-conta-de-luz">
+                            <input type="hidden" name="doc-ultima-conta-de-luz" [formControlName]="'field52'">
+                            <input type="file" id="cadastro-locadorultima-conta-de-luz"  (change)="onFileChange($event, form3filename6, form3.controls.field52)">
                             <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form3filename6></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorultima-conta-de-agua">Última conta de água</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-ultima-conta-de-agua">
-                            <input type="file" id="cadastro-locadorultima-conta-de-agua">
+                            <input type="hidden" name="doc-ultima-conta-de-agua" [formControlName]="'field53'">
+                            <input type="file" id="cadastro-locadorultima-conta-de-agua"  (change)="onFileChange($event, form3filename7, form3.controls.field53)">
                             <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form3filename7></small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorultima-conta-de-gas">Última conta de gás</label>
                           <label class="form-input-file">
-                            <input type="hidden" name="doc-ultima-conta-de-gas">
-                            <input type="file" id="cadastro-locadorultima-conta-de-gas">
+                            <input type="hidden" name="doc-ultima-conta-de-gas" [formControlName]="'field54'">
+                            <input type="file" id="cadastro-locadorultima-conta-de-gas"  (change)="onFileChange($event, form3filename8, form3.controls.field54)">
                             <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small></small>
+                            <small #form3filename8></small>
                           </label>
                         </div>
                       </div>
                     </fieldset>
                     <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit3()">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -1153,7 +1153,7 @@
                     <p>Ressaltamos que, caso a vistoria não seja aprovada, continuarão correndo
                       por conta do locatário, aluguel e acessórios da locação.</p>
                   </div>
-                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" method="POST" action="servicos.html"
+                  <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" [formGroup]="form4"
                         id="aviso-desocupacaoFormSevicos">
                     <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
                     type="hidden" name="assunto" value="Aviso desocupação">
@@ -1166,25 +1166,25 @@
                       <div class="row">
                         <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
                           <label for="nome">Nome</label>
-                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome" name="nome"
+                          <input type="text" class="form-control" placeholder="Nome Completo" id="nome" name="nome" [formControlName]="'field1'"
                                  required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="email">E-mail</label>
-                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"
+                          <input type="email" class="form-control" placeholder="Digite seu e-mail aqui" name="email"  [formControlName]="'field2'"
                                  id="email" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="telefone">Telefone/celular</label>
-                          <input type="text" class="form-control js-mask-phone" name="telefone" id="telefone"
+                          <input type="text" class="form-control js-mask-phone" name="telefone" id="telefone"  [formControlName]="'field3'"
                                  placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaotipo-de-imovel">Tipo de imóvel</label>
-                          <select class="form-control" name="tipo-de-imovel" id="aviso-desocupacaotipo-de-imovel"
+                          <select class="form-control" name="tipo-de-imovel" id="aviso-desocupacaotipo-de-imovel"  [formControlName]="'field4'"
                                   required>
                             <span></span>
                             <option value=""></option>
@@ -1197,34 +1197,34 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaovalor-atual-do-aluguel">Valor atual do aluguel</label>
-                          <input type="text" class="form-control js-mask-money" name="valor-atual-do-aluguel"
+                          <input type="text" class="form-control js-mask-money" name="valor-atual-do-aluguel"  [formControlName]="'field5'"
                                  id="aviso-desocupacaovalor-atual-do-aluguel" placeholder="R$" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaonome-do-edificio-ou-condominio">Nome do
                             edifício/condomínio</label>
-                          <input type="text" class="form-control" name="nome-do-edificio-ou-condominio"
+                          <input type="text" class="form-control" name="nome-do-edificio-ou-condominio"  [formControlName]="'field6'"
                                  id="aviso-desocupacaonome-do-edificio-ou-condominio" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaonome-da-administradora-do-condominio">Nome da administradora do
                             condomínio</label>
-                          <input type="text" class="form-control" name="nome-da-administradora-do-condominio"
+                          <input type="text" class="form-control" name="nome-da-administradora-do-condominio"  [formControlName]="'field7'"
                                  id="aviso-desocupacaonome-da-administradora-do-condominio" placeholder=" " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaodata-de-entrada">Data de entrada</label>
-                          <input type="text" class="form-control js-mask-date" name="data-de-entrada"
+                          <input type="text" class="form-control js-mask-date" name="data-de-entrada"  [formControlName]="'field8'"
                                  id="aviso-desocupacaodata-de-entrada" placeholder="Dia / Mês / Ano" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaodata-prevista-para-a-desocupacao">Data prevista para a
                             desocupação</label>
-                          <input type="text" class="form-control js-mask-date" name="data-prevista-para-a-desocupacao"
+                          <input type="text" class="form-control js-mask-date" name="data-prevista-para-a-desocupacao"  [formControlName]="'field9'"
                                  id="aviso-desocupacaodata-prevista-para-a-desocupacao" placeholder="Dia / Mês / Ano"
                                  required>
                           <span></span>
@@ -1232,19 +1232,19 @@
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaovalor-do-ultimo-condominio-pago">Valor do último condomínio
                             pago</label>
-                          <input type="text" class="form-control js-mask-money" name="valor-do-ultimo-condominio-pago"
+                          <input type="text" class="form-control js-mask-money" name="valor-do-ultimo-condominio-pago"  [formControlName]="'field10'"
                                  id="aviso-desocupacaovalor-do-ultimo-condominio-pago" placeholder="R$" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaovalor-do-ultimo-iptu-pago">Valor do último IPTU pago</label>
-                          <input type="text" class="form-control js-mask-money" name="valor-do-ultimo-iptu-pago"
+                          <input type="text" class="form-control js-mask-money" name="valor-do-ultimo-iptu-pago"  [formControlName]="'field11'"
                                  id="aviso-desocupacaovalor-do-ultimo-iptu-pago" placeholder="R$" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaoendereco-do-imovel">Endereço do imóvel</label>
-                          <input type="text" class="form-control" name="endereco-do-imovel"
+                          <input type="text" class="form-control" name="endereco-do-imovel"  [formControlName]="'field12'"
                                  id="aviso-desocupacaoendereco-do-imovel"
                                  placeholder="Ex: Av. xxxx, Bairro xxx, Nº xx, Campinas- SP. Bloco xx, apartamento xxx "
                                  required>
@@ -1252,7 +1252,7 @@
                         </div>
                         <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaomotivo-da-desocupacao">Motivo da desocupação</label>
-                          <textarea class="form-control" name="motivo-da-desocupacao"
+                          <textarea class="form-control" name="motivo-da-desocupacao"  [formControlName]="'field13'"
                                     id="aviso-desocupacaomotivo-da-desocupacao" placeholder="Opcional"></textarea>
                           <span></span>
                         </div>
@@ -1260,7 +1260,7 @@
                     </fieldset>
 
                     <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit4()">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>

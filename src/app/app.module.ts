@@ -48,6 +48,7 @@ import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { ServicosFormulariosComponent } from './servicos-formularios/servicos-formularios.component';
 import { FormPessoaFisicaComponent } from './servicos-formularios/form-pessoa-fisica/form-pessoa-fisica.component';
 import { LancamentosComponent } from './imoveis/lancamentos/lancamentos.component';
+import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/storage";
 
 registerLocaleData(localePt);
 
@@ -121,6 +122,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     TextMaskModule,
     NgBrazil
   ],
