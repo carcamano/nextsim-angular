@@ -132,7 +132,6 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field25: [, Validators.required],
       field26: [, Validators.required],
       field27: [, Validators.required],
-      field28: [, Validators.required]
     });
 
     this.form3 = this.formBuilder.group({
@@ -191,12 +190,10 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field52: [, Validators.required],
       field53: [, Validators.required],
       field54: [, Validators.required],
-      field55: [, Validators.required],
     });
 
 
     this.form4 = this.formBuilder.group({
-      radio1: [, Validators.required],
       field1: [, Validators.required],
       field2: [, Validators.required],
       field3: [, Validators.required],
@@ -209,11 +206,11 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field10: [, Validators.required],
       field11: [, Validators.required],
       field12: [, Validators.required],
-      field13: [, Validators.required],
+      field13: [, ],
+
     });
 
     this.form5 = this.formBuilder.group({
-      radio1: [, Validators.required],
       field1: [, Validators.required],
       field2: [, Validators.required],
       field3: [, Validators.required],
@@ -240,7 +237,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field24: [, Validators.required],
       field25: [, Validators.required],
       field26: [, Validators.required],
-      field27: [, Validators.required],
+      field27: [, ],
     });
 
     this.form6 = this.formBuilder.group({
@@ -256,10 +253,12 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field9: [, Validators.required],
       field10: [, Validators.required],
       field11: [, Validators.required],
+      field12: [, Validators.required],
+      field13: [, Validators.required],
+      field14: [, Validators.required],
     });
 
     this.form7 = this.formBuilder.group({
-      radio1: [, Validators.required],
       field1: [, Validators.required],
       field2: [, Validators.required],
       field3: [, Validators.required],
@@ -273,6 +272,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field11: [, Validators.required],
       field12: [, Validators.required],
       field13: [, Validators.required],
+      field14: [, Validators.required],
     });
   }
 
@@ -286,6 +286,10 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
 
   mToggle(event) {
+
+  }
+
+  none(){
 
   }
 
@@ -413,13 +417,17 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
 
   private errorForm() {
-    debugger
-    this.toastr.success('Formulário incompleto!', 'Preencha todos os campos do formulario!');
+    this.toastr.error('Formulário incompleto!', 'Preencha todos os campos do formulario!');
+  }
+
+  private successForm() {
+    this.toastr.success('Formulário Enviado!', 'Seus dados foram enviados com sucesso!');
   }
 
   private sendForm(rowValue: any, formId: number) {
     this.sendService.sendToContactFormAny(rowValue, formId)
       .subscribe(value => {
+        this.successForm();
         console.log(value);
         this.form1.reset();
         this.form2.reset();
