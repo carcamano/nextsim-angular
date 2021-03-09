@@ -109,6 +109,11 @@
 .boleto-modal {
   display: block !important; }
 
+#list-bairros {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2; }
+
 .modal-dialog {
   margin: 0; }
 

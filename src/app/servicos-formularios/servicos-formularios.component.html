@@ -86,11 +86,6 @@
                 <div class="form-card">
                   <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" [formGroup]="form1"
                         id="FormSevicos">
-                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
-                    type="hidden" name="assunto" value="Cadastro Pessoa Física">
-                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
-                    <input type="hidden" name="success-text"
-                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
                     <p>Preencha e envie o formulário abaixo para se cadastrar.</p>
                     <fieldset class="form-fieldset">
                       <div class="row">
@@ -132,14 +127,14 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="telefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="telefone" id="telefone"
-                                 [formControlName]="'field4'"
+                                 [formControlName]="'field4'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="dataDeNascimento">Data de nascimento</label>
                           <input type="text" class="form-control js-mask-date" name="data-de-nascimento"
-                                 [formControlName]="'field5'"
+                                 [formControlName]="'field5'" [textMask]="{mask: MASKS.data.textMask}"
                                  id="dataDeNascimento" placeholder="Dia / Mês / Ano" required>
                           <span></span>
                         </div>
@@ -158,7 +153,7 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cpf">CPF</label>
-                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cpf"
+                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cpf" [textMask]="{mask: MASKS.cpf.textMask}"
                                  [formControlName]="'field8'"
                                  placeholder="000.000.000-00" required>
                           <span></span>
@@ -199,7 +194,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="salario">Salário</label>
                           <input type="text" class="form-control js-mask-money" name="salario" id="salario"
-                                 [formControlName]="'field13'"
+                                 [formControlName]="'field13'" [textMask]="{mask: MASKS.currency.textMask}"
                                  placeholder=" " required>
                           <span></span>
                         </div>
@@ -240,14 +235,14 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="telefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="conjuge-telefone" id="telefone"
-                                 [formControlName]="'field18'"
+                                 [formControlName]="'field18'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="dataDeNascimento">Data de nascimento</label>
                           <input type="text" class="form-control js-mask-date" name="conjuge-data-de-nascimento"
-                                 [formControlName]="'field19'"
+                                 [formControlName]="'field19'" [textMask]="{mask: MASKS.data.textMask}"
                                  id="dataDeNascimento" placeholder="Dia / Mês / Ano">
                         </div>
                         <div class="col-12 col-lg-6 form-group">
@@ -267,7 +262,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cpf">CPF</label>
                           <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf" id="cpf"
-                                 [formControlName]="'field22'"
+                                 [formControlName]="'field22'" [textMask]="{mask: MASKS.cpf.textMask}"
                                  placeholder="00000000-0" required>
                           <span></span>
                         </div>
@@ -308,7 +303,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="salario">Salário</label>
                           <input type="text" class="form-control js-mask-money" name="conjuge-salario" id="salario"
-                                 [formControlName]="'field27'"
+                                 [formControlName]="'field27'" [textMask]="{mask: MASKS.currency.textMask}"
                                  placeholder=" " required>
                           <span></span>
                         </div>
@@ -374,7 +369,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="referenciaComercialtelefone">Telefone</label>
                           <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone"
-                                 [formControlName]="'field35'"
+                                 [formControlName]="'field35'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  id="referenciaComercialtelefone" placeholder=" " required>
                           <span></span>
                         </div>
@@ -499,14 +494,14 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjtelefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="telefone"
-                                 [formControlName]="'field3'"
+                                 [formControlName]="'field3'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  id="cadastro-pjtelefone" placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjcnpj">CNPJ</label>
                           <input type="text" class="form-control js-mask-cnpj" name="cnpj" id="cadastro-pjcnpj"
-                                 [formControlName]="'field4'"
+                                 [formControlName]="'field4'" [textMask]="{mask: MASKS.cnpj.textMask}"
                                  placeholder="00.000.000/0000-00 " required>
                           <span></span>
                         </div>
@@ -526,14 +521,14 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjcapital-anual">Capital anual</label>
                           <input type="text" class="form-control js-mask-money" name="capital-anual"
-                                 [formControlName]="'field7'"
+                                 [formControlName]="'field7'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="cadastro-pjcapital-anual" placeholder="R$ " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjcep">CEP</label>
                           <input type="text" class="form-control js-mask-cep" name="cep" id="cadastro-pjcep"
-                                 [formControlName]="'field8'"
+                                 [formControlName]="'field8'" [textMask]="{mask: MASKS.cep.textMask}"
                                  placeholder=" " required>
                           <span></span>
                         </div>
@@ -628,7 +623,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjreferenciaComercialtelefone">Telefone</label>
                           <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone"
-                                 [formControlName]="'field20'"
+                                 [formControlName]="'field20'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  id="cadastro-pjreferenciaComercialtelefone" placeholder=" " required>
                           <span></span>
                         </div>
@@ -642,7 +637,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjreferenciaComercialtelefone">Telefone</label>
                           <input type="text" class="form-control js-mask-phone" name="referencia-comercial-telefone-2"
-                                 [formControlName]="'field22'"
+                                 [formControlName]="'field22'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  id="cadastro-pjreferenciaComercialtelefone" placeholder=" " required>
                           <span></span>
                         </div>
@@ -770,7 +765,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcep">CEP</label>
                           <input type="text" class="form-control js-mask-cep" name="cep" id="cadastro-locadorcep"
-                                 [formControlName]="'field1'"
+                                 [formControlName]="'field1'" [textMask]="{mask: MASKS.cep.textMask}"
                                  placeholder="00000-000" required>
                           <span></span>
                         </div>
@@ -875,14 +870,14 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadortelefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="telefone"
-                                 [formControlName]="'field15'"
+                                 [formControlName]="'field15'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  id="cadastro-locadortelefone" placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadordataDeNascimento">Data de nascimento</label>
                           <input type="text" class="form-control js-mask-date" name="data-de-nascimento"
-                                 [formControlName]="'field16'"
+                                 [formControlName]="'field16'" [textMask]="{mask: MASKS.data.textMask}"
                                  id="cadastro-locadordataDeNascimento" placeholder="Dia / Mês / Ano" required>
                           <span></span>
                         </div>
@@ -902,7 +897,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcpf">CPF</label>
                           <input type="text" class="form-control js-mask-cpf" name="cpf" id="cadastro-locadorcpf"
-                                 [formControlName]="'field19'"
+                                 [formControlName]="'field19'" [textMask]="{mask: MASKS.cpf.textMask}"
                                  placeholder="000.000.000-00" required>
                           <span></span>
                         </div>
@@ -971,14 +966,14 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadortelefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="conjuge-telefone"
-                                 [formControlName]="'field27'"
+                                 [formControlName]="'field27'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  id="cadastro-locadortelefone" placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadordataDeNascimento">Data de nascimento</label>
                           <input type="text" class="form-control js-mask-date" name="conjuge-data-de-nascimento"
-                                 [formControlName]="'field28'"
+                                 [formControlName]="'field28'" [textMask]="{mask: MASKS.data.textMask}"
                                  id="cadastro-locadordataDeNascimento" placeholder="Dia / Mês / Ano">
                         </div>
                         <div class="col-12 col-lg-6 form-group">
@@ -998,7 +993,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcpf">CPF</label>
                           <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf"
-                                 [formControlName]="'field31'"
+                                 [formControlName]="'field31'" [textMask]="{mask: MASKS.cpf.textMask}"
                                  id="cadastro-locadorcpf" placeholder="00000000-0" required>
                           <span></span>
                         </div>
@@ -1039,7 +1034,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorsalario">Salário</label>
                           <input type="text" class="form-control js-mask-money" name="conjuge-salario"
-                                 [formControlName]="'field36'"
+                                 [formControlName]="'field36'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="cadastro-locadorsalario" placeholder=" " required>
                           <span></span>
                         </div>
@@ -1271,11 +1266,6 @@
                   </div>
                   <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" [formGroup]="form4"
                         id="aviso-desocupacaoFormSevicos">
-                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
-                    type="hidden" name="assunto" value="Aviso desocupação">
-                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
-                    <input type="hidden" name="success-text"
-                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
                     <h6>FORMULÁRIO</h6>
                     <p>Preencha os campos abaixo e envie o formulário para dar início ao processo de desocupação:</p>
                     <fieldset class="form-fieldset">
@@ -1297,7 +1287,7 @@
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="telefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="telefone" id="telefone"
-                                 [formControlName]="'field3'"
+                                 [formControlName]="'field3'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
@@ -1318,7 +1308,7 @@
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaovalor-atual-do-aluguel">Valor atual do aluguel</label>
                           <input type="text" class="form-control js-mask-money" name="valor-atual-do-aluguel"
-                                 [formControlName]="'field5'"
+                                 [formControlName]="'field5'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="aviso-desocupacaovalor-atual-do-aluguel" placeholder="R$" required>
                           <span></span>
                         </div>
@@ -1341,7 +1331,7 @@
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaodata-de-entrada">Data de entrada</label>
                           <input type="text" class="form-control js-mask-date" name="data-de-entrada"
-                                 [formControlName]="'field8'"
+                                 [formControlName]="'field8'" [textMask]="{mask: MASKS.data.textMask}"
                                  id="aviso-desocupacaodata-de-entrada" placeholder="Dia / Mês / Ano" required>
                           <span></span>
                         </div>
@@ -1349,7 +1339,7 @@
                           <label for="aviso-desocupacaodata-prevista-para-a-desocupacao">Data prevista para a
                             desocupação</label>
                           <input type="text" class="form-control js-mask-date" name="data-prevista-para-a-desocupacao"
-                                 [formControlName]="'field9'"
+                                 [formControlName]="'field9'" [textMask]="{mask: MASKS.data.textMask}"
                                  id="aviso-desocupacaodata-prevista-para-a-desocupacao" placeholder="Dia / Mês / Ano"
                                  required>
                           <span></span>
@@ -1358,14 +1348,14 @@
                           <label for="aviso-desocupacaovalor-do-ultimo-condominio-pago">Valor do último condomínio
                             pago</label>
                           <input type="text" class="form-control js-mask-money" name="valor-do-ultimo-condominio-pago"
-                                 [formControlName]="'field10'"
+                                 [formControlName]="'field10'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="aviso-desocupacaovalor-do-ultimo-condominio-pago" placeholder="R$" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="aviso-desocupacaovalor-do-ultimo-iptu-pago">Valor do último IPTU pago</label>
                           <input type="text" class="form-control js-mask-money" name="valor-do-ultimo-iptu-pago"
-                                 [formControlName]="'field11'"
+                                 [formControlName]="'field11'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="aviso-desocupacaovalor-do-ultimo-iptu-pago" placeholder="R$" required>
                           <span></span>
                         </div>
@@ -1438,7 +1428,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="aviso-desocupacaotelefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="telefone"
-                                 [formControlName]="'field3'"
+                                 [formControlName]="'field3'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  id="aviso-desocupacaotelefone" placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
@@ -1451,7 +1441,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="aviso-desocupacaocep">CEP</label>
                           <input type="text" class="form-control js-mask-cep" name="cep" id="aviso-desocupacaocep"
-                                 [formControlName]="'field4'"
+                                 [formControlName]="'field4'" [textMask]="{mask: MASKS.cep.textMask}"
                                  placeholder="00000-000" required>
                           <span></span>
                         </div>
@@ -1665,28 +1655,28 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="aviso-desocupacaovalor-de-venda">Valor de venda</label>
                           <input type="text" class="form-control js-mask-money" name="valor-de-venda"
-                                 [formControlName]="'field23'"
+                                 [formControlName]="'field23'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="aviso-desocupacaovalor-de-venda" placeholder="R$ " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="aviso-desocupacaovalor-de-aluguel">Valor de aluguel</label>
                           <input type="text" class="form-control js-mask-money" name="valor-de-aluguel"
-                                 [formControlName]="'field24'"
+                                 [formControlName]="'field24'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="aviso-desocupacaovalor-de-aluguel" placeholder="R$ " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="aviso-desocupacaovalor-de-condominio">Valor do condomínio</label>
                           <input type="text" class="form-control js-mask-money" name="valor-de-condominio"
-                                 [formControlName]="'field25'"
+                                 [formControlName]="'field25'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="aviso-desocupacaovalor-de-condominio" placeholder="R$ " required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="aviso-desocupacaoiptu-mensal">Valor do condomínio</label>
                           <input type="text" class="form-control js-mask-money" name="iptu-mensal"
-                                 [formControlName]="'field26'"
+                                 [formControlName]="'field26'" [textMask]="{mask: MASKS.currency.textMask}"
                                  id="aviso-desocupacaoiptu-mensal" placeholder="R$ " required>
                           <span></span>
                         </div>
@@ -1779,7 +1769,7 @@
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="proposta-de-locacaotelefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="telefone"
-                                 [formControlName]="'field3'"
+                                 [formControlName]="'field3'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  id="proposta-de-locacaotelefone" placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
@@ -1793,7 +1783,7 @@
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="proposta-de-locacaocpf">CPF</label>
                           <input type="text" class="form-control js-mask-cpf" name="cpf" id="proposta-de-locacaocpf"
-                                 [formControlName]="'field5'"
+                                 [formControlName]="'field5'" [textMask]="{mask: MASKS.cpf.textMask}"
                                  placeholder="000.000.000-00" required>
                           <span></span>
                         </div>
@@ -1927,7 +1917,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="rand2-cnpj">CNPJ</label>
                           <input type="text" class="form-control js-mask-cnpj" name="cnpj" id="rand2-cnpj"
-                                 [formControlName]="'field2'"
+                                 [formControlName]="'field2'" [textMask]="{mask: MASKS.cnpj.textMask}"
                                  placeholder="00.000.000/0000-00 " required>
                           <span></span>
                         </div>
@@ -1946,7 +1936,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="rand2-inicio-das-atividades">Inicio das atividades</label>
                           <input type="text" class="form-control js-mask-date" name="inicio-das-atividades"
-                                 [formControlName]="'field5'"
+                                 [formControlName]="'field5'" [textMask]="{mask: MASKS.data.textMask}"
                                  id="rand2-inicio-das-atividades" placeholder=" " required>
                           <span></span>
                         </div>
@@ -1960,7 +1950,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="rand2-telefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="telefone" id="rand2-telefone"
-                                 [formControlName]="'field7'"
+                                 [formControlName]="'field7'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
                                  placeholder="( ) 00000-0000" required>
                           <span></span>
                         </div>
@@ -1994,7 +1984,7 @@
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-data-do-inicio">Data do inicio</label>
                           <input type="text" class="form-control js-mask-date" name="data-do-inicio"
-                                 [formControlName]="'field11'"
+                                 [formControlName]="'field11'" [textMask]="{mask: MASKS.data.textMask}"
                                  id="rand2-data-do-inicio" placeholder=" " required>
                           <span></span>
                         </div>

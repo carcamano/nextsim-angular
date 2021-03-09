@@ -95,18 +95,19 @@
                   class="fas fa-chevron-down small-icon"></i></a>
                 <div class="CityMenu dropdown-menu" ngbDropdownMenu>
                   <div class="row selectiona_local" style="">
-                    <div class="col-6" *ngIf="cidades.length > 0">
+                    <div class="col-12 col-sm-3" *ngIf="cidades.length > 0">
                       <span class="TitleCityMobHome">Cidade</span>
                       <div class="cidades_botoes">
                         <button *ngFor="let cidade of cidades;  let i = index" (click)="changeCidade(cidade)"
                                 [ngClass]="{'active' : cidade === customSearch.cidade }">{{cidade}}</button>
                       </div>
                     </div>
-                    <div class="col-6" *ngIf="cidades.length > 0">
+                    <div class="col-12 col-sm-9" *ngIf="cidades.length > 0">
                       <span class="TitleCityMobHome">Bairro</span>
                       <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2">
-                        <ul>
+                        <ul id="list-bairros">
                           <li *ngFor="let local of customSearch.bairros;  let i = index">
+                            <span><i class="menu-letter-marker" *ngIf="showMakerLetter(local.key, i)">{{firstMakerLetter(local.key)}}</i></span>
                             <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
                                    [checked]="local.selected"
                                    (change)="changeBairro($event, i)"/>
@@ -694,6 +695,7 @@
             <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" *ngIf="cidades.length > 0">
               <ul>
                 <li *ngFor="let local of customSearch.bairros;  let i = index">
+                  <span><i class="menu-letter-marker" *ngIf="showMakerLetter(local.key, i)">{{firstMakerLetter(local.key)}}</i></span>
                   <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
                          [checked]="local.selected"
                          (change)="changeBairro($event, i)"/>

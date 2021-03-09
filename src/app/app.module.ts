@@ -112,6 +112,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     BrowserAnimationsModule,
     MatSliderModule,
     CarouselModule,
+    NgBrazil,
+    TextMaskModule,
     NgImageSliderModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({

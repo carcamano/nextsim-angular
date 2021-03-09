@@ -2,12 +2,12 @@ import {AfterViewInit, Component, EventEmitter, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {NgBrazilValidators} from "ng-brazil";
 import {AngularFireStorage} from "@angular/fire/storage";
 import {Observable} from "rxjs/Rx";
 import {finalize} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
 import {ImovelService} from "../imovel/imovel.service";
+import { MASKS, NgBrazilValidators } from 'ng-brazil';
 
 @Component({
   selector: 'app-servicos-formularios',
@@ -54,6 +54,8 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
   // PROPOSTA DE COMPRA 13
   form7: FormGroup;
+
+  public MASKS = MASKS;
 
 
   constructor(private location: Location, private modalService: NgbModal, private formBuilder: FormBuilder,
@@ -107,7 +109,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       radio1: [, Validators.required],
       field1: [, Validators.required],
       field2: [, Validators.required],
-      field3: [, Validators.required],
+      field3: [, [Validators.required, Validators.email]],
       field4: [, Validators.required],
       field5: [, Validators.required],
       field6: [, Validators.required],

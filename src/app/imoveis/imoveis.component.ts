@@ -9,7 +9,7 @@ import {NgbDropdownConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
 import {AllImoveis} from "../all-imoveis.service";
 import {remove as removeAccents} from 'remove-accents';
-import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import {MASKS, NgBrazilValidators} from 'ng-brazil';
 
 @Component({
   selector: 'app-imoveis',
@@ -101,7 +101,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       centered: true,
       windowClass: 'InternalModalFilter'
     }).result.then((result) => {
-      if( result) {
+      if (result) {
         this.dropDownChange(false);
       }
     }, (reason) => {
@@ -133,7 +133,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         this.ngxService.stop();
         this.loadDefaults();
       });
-
 
 
     });
@@ -185,12 +184,12 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       });
       let area: string;
       if (!querys.includes('area')) {
-        if(this.customSearch.area.min) {
+        if (this.customSearch.area.min) {
           this.customSearch.area.min = parseInt(this.customSearch.area.min.toString()
             .replace('R$ ', '').replace('.', '')
             .replace(',', '.'));
         }
-        if(this.customSearch.area.max) {
+        if (this.customSearch.area.max) {
           this.customSearch.area.max = parseInt(this.customSearch.area.max.toString()
             .replace('R$ ', '').replace('.', '')
             .replace(',', '.'));
@@ -201,12 +200,12 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       if (!querys.includes('precos')) {
         console.log(this.customSearch.precos.min);
 
-        if(this.customSearch.precos.min) {
+        if (this.customSearch.precos.min) {
           this.customSearch.precos.min = parseInt(this.customSearch.precos.min.toString()
             .replace('R$ ', '').replace('.', '')
             .replace(',', '.'));
         }
-        if(this.customSearch.precos.max) {
+        if (this.customSearch.precos.max) {
           this.customSearch.precos.max = parseInt(this.customSearch.precos.max.toString()
             .replace('R$ ', '').replace('.', '')
             .replace(',', '.'));
@@ -383,8 +382,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         }
       }
 
-      if (this.queryParams.featured ) {
-        if(imovel.site && imovel.site.imobiliaria && imovel.site.imobiliaria.destaque && imovel.site.imobiliaria.destaque === true) {
+      if (this.queryParams.featured) {
+        if (imovel.site && imovel.site.imobiliaria && imovel.site.imobiliaria.destaque && imovel.site.imobiliaria.destaque === true) {
           f.push('t');
         } else {
           f.push('f');
@@ -687,6 +686,47 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       }
 
       this.customSearch.bairros.push({key: value, selected: selected, i: index, c: cidade});
+    });
+
+    this.customSearch.bairros.sort((a, b) => {
+      if (a.key < b.key) {
+        return -1;
+      }
+      if (a.key > b.key) {
+        return 1;
+      }
+      return 0;
+    });
+
+    this.setMarkers();
+
+
+  }
+
+  letter1: string;
+  letter2: string;
+  letterIndexes: number[] = [];
+
+  showMakerLetter(bairro: string, index: number) {
+    return this.letterIndexes.includes(index);
+
+  }
+
+  firstMakerLetter(bairro: string) {
+    return bairro.charAt(0);
+
+  }
+
+  setMarkers() {
+    this.letter1 = null;
+    this.letter2 = null;
+    this.letterIndexes = [];
+    this.customSearch.bairros.forEach((bairro, index) => {
+      this.letter1 = bairro.key.charAt(0);
+      if (this.letter1 !== this.letter2) {
+        this.letterIndexes.push(index);
+        this.letter2 = this.letter1;
+      }
     });
 
   }
