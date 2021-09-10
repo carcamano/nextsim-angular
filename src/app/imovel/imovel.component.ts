@@ -25,7 +25,7 @@ export class ImovelComponent implements OnInit {
 
   imgs: Array<object>;
 
-  @ViewChild('content', {static: false}) public childModal: NgbModalRef;
+  @ViewChild('content') public childModal: NgbModalRef;
 
   form: FormGroup;
   MASKS = MASKS;

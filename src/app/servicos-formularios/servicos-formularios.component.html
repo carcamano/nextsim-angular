@@ -153,7 +153,8 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cpf">CPF</label>
-                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cpf" [textMask]="{mask: MASKS.cpf.textMask}"
+                          <input type="text" class="form-control js-mask-cpf" name="cpf" id="cpf"
+                                 [textMask]="{mask: MASKS.cpf.textMask}"
                                  [formControlName]="'field8'"
                                  placeholder="000.000.000-00" required>
                           <span></span>
@@ -2036,7 +2037,7 @@
                       <button type="submit" class="btn btn-search btn-rounded"
                               (click)="submit7()">ENVIAR
                       </button>
-<!--                              (click)="form7.controls.field14.value === 'Sim' ? submit7() : none()">ENVIAR-->
+                      <!--                              (click)="form7.controls.field14.value === 'Sim' ? submit7() : none()">ENVIAR-->
                     </div>
                   </form>
                   <div class="form-return"></div>

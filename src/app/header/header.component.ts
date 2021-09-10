@@ -1,10 +1,10 @@
-import {Component, ElementRef, OnInit, Renderer, Renderer2, ViewEncapsulation} from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Options} from 'ng5-slider';
 import * as _ from 'lodash';
 import {formatCurrency} from '@angular/common';
-import {AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
+import {AngularFireDatabase, SnapshotAction} from "@angular/fire/compat/database";
 import {AllImoveis} from "../all-imoveis.service";
 import {Imovel} from "../imoveis/models/imovel.model";
 import {LancamentoService} from "../home/lancamento.service";

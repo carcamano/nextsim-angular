@@ -35,7 +35,12 @@
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/owl.carousel/dist/owl.carousel.min.js"
             ],
-            "es5BrowserSupport": true
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -48,9 +53,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -59,10 +62,15 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -143,5 +151,8 @@
       }
     }
   },
-  "defaultProject": "nextsim"
+  "defaultProject": "nextsim",
+  "cli": {
+    "analytics": "678a6b3b-979c-4ed7-9abd-b95f7c456c01"
+  }
 }

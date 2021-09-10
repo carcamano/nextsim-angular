@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CustomSearchComponent } from './custom-search.component';
 
@@ -6,7 +6,7 @@ describe('CustomSearchComponent', () => {
   let component: CustomSearchComponent;
   let fixture: ComponentFixture<CustomSearchComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CustomSearchComponent ]
     })

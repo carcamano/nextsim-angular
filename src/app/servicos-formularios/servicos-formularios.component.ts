@@ -2,7 +2,7 @@ import {AfterViewInit, Component, EventEmitter, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AngularFireStorage} from "@angular/fire/storage";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {Observable} from "rxjs/Rx";
 import {finalize} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";

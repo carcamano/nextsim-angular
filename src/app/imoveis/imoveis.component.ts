@@ -6,7 +6,7 @@ import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {Options} from 'ng5-slider';
 import {formatCurrency} from '@angular/common';
 import {NgbDropdownConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AngularFireDatabase, SnapshotAction} from "@angular/fire/database";
+import {AngularFireDatabase, SnapshotAction} from "@angular/fire/compat/database";
 import {AllImoveis} from "../all-imoveis.service";
 import {remove as removeAccents} from 'remove-accents';
 import {MASKS, NgBrazilValidators} from 'ng-brazil';

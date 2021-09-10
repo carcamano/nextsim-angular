@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {IsotopeOptions} from 'ngx-isotopee';
 import {LancamentoService} from './lancamento.service';
 import * as _ from "lodash";
 
@@ -11,9 +10,6 @@ import * as _ from "lodash";
 export class HomeComponent implements OnInit {
 
 
-  myOptions: IsotopeOptions = {
-    itemSelector: '.grid-item'
-  };
 
   lancamentos:any[] = [];
   posts:any[] = [];
