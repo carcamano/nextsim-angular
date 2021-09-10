@@ -43,11 +43,11 @@ import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {NgBrazil} from "ng-brazil";
 import {TextMaskModule} from "angular2-text-mask";
-import { BlogComponent } from './blog/blog.component';
-import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
-import { ServicosFormulariosComponent } from './servicos-formularios/servicos-formularios.component';
-import { FormPessoaFisicaComponent } from './servicos-formularios/form-pessoa-fisica/form-pessoa-fisica.component';
-import { LancamentosComponent } from './imoveis/lancamentos/lancamentos.component';
+import {BlogComponent} from './blog/blog.component';
+import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
+import {ServicosFormulariosComponent} from './servicos-formularios/servicos-formularios.component';
+import {FormPessoaFisicaComponent} from './servicos-formularios/form-pessoa-fisica/form-pessoa-fisica.component';
+import {LancamentosComponent} from './imoveis/lancamentos/lancamentos.component';
 import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/storage";
 
 registerLocaleData(localePt);
@@ -117,7 +117,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgImageSliderModule,
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyB8F9P_r8OgBfXItSsOAGNB5LnIHWw-Jbw'
+      apiKey: environment.maps.key
     }),
     RouterModule.forRoot(ROUTES),
     FormsModule,
