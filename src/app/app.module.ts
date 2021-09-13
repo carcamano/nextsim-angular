@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
@@ -8,7 +8,6 @@ import {HomeComponent} from './home/home.component';
 import {RouterModule} from '@angular/router';
 import {ROUTES} from './app.routes';
 import {FooterComponent} from './footer/footer.component';
-import {ImoveisService} from './imoveis/imoveis.service';
 import {HttpClientModule} from '@angular/common/http';
 import {OwlModule} from 'ngx-owl-carousel';
 import {ImovelComponent} from './imovel/imovel.component';
@@ -17,23 +16,21 @@ import {QueroNegociarComponent} from './quero-negociar/quero-negociar.component'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {GeneralService} from './imoveis/general.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider'
 import {Ng5SliderModule} from 'ng5-slider';
-import {LOCALE_ID} from '@angular/core';
-import {LancamentoService} from './home/lancamento.service';
+import {WPService} from './core/services/w-p.service';
 import {SobreComponent} from './sobre/sobre.component';
-import {ImovelService} from './imovel/imovel.service';
+import {LeadService} from './core/services/lead.service';
 import {ToastrModule} from 'ngx-toastr';
 import {ComponentFixtureAutoDetect} from '@angular/core/testing';
-import {NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule} from 'ngx-ui-loader';
+import {NgxUiLoaderConfig, NgxUiLoaderModule} from 'ngx-ui-loader';
 import {registerLocaleData} from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
-import {AllImoveis} from "./all-imoveis.service";
+import {AllImoveis} from "./core/services/all-imoveis.service";
 import {FabComponent} from './fab/fab.component';
 import {CustomSearchComponent} from './custom-search/custom-search.component';
 import {MomentModule} from 'ngx-moment';
@@ -47,7 +44,8 @@ import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 import {ServicosFormulariosComponent} from './servicos-formularios/servicos-formularios.component';
 import {FormPessoaFisicaComponent} from './servicos-formularios/form-pessoa-fisica/form-pessoa-fisica.component';
 import {LancamentosComponent} from './imoveis/lancamentos/lancamentos.component';
-import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {FirestoreService} from "./core/services/firestore.service";
 
 registerLocaleData(localePt);
 
@@ -127,10 +125,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgBrazil
   ],
   providers: [
-    ImoveisService,
-    ImovelService,
-    GeneralService,
-    LancamentoService,
+    LeadService,
+    WPService,
+    FirestoreService,
+    FirestoreService,
     AllImoveis,
     {provide: LOCALE_ID, useValue: 'pt-BR'},
     {provide: ComponentFixtureAutoDetect, useValue: true}

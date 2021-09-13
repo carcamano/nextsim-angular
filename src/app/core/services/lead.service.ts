@@ -1,33 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
-import {ContactForm} from './imovel.component';
-import {Imovel} from '../imoveis/models/imovel.model';
+import {ContactForm} from '../../imovel/imovel.component';
+import {Imovel} from '../../imoveis/models/imovel.model';
 import {ToastrService} from 'ngx-toastr';
 
 
 const APIGESTAO_URL = 'https://api-atendimentos.gestaoreal.com.br';
 
 @Injectable()
-export class ImovelService {
+export class LeadService {
 
 
   constructor(private http: HttpClient) {
   }
 
-
-  sendGrid(form: any, imovel?: Imovel): Observable<HttpResponse<any>> {
-
-    return this.http
-      .post<any>('https://us-central1-promocao-bosch-service.cloudfunctions.net/sendEmailNext', {
-        nome: form.nome,
-        telefone: form.telefone,
-        email: form.email,
-        texto: form.texto,
-        to: 'leads@nextsim.com.br',
-        subject: 'Contato Site Next'
-      });
-  }
 
   sendToContactFormAny(form: any, formId: number) {
     var form_data = new FormData();
@@ -38,6 +25,7 @@ export class ImovelService {
     return this.sendToContactForm(form_data, formId);
 
   }
+
   sendToContactForm(form: FormData, formId: number) {
     return this.http
       .post<any>(`https://admin.nextsim.com.br/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`, form);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LancamentoService} from "../../home/lancamento.service";
+import {WPService} from "../../core/services/w-p.service";
 
 @Component({
   selector: 'app-lancamentos',
@@ -10,7 +10,7 @@ export class LancamentosComponent implements OnInit {
 
   lancamentos:any[] = [];
 
-  constructor(private lancamentoService: LancamentoService) {
+  constructor(private lancamentoService: WPService) {
 
   }
 

@@ -9,6 +9,7 @@ export interface Imovel {
   detalhes: Detalhes;
   recursos: Recursos;
   finalidade: string;
+  active_in_db: boolean;
   midia: {
     imagens: [string],
     fotoscond: [string]
@@ -90,3 +91,5 @@ export interface Areas {
   construida: number;
   unidade: string;
 }
+
+export const COLLECTION_IMOVEIS = 'imoveis'

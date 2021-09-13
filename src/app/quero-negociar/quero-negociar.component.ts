@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ContactForm} from '../imovel/imovel.component';
-import {ImovelService} from '../imovel/imovel.service';
+import {LeadService} from '../core/services/lead.service';
 import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MASKS} from "ng-brazil";
@@ -16,7 +16,7 @@ export class QueroNegociarComponent implements OnInit {
 
   form: FormGroup;
   MASKS = MASKS;
-  constructor(private service: ImovelService, private toastr: ToastrService, private formBuilder: FormBuilder) { }
+  constructor(private service: LeadService, private toastr: ToastrService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.height = window.outerHeight;

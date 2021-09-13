@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {LancamentoService} from "../home/lancamento.service";
+import {WPService} from "../core/services/w-p.service";
 
 @Component({
   selector: 'app-sobre',
@@ -13,7 +13,7 @@ export class SobreComponent implements OnInit {
 
   historias: Historia[] = [];
 
-  constructor(private lancamentoService: LancamentoService) { }
+  constructor(private lancamentoService: WPService) { }
 
   ngOnInit() {
 

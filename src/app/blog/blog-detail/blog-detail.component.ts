@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {LancamentoService} from "../../home/lancamento.service";
+import {WPService} from "../../core/services/w-p.service";
 import {ActivatedRoute} from "@angular/router";
 import * as moment from "moment";
 
@@ -12,7 +12,7 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
 
   post: any;
 
-  constructor(private lancamentoService: LancamentoService, private activatedRoute: ActivatedRoute) {
+  constructor(private lancamentoService: WPService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {

@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {ContactForm} from "../imovel/imovel.component";
 import {ActivatedRoute} from "@angular/router";
-import {ImovelService} from "../imovel/imovel.service";
+import {LeadService} from "../core/services/lead.service";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MASKS, NgBrazilValidators} from "ng-brazil";
@@ -20,7 +20,7 @@ export class FabComponent implements OnInit {
 
   showFab = false;
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
-              private modalService: NgbModal, private service: ImovelService, private toastr: ToastrService) { }
+              private modalService: NgbModal, private service: LeadService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.buildForm();

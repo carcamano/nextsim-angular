@@ -1,12 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Imovel} from '../imoveis/models/imovel.model';
-import {ImoveisService} from '../imoveis/imoveis.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {ImovelService} from './imovel.service';
-import {HttpClient} from '@angular/common/http';
+import {LeadService} from '../core/services/lead.service';
 import {ToastrService} from 'ngx-toastr';
-import {AllImoveis} from "../all-imoveis.service";
+import {AllImoveis} from "../core/services/all-imoveis.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MASKS} from "ng-brazil";
 
@@ -32,7 +30,7 @@ export class ImovelComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private all: AllImoveis, private formBuilder: FormBuilder,
-              private modalService: NgbModal, private service: ImovelService, private toastr: ToastrService) {
+              private modalService: NgbModal, private service: LeadService, private toastr: ToastrService) {
 
   }
 
@@ -118,17 +116,6 @@ export class ImovelComponent implements OnInit {
   }
 
 
-  toArea(imovel: Imovel) {
-    if (imovel.tipo === 'casa') {
-      const total = imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-      const util = imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-    } else if (imovel.tipo === 'apartamento' || imovel.tipo === 'sala') {
-      const num = imovel.numeros.areas.util.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-    } else if (imovel.tipo === 'terreno') {
-      const num = imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-    }
-    return '?';
-  }
 
   open(content) {
     this.modalService.open(content, {

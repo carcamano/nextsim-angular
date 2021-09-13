@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {LancamentoService} from "../home/lancamento.service";
+import {WPService} from "../core/services/w-p.service";
 import * as _ from "lodash";
 
 @Component({
@@ -19,7 +19,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
 
   currentTaxonomy = '';
 
-  constructor(private lancamentoService: LancamentoService) { }
+  constructor(private lancamentoService: WPService) { }
 
   ngOnInit() {
     this.lancamentoService.posts().subscribe(value => {

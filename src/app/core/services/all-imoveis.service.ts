@@ -4,7 +4,9 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import * as jsonpack from "jsonpack";
 import * as moment from 'moment';
 import {MomentModule} from "ngx-moment";
-import {Imovel} from "./imoveis/models/imovel.model";
+import {COLLECTION_IMOVEIS, Imovel} from "../../imoveis/models/imovel.model";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {map} from "rxjs/operators";
 
 
 @Injectable({
@@ -12,9 +14,10 @@ import {Imovel} from "./imoveis/models/imovel.model";
 })
 export class AllImoveis {
 
+
   private imoveis: any[];
 
-  constructor(private db: AngularFireDatabase, private ngxService: NgxUiLoaderService) {
+  constructor(private db: AngularFireDatabase, private ngxService: NgxUiLoaderService, private firestore: AngularFirestore) {
 
   }
 
@@ -30,19 +33,49 @@ export class AllImoveis {
         }
       }
       if (force) {
-        this.getFromDb(callback);
+        this.mainGetAll(callback);
       } else if (lastUpdate && localImoveis) {
         this.imoveis = jsonpack.unpack(localImoveis);
         if (callback) callback(this.imoveis);
       } else {
-        this.getFromDb(callback);
+        this.mainGetAll(callback);
       }
     } catch (e) {
       console.error(e);
-      this.getFromDb(callback);
+      this.mainGetAll(callback);
     }
+  }
 
+  private mainGetAll(callback?: (imoveis?: Imovel[]) => void): void {
+    this.getAllFromFirestoreCallback(callback);
+    // this.getFromDb(callback);
+  }
 
+  private getAllFromFirestoreCallback(callback?: (imoveis?: Imovel[]) => void): void {
+    this.ngxService.start('getFromDb');
+    this.firestore.collection(COLLECTION_IMOVEIS).get()
+      .pipe(map(actions => actions.docs.map(a => {
+        return a.data() as Imovel;
+      })))
+      .subscribe(value => {
+        console.log(value);
+        this.imoveis = value;
+        try {
+          localStorage.setItem('nextsim_lastUpdate', moment().format("MM-DD-YYYY"));
+          localStorage.setItem('nextsim_imoveis', jsonpack.pack(value));
+        } catch (e) {
+          console.log(e);
+          localStorage.clear();
+          try {
+            localStorage.setItem('nextsim_lastUpdate', moment().format("MM-DD-YYYY"));
+            localStorage.setItem('nextsim_imoveis', jsonpack.pack(value));
+          } catch (ee) {
+            console.log(ee);
+          }
+        }
+        this.ngxService.stop('getFromDb');
+        if (callback) callback(this.imoveis);
+      });
   }
 
   private getFromDb(callback?: (imoveis?: Imovel[]) => void): void {

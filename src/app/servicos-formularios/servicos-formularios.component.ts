@@ -6,8 +6,8 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {Observable} from "rxjs/Rx";
 import {finalize} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
-import {ImovelService} from "../imovel/imovel.service";
-import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import {LeadService} from "../core/services/lead.service";
+import { MASKS } from 'ng-brazil';
 
 @Component({
   selector: 'app-servicos-formularios',
@@ -59,7 +59,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
 
   constructor(private location: Location, private modalService: NgbModal, private formBuilder: FormBuilder,
-              private storage: AngularFireStorage, private toastr: ToastrService, private sendService: ImovelService) {}
+              private storage: AngularFireStorage, private toastr: ToastrService, private sendService: LeadService) {}
 
   ngOnInit() {
     this.form1 = this.formBuilder.group({

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LancamentoService} from './lancamento.service';
+import {WPService} from '../core/services/w-p.service';
 import * as _ from "lodash";
 
 @Component({
@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   lancamentos:any[] = [];
   posts:any[] = [];
   currentPost = 0;
-  constructor(private lancamentoService: LancamentoService) {
+  constructor(private lancamentoService: WPService) {
   }
 
   ngOnInit() {

@@ -1,15 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
-import {API_URL} from '../app.api';
 import {Observable, Subject} from 'rxjs';
-import {Lancamento} from "../imoveis/models/lancamento.model";
+import {Lancamento} from "../../imoveis/models/lancamento.model";
 
 
 // const LANCAMENTO_URL = 'http://localhost/buildingeng.com.br';
 // const LANCAMENTO_URL = 'http://homolog.nextsim.com.br/lancamentos';
 const LANCAMENTO_URL = 'https://admin.nextsim.com.br';
 @Injectable()
-export class LancamentoService {
+export class WPService {
 
 
 

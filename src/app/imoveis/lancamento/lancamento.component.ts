@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {LancamentoService} from "../../home/lancamento.service";
+import {WPService} from "../../core/services/w-p.service";
 import {Lancamento} from "../models/lancamento.model";
 import {ContactForm} from "../../imovel/imovel.component";
 import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ImovelService} from "../../imovel/imovel.service";
+import {LeadService} from "../../core/services/lead.service";
 import {ToastrService} from "ngx-toastr";
 import {NgImageSliderComponent} from "ng-image-slider";
 import {NgbSlideEvent} from "@ng-bootstrap/ng-bootstrap/carousel/carousel";
@@ -51,8 +51,8 @@ export class LancamentoComponent implements OnInit {
     nav: true
   }
 
-  constructor(private route: ActivatedRoute, private lancamentoService: LancamentoService, private formBuilder: FormBuilder,
-              private modalService: NgbModal, private toastr: ToastrService, private service: ImovelService) {
+  constructor(private route: ActivatedRoute, private lancamentoService: WPService, private formBuilder: FormBuilder,
+              private modalService: NgbModal, private toastr: ToastrService, private service: LeadService) {
   }
 
 

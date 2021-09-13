@@ -5,9 +5,9 @@ import {Options} from 'ng5-slider';
 import * as _ from 'lodash';
 import {formatCurrency} from '@angular/common';
 import {AngularFireDatabase, SnapshotAction} from "@angular/fire/compat/database";
-import {AllImoveis} from "../all-imoveis.service";
+import {AllImoveis} from "../core/services/all-imoveis.service";
 import {Imovel} from "../imoveis/models/imovel.model";
-import {LancamentoService} from "../home/lancamento.service";
+import {WPService} from "../core/services/w-p.service";
 
 @Component({
   selector: 'app-header',
@@ -79,8 +79,8 @@ export class HeaderComponent implements OnInit {
   title = 'Sua melhor forma de acessar imóveis<br> de alto padrão com suporte.';
   image= 'https://admin.nextsim.com.br/wp-content/themes/theme/img/house-bg.jpg';
 
-  constructor(private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private allImoveis: AllImoveis,
-              private lancamentoService: LancamentoService, private elementRef : ElementRef, private renderer: Renderer2) {
+  constructor(private router: Router, private modalService: NgbModal, private allImoveis: AllImoveis,
+              private lancamentoService: WPService, private elementRef : ElementRef, private renderer: Renderer2) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
         this.rootView = false;
