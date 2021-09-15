@@ -5,11 +5,13 @@ import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {Options} from 'ng5-slider';
 import {formatCurrency} from '@angular/common';
-import {NgbDropdownConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AngularFireDatabase, SnapshotAction} from "@angular/fire/compat/database";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AllImoveis} from "../core/services/all-imoveis.service";
 import {remove as removeAccents} from 'remove-accents';
-import {MASKS, NgBrazilValidators} from 'ng-brazil';
+import {MASKS} from 'ng-brazil';
+import {collection, collectionData, collectionSnapshots, doc, docSnapshots, Firestore} from "@angular/fire/firestore";
+import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_LOCAIS, PATH_PRECOS} from "../core/utils/constants.util";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-imoveis',
@@ -31,6 +33,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   imoveis: Imovel[] = [];
   allImoveis: Imovel[] = [];
+
+  locais: any[];
 
   badges = [];
 
@@ -89,7 +93,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   removeParams: any[] = [];
 
   constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private all: AllImoveis,
-              private router: Router, private modalService: NgbModal, private db: AngularFireDatabase, private config: NgbDropdownConfig) {
+              private router: Router, private modalService: NgbModal, private firestore: Firestore) {
   }
 
   open(content) {
@@ -127,13 +131,14 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       this.currentPage = parseInt(localStorage.getItem(location.search) || '1');
       this.buildBadges();
 
-      this.all.getAll(() => {
-        this.getImoveis()
-        this.ngxService.stopAll();
-        this.ngxService.stop();
-        this.loadDefaults();
-      });
+      // this.all.getAll(() => {
+      //   this.getImoveis()
+      //   this.ngxService.stopAll();
+      //   this.ngxService.stop();
+      //   this.loadDefaults();
+      // });
 
+      this.all.getImoveis(this.customSearch)
 
     });
 
@@ -247,174 +252,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     this.currentPage = page;
     this.customSearch.page = this.currentPage;
     localStorage.setItem(location.search, page.toString());
-    this.getImoveis();
-  }
-
-  private filterAll() {
-
-    this.imoveis = [];
-
-    this.scrollTop();
-    // setTimeout(() => {
-    const filtred = this.allImoveis.filter(imovel => {
-      const f = [];
-      if (this.queryParams.tipo) {
-        const tipos = this.queryParams.tipo.split(',');
-        if (tipos.includes(imovel.tipo)) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-      if (this.queryParams.finalidade) {
-        if (this.queryParams.finalidade === imovel.finalidade) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-      if (this.queryParams.categoria) {
-        if (this.queryParams.categoria === 'comprar' && imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
-          f.push('t');
-        } else if (this.queryParams.categoria === 'alugar' && imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-
-      if (this.queryParams.bairros) {
-        const values = this.queryParams.bairros.split(',');
-
-        if (values.length > 0 && values.includes(imovel.local.bairro)) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-
-      }
-
-      if (this.queryParams.cidade) {
-        if (imovel.local.cidade === this.queryParams.cidade) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-
-      if (this.queryParams.precos) {
-        const values = this.queryParams.precos.split(',');
-        if (values.length === 2) {
-          // if(values[1] === this.maxPrice) values[1] = 999999999;
-          if (imovel.comercializacao.venda && imovel.comercializacao.venda.preco >= values[0] &&
-            imovel.comercializacao.venda.preco <= values[1]) {
-            f.push('t');
-          } else if (imovel.comercializacao.locacao && imovel.comercializacao.locacao.preco >= values[0] &&
-            imovel.comercializacao.locacao.preco <= values[1]) {
-            f.push('t');
-          } else {
-            f.push('f');
-          }
-        } else {
-          f.push('f');
-        }
-      }
-
-      // areas
-      if (this.queryParams.area) {
-        const values = this.queryParams.area.split(',');
-        if (values.length === 2) {
-          if (imovel.numeros && imovel.numeros.areas && imovel.numeros.areas.util >= values[0] && imovel.numeros.areas.util <= values[1]) {
-            f.push('t');
-          } else {
-            f.push('f');
-          }
-        } else {
-          f.push('f');
-        }
-      }
-
-      // dormitorios
-      if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'residencial') {
-        if (imovel.numeros && imovel.numeros.dormitorios && imovel.numeros.dormitorios === Number(this.queryParams.dormitorios)) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-
-      // salas
-      if (this.queryParams.dormitorios && this.queryParams.dormitorios > 0 && this.queryParams.finalidade === 'comercial') {
-        if (imovel.numeros && imovel.numeros.salas && imovel.numeros.salas === Number(this.queryParams.salas)) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-
-      // banheiros
-      if (this.queryParams.banheiros && this.queryParams.banheiros > 0) {
-        if (imovel.numeros && imovel.numeros.banheiros && imovel.numeros.banheiros === Number(this.queryParams.banheiros)) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-
-      // garagem
-      if (this.queryParams.garagem && this.queryParams.garagem > 0) {
-        if (imovel.numeros && imovel.numeros.vagas && imovel.numeros.vagas === Number(this.queryParams.garagem)) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-
-      if (this.queryParams.query) {
-        if (imovel.sigla.toLocaleUpperCase() === this.queryParams.query.toLocaleUpperCase()) {
-          f.push('t');
-        } else if (imovel.local && imovel.local.bairro && removeAccents(imovel.local.bairro.toLocaleLowerCase()).search(removeAccents(this.queryParams.query.toLocaleLowerCase())) > -1) {
-          f.push('t');
-        } else if (imovel.local && imovel.local.cidade && removeAccents(imovel.local.cidade.toLocaleLowerCase()).search(removeAccents(this.queryParams.query.toLocaleLowerCase())) > -1) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-
-      if (this.queryParams.featured) {
-        if (imovel.site && imovel.site.imobiliaria && imovel.site.imobiliaria.destaque && imovel.site.imobiliaria.destaque === true) {
-          f.push('t');
-        } else {
-          f.push('f');
-        }
-      }
-
-      return !f.includes('f');
-    });
-
-    this.pages = filtred.length;
-    console.log(this.pages);
-    this.imoveis = _.chunk(filtred, this.itensPerPage)[this.currentPage - 1];
-
-    this.checkResults();
-    // }, 2000);
-
-
-  }
-
-  private getImoveis() {
-    this.imoveis = [];
-    this.pages = 0;
-
-    this.noResults = false;
-
-    this.all.getAll(imoveis => {
-      this.allImoveis = imoveis;
-      this.filterAll();
-      this.checkResults();
-      this.rebuildFilter();
-    });
   }
 
 
@@ -616,7 +453,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   private badge(s: string, query: string): any {
     return {label: s, query};
-
   }
 
   // fitros metodes
@@ -643,27 +479,40 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   private loadDefaults() {
 
-    this.db.list('area').snapshotChanges().subscribe((action: SnapshotAction<{}>[]) => {
-      action.forEach(value => {
-        if (value.key === 'min') {
-          this.customSearch.area.min = value.payload.val() as number;
-
-        } else if (value.key === 'max') {
-          this.customSearch.area.max = value.payload.val() as number;
-
-        }
-      })
-    });
-
-    this.db.list('precos').snapshotChanges().subscribe((action: SnapshotAction<{}>[]) => {
-      action.forEach(value => {
-        if (value.key === 'min') {
-          this.customSearch.precos.min = value.payload.val() as number;
-        } else if (value.key === 'max') {
-          this.customSearch.precos.max = value.payload.val() as number;
+    collectionData(collection(this.firestore, PATH_AREA))
+      .subscribe(value => {
+        if (value?.length > 0) {
+          this.customSearch.area.min = value[0].min as number;
+          this.customSearch.area.max = value[0].max as number;
         }
       });
-    });
+
+    collectionData(collection(this.firestore, PATH_PRECOS))
+      .subscribe(value => {
+        if (value?.length > 0) {
+          this.customSearch.area.min = value[0].min as number;
+          this.customSearch.area.max = value[0].max as number;
+        }
+      });
+
+    docSnapshots(doc(this.firestore, `${PATH_AUTOCOMPLETE}/${PATH_AUTOCOMPLETE}`))
+      .pipe(map((a) => {
+        return a.data();
+      }))
+      .subscribe(strings => {
+        console.log(strings);
+        this.autocompletes = strings.autocomplete;
+      });
+
+    collectionSnapshots(collection(this.firestore, PATH_LOCAIS))
+      .pipe(map((actions) => actions.map((a) => {
+        return {id: a.id, ...a.data()}
+      })))
+      .subscribe(value => {
+        this.locais = value;
+      })
+
+
   }
 
 
@@ -733,59 +582,43 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
 
   rebuildFilter(event?: any) {
+    console.log('rebuildFilter');
+    console.log(this.customSearch.categoria);
+    console.log(this.customSearch.finalidade);
 
-    if (!this.allImoveis) return;
-
-    this.filtred = this.allImoveis.filter((imovel: Imovel) => {
-      let add = false;
-      if (this.customSearch.categoria === 'comprar' && _.get(imovel, "comercializacao.venda.ativa")) {
-        add = true;
-      }
-      if (this.customSearch.categoria === 'alugar' && _.get(imovel, "comercializacao.locacao.ativa")) {
-        add = true;
-      }
-
-      if (!add) return add;
-
-      if (this.customSearch.finalidade === 'residencial' && imovel.finalidade !== 'residencial') {
-        add = false;
-      }
-      if (this.customSearch.finalidade === 'comercial' && imovel.finalidade !== 'comercial') {
-        add = false;
-      }
-
-      return add;
+    this.filtred = this.locais.find(value => {
+      return value.id === `${this.customSearch.categoria}_${this.customSearch.finalidade}`;
     });
+    console.log(this.filtred);
 
 
     this.customSearch.tipos = [];
     this.cidades = [];
 
-    this.filtred.forEach((im: Imovel, i: number) => {
-      this.cidades.push(im.local.cidade);
-      if (i === 0) {
-        this.buildLocaisBairros(im.local.cidade);
+
+    Object.keys(this.filtred).forEach((key: string, i: number) => {
+      console.log(key)
+      if (key !== 'id') {
+        this.cidades.push(key);
       }
     });
 
+    if (this.cidades?.length > 0) {
+      this.customSearch.cidade = this.filtred[this.cidades[0]].cidade;
+      this.buildLocaisBairros(this.filtred[this.cidades[0]].cidade);
+    }
 
-    _.union(_.compact(_.map(this.filtred, (im: Imovel, key) => {
+
+    _.union(_.compact(_.map(this.filtred[this.cidades[0]], (im: any, key) => {
+      console.log(im.tipo);
       return im.tipo;
     }))).forEach((value, index) => {
-      let selected = false;
-      if (this.queryParams.tipo) {
-        const find = this.queryParams.tipo.split(',').find(value1 => {
-          return value1 === value;
-        });
-        if (find) {
-
-          selected = true;
-        }
-      }
-      this.customSearch.tipos.push({key: value, selected: selected, i: index});
+      this.customSearch.tipos.push({key: value, selected: false, i: index});
     });
 
+    console.log(this.customSearch.tipos.length);
     this.cidades = _.union(this.cidades)
+    console.log(this.cidades);
   }
 
 

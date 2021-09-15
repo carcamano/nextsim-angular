@@ -27,9 +27,7 @@ import {ComponentFixtureAutoDetect} from '@angular/core/testing';
 import {NgxUiLoaderConfig, NgxUiLoaderModule} from 'ngx-ui-loader';
 import {registerLocaleData} from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
-import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AllImoveis} from "./core/services/all-imoveis.service";
 import {FabComponent} from './fab/fab.component';
 import {CustomSearchComponent} from './custom-search/custom-search.component';
@@ -44,8 +42,8 @@ import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 import {ServicosFormulariosComponent} from './servicos-formularios/servicos-formularios.component';
 import {FormPessoaFisicaComponent} from './servicos-formularios/form-pessoa-fisica/form-pessoa-fisica.component';
 import {LancamentosComponent} from './imoveis/lancamentos/lancamentos.component';
-import {AngularFireStorageModule} from "@angular/fire/compat/storage";
-import {FirestoreService} from "./core/services/firestore.service";
+import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
+import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 
 registerLocaleData(localePt);
 
@@ -118,17 +116,14 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
     FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFireStorageModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
     TextMaskModule,
     NgBrazil
   ],
   providers: [
     LeadService,
     WPService,
-    FirestoreService,
-    FirestoreService,
     AllImoveis,
     {provide: LOCALE_ID, useValue: 'pt-BR'},
     {provide: ComponentFixtureAutoDetect, useValue: true}

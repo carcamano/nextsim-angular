@@ -19121,7 +19121,7 @@ body {
 .ng5-slider .ng5-slider-pointer, .ng5-slider .ng5-slider-pointer.ng5-slider-active:after, .ng5-slider .ng5-slider-bar-wrapper.ng5-slider-left-out-selection .ng5-slider-bar, .ng5-slider .ng5-slider-bar-wrapper.ng5-slider-right-out-selection .ng5-slider-bar, .ng5-slider .ng5-slider-selection {
   background-color: #F69731 !important; }
 
-.modal-search-footer .tab-content {
+.modal-search-footer .tab-content, .col-12.tab-content {
   min-height: 160px;
   padding-top: 10px; }
 

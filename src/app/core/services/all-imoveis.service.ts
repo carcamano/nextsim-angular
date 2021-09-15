@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase} from "@angular/fire/compat/database";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import * as jsonpack from "jsonpack";
 import * as moment from 'moment';
-import {MomentModule} from "ngx-moment";
-import {COLLECTION_IMOVEIS, Imovel} from "../../imoveis/models/imovel.model";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {Imovel} from "../../imoveis/models/imovel.model";
 import {map} from "rxjs/operators";
+import {PATH_IMOVEIS} from "../utils/constants.util";
+import {collection, collectionData, Firestore} from "@angular/fire/firestore";
 
 
 @Injectable({
@@ -17,7 +16,7 @@ export class AllImoveis {
 
   private imoveis: any[];
 
-  constructor(private db: AngularFireDatabase, private ngxService: NgxUiLoaderService, private firestore: AngularFirestore) {
+  constructor(private ngxService: NgxUiLoaderService, private firestore: Firestore) {
 
   }
 
@@ -46,6 +45,10 @@ export class AllImoveis {
     }
   }
 
+  getImoveis(customSearch: any) {
+
+  }
+
   private mainGetAll(callback?: (imoveis?: Imovel[]) => void): void {
     this.getAllFromFirestoreCallback(callback);
     // this.getFromDb(callback);
@@ -53,8 +56,8 @@ export class AllImoveis {
 
   private getAllFromFirestoreCallback(callback?: (imoveis?: Imovel[]) => void): void {
     this.ngxService.start('getFromDb');
-    this.firestore.collection(COLLECTION_IMOVEIS).get()
-      .pipe(map(actions => actions.docs.map(a => {
+    collectionData(collection(this.firestore, PATH_IMOVEIS))
+      .pipe(map((actions) => actions.map((a) => {
         return a.data() as Imovel;
       })))
       .subscribe(value => {
@@ -78,38 +81,16 @@ export class AllImoveis {
       });
   }
 
-  private getFromDb(callback?: (imoveis?: Imovel[]) => void): void {
-    this.ngxService.start('getFromDb');
-    this.db.list('imoveis').valueChanges().subscribe(value => {
-      this.imoveis = value;
-      try {
-        localStorage.setItem('nextsim_lastUpdate', moment().format("MM-DD-YYYY"));
-        localStorage.setItem('nextsim_imoveis', jsonpack.pack(value));
-      } catch (e) {
-        console.log(e);
-        localStorage.clear();
-        try {
-          localStorage.setItem('nextsim_lastUpdate', moment().format("MM-DD-YYYY"));
-          localStorage.setItem('nextsim_imoveis', jsonpack.pack(value));
-        } catch (ee) {
-          console.log(ee);
-        }
-      }
-      this.ngxService.stop('getFromDb');
-      if (callback) callback(this.imoveis);
-    });
-  }
-
   getBySigla(sigla: string, callback?: (imovel?: any) => void) {
     if (this.imoveis && this.imoveis.length > 0) {
       if (callback) callback(this.imoveis.find((value: Imovel) => value.sigla === sigla));
     } else {
 
       this.ngxService.start('getBySigla');
-      this.db.list('/imoveis', ref => ref.orderByChild('sigla').equalTo(sigla)).valueChanges().subscribe(value => {
-        this.ngxService.stop('getBySigla')
-        if (callback) callback(value ? value[0] : null);
-      });
+      // this.db.list('/imoveis', ref => ref.orderByChild('sigla').equalTo(sigla)).valueChanges().subscribe(value => {
+      //   this.ngxService.stop('getBySigla')
+      //   if (callback) callback(value ? value[0] : null);
+      // });
     }
   }
 

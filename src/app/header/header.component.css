@@ -11,7 +11,8 @@ ngb-tabset {
   display: flex;
 }
 
-.nav.nav-tabs li a {
+.nav.nav-tabs li a,
+.nav.nav-tabs div.nav-item a {
   color: #575656;
   display: inline-block;
   font-size: 1em;

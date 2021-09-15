@@ -91,5 +91,3 @@ export interface Areas {
   construida: number;
   unidade: string;
 }
-
-export const COLLECTION_IMOVEIS = 'imoveis'

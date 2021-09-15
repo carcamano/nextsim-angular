@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.lancamentoService.all().subscribe(value => {
-      console.log(value.body);
       this.lancamentos = value.body;
       if (this.lancamentos.length > 6) {
         this.lancamentos = this.lancamentos.slice(0, 6);
@@ -29,8 +28,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.lancamentoService.posts().subscribe(value => {
-      console.log(value);
-      this.posts = value;
+      this.posts = value || [];
       if (this.posts.length > 6) {
         this.posts = this.posts.slice(0, 6);
       }
