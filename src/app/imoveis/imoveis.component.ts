@@ -19,6 +19,7 @@ import {
 } from "@angular/fire/firestore";
 import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_LOCAIS, PATH_PRECOS} from "../core/utils/constants.util";
 import {map} from "rxjs/operators";
+import {OwlOptions} from "ngx-owl-carousel-o";
 
 @Component({
   selector: 'app-imoveis',
@@ -47,8 +48,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   queryParams: any;
 
-  mySlideOptions = {items: 1, dots: true, nav: false};
-  myCarouselOptions = {items: 3, dots: true, nav: true};
+  mySlideOptions: OwlOptions = {items: 1, dots: true, nav: false, navText: ['<', '>']};
 
 
   /// filtro

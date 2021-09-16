@@ -437,12 +437,12 @@
             <div class="d-block d-sm-flex item" *ngFor="let imovel of imoveis">
               <div class="col-lg-5 pos-slider">
                 <owl-carousel-o [options]="mySlideOptions" >
-                  <ng-container *ngFor="let slide of imagensCarousel(imovel?.midia?.imagens)">
-                    <ng-template carouselSlide [id]="slide.id">
-                      <div class="item" *ngFor="let image of imagensCarousel(imovel.midia.imagens);let i = index"
+                  <ng-container *ngFor="let image of imagensCarousel(imovel.midia.imagens); let i = index">
+                    <ng-template carouselSlide [id]="i">
+                      <div class="item"
                            style="height: 100%;">
                         <div class="img" [class.opacity-filter]="i === 3" style="height: 100%;">
-                          <img src={{image}}/>
+                          <img [src]="image"/>
                           <a [routerLink]="'/imoveis/' + imovel.sigla" class="btn btn-see-more btn-rounded" *ngIf="i === 3">
                             VER MAIS <span class="arrow-icon"></span>
                           </a>
