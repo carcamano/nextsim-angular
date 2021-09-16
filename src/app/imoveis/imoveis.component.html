@@ -436,18 +436,22 @@
             </div>
             <div class="d-block d-sm-flex item" *ngFor="let imovel of imoveis">
               <div class="col-lg-5 pos-slider">
-                <owl-carousel [options]="mySlideOptions" [items]="imagensCarousel(imovel?.midia?.imagens)"
-                              [carouselClasses]="['PropertyCardCarousel', 'owl-theme', 'sliding']">
-                  <div class="item" *ngFor="let image of imagensCarousel(imovel.midia.imagens);let i = index"
-                       style="height: 100%;">
-                    <div class="img" [class.opacity-filter]="i === 3" style="height: 100%;">
-                      <img src={{image}}/>
-                      <a [routerLink]="'/imoveis/' + imovel.sigla" class="btn btn-see-more btn-rounded" *ngIf="i === 3">
-                        VER MAIS <span class="arrow-icon"></span>
-                      </a>
-                    </div>
-                  </div>
-                </owl-carousel>
+                <owl-carousel-o [options]="mySlideOptions" >
+                  <ng-container *ngFor="let slide of imagensCarousel(imovel?.midia?.imagens)">
+                    <ng-template carouselSlide [id]="slide.id">
+                      <div class="item" *ngFor="let image of imagensCarousel(imovel.midia.imagens);let i = index"
+                           style="height: 100%;">
+                        <div class="img" [class.opacity-filter]="i === 3" style="height: 100%;">
+                          <img src={{image}}/>
+                          <a [routerLink]="'/imoveis/' + imovel.sigla" class="btn btn-see-more btn-rounded" *ngIf="i === 3">
+                            VER MAIS <span class="arrow-icon"></span>
+                          </a>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ng-container>
+
+                </owl-carousel-o>
 
               </div>
               <div class="col-lg-7 pos-content">

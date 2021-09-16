@@ -38,9 +38,9 @@ export class ImovelComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       console.log(params)
-      this.all.getBySigla(String(params.id).toLocaleUpperCase(), im => {
+      this.all.getBySigla(String(params.id).toLocaleUpperCase()).subscribe( (im: Imovel[]) => {
         console.log(im);
-        this.imovel = im;
+        this.imovel = im[0];
         this.imageObject();
         this.buildForm();
         try {

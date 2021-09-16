@@ -44,6 +44,8 @@ import {FormPessoaFisicaComponent} from './servicos-formularios/form-pessoa-fisi
 import {LancamentosComponent} from './imoveis/lancamentos/lancamentos.component';
 import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 registerLocaleData(localePt);
 
@@ -116,6 +118,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
     FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     TextMaskModule,
