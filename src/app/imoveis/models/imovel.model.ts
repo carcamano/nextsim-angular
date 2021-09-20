@@ -47,10 +47,10 @@ export interface Local {
 
 export interface Comercializacao {
   locacao: Locacao;
+  venda: Venda;
   financiado: Ativa;
   permuta: Ativa;
   taxa: Taxa;
-  venda: Venda;
 }
 
 export interface Locacao {

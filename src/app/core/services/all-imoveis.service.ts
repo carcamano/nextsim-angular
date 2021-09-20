@@ -1,20 +1,9 @@
 import {Injectable} from '@angular/core';
 import {NgxUiLoaderService} from "ngx-ui-loader";
-import * as jsonpack from "jsonpack";
-import * as moment from 'moment';
 import {Imovel} from "../../imoveis/models/imovel.model";
-import {finalize, first, map, tap} from "rxjs/operators";
-import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_IMOVEIS, PATH_PRECOS} from "../utils/constants.util";
-import {
-  collection,
-  collectionData,
-  collectionGroup,
-  doc,
-  docSnapshots,
-  Firestore, getDoc, getDocs, limit,
-  query, where
-} from "@angular/fire/firestore";
-import {AngularFirestore, CollectionReference, DocumentData} from "@angular/fire/compat/firestore";
+import {finalize, first, map} from "rxjs/operators";
+import {PATH_IMOVEIS} from "../utils/constants.util";
+import {collection, Firestore, getDocs, limit, orderBy, query, startAfter, where} from "@angular/fire/firestore";
 import {from} from "rxjs";
 
 
@@ -24,15 +13,13 @@ import {from} from "rxjs";
 export class AllImoveis {
 
 
-  private imoveis: any[];
 
-  constructor(private ngxService: NgxUiLoaderService, private firestore: Firestore, private afs: AngularFirestore) {
+  constructor(private ngxService: NgxUiLoaderService, private firestore: Firestore) {
 
   }
 
-  getImoveis(customSearch: any) {
+  getImoveis(customSearch: any, last?: Imovel) {
     const wheres = [];
-    // area: {min: 0, max: 61000}
     // bairros: [] ok
     // banheiros: 0 ok
     // categoria: "comprar" ok
@@ -40,18 +27,24 @@ export class AllImoveis {
     // dormitorios: "0" ok
     // finalidade: "comercial" ok
     // garagem: 0 ok
-    // page: 1
-    // precos: {min: 0, max: 4000000}
+    // tipo: [] ok
     // salas: "0" ok
+    // page: 1
+    // area: {min: 0, max: 61000}
+    // precos: {min: 0, max: 4000000}
+
+    console.log(customSearch);
 
     const compra = 'comercializacao.venda.ativa';
     const venda = 'comercializacao.locacao.ativa';
+    const compra_preco = 'comercializacao.venda.preco';
+    const venda_preco = 'comercializacao.locacao.preco';
 
     wheres.push(where('finalidade', '==', customSearch.finalidade));
     wheres.push(where(customSearch.categoria === 'comprar' ? compra : venda, '==', true));
     //
     if (customSearch.bairros?.length > 0) {
-      wheres.push(where('local.bairro', 'array-contains-any', customSearch.bairros));
+      wheres.push(where('local.bairro', 'in', customSearch.bairros));
     }
 
     if (customSearch.banheiros > 0) {
@@ -74,7 +67,29 @@ export class AllImoveis {
       wheres.push(where('numeros.salas', '==', customSearch.salas));
     }
 
-    wheres.push(limit(10))
+    if (customSearch.tipo?.length > 0) {
+      wheres.push(where('tipo', 'in', customSearch.tipo));
+    }
+
+    // area: {min: 0, max: 61000}
+    // precos: {min: 0, max: 4000000}
+    if (customSearch.area.min !== 0 || customSearch.area.max !== 61000) {
+      wheres.push('numeros.areas.total', '>=', customSearch.area.min);
+      wheres.push('numeros.areas.total', '<=', customSearch.area.max);
+    }
+
+    if (customSearch.precos.min !== 0 || customSearch.precos.max !== 4000000) {
+      wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '>=', customSearch.precos.min));
+      wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '<=', customSearch.precos.max));
+    }
+
+    wheres.push(limit(10));
+    wheres.push(orderBy('sigla'));
+
+    if (last) {
+      console.log(last);
+      wheres.push(startAfter(last.sigla));
+    }
 
     return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS), ...wheres)))
       .pipe(

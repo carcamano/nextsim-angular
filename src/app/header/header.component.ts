@@ -10,6 +10,7 @@ import {WPService} from "../core/services/w-p.service";
 import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_LOCAIS, PATH_PRECOS} from "../core/utils/constants.util";
 import {Firestore, collectionData, collection, collectionSnapshots, doc, docSnapshots} from '@angular/fire/firestore';
 import {map} from "rxjs/operators";
+import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from "../core/constants/tipos";
 
 @Component({
   selector: 'app-header',
@@ -318,10 +319,13 @@ export class HeaderComponent implements OnInit {
     }
 
 
-    _.union(_.compact(_.map(this.filtred[this.cidades[0]], (im: any, key) => {
-      console.log(im.tipo);
-      return im.tipo;
-    }))).forEach((value, index) => {
+    let tipos = [];
+    if(this.customSearch.finalidade === 'residencial') {
+      tipos = TIPOS_RESIDENCIAL;
+    } else {
+      tipos = TIPOS_COMERCIAL;
+    }
+    tipos.forEach((value, index) => {
       this.customSearch.tipos.push({key: value, selected: false, i: index});
     });
 

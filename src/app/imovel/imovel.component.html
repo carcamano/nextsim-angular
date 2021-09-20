@@ -4,7 +4,7 @@
     <div class="ResidencialHeaderContainer container mb-3 mb-md-0">
       <div class="row">
         <div class="col-lg-12 noPadding">
-          <a href="javascript:history.back();" class="PropertyBackLink pl-4 pl-sm-4 pl-md-4 pl-lg-3"><i
+          <a (click)="back()" class="PropertyBackLink pl-4 pl-sm-4 pl-md-4 pl-lg-3"><i
             class="PropertyArrowBackBtn"></i>
             Voltar aos resultados</a>
           <!--          <p class="PropertyBreadcrumbs"><a href="../index.html" title="Home">Home<a href="../imoveis/comprar.html"-->
@@ -223,28 +223,23 @@
         </div>
 
 
-        <agm-map [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]" [zoom]="14"
-                 *ngIf="imovel?.local?.coordenadas">
-          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"
-                      [radius]="500"
-                      [fillColor]="'#ff9820'">
-          </agm-circle>
+<!--        <agm-map [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]" [zoom]="14"-->
+<!--                 *ngIf="imovel?.local?.coordenadas">-->
+<!--          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"-->
+<!--                      [radius]="500"-->
+<!--                      [fillColor]="'#ff9820'">-->
+<!--          </agm-circle>-->
 
-          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"
-                      [radius]="1000"
-                      [fillColor]="'#ff9820'">
-          </agm-circle>
+<!--          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"-->
+<!--                      [radius]="1000"-->
+<!--                      [fillColor]="'#ff9820'">-->
+<!--          </agm-circle>-->
 
-          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"
-                      [radius]="1500"
-                      [fillColor]="'#ff9820'">
-          </agm-circle>
-        </agm-map>
-        <!--        <section class="PropertyMap" id="cd-google-map" #googleMap>-->
-        <!--          <div id="map"></div>-->
-        <!--          <div id="cd-zoom-in" class='btn-in'><span class="zoom">+</span></div>-->
-        <!--          <div id="cd-zoom-out" class='btn-in'><span class="zoom">-</span></div>-->
-        <!--        </section>-->
+<!--          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"-->
+<!--                      [radius]="1500"-->
+<!--                      [fillColor]="'#ff9820'">-->
+<!--          </agm-circle>-->
+<!--        </agm-map>-->
       </div>
     </div>
   </section>

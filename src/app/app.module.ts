@@ -11,7 +11,8 @@ import {FooterComponent} from './footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import {OwlModule} from 'ngx-owl-carousel';
 import {ImovelComponent} from './imovel/imovel.component';
-import {AgmCoreModule} from '@agm/core';
+// import {AgmCoreModule} from '@agm/core';
+// import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import {QueroNegociarComponent} from './quero-negociar/quero-negociar.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -112,9 +113,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     TextMaskModule,
     NgImageSliderModule,
     ToastrModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: environment.maps.key
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: environment.maps.key
+    // }),
+    // AgmSnazzyInfoWindowModule,
     RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
     FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),

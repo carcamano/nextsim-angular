@@ -107,7 +107,8 @@
                       <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2">
                         <ul id="list-bairros">
                           <li *ngFor="let local of customSearch.bairros;  let i = index">
-                            <span><i class="menu-letter-marker" *ngIf="showMakerLetter(local.key, i)">{{firstMakerLetter(local.key)}}</i></span>
+                            <span><i class="menu-letter-marker"
+                                     *ngIf="showMakerLetter(local.key, i)">{{firstMakerLetter(local.key)}}</i></span>
                             <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
                                    [checked]="local.selected"
                                    (change)="changeBairro($event, i)"/>
@@ -166,9 +167,9 @@
                         </label>
                       </li>
                     </ul>
-                  <div class="col-12 text-right px-0 pt-3">
-                    <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
-                  </div>
+                    <div class="col-12 text-right px-0 pt-3">
+                      <a class="btn btn-block btn-apply checkbox-s" ngbDropdownToggle (click)="dropDownChange(false)">Aplicar</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -235,12 +236,14 @@
                       <div class="row">
                         <div class="col-6">
                           <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                                 [(ngModel)]="customSearch.precos.min" placeholder="M²" [textMask]="{mask: MASKS.currency.textMask}"
+                                                 [(ngModel)]="customSearch.precos.min" placeholder="M²"
+                                                 [textMask]="{mask: MASKS.currency.textMask}"
                                                  [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="col-6">
                           <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                                  [(ngModel)]="customSearch.precos.max" placeholder="M²" [textMask]="{mask: MASKS.currency.textMask}"
+                                                  [(ngModel)]="customSearch.precos.max" placeholder="M²"
+                                                  [textMask]="{mask: MASKS.currency.textMask}"
                                                   [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
@@ -253,12 +256,12 @@
               </div>
               <!-- END PRECO DE IMOVEL -->
             </div>
-<!--            <div class="text-center align-content-center ">-->
-<!--              <a class="btn btn-more-filters btn-semi-rounded FiltersBTN "-->
-<!--                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN"-->
-<!--                 (click)="dropDownChange(false)">-->
-<!--                <b>Aplicar</b></a>-->
-<!--            </div>-->
+            <!--            <div class="text-center align-content-center ">-->
+            <!--              <a class="btn btn-more-filters btn-semi-rounded FiltersBTN "-->
+            <!--                 role="button" aria-expanded="false" aria-controls="MoreFiltersBTN"-->
+            <!--                 (click)="dropDownChange(false)">-->
+            <!--                <b>Aplicar</b></a>-->
+            <!--            </div>-->
           </div>
           <div class="FilterBarLineTop justify-content-between" id="MoreFiltersBTN" [hidden]="!showExtraFilter">
             <!-- INICIO MAIS FILTRO -->
@@ -319,12 +322,14 @@
                       <div class="row">
                         <div class="col-6">
                           <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                                 [(ngModel)]="customSearch.area.min" placeholder="M²" [textMask]="{mask: MASKS.number.textMask}"
+                                                 [(ngModel)]="customSearch.area.min" placeholder="M²"
+                                                 [textMask]="{mask: MASKS.number.textMask}"
                                                  [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="col-6">
                           <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                                  [(ngModel)]="customSearch.area.max" placeholder="M²" [textMask]="{mask: MASKS.number.textMask}"
+                                                  [(ngModel)]="customSearch.area.max" placeholder="M²"
+                                                  [textMask]="{mask: MASKS.number.textMask}"
                                                   [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
@@ -419,7 +424,7 @@
                 <li class="breadcrumb-item" *ngIf="!queryParams?.query"><a> Imóveis </a></li>
                 <li
                   class='breadcrumb-item active'
-                  *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : (queryParams?.featured ? 'DESTAQUES' :'GERAL')}} </li>
+                  *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : (queryParams?.featured ? 'DESTAQUES' : 'GERAL')}} </li>
                 <li
                   class='breadcrumb-item active' *ngIf="queryParams?.query">{{queryParams?.query}} </li>
               </ol>
@@ -436,14 +441,15 @@
             </div>
             <div class="d-block d-sm-flex item" *ngFor="let imovel of imoveis">
               <div class="col-lg-5 pos-slider">
-                <owl-carousel-o [options]="mySlideOptions" >
+                <owl-carousel-o [options]="mySlideOptions">
                   <ng-container *ngFor="let image of imagensCarousel(imovel.midia.imagens); let i = index">
                     <ng-template carouselSlide [id]="i">
                       <div class="item"
                            style="height: 100%;">
                         <div class="img" [class.opacity-filter]="i === 3" style="height: 100%;">
                           <img [src]="image"/>
-                          <a [routerLink]="'/imoveis/' + imovel.sigla" class="btn btn-see-more btn-rounded" *ngIf="i === 3">
+                          <a (click)="goImovel(imovel)" class="btn btn-see-more btn-rounded"
+                             *ngIf="i === 3">
                             VER MAIS <span class="arrow-icon"></span>
                           </a>
                         </div>
@@ -492,7 +498,7 @@
                 <div class="footer-info">
                   <div class="row">
                     <div class="col-6 col-sm-6 pos-btn-see-more">
-                      <a [routerLink]="'/imoveis/' + imovel.sigla"
+                      <a (click)="goImovel(imovel)"
                          class="btn btn-see-more btn-rounded">
                         VER MAIS <span class="arrow-icon"></span>
                       </a>
@@ -510,9 +516,17 @@
               </div>
             </div>
 
-            <div class="col-12" *ngIf="pages > 0">
-              <ngb-pagination [collectionSize]="pages" [(page)]="currentPage" [maxSize]="5" [rotate]="true"
-                              [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
+            <div class="col-12" [hidden]="imoveis?.length !== 10 && currentPage !== 1">
+              <ul class="pagination"><!---->
+                <li class="page-item disabled"><a aria-label="Previous" class="page-link" tabindex="-1" (click)="changePage(-1)"><span
+                  aria-hidden="true">«</span></a></li><!---->
+                <li class="page-item active"><!----><!----><a class="page-link"> {{currentPage}} <!----></a>
+                </li>
+                <li class="page-item"><a aria-label="Next" class="page-link" (click)="changePage(1)"><span
+                  aria-hidden="true">»</span></a></li><!---->
+              </ul>
+<!--              <ngb-pagination [collectionSize]="pages" [(page)]="currentPage" [maxSize]="5" [rotate]="true"-->
+<!--                              [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>-->
             </div>
           </div>
 
@@ -699,7 +713,8 @@
             <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" *ngIf="cidades.length > 0">
               <ul>
                 <li *ngFor="let local of customSearch.bairros;  let i = index">
-                  <span><i class="menu-letter-marker" *ngIf="showMakerLetter(local.key, i)">{{firstMakerLetter(local.key)}}</i></span>
+                  <span><i class="menu-letter-marker"
+                           *ngIf="showMakerLetter(local.key, i)">{{firstMakerLetter(local.key)}}</i></span>
                   <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
                          [checked]="local.selected"
                          (change)="changeBairro($event, i)"/>
@@ -765,12 +780,14 @@
                 <div class="row">
                   <div class="col-6">
                     <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                           [(ngModel)]="customSearch.precos.min" placeholder="M²" [textMask]="{mask: MASKS.currency.textMask}"
+                                           [(ngModel)]="customSearch.precos.min" placeholder="M²"
+                                           [textMask]="{mask: MASKS.currency.textMask}"
                                            [ngModelOptions]="{standalone: true}">
                   </div>
                   <div class="col-6">
                     <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                            [(ngModel)]="customSearch.precos.max" placeholder="M²" [textMask]="{mask: MASKS.currency.textMask}"
+                                            [(ngModel)]="customSearch.precos.max" placeholder="M²"
+                                            [textMask]="{mask: MASKS.currency.textMask}"
                                             [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
