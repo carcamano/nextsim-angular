@@ -7,6 +7,10 @@ import {ToastrService} from 'ngx-toastr';
 import {AllImoveis} from "../core/services/all-imoveis.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MASKS} from "ng-brazil";
+import {HttpClient} from "@angular/common/http";
+import {catchError, map} from "rxjs/operators";
+import {Observable, of} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-imovel',
@@ -23,6 +27,8 @@ export class ImovelComponent implements OnInit {
 
   imgs: Array<object>;
 
+  apiLoaded: Observable<boolean>;
+
   @ViewChild('content') public childModal: NgbModalRef;
 
   form: FormGroup;
@@ -31,11 +37,16 @@ export class ImovelComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private all: AllImoveis, private formBuilder: FormBuilder,
               private modalService: NgbModal, private service: LeadService, private toastr: ToastrService,
-              private router: Router) {
+              private router: Router, private httpClient: HttpClient) {
 
   }
 
   ngOnInit() {
+    this.apiLoaded = this.httpClient.jsonp(`https://maps.googleapis.com/maps/api/js?key=${environment.maps.key}`, 'callback')
+      .pipe(
+        map(() => true),
+        catchError(() => of(false)),
+      );
 
     this.route.params.subscribe(params => {
       console.log(params)

@@ -8,11 +8,9 @@ import {HomeComponent} from './home/home.component';
 import {RouterModule} from '@angular/router';
 import {ROUTES} from './app.routes';
 import {FooterComponent} from './footer/footer.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {OwlModule} from 'ngx-owl-carousel';
 import {ImovelComponent} from './imovel/imovel.component';
-// import {AgmCoreModule} from '@agm/core';
-// import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import {QueroNegociarComponent} from './quero-negociar/quero-negociar.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -47,6 +45,7 @@ import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {GoogleMapsModule} from "@angular/google-maps";
 
 registerLocaleData(localePt);
 
@@ -99,6 +98,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     OwlModule,
     NgbModule,
     FormsModule,
@@ -113,11 +113,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     TextMaskModule,
     NgImageSliderModule,
     ToastrModule.forRoot(),
-    // AgmCoreModule.forRoot({
-    //   apiKey: environment.maps.key
-    // }),
-    // AgmSnazzyInfoWindowModule,
-    RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(ROUTES, {relativeLinkResolution: 'legacy'}),
     FormsModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     AngularFireModule.initializeApp(environment.firebase),
@@ -125,7 +121,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     TextMaskModule,
-    NgBrazil
+    NgBrazil,
+    GoogleMapsModule
   ],
   providers: [
     LeadService,
