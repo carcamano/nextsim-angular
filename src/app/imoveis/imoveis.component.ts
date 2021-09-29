@@ -49,7 +49,10 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   queryParams: any;
 
-  mySlideOptions: OwlOptions = {items: 1, dots: true, nav: false, navText: ['<', '>']};
+  mySlideOptions: OwlOptions = {
+    items: 1, dots: true, nav: false, navText: ['<', '>'],
+    // responsive: {}
+  };
 
 
   /// filtro
@@ -151,7 +154,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   goImovel(imovel: Imovel) {
-    console.log(String(window.scrollY));
     localStorage.setItem('nextscroll', String(window.scrollY));
     this.router.navigate(['/imoveis/' + imovel.sigla]).then();
   }
@@ -214,7 +216,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       }
       let precos: string;
       if (!querys.includes('precos')) {
-        console.log(this.customSearch.precos.min);
 
         if (this.customSearch.precos.min) {
           this.customSearch.precos.min = parseInt(this.customSearch.precos.min.toString()
@@ -226,11 +227,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
             .replace('R$ ', '').replace('.', '')
             .replace(',', '.'));
         }
-        console.log(this.customSearch.precos.max);
         precos = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
       }
-      console.log(this.customSearch);
-      console.log(querys);
       this.search({
         finalidade: !querys.includes('finalidade') ? this.customSearch.finalidade : '',
         tipo: tipos,
@@ -374,8 +372,11 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     return '?';
   }
 
-  getFormattedPrice(price: number): string {
-    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price).replace(',00', '');
+  getFormattedPrice(price: number, sale = false): string {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(price).replace(',00', '') + (sale ? '' : '<sub>/mês</sub>');
   }
 
   buildBadges() {
@@ -542,13 +543,9 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
 
   rebuildFilter(event?: any) {
-    console.log(this.customSearch.categoria);
-    console.log(this.customSearch.finalidade);
-
     this.filtred = this.locais.find(value => {
       return value.id === `${this.customSearch.categoria}_${this.customSearch.finalidade}`;
     });
-    console.log(this.filtred);
 
 
     this.customSearch.tipos = [];
@@ -556,7 +553,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
 
     Object.keys(this.filtred).forEach((key: string, i: number) => {
-      console.log(key)
       if (key !== 'id') {
         this.cidades.push(key);
       }
@@ -578,9 +574,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       this.customSearch.tipos.push({key: value, selected: false, i: index});
     });
 
-    console.log(this.customSearch.tipos.length);
     this.cidades = _.union(this.cidades)
-    console.log(this.cidades);
   }
 
 
@@ -608,7 +602,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         return a.data();
       }))
       .subscribe(strings => {
-        console.log(strings);
         this.autocompletes = strings.autocomplete;
       });
 

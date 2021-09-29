@@ -49,9 +49,7 @@ export class ImovelComponent implements OnInit {
       );
 
     this.route.params.subscribe(params => {
-      console.log(params)
       this.all.getBySigla(String(params.id).toLocaleUpperCase()).subscribe( (im: Imovel[]) => {
-        console.log(im);
         this.imovel = im[0];
         this.imageObject();
         this.buildForm();
@@ -92,7 +90,6 @@ export class ImovelComponent implements OnInit {
         }
       }).forEach(value => this.imgs.push(value));
     }
-    console.log(this.imgs);
     return this.imgs;
   }
 
@@ -106,14 +103,12 @@ export class ImovelComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.form);
     const form = new FormData();
     form.append('nome', this.form.get('nome').value);
     form.append('email', this.form.get('email').value);
     form.append('telefone', this.form.get('telefone').value);
     form.append('mensagem', this.form.get('mensagem').value);
     this.service.sendToContactForm(form, 504).subscribe(value => {
-      console.log(value);
       this.modalService.dismissAll();
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');
     });
