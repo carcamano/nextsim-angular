@@ -11,6 +11,7 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {environment} from "../../environments/environment";
+import {toArea, toDormis, toSalas} from "../core/utils/imovel.util";
 
 @Component({
   selector: 'app-imovel',
@@ -33,6 +34,10 @@ export class ImovelComponent implements OnInit {
 
   form: FormGroup;
   MASKS = MASKS;
+
+  toSalas = toSalas;
+  toDormis = toDormis;
+  toArea = toArea;
 
 
   constructor(private route: ActivatedRoute, private all: AllImoveis, private formBuilder: FormBuilder,

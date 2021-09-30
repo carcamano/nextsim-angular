@@ -7,9 +7,6 @@
           <a (click)="back()" class="PropertyBackLink pl-4 pl-sm-4 pl-md-4 pl-lg-3"><i
             class="PropertyArrowBackBtn"></i>
             Voltar aos resultados</a>
-          <!--          <p class="PropertyBreadcrumbs"><a href="../index.html" title="Home">Home<a href="../imoveis/comprar.html"-->
-          <!--                                                                                     title="Para Comprar">Para-->
-          <!--            Comprar</a></p>-->
 
         </div>
       </div>
@@ -20,7 +17,87 @@
           <div class="full-image"></div>
         </div>
         <div class="col-xl-5 col-lg-5 col-md-12">
-          <div class="row">
+          <div class="card-imovel">
+            <div class="h-100 row">
+              <div class="col-12 align-self-start novo-topo">
+                <div class="row">
+                  <div class="col-12">
+                    <span class="novo-tipo">{{imovel.tipo}}</span>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <span class="novo-local">{{imovel?.local?.bairro}}, {{imovel?.local?.cidade}}</span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-12 align-self-center novo-meio">
+                <div class="row no-gutters">
+                  <div class="col-auto" *ngIf="toArea(imovel)">
+                    <div>
+                      <i class="icon-area"></i>
+                      <span>{{toArea(imovel)}}</span>
+                    </div>
+                  </div>
+                  <div class="col-auto"
+                       *ngIf="(imovel.tipo === 'casa' && imovel.finalidade === 'comercial') && toSalas(imovel)">
+                    <div><i class="icon2-salas"></i> <span>{{toSalas(imovel)}}</span></div>
+                  </div>
+                  <div class="col-auto"
+                       *ngIf="(imovel.tipo !== 'sala' && imovel.tipo !== 'prédio' && imovel.tipo !== 'casa' && imovel.finalidade !== 'comercial') && toDormis(imovel)">
+                    <div><i class="icon-bed"></i> <span>{{toDormis(imovel)}}</span></div>
+                  </div>
+                  <div class="col-auto"
+                       *ngIf="(imovel.tipo === 'sala' || imovel.tipo === 'prédio') && toSalas(imovel)">
+                    <div><i class="icon2-salas"></i> <span>{{toSalas(imovel)}}</span></div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 align-self-end novo-footer">
+                <div class="row prices-table">
+                  <div class="col-12">
+                    <div class="row justify-content-between">
+                      <div class="col-auto"><span><b>Aluguel</b></span></div>
+                      <div class="col-auto"><span>R$ 3.000</span></div>
+                    </div>
+                    <div class="row justify-content-between">
+                      <div class="col-auto"><span>Condomínio</span></div>
+                      <div class="col-auto"><span>R$ 3.000</span></div>
+                    </div>
+                    <div class="row justify-content-between">
+                      <div class="col-auto"><span>IPTU</span></div>
+                      <div class="col-auto"><span>R$ 800</span></div>
+                    </div>
+                    <div class="row justify-content-between">
+                      <div class="col-12"><hr/></div>
+                    </div>
+                    <div class="row justify-content-between">
+                      <div class="col-auto"><span><b>Total</b></span></div>
+                      <div class="col-auto"><span><b>R$ 10.800</b></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-12 ">
+                    <button class="more">Quero saber mais</button>
+                  </div>
+                  <div class="col-12 ">
+                    <button class="share">Compartilhar</button>
+                  </div>
+                </div>
+                <div class="row justify-content-end ">
+                  <div class="col-auto">
+                    <span class="novo-cod">Cód: {{imovel.sigla}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row" *ngIf="false">
 
             <div class="col-md-12">
               <div class="PropertyCardDetails PropertyCardShadowBox">
@@ -223,32 +300,19 @@
         </div>
 
         <div class="row " *ngIf="imovel?.local?.coordenadas && apiLoaded | async">
-          <google-map class="w-100" [center]="{lat: imovel?.local?.coordenadas[0], lng: imovel?.local?.coordenadas[1]}" [zoom]="14">
-            <map-circle [center]="{lat: imovel?.local?.coordenadas[0], lng: imovel?.local?.coordenadas[1]}" [options]="{fillColor: '#ff9820', strokeOpacity: 0}"
-                        [radius]="500" ></map-circle>
-            <map-circle [center]="{lat: imovel?.local?.coordenadas[0], lng: imovel?.local?.coordenadas[1]}"  [options]="{fillColor: '#ff9820', strokeOpacity: 0}"
-                        [radius]="1000" ></map-circle>
-            <map-circle [center]="{lat: imovel?.local?.coordenadas[0], lng: imovel?.local?.coordenadas[1]}"  [options]="{fillColor: '#ff9820', strokeOpacity: 0}"
-                        [radius]="1500" ></map-circle>
+          <google-map class="w-100" [center]="{lat: imovel?.local?.coordenadas[0], lng: imovel?.local?.coordenadas[1]}"
+                      [zoom]="14">
+            <map-circle [center]="{lat: imovel?.local?.coordenadas[0], lng: imovel?.local?.coordenadas[1]}"
+                        [options]="{fillColor: '#ff9820', strokeOpacity: 0}"
+                        [radius]="500"></map-circle>
+            <map-circle [center]="{lat: imovel?.local?.coordenadas[0], lng: imovel?.local?.coordenadas[1]}"
+                        [options]="{fillColor: '#ff9820', strokeOpacity: 0}"
+                        [radius]="1000"></map-circle>
+            <map-circle [center]="{lat: imovel?.local?.coordenadas[0], lng: imovel?.local?.coordenadas[1]}"
+                        [options]="{fillColor: '#ff9820', strokeOpacity: 0}"
+                        [radius]="1500"></map-circle>
           </google-map>
         </div>
-<!--        <agm-map [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]" [zoom]="14"-->
-<!--                 *ngIf="imovel?.local?.coordenadas">-->
-<!--          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"-->
-<!--                      [radius]="500"-->
-<!--                      [fillColor]="'#ff9820'">-->
-<!--          </agm-circle>-->
-
-<!--          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"-->
-<!--                      [radius]="1000"-->
-<!--                      [fillColor]="'#ff9820'">-->
-<!--          </agm-circle>-->
-
-<!--          <agm-circle [latitude]="imovel?.local?.coordenadas[0]" [longitude]="imovel?.local?.coordenadas[1]"-->
-<!--                      [radius]="1500"-->
-<!--                      [fillColor]="'#ff9820'">-->
-<!--          </agm-circle>-->
-<!--        </agm-map>-->
       </div>
     </div>
   </section>
