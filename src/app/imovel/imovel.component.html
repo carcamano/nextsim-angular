@@ -55,37 +55,44 @@
                   </div>
                 </div>
 
+
+
               </div>
               <div class="col-12 align-self-end novo-footer">
                 <div class="row prices-table">
                   <div class="col-12">
-                    <div class="row justify-content-between">
-                      <div class="col-auto"><span><b>Aluguel</b></span></div>
-                      <div class="col-auto"><span>R$ 3.000</span></div>
+                    <div class="row justify-content-between line"  *ngIf="imovel?.comercializacao?.locacao?.ativa">
+                      <div class="col-auto"><span><b class="hard-color">Aluguel</b></span></div>
+                      <div class="col-auto"><span class="hard-color digit">{{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</span></div>
                     </div>
-                    <div class="row justify-content-between">
-                      <div class="col-auto"><span>Condomínio</span></div>
-                      <div class="col-auto"><span>R$ 3.000</span></div>
+                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.venda?.ativa">
+                      <div class="col-auto"><span><b>Venda</b></span></div>
+                      <div class="col-auto"><span class="digit">{{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</span></div>
                     </div>
-                    <div class="row justify-content-between">
-                      <div class="col-auto"><span>IPTU</span></div>
-                      <div class="col-auto"><span>R$ 800</span></div>
+                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.taxa?.condominio">
+                      <div class="col-auto"><span>Condomínio <i class="info_icon"></i></span></div>
+                      <div class="col-auto"><span class="digit">R$ {{imovel?.comercializacao?.taxa?.condominio}}</span></div>
                     </div>
-                    <div class="row justify-content-between">
+                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.taxa?.iptu && imovel?.comercializacao?.locacao?.ativa">
+                      <div class="col-auto"><span>IPTU <i class="info_icon"></i></span></div>
+                      <div class="col-auto"><span class="digit">R$ {{imovel?.comercializacao?.taxa?.iptu}}<span *ngIf="imovel?.comercializacao?.taxa?.mes">/{{anualOrMonth(imovel?.comercializacao?.taxa?.mes)}}</span></span></div>
+                    </div>
+                    <div class="row justify-content-between line-hr" *ngIf="imovel?.comercializacao?.locacao?.ativa && !imovel?.comercializacao?.venda?.ativa">
                       <div class="col-12"><hr/></div>
                     </div>
-                    <div class="row justify-content-between">
+                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.locacao?.ativa">
                       <div class="col-auto"><span><b>Total</b></span></div>
-                      <div class="col-auto"><span><b>R$ 10.800</b></span></div>
+                      <div class="col-auto"><span class="digit">R$ <b>10.800</b></span></div>
                     </div>
                   </div>
                 </div>
+
                 <div class="row ">
                   <div class="col-12 ">
-                    <button class="more">Quero saber mais</button>
+                    <button class="more" (click)="open(content)">Quero saber mais</button>
                   </div>
                   <div class="col-12 ">
-                    <button class="share">Compartilhar</button>
+                    <button class="share" (click)="whatsapp()">Compartilhar</button>
                   </div>
                 </div>
                 <div class="row justify-content-end ">

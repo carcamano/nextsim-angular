@@ -73,15 +73,15 @@ export class AllImoveis {
 
     // area: {min: 0, max: 61000}
     // precos: {min: 0, max: 4000000}
-    if (customSearch.area.min !== 0 || customSearch.area.max !== 61000) {
-      wheres.push('numeros.areas.total', '>=', customSearch.area.min);
-      wheres.push('numeros.areas.total', '<=', customSearch.area.max);
-    }
+    // if (customSearch.area.min !== 0 || customSearch.area.max !== 61000) {
+    //   wheres.push(where('numeros.areas.total', '>=', customSearch.area.min));
+    //   wheres.push(where('numeros.areas.total', '<=', customSearch.area.max));
+    // }
 
-    if (customSearch.precos.min !== 0 || customSearch.precos.max !== 4000000) {
-      wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '>=', customSearch.precos.min));
-      wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '<=', customSearch.precos.max));
-    }
+    // if (customSearch.precos.min !== 0 || customSearch.precos.max !== 4000000) {
+    //   wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '>=', customSearch.precos.min));
+    //   wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '<=', customSearch.precos.max));
+    // }
 
     wheres.push(limit(10));
     wheres.push(orderBy('sigla'));
@@ -90,6 +90,7 @@ export class AllImoveis {
       console.log(last);
       wheres.push(startAfter(last.sigla));
     }
+    console.log(wheres);
 
     return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS), ...wheres)))
       .pipe(
