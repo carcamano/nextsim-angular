@@ -137,7 +137,11 @@
 .properties .properties-list .item {
   height: 235px;
   box-shadow: none !important;
-  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14)) drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2)); }
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14)) drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
+  /* Small Devices, Tablets */ }
+  @media only screen and (max-width: 768px) {
+    .properties .properties-list .item {
+      height: auto; } }
   .properties .properties-list .item .novo-slider {
     position: relative; }
     .properties .properties-list .item .novo-slider .owl-carousel {
@@ -151,6 +155,10 @@
   .properties .properties-list .item .novo-content {
     padding: 24px;
     cursor: pointer; }
+    @media only screen and (max-width: 768px) {
+      .properties .properties-list .item .novo-content {
+        padding: 14px;
+        height: 170px !important; } }
     .properties .properties-list .item .novo-content .novo-tipo {
       font-family: Raleway;
       font-style: normal;
@@ -223,7 +231,7 @@ app-imovel .property {
   @media only screen and (max-width: 768px) {
     .card-imovel {
       height: auto; } }
-  .card-imovel .novo-tipo {
+  .card-imovel .novo-tipo, .card-imovel .novo-cod-mobile {
     font-family: Raleway;
     font-style: normal;
     font-weight: normal;
@@ -237,6 +245,8 @@ app-imovel .property {
     font-size: 18px;
     line-height: 19px;
     color: #575656; }
+  .card-imovel .novo-cod-mobile {
+    display: none; }
   .card-imovel .novo-meio > .row > .col-auto {
     margin-right: 15px; }
     .card-imovel .novo-meio > .row > .col-auto > div {
@@ -244,8 +254,7 @@ app-imovel .property {
       align-items: center; }
       .card-imovel .novo-meio > .row > .col-auto > div i {
         color: #A3A3A3;
-        font-size: 22px;
-        opacity: 0.3; }
+        font-size: 22px; }
       .card-imovel .novo-meio > .row > .col-auto > div span {
         margin-left: 4px;
         font-family: Roboto;
@@ -271,6 +280,8 @@ app-imovel .property {
       font-family: Raleway;
       font-weight: bold;
       color: #2E2E2E; }
+    .card-imovel .novo-footer .prices-table span i {
+      opacity: 0; }
   .card-imovel .novo-footer .prices-table .line {
     margin-bottom: 8px; }
     .card-imovel .novo-footer .prices-table .line:last-child {
@@ -331,5 +342,88 @@ app-imovel .property {
     font-size: 12px;
     line-height: 14px;
     color: #575656; }
+
+@media only screen and (max-width: 768px) {
+  app-imovel .container.desc {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 0 25px; }
+  app-imovel .recursos {
+    margin-left: -15px;
+    margin-right: -15px; }
+    app-imovel .recursos h3 {
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 19px;
+      color: #575656; }
+    app-imovel .recursos li {
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      color: #333333; }
+  app-imovel .PropertyDescription h3 {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 19px;
+    color: #575656;
+    margin-bottom: 8px !important;
+    letter-spacing: 0; }
+  app-imovel .PropertyDescription p {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #333333;
+    letter-spacing: 0; } }
+@media only screen and (max-width: 768px) {
+  app-imovel .property .PropertyBackLink {
+    color: #575656 !important; }
+    app-imovel .property .PropertyBackLink .PropertyArrowBackBtn {
+      filter: grayscale(100%) !important; }
+  app-imovel .property .ResidencialHeaderContainer {
+    background: #fafafa;
+    width: 100% !important;
+    max-width: 100%;
+    padding: 60px 0 0 0; }
+  app-imovel .property .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, app-imovel .property .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video {
+    border-radius: 0 !important; }
+  app-imovel .property .card-imovel {
+    border-radius: 0;
+    padding-top: 0;
+    box-shadow: none;
+    background-color: transparent;
+    padding-bottom: 0; }
+    app-imovel .property .card-imovel .novo-topo {
+      margin-bottom: 18px; }
+    app-imovel .property .card-imovel .novo-meio {
+      margin-bottom: 21px; }
+    app-imovel .property .card-imovel .novo-cod {
+      display: none; }
+    app-imovel .property .card-imovel .novo-cod-mobile {
+      display: inline-flex;
+      margin-left: 4px; }
+    app-imovel .property .card-imovel .share {
+      margin-bottom: 0px; } }
+@media only screen and (max-width: 768px) {
+  app-imovel .backdrop-imovel {
+    background: #fafafa; } }
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 576px) {
+  app-imovel .recursos {
+    margin-left: 0;
+    margin-right: 0; } }
+
+.MobileFilterBarMenu .card-header {
+  padding: 20px !important; }
+.MobileFilterBarMenu .btn-link {
+  color: #000; }
 
 /*# sourceMappingURL=next.css.map */

@@ -1,4 +1,4 @@
-<div id="backdrop" *ngIf="imovel">
+<div id="backdrop" class="backdrop-imovel" *ngIf="imovel">
 
   <section class="property container-fluid">
     <div class="ResidencialHeaderContainer container mb-3 mb-md-0">
@@ -22,7 +22,8 @@
               <div class="col-12 align-self-start novo-topo">
                 <div class="row">
                   <div class="col-12">
-                    <span class="novo-tipo">{{imovel.tipo}}</span>
+                    <span class="novo-tipo">{{imovel.tipo}}</span> <span
+                    class="novo-cod-mobile">, cód: {{imovel.sigla}}</span>
                   </div>
 
                 </div>
@@ -56,29 +57,38 @@
                 </div>
 
 
-
               </div>
               <div class="col-12 align-self-end novo-footer">
                 <div class="row prices-table">
                   <div class="col-12">
-                    <div class="row justify-content-between line"  *ngIf="imovel?.comercializacao?.locacao?.ativa">
+                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.locacao?.ativa">
                       <div class="col-auto"><span><b class="hard-color">Aluguel</b></span></div>
-                      <div class="col-auto"><span class="hard-color digit">{{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</span></div>
+                      <div class="col-auto"><span
+                        class="hard-color digit">{{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</span>
+                      </div>
                     </div>
                     <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.venda?.ativa">
                       <div class="col-auto"><span><b>Venda</b></span></div>
-                      <div class="col-auto"><span class="digit">{{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</span></div>
+                      <div class="col-auto"><span
+                        class="digit">{{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</span></div>
                     </div>
                     <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.taxa?.condominio">
                       <div class="col-auto"><span>Condomínio <i class="info_icon"></i></span></div>
-                      <div class="col-auto"><span class="digit">R$ {{imovel?.comercializacao?.taxa?.condominio}}</span></div>
+                      <div class="col-auto"><span class="digit">R$ {{imovel?.comercializacao?.taxa?.condominio}}</span>
+                      </div>
                     </div>
-                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.taxa?.iptu && imovel?.comercializacao?.locacao?.ativa">
+                    <div class="row justify-content-between line"
+                         *ngIf="imovel?.comercializacao?.taxa?.iptu && imovel?.comercializacao?.locacao?.ativa">
                       <div class="col-auto"><span>IPTU <i class="info_icon"></i></span></div>
-                      <div class="col-auto"><span class="digit">R$ {{imovel?.comercializacao?.taxa?.iptu}}<span *ngIf="imovel?.comercializacao?.taxa?.mes">/{{anualOrMonth(imovel?.comercializacao?.taxa?.mes)}}</span></span></div>
+                      <div class="col-auto"><span class="digit">R$ {{imovel?.comercializacao?.taxa?.iptu}}<span
+                        *ngIf="imovel?.comercializacao?.taxa?.mes">/{{anualOrMonth(imovel?.comercializacao?.taxa?.mes)}}</span></span>
+                      </div>
                     </div>
-                    <div class="row justify-content-between line-hr" *ngIf="imovel?.comercializacao?.locacao?.ativa && !imovel?.comercializacao?.venda?.ativa">
-                      <div class="col-12"><hr/></div>
+                    <div class="row justify-content-between line-hr"
+                         *ngIf="imovel?.comercializacao?.locacao?.ativa && !imovel?.comercializacao?.venda?.ativa">
+                      <div class="col-12">
+                        <hr/>
+                      </div>
                     </div>
                     <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.locacao?.ativa">
                       <div class="col-auto"><span><b>Total</b></span></div>
@@ -92,7 +102,13 @@
                     <button class="more" (click)="open(content)">Quero saber mais</button>
                   </div>
                   <div class="col-12 ">
-                    <button class="share" (click)="whatsapp()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.9 42"><path class="a" d="M35.7,6.1a22.1,22.1,0,0,1,4.6,6.8,19.584,19.584,0,0,1,1.6,7.9A19.886,19.886,0,0,1,39,31.2a21.567,21.567,0,0,1-7.7,7.6,20.149,20.149,0,0,1-10.5,2.8,19.693,19.693,0,0,1-9.9-2.5L0,42,3,31.2A19.8,19.8,0,0,1,.2,20.8,19.8,19.8,0,0,1,3,10.4a21.29,21.29,0,0,1,7.6-7.6A19.8,19.8,0,0,1,21,0a19.249,19.249,0,0,1,7.9,1.6A23.678,23.678,0,0,1,35.7,6.1ZM21,38.2a17.515,17.515,0,0,0,15.1-8.6,16.269,16.269,0,0,0,2.4-8.7,17.392,17.392,0,0,0-1.4-6.6,17.045,17.045,0,0,0-3.9-5.7,17.383,17.383,0,0,0-5.6-3.8A16.538,16.538,0,0,0,21,3.5a17.679,17.679,0,0,0-8.7,2.3A17.3,17.3,0,0,0,6,12.1a16.192,16.192,0,0,0-2.3,8.7A16.755,16.755,0,0,0,6.4,30l.4.7L5,37l6.6-1.7.7.4A16.351,16.351,0,0,0,21,38.2Zm9.5-13.1.3.2c.4.2.7.3.8.5s.1.4,0,.9a8.331,8.331,0,0,1-.4,1.5,3.676,3.676,0,0,1-1.5,1.6,6.533,6.533,0,0,1-2,.9,10.445,10.445,0,0,1-2.5,0,21.344,21.344,0,0,1-3.8-1.3,20.8,20.8,0,0,1-8.7-7.7l-.2-.2a9.224,9.224,0,0,1-2.1-5.3A6.069,6.069,0,0,1,12.1,12l.1-.1a2.1,2.1,0,0,1,1.4-.7h1.1c.2,0,.5,0,.6.1a1.4,1.4,0,0,1,.4.7l1.6,3.8a1.009,1.009,0,0,1,.1.9,6.57,6.57,0,0,1-1.2,1.7c-.2.2-.4.5-.5.6s0,.3.2.5A11.97,11.97,0,0,0,19,23.3a21.079,21.079,0,0,0,3.9,2.3c.5.2.9.2,1.1-.1a17.261,17.261,0,0,0,1.7-2.1.664.664,0,0,1,.5-.4,1.952,1.952,0,0,1,.7.1A16.048,16.048,0,0,0,30.5,25.1Z"/></svg>Compartilhar</button>
+                    <button class="share" (click)="whatsapp()">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.9 42">
+                        <path class="a"
+                              d="M35.7,6.1a22.1,22.1,0,0,1,4.6,6.8,19.584,19.584,0,0,1,1.6,7.9A19.886,19.886,0,0,1,39,31.2a21.567,21.567,0,0,1-7.7,7.6,20.149,20.149,0,0,1-10.5,2.8,19.693,19.693,0,0,1-9.9-2.5L0,42,3,31.2A19.8,19.8,0,0,1,.2,20.8,19.8,19.8,0,0,1,3,10.4a21.29,21.29,0,0,1,7.6-7.6A19.8,19.8,0,0,1,21,0a19.249,19.249,0,0,1,7.9,1.6A23.678,23.678,0,0,1,35.7,6.1ZM21,38.2a17.515,17.515,0,0,0,15.1-8.6,16.269,16.269,0,0,0,2.4-8.7,17.392,17.392,0,0,0-1.4-6.6,17.045,17.045,0,0,0-3.9-5.7,17.383,17.383,0,0,0-5.6-3.8A16.538,16.538,0,0,0,21,3.5a17.679,17.679,0,0,0-8.7,2.3A17.3,17.3,0,0,0,6,12.1a16.192,16.192,0,0,0-2.3,8.7A16.755,16.755,0,0,0,6.4,30l.4.7L5,37l6.6-1.7.7.4A16.351,16.351,0,0,0,21,38.2Zm9.5-13.1.3.2c.4.2.7.3.8.5s.1.4,0,.9a8.331,8.331,0,0,1-.4,1.5,3.676,3.676,0,0,1-1.5,1.6,6.533,6.533,0,0,1-2,.9,10.445,10.445,0,0,1-2.5,0,21.344,21.344,0,0,1-3.8-1.3,20.8,20.8,0,0,1-8.7-7.7l-.2-.2a9.224,9.224,0,0,1-2.1-5.3A6.069,6.069,0,0,1,12.1,12l.1-.1a2.1,2.1,0,0,1,1.4-.7h1.1c.2,0,.5,0,.6.1a1.4,1.4,0,0,1,.4.7l1.6,3.8a1.009,1.009,0,0,1,.1.9,6.57,6.57,0,0,1-1.2,1.7c-.2.2-.4.5-.5.6s0,.3.2.5A11.97,11.97,0,0,0,19,23.3a21.079,21.079,0,0,0,3.9,2.3c.5.2.9.2,1.1-.1a17.261,17.261,0,0,0,1.7-2.1.664.664,0,0,1,.5-.4,1.952,1.952,0,0,1,.7.1A16.048,16.048,0,0,0,30.5,25.1Z"/>
+                      </svg>
+                      Compartilhar
+                    </button>
                   </div>
                 </div>
                 <div class="row justify-content-end ">
@@ -262,7 +278,7 @@
 
   </section>
 
-  <section class="container">
+  <section class="container desc">
     <div class="row">
       <div class="col-12 PropertyDescription">
         <h3>Descrição</h3>
@@ -272,24 +288,24 @@
       </div>
     </div>
     <div class="row">
-      <div class="container">
-        <div class="row">
-          <div class="col recursos" *ngIf="imovel?.recursos?.imovel?.length > 0">
-            <h3>Recursos do Imóvel</h3>
-            <ul>
-              <li *ngFor="let recurso of imovel.recursos.imovel">{{recurso}}</li>
-            </ul>
+        <div class="container">
+          <div class="row">
+            <div class="col recursos" *ngIf="imovel?.recursos?.imovel?.length > 0">
+              <h3>Recursos do Imóvel</h3>
+              <ul>
+                <li *ngFor="let recurso of imovel.recursos.imovel">{{recurso}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col recursos" *ngIf="imovel?.recursos?.condominio?.length > 0">
+              <h3>Recursos do Condomínio</h3>
+              <ul>
+                <li *ngFor="let recurso of imovel.recursos.condominio">{{recurso}}</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col recursos" *ngIf="imovel?.recursos?.condominio?.length > 0">
-            <h3>Recursos do Condomínio</h3>
-            <ul>
-              <li *ngFor="let recurso of imovel.recursos.condominio">{{recurso}}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
