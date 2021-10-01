@@ -339,7 +339,7 @@ app-imovel {
   padding: 24px;
 
   /* Small Devices, Tablets */
-  @media only screen and (max-width : 768px) {
+  @media only screen and (max-width: 768px) {
     height: auto;
   }
 
@@ -347,7 +347,7 @@ app-imovel {
     font-family: Raleway;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px;
     color: #A3A3A3;
   }
@@ -356,7 +356,7 @@ app-imovel {
     font-family: Raleway;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 19px;
     color: #575656;
   }
@@ -384,7 +384,7 @@ app-imovel {
         font-family: Roboto;
         font-style: normal;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 19px;
         color: #575656;
       }
@@ -400,7 +400,7 @@ app-imovel {
         font-family: Raleway;
         font-style: normal;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 19px;
         color: #575656;
         display: flex;
@@ -418,8 +418,6 @@ app-imovel {
         b {
           font-family: Raleway;
           font-weight: bold;
-          font-size: 16px;
-          line-height: 19px;
           color: #2E2E2E;
         }
 
@@ -433,6 +431,7 @@ app-imovel {
           margin-bottom: 0px;
         }
       }
+
       hr {
         border: 1px dashed #A3A3A3;
         margin: 13px 0;
@@ -462,6 +461,7 @@ app-imovel {
         &:hover {
           filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.14)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.12)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.2)) !important;
         }
+
       }
 
       &.share {
@@ -469,11 +469,39 @@ app-imovel {
         background: transparent;
         color: #F69731;
         margin-bottom: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 24px;
+          height: 24px;
+          display: inline-flex;
+          margin-right: 4px;
+          transition: all 0.3s ease;
+          fill: #F69731;
+
+          a {
+            fill: #F69731;
+          }
+
+          &:hover {
+            fill: #fff;
+
+            a {
+              fill: #fff;
+            }
+          }
+        }
 
         &:hover {
           background: #F69731 !important;
           color: #fff;
           border: 2px solid #F69731 !important;
+
+          svg {
+            fill: #fff;
+          }
         }
 
       }
