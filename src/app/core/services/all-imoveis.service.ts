@@ -40,8 +40,14 @@ export class AllImoveis {
     const compra_preco = 'comercializacao.venda.preco';
     const venda_preco = 'comercializacao.locacao.preco';
 
-    wheres.push(where('finalidade', '==', customSearch.finalidade));
-    wheres.push(where(customSearch.categoria === 'comprar' ? compra : venda, '==', true));
+    if (customSearch.finalidade) {
+      wheres.push(where('finalidade', '==', customSearch.finalidade));
+    }
+
+    if (customSearch.categoria) {
+      wheres.push(where(customSearch.categoria === 'comprar' ? compra : venda, '==', true));
+    }
+
     //
     if (customSearch.bairros?.length > 0) {
       wheres.push(where('local.bairro', 'in', customSearch.bairros));

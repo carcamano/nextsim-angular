@@ -623,6 +623,12 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         if (this.imoveis.length > 0 && value.length === 0) {
         } else {
           this.imoveis = value as Imovel[];
+          if (this.queryParams.query) {
+            const findBySigla = this.imoveis.find(value1 => value1.sigla === this.queryParams.query);
+            if(findBySigla) {
+              this.goImovel(findBySigla);
+            }
+          }
           setTimeout(() => {
             window.scrollTo(0, parseInt(localStorage.getItem('nextscroll')));
             localStorage.removeItem('nextscroll');
