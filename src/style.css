@@ -15378,7 +15378,6 @@ body {
   display: block; }
 
 .sidebar {
-  letter-spacing: 1px;
   padding-right: 60px; }
 
 .sidebar .sidebar-title {
@@ -21029,7 +21028,6 @@ main {
   display: block; }
 
 .properties .sidebar {
-  letter-spacing: 1px;
   padding-right: 60px; }
 
 .properties .sidebar .sidebar-title {
@@ -21684,8 +21682,7 @@ main {
   margin: 0;
   font-size: 18px;
   font-weight: 400;
-  color: #575656;
-  letter-spacing: 1.6px; }
+  color: #575656; }
 
 .PropertyMapText {
   width: 50%;

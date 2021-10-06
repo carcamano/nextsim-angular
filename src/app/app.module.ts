@@ -46,6 +46,7 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {GoogleMapsModule} from "@angular/google-maps";
+import { NextToastComponent } from './core/components/next-toast/next-toast.component';
 
 registerLocaleData(localePt);
 
@@ -93,7 +94,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     BlogDetailComponent,
     ServicosFormulariosComponent,
     FormPessoaFisicaComponent,
-    LancamentosComponent
+    LancamentosComponent,
+    NextToastComponent
   ],
   imports: [
     BrowserModule,

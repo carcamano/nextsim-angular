@@ -21,6 +21,7 @@ import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_LOCAIS, PATH_PRECOS} from "../core/ut
 import {map} from "rxjs/operators";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from "../core/constants/tipos";
+import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from "../core/utils/imovel.util";
 
 @Component({
   selector: 'app-imoveis',
@@ -42,6 +43,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   imoveis: Imovel[] = [];
   allImoveis: Imovel[] = [];
+
+  simpleSearch: string;
 
   locais: any[];
 
@@ -106,6 +109,13 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   letter1: string;
   letter2: string;
   letterIndexes: number[] = [];
+
+  toSalas = toSalas;
+  toDormis = toDormis;
+  toArea = toArea;
+  toBath = toBath;
+  toVaga = toVaga;
+  getFormattedPrice = getFormattedPrice;
 
   constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private all: AllImoveis,
               private router: Router, private modalService: NgbModal, private firestore: Firestore) {
@@ -282,6 +292,17 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     return _.slice(images, 0, 4);
   }
 
+  doSimpleSearch() {
+    if (this.simpleSearch?.length > 0) {
+      this.router.navigate(['imoveis'], {
+        queryParams: {
+          query: this.simpleSearch
+        },
+        skipLocationChange: true
+      });
+    }
+  }
+
 
   private scrollTop() {
     try {
@@ -291,60 +312,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
   }
 
-  toArea(imovel: Imovel) {
-    if (imovel) {
-      try {
-        if (imovel && imovel.tipo === 'casa') {
-          return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-        } else if (imovel && imovel.tipo === 'apartamento' || imovel.tipo === 'sala' || imovel.tipo === 'cobertura') {
-          return imovel.numeros.areas.util.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-        } else if (imovel && imovel.tipo === 'terreno') {
-          return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-        } else if (imovel && imovel.tipo === 'chácara') {
-          return imovel.numeros.areas.terreno.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-        } else if (imovel && imovel.tipo === 'galpão') {
-          return imovel.numeros.areas.construida.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-        } else if (imovel && imovel.tipo === 'prédio') {
-          return imovel.numeros.areas.construida.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
-        }
-      } catch (e) {
-        // console.error(e);
-      }
-    }
-    return null;
-  }
-
-  toDormis(imovel: Imovel) {
-    if (!imovel) {
-      return '?';
-    }
-    try {
-      if (imovel && imovel.finalidade === 'residencial') {
-        return imovel.numeros.dormitorios;
-      } else if (imovel) {
-        return imovel.numeros.salas;
-      }
-    } catch (e) {
-      // console.error(e);
-    }
-    return '?';
-  }
-
-  toSalas(imovel: Imovel) {
-    if (!imovel) {
-      return '?';
-    }
-    try {
-      if (imovel && (imovel.tipo === 'sala' || imovel.tipo === 'prédio')) {
-        return imovel.numeros.salas;
-      } else if (imovel) {
-        return imovel.numeros.salas;
-      }
-    } catch (e) {
-      // console.error(e);
-    }
-    return '?';
-  }
 
   getprice(imovel: Imovel): string {
     if (!imovel) {
@@ -370,13 +337,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       // console.error(e);
     }
     return '?';
-  }
-
-  getFormattedPrice(price: number, sale = false): string {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(price).replace(',00', '') + (sale ? '' : '<sub>/mês</sub>');
   }
 
   buildBadges() {
@@ -517,6 +477,16 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   }
 
+  searchAutocomplete(event: any) {
+    const datalist = document.querySelector('datalist');
+    if (this.simpleSearch.length > 3) {
+      datalist.id = 'dynmicUserIds';
+    } else {
+      datalist.id = '';
+    }
+
+  }
+
   showMakerLetter(bairro: string, index: number) {
     return this.letterIndexes.includes(index);
 
@@ -625,7 +595,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
           this.imoveis = value as Imovel[];
           if (this.queryParams.query) {
             const findBySigla = this.imoveis.find(value1 => value1.sigla === this.queryParams.query);
-            if(findBySigla) {
+            if (findBySigla) {
               this.goImovel(findBySigla);
             }
           }

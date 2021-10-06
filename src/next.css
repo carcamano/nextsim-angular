@@ -3,6 +3,20 @@
   padding: 0;
   margin: 0; }
 
+.list-imoveis-menu-placeholder {
+  height: 120px;
+  display: block;
+  width: 100%; }
+
+.breadcrumb .breadcrumb-item a {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  color: #A3A3A3; }
+.breadcrumb .breadcrumb-item.active {
+  font-weight: bold; }
+
 .how-we-do {
   background: #575656;
   padding-bottom: 4px; }
@@ -281,7 +295,9 @@ app-imovel .property {
       font-weight: bold;
       color: #2E2E2E; }
     .card-imovel .novo-footer .prices-table span i {
-      opacity: 0; }
+      opacity: 0.3;
+      margin-left: 4px;
+      cursor: pointer; }
   .card-imovel .novo-footer .prices-table .line {
     margin-bottom: 8px; }
     .card-imovel .novo-footer .prices-table .line:last-child {
@@ -343,6 +359,88 @@ app-imovel .property {
     line-height: 14px;
     color: #575656; }
 
+.filter-inputs button {
+  cursor: pointer; }
+.filter-inputs input {
+  padding: 4px 8px 4px 16px;
+  height: 32px;
+  background: #FFFFFF;
+  border: 1px solid #DEDEDE;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #A3A3A3;
+  display: flex;
+  margin-right: 4px; }
+  .filter-inputs input:focus {
+    outline: none; }
+.filter-inputs .input-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  width: 40px;
+  height: 32px;
+  background: #F69731;
+  border: none;
+  border-radius: 8px; }
+  .filter-inputs .input-button i {
+    width: 17px;
+    height: 17px;
+    background-image: url("assets/img/icons/lupa.svg"); }
+.filter-inputs .button-modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  width: 100%;
+  height: 32px;
+  background: #F69731;
+  border: none;
+  border-radius: 8px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-bottom: 16px; }
+  .filter-inputs .button-modal i {
+    width: 21px;
+    height: 18px;
+    background-image: url("assets/img/icons/custom-search.svg");
+    margin-right: 5px; }
+
+.opacity-filter img {
+  -webkit-filter: blur(10px);
+  filter: blur(10px); }
+.opacity-filter a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 210px; }
+
+@media only screen and (min-width: 768px) {
+  .how-we-do .title_block {
+    margin-top: -110px; }
+
+  .about-session {
+    padding-bottom: 0; }
+
+  .about-session {
+    padding-top: 0;
+    margin-top: -80px; }
+
+  .divBtnDownload {
+    margin-bottom: 50px; } }
 @media only screen and (max-width: 768px) {
   app-imovel .container.desc {
     width: 100% !important;

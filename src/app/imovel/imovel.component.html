@@ -54,6 +54,19 @@
                        *ngIf="(imovel.tipo === 'sala' || imovel.tipo === 'prédio') && toSalas(imovel)">
                     <div><i class="icon2-salas"></i> <span>{{toSalas(imovel)}}</span></div>
                   </div>
+
+                  <div class="col-auto" *ngIf="toBath(imovel)">
+                    <div>
+                      <i class="icon-bathtub"></i>
+                      <span>{{toBath(imovel)}}</span>
+                    </div>
+                  </div>
+                  <div class="col-auto" *ngIf="toVaga(imovel)">
+                    <div>
+                      <i class="icon-car"></i>
+                      <span>{{toVaga(imovel)}}</span>
+                    </div>
+                  </div>
                 </div>
 
 
@@ -61,38 +74,38 @@
               <div class="col-12 align-self-end novo-footer">
                 <div class="row prices-table">
                   <div class="col-12">
-                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.locacao?.ativa">
+                    <div class="row justify-content-between line align-items-center" *ngIf="imovel?.comercializacao?.venda?.ativa">
+                      <div class="col-auto"><span><b>Venda</b></span></div>
+                      <div class="col-auto"><span
+                        class="hard-color digit">{{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</span></div>
+                    </div>
+                    <div class="row justify-content-between line align-items-center" *ngIf="imovel?.comercializacao?.locacao?.ativa">
                       <div class="col-auto"><span><b class="hard-color">Aluguel</b></span></div>
                       <div class="col-auto"><span
                         class="hard-color digit">{{ getFormattedPrice(imovel?.comercializacao?.locacao?.preco)}}</span>
                       </div>
                     </div>
-                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.venda?.ativa">
-                      <div class="col-auto"><span><b>Venda</b></span></div>
-                      <div class="col-auto"><span
-                        class="digit">{{getFormattedPrice(imovel?.comercializacao?.venda?.preco)}}</span></div>
-                    </div>
-                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.taxa?.condominio">
-                      <div class="col-auto"><span>Condomínio <i class="info_icon"></i></span></div>
-                      <div class="col-auto"><span class="digit">R$ {{imovel?.comercializacao?.taxa?.condominio}}</span>
+                    <div class="row justify-content-between line align-items-center" *ngIf="imovel?.comercializacao?.taxa?.condominio">
+                      <div class="col-auto"><span>Condomínio <i class="info_icon align-self-center" (click)="openToast('Condomínio', 'Valor sujeito a alteração conforme deliberações condominiais, podendo, ainda, variar de acordo com as despesas fixas e eventuais do condomínio (ex.: água, luz, conservação e manutenção do prédio, entre outros).')"></i></span></div>
+                      <div class="col-auto"><span class="digit">{{getFormattedPrice(imovel?.comercializacao?.taxa?.condominio)}}</span>
                       </div>
                     </div>
-                    <div class="row justify-content-between line"
+                    <div class="row justify-content-between line align-items-center"
                          *ngIf="imovel?.comercializacao?.taxa?.iptu && imovel?.comercializacao?.locacao?.ativa">
-                      <div class="col-auto"><span>IPTU <i class="info_icon"></i></span></div>
-                      <div class="col-auto"><span class="digit">R$ {{imovel?.comercializacao?.taxa?.iptu}}<span
+                      <div class="col-auto"><span>IPTU <i class="info_icon align-self-center" (click)="openToast('IPTU', 'O IPTU é um imposto municipal cujo valor é determinado pela prefeitura.')"></i></span></div>
+                      <div class="col-auto"><span class="digit">{{getFormattedPrice(imovel?.comercializacao?.taxa?.iptu)}}<span
                         *ngIf="imovel?.comercializacao?.taxa?.mes">/{{anualOrMonth(imovel?.comercializacao?.taxa?.mes)}}</span></span>
                       </div>
                     </div>
-                    <div class="row justify-content-between line-hr"
-                         *ngIf="imovel?.comercializacao?.locacao?.ativa && !imovel?.comercializacao?.venda?.ativa">
+                    <div class="row justify-content-between line-hr align-items-center"
+                         *ngIf="imovel?.comercializacao?.locacao?.ativa">
                       <div class="col-12">
                         <hr/>
                       </div>
                     </div>
-                    <div class="row justify-content-between line" *ngIf="imovel?.comercializacao?.locacao?.ativa">
+                    <div class="row justify-content-between line mb-2 mt-1" *ngIf="imovel?.comercializacao?.locacao?.ativa">
                       <div class="col-auto"><span><b>Total</b></span></div>
-                      <div class="col-auto"><span class="digit">R$ <b>10.800</b></span></div>
+                      <div class="col-auto"><span class="digit">R$ <b>{{theTotal()}}</b></span></div>
                     </div>
                   </div>
                 </div>
@@ -341,6 +354,8 @@
   </section>
   <!-- FINAL SESSAO MAPA -->
 
+
+  <app-next-toast #toast></app-next-toast>
 
   <ng-template #content let-modal>
     <div class="modal-content">

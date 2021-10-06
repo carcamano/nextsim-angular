@@ -56,6 +56,24 @@ export const toSalas = (imovel: Imovel) =>  {
   return '?';
 }
 
+export function toBath(imovel: Imovel): string {
+  if(imovel?.numeros?.banheiros) {
+    return  imovel.numeros?.banheiros?.toString();
+  }
+  return null;
+}
+
+export function toVaga(imovel: Imovel): string {
+  if(imovel?.numeros?.vagas) {
+    return  imovel.numeros?.vagas?.toString();
+  }
+  return null;
+}
+
+export function getFormattedPrice(price: number) {
+  return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price).replace(',00', '');
+}
+
 export const getprice = (imovel: Imovel, queryParams: any): string =>  {
   if (!imovel) {
     return '?';
@@ -82,9 +100,3 @@ export const getprice = (imovel: Imovel, queryParams: any): string =>  {
   return '?';
 }
 
-export const getFormattedPrice = (price: number, sale = false): string =>  {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(price).replace(',00', '') + (sale ? '' : '<sub>/mês</sub>');
-}

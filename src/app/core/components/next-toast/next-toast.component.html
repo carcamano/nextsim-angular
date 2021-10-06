@@ -1,0 +1,25 @@
+<div class="overlay-toast" [hidden]="!show">
+
+  <div class="toast-card">
+    <div class="row ">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12">
+            <h2>{{title}}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p>{{text}}</p>
+          </div>
+        </div>
+        <div class="row justify-content-end no-gutters">
+          <div class="col-auto">
+            <button (click)="show = false">OK!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

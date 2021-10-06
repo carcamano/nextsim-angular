@@ -11,7 +11,8 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {environment} from "../../environments/environment";
-import {toArea, toDormis, toSalas} from "../core/utils/imovel.util";
+import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from "../core/utils/imovel.util";
+import {NextToastComponent} from "../core/components/next-toast/next-toast.component";
 
 @Component({
   selector: 'app-imovel',
@@ -30,6 +31,8 @@ export class ImovelComponent implements OnInit {
 
   apiLoaded: Observable<boolean>;
 
+  @ViewChild('toast') toast: NextToastComponent;
+
   @ViewChild('content') public childModal: NgbModalRef;
 
   form: FormGroup;
@@ -38,6 +41,9 @@ export class ImovelComponent implements OnInit {
   toSalas = toSalas;
   toDormis = toDormis;
   toArea = toArea;
+  toBath = toBath;
+  toVaga = toVaga;
+  getFormattedPrice = getFormattedPrice;
 
 
   constructor(private route: ActivatedRoute, private all: AllImoveis, private formBuilder: FormBuilder,
@@ -54,7 +60,7 @@ export class ImovelComponent implements OnInit {
       );
 
     this.route.params.subscribe(params => {
-      this.all.getBySigla(String(params.id).toLocaleUpperCase()).subscribe( (im: Imovel[]) => {
+      this.all.getBySigla(String(params.id).toLocaleUpperCase()).subscribe((im: Imovel[]) => {
         this.imovel = im[0];
         this.imageObject();
         this.buildForm();
@@ -120,10 +126,6 @@ export class ImovelComponent implements OnInit {
   }
 
 
-  getFormattedPrice(price: number) {
-    return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price).replace(',00', '');
-  }
-
   anualOrMonth(label?: string) {
     let l = 'mês';
     if (label === 'anual') {
@@ -132,6 +134,23 @@ export class ImovelComponent implements OnInit {
     return l;
   }
 
+  theTotal() {
+    let total = 0;
+    if (this.imovel?.comercializacao?.locacao?.preco) {
+      total += this.imovel?.comercializacao?.locacao?.preco;
+    }
+
+    if (this.imovel?.comercializacao?.taxa?.condominio) {
+      total += this.imovel?.comercializacao?.taxa?.condominio;
+    }
+
+    if (this.imovel?.comercializacao?.taxa?.iptu) {
+      total += this.imovel?.comercializacao?.taxa?.iptu;
+    }
+
+    return getFormattedPrice(total).replace('R$', '');
+
+  }
 
 
   open(content) {
@@ -143,6 +162,13 @@ export class ImovelComponent implements OnInit {
     }).result.then((result) => {
     }, (reason) => {
     });
+  }
+
+  openToast(title: string, text: string) {
+    this.toast.title = title;
+    this.toast.text = text;
+    this.toast.show = true;
+
   }
 
   whatsapp() {
