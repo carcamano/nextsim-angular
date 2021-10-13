@@ -1,0 +1,95 @@
+<div class="custom-search-bg" *ngIf="showMe">
+  <div class="row h-100 align-items-center justify-content-center">
+    <div class="col-12 col-md-6">
+      <div class="row align-items-center justify-content-center no-gutters">
+        <div class="col-auto">
+          <span class="step-num" *ngIf="currentStep === 0">1</span>
+          <span class="step-num" *ngIf="currentStep === 1">2</span>
+          <span class="step-num" *ngIf="currentStep === 2">3</span>
+        </div>
+        <div class="col-auto">
+          <span class="step-label" *ngIf="currentStep === 0">Escolha uma <b>Finalidade</b>:</span>
+          <span class="step-label" *ngIf="currentStep === 1">Escolha uma <b>Categoria</b>:</span>
+          <span class="step-label" *ngIf="currentStep === 2">Digite ou escolha abaixo::</span>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-center mt-4">
+        <div class="col-10">
+          <div class="row" *ngIf="currentStep === 0">
+            <div class="col">
+              <button class="button-selector" [class.current]="customSearch.categoria === 'alugar'"
+                      (click)="customSearch.categoria = 'alugar'">Alugar
+              </button>
+            </div>
+            <div class="col">
+              <button class="button-selector" [class.current]="customSearch.categoria === 'comprar'"
+                      (click)="customSearch.categoria = 'comprar'">Comprar
+              </button>
+            </div>
+          </div>
+          <div class="row" *ngIf="currentStep === 1">
+            <div class="col">
+
+
+              <div class="category" ngbDropdown #myDrop="ngbDropdown">
+                <div class="category-title" ngbDropdownToggle id="dropdownForm2"><span
+                  class="icon-category arrow-down-icon"></span> <span
+                  class="category-title-in">{{customSearch.finalidade || 'Categoria'}}</span></div>
+                <div class="category-options" ngbDropdownMenu aria-labelledby="dropdownForm2">
+                  <div class="form-check category-option" (click)="changeStep(2, 'residencial')">
+                    <label class="form-check-label">
+                      Residencial
+                    </label>
+                  </div>
+                  <div class="form-check category-option" (click)="changeStep(2, 'comercial')">
+                    <label class="form-check-label">
+                      Comercial
+                    </label>
+                  </div>
+                  <div class="form-check category-option" (click)="goLancamento()">
+                    <label class="form-check-label">
+                      Lançamentos
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="row" *ngIf="currentStep === 2">
+            <div class="col">
+              <div class="searchfield">
+                <input type="text" class="form-control" id="search-field"
+                       placeholder="Cidade, bairro ou código" autocomplete="off" [(ngModel)]="customSearch.query"
+                       (keyup)="searchAutocomplete($event)" id="userIdFirstWay" list="dynmicUserIds"
+                       [ngModelOptions]="{standalone: true}">
+                <!--                     [attr.list]="autocompletes && autocompletes.length > 4 ? 'dynmicUserIds': '' "-->
+                <datalist>
+                  <option *ngFor="let item of autocompletes" [value]="item">{{item}}</option>
+                </datalist>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-center mt-4">
+        <div class="col-auto">
+          <div class="steppers">
+            <div [class.current]="currentStep === 0"></div>
+            <div [class.current]="currentStep === 1"></div>
+            <div [class.current]="currentStep === 2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-center mt-4">
+        <div class="col-auto">
+          <button class="next-button" *ngIf="currentStep === 0" (click)="changeStep(1)">Avançar</button>
+          <button class="next-button" *ngIf="currentStep === 1" (click)="changeStep(2)">Avançar</button>
+          <button class="next-button" *ngIf="currentStep === 2" (click)="doSearch(3)">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

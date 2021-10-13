@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit {
 
 
   open() {
-
+    this.customSearch.showMe = true;
   }
 
   scroll() {

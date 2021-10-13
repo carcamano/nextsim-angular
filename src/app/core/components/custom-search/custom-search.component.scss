@@ -1,0 +1,79 @@
+.custom-search-bg {
+  background-color: rgba(black, 0.8);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  color: #fff;
+
+  font-family: Roboto;
+  font-size: 18px;
+  line-height: 21px;
+  color: #FFFFFF;
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    margin-right: 10px;
+
+  }
+
+  .step-label {
+  }
+
+  button {
+    height: 54px;
+    border-radius: 999px;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    width: 100%;
+    border: none;
+    background: #fff;
+    color: #575656;
+    cursor: pointer;
+
+    &.current, &.next-button {
+      background: #F69731;
+      color: #FFFFFF;
+    }
+
+    &.next-button {
+      width: auto;
+      min-width: 160px;
+    }
+  }
+
+  .steppers {
+    display: flex;
+    align-items: center;
+
+    > div {
+      width: 8px;
+      height: 8px;
+      left: 161px;
+      top: 347px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      margin: 0 5px;
+
+      &.current {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  .category, .searchfield {
+    width: 100% !important;
+  }
+}

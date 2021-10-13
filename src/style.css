@@ -22249,7 +22249,7 @@ main {
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
   .home-filter .btn-search {
-    margin-top: 0 !important; }
+    margin-top: 20px !important; }
 
   .SecondMenu {
     display: block; }

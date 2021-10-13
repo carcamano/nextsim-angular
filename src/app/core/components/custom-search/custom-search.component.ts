@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {Options} from "ng5-slider";
 import {formatCurrency} from "@angular/common";
 import * as _ from "lodash";
@@ -6,6 +6,8 @@ import {collection, collectionData, collectionSnapshots, doc, docSnapshots, Fire
 import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_LOCAIS, PATH_PRECOS} from "../../utils/constants.util";
 import {map} from "rxjs/operators";
 import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from "../../constants/tipos";
+import {NgbDropdown} from "@ng-bootstrap/ng-bootstrap";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-custom-search',
@@ -14,12 +16,25 @@ import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from "../../constants/tipos";
 })
 export class CustomSearchComponent implements OnInit {
 
+  currentStep = 0;
+
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+
+  @ViewChild('myDrop') finalidadeSelector: NgbDropdown;
+
+  autocompletes: string[] = [];
+
+  @Input() showMe = false;
+
   customSearch = {
     categoria: 'comprar',
     finalidade: 'residencial',
     quartos: 0,
     salas: 0,
+    banheiros: 0,
     dormitorios: 0,
+    garagem: 0,
     tipos: [],
     precos: {
       min: 0,
@@ -30,7 +45,9 @@ export class CustomSearchComponent implements OnInit {
       max: 61000,
     },
     bairros: [],
-    cidade: ''
+    cidade: '',
+    query: '',
+    page: 1
   };
 
   filtred: any[] = [];
@@ -38,6 +55,8 @@ export class CustomSearchComponent implements OnInit {
   cidades: string[] = [];
   bairrosSelecionados: any[] = [];
   locais: any[];
+
+  removeParams: any[] = [];
 
   windowWidth = 0;
 
@@ -57,7 +76,7 @@ export class CustomSearchComponent implements OnInit {
     }
   };
 
-  constructor(private firestore: Firestore) {
+  constructor(private firestore: Firestore, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -65,6 +84,101 @@ export class CustomSearchComponent implements OnInit {
     this.windowWidth = window.innerWidth;
   }
 
+  changeStep(goTo: number, value?: any) {
+    if (goTo > -1 && !value) {
+      this.currentStep = goTo;
+    }
+    if (value) {
+      switch (goTo) {
+        case 1:
+          this.customSearch.categoria = value;
+          break;
+        case 2:
+          this.customSearch.finalidade = value;
+          break;
+      }
+    }
+
+    this.finalidadeSelector?.close();
+  }
+
+  doSearch() {
+    this.router.navigate(['imoveis'], {
+      queryParams: this.makeParams()
+    }).then(value => {
+      this.showMe = false;
+      this.currentStep = 0;
+      console.log(value);
+    }).catch(reason => console.error(reason));
+  }
+
+
+
+
+  makeParams() {
+    let tipos = [];
+    let querys = this.removeParams.map(value => value.query);
+    tipos = this.customSearch.tipos.filter(value => {
+      return value.selected === true && !this.removeParams.filter(value => value.query === 'tipo').map(value => value.label).includes(value.key);
+    }).map(value => {
+      return value.key;
+    });
+    let bairros = [];
+    bairros = this.customSearch.bairros.filter(value => {
+      return value.selected === true && !this.removeParams.filter(value => value.query === 'bairros').map(value => value.label).includes(value.key);
+    }).map(value => {
+      return value.key;
+    });
+    let area: string;
+    if (!querys.includes('area')) {
+      if (this.customSearch.area.min) {
+        this.customSearch.area.min = parseInt(this.customSearch.area.min.toString()
+          .replace('R$ ', '').replace('.', '')
+          .replace(',', '.'));
+      }
+      if (this.customSearch.area.max) {
+        this.customSearch.area.max = parseInt(this.customSearch.area.max.toString()
+          .replace('R$ ', '').replace('.', '')
+          .replace(',', '.'));
+      }
+      area = this.customSearch.area.min + ',' + this.customSearch.area.max;
+    }
+    let precos: string;
+    if (!querys.includes('precos')) {
+
+      if (this.customSearch.precos.min) {
+        this.customSearch.precos.min = parseInt(this.customSearch.precos.min.toString()
+          .replace('R$ ', '').replace('.', '')
+          .replace(',', '.'));
+      }
+      if (this.customSearch.precos.max) {
+        this.customSearch.precos.max = parseInt(this.customSearch.precos.max.toString()
+          .replace('R$ ', '').replace('.', '')
+          .replace(',', '.'));
+      }
+      precos = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
+    }
+    return {
+      finalidade: !querys.includes('finalidade') ? this.customSearch.finalidade : '',
+      tipo: tipos,
+      categoria: !querys.includes('categoria') ? this.customSearch.categoria : '',
+      precos,
+      area,
+      custom: true,
+      dormitorios: !querys.includes('dormitorios') ? (this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '') : '',
+      garagem: !querys.includes('garagem') ? (this.customSearch.garagem > 0 ? this.customSearch.garagem : '') : '',
+      banheiros: !querys.includes('banheiros') ? (this.customSearch.banheiros > 0 ? this.customSearch.banheiros : '') : '',
+      salas: !querys.includes('salas') ? (this.customSearch.salas > 0 ? this.customSearch.salas : '') : '',
+      bairros: bairros,
+      cidade: !querys.includes('cidade') ? this.customSearch.cidade : '',
+      page: this.customSearch.page,
+      query: this.customSearch.query
+    };
+  }
+
+  goLancamento() {
+
+  }
 
   result() {
     console.log(this.customSearch);
@@ -87,6 +201,16 @@ export class CustomSearchComponent implements OnInit {
       dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas,
       bairros: bairros.join(','), cidade: this.customSearch.cidade
     };
+  }
+
+  searchAutocomplete(event: any) {
+    const datalist = document.querySelector('datalist');
+    if (this.customSearch.query.length > 3) {
+      datalist.id = 'dynmicUserIds';
+    } else {
+      datalist.id = '';
+    }
+
   }
 
 
@@ -151,6 +275,15 @@ export class CustomSearchComponent implements OnInit {
         this.locais = value;
       })
 
+
+    docSnapshots(doc(this.firestore, `${PATH_AUTOCOMPLETE}/${PATH_AUTOCOMPLETE}`))
+      .pipe(map((a) => {
+        return a.data();
+      }))
+      .subscribe(strings => {
+        console.log(strings);
+        this.autocompletes = strings.autocomplete;
+      });
 
   }
 

@@ -183,17 +183,17 @@
             </div>
 
             <div class="col-12" [hidden]="imoveis?.length !== 10 && currentPage !== 1">
-              <ul class="pagination"><!---->
-                <li class="page-item disabled"><a aria-label="Previous" class="page-link" tabindex="-1"
-                                                  (click)="changePage(-1)"><span
-                  aria-hidden="true">«</span></a></li><!---->
-                <li class="page-item active"><!----><!----><a class="page-link"> {{currentPage}} <!----></a>
-                </li>
-                <li class="page-item"><a aria-label="Next" class="page-link" (click)="changePage(1)"><span
-                  aria-hidden="true">»</span></a></li><!---->
-              </ul>
-              <!--              <ngb-pagination [collectionSize]="pages" [(page)]="currentPage" [maxSize]="5" [rotate]="true"-->
-              <!--                              [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>-->
+<!--              <ul class="pagination">&lt;!&ndash;&ndash;&gt;-->
+<!--                <li class="page-item disabled"><a aria-label="Previous" class="page-link" tabindex="-1"-->
+<!--                                                  (click)="changePage(-1)"><span-->
+<!--                  aria-hidden="true">«</span></a></li>&lt;!&ndash;&ndash;&gt;-->
+<!--                <li class="page-item active">&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;<a class="page-link"> {{currentPage}} &lt;!&ndash;&ndash;&gt;</a>-->
+<!--                </li>-->
+<!--                <li class="page-item"><a aria-label="Next" class="page-link" (click)="changePage(1)"><span-->
+<!--                  aria-hidden="true">»</span></a></li>&lt;!&ndash;&ndash;&gt;-->
+<!--              </ul>-->
+                            <ngb-pagination [collectionSize]="pages" [(page)]="currentPage" [maxSize]="5" [rotate]="true"
+                                            [boundaryLinks]="true" (pageChange)="changePage($event)"></ngb-pagination>
             </div>
           </div>
 

@@ -265,14 +265,14 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
   }
 
-  changePage(page: number) {
+  changePage(page: any) {
     if (this.currentPage + page <= 0) {
       return;
     }
     this.scrollTop();
-    this.currentPage = this.currentPage + page;
+    this.currentPage = page;
     this.customSearch.page = page;
-    this.getImoveis(this.customSearch, page > 0 ? _.last(this.imoveis) : _.first(this.imoveis));
+    this.makePagination();
     localStorage.setItem(location.search, page.toString());
   }
 
@@ -364,8 +364,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade'));
     }
 
-    if (this.queryParams.bairros) {
-      const ss = this.queryParams.bairros.split(',');
+    if (this.queryParams?.bairros) {
+      const ss = this.queryParams?.bairros instanceof String ? (this.queryParams?.bairros?.split(',') || []) : this.queryParams?.bairros;
       ss.forEach(b => this.badges.push(this.badge(`No bairro: ${b}`, `bairros,${b}`)));
     }
 
@@ -411,7 +411,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
 
     if (this.queryParams.tipo) {
-      const ss = this.queryParams.tipo.split(',');
+      const ss = this.queryParams?.tipo instanceof String ? (this.queryParams?.tipo?.split(',') || []) : this.queryParams?.tipo;
       ss.forEach(b => this.badges.push(this.badge(`Tipo: ${b}`, `tipo,${b}`)));
     }
 
@@ -595,21 +595,24 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   private getImoveis(query?: any, last?: Imovel) {
     this.all.getImoveis(query || this.customSearch, last)
       .subscribe(value => {
-        if (this.imoveis.length > 0 && value.length === 0) {
-        } else {
-          this.imoveis = value as Imovel[];
-          if (this.queryParams.query) {
-            const findBySigla = this.imoveis.find(value1 => value1.sigla === this.queryParams.query);
-            if (findBySigla) {
-              this.goImovel(findBySigla);
-            }
+        this.allImoveis = value as Imovel[];
+        this.pages = this.allImoveis?.length || 0;
+        this.makePagination();
+        if (this.queryParams.query) {
+          const findBySigla = this.imoveis.find(value1 => value1.sigla === this.queryParams.query);
+          if (findBySigla) {
+            this.goImovel(findBySigla);
           }
-          setTimeout(() => {
-            window.scrollTo(0, parseInt(localStorage.getItem('nextscroll')));
-            localStorage.removeItem('nextscroll');
-          }, 500);
         }
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(localStorage.getItem('nextscroll')));
+          localStorage.removeItem('nextscroll');
+        }, 500);
       });
+  }
+
+  private makePagination() {
+    this.imoveis = _.slice(this.allImoveis, 10 * (this.currentPage - 1), 10 * (this.currentPage - 1) + 10);
   }
 
 }
