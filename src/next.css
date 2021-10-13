@@ -6,7 +6,11 @@
 .list-imoveis-menu-placeholder {
   height: 120px;
   display: block;
-  width: 100%; }
+  width: 100%;
+  /* Small Devices, Tablets */ }
+  @media only screen and (max-width: 768px) {
+    .list-imoveis-menu-placeholder {
+      height: 55px; } }
 
 .breadcrumb .breadcrumb-item a {
   font-family: Roboto;
@@ -523,5 +527,18 @@ app-imovel .property {
   padding: 20px !important; }
 .MobileFilterBarMenu .btn-link {
   color: #000; }
+
+@media only screen and (max-width: 768px) {
+  .content.properties {
+    margin-top: -35px; }
+
+  .properties .sidebar {
+    padding-right: 15px; }
+
+  .MobileMenuHeader .CloseMenu, .FirstMenu, .SocialMobileMenu {
+    text-align: center; }
+
+  .properties .properties-list {
+    margin-top: 15px; } }
 
 /*# sourceMappingURL=next.css.map */

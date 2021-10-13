@@ -29,7 +29,6 @@ import localePt from '@angular/common/locales/pt';
 import {environment} from "../environments/environment";
 import {AllImoveis} from "./core/services/all-imoveis.service";
 import {FabComponent} from './fab/fab.component';
-import {CustomSearchComponent} from './custom-search/custom-search.component';
 import {MomentModule} from 'ngx-moment';
 import {NgImageSliderModule} from "ng-image-slider";
 import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
@@ -47,6 +46,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {GoogleMapsModule} from "@angular/google-maps";
 import { NextToastComponent } from './core/components/next-toast/next-toast.component';
+import { CustomSearchComponent } from './core/components/custom-search/custom-search.component';
 
 registerLocaleData(localePt);
 
@@ -88,14 +88,14 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     QueroNegociarComponent,
     SobreComponent,
     FabComponent,
-    CustomSearchComponent,
     LancamentoComponent,
     BlogComponent,
     BlogDetailComponent,
     ServicosFormulariosComponent,
     FormPessoaFisicaComponent,
     LancamentosComponent,
-    NextToastComponent
+    NextToastComponent,
+    CustomSearchComponent
   ],
   imports: [
     BrowserModule,

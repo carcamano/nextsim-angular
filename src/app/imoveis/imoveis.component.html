@@ -25,7 +25,7 @@
                 <button class="btn-badge" (click)="badgeClose(badge.query)">x</button></span>
             </div>
             <div class="row filter-inputs">
-              <div class="col-10">
+              <div class="col-lg-10">
                 <div class="row">
                   <div class="col-12 d-flex mb-3 mt-1">
                     <input type="text" class="col" placeholder="Cidade, bairro ou código"
@@ -50,7 +50,7 @@
             <div class="d-block d-sm-flex item" *ngIf="noResults">
               <h4>Nenhum imóvel encontrado!</h4>
             </div>
-            <div class="d-block d-sm-flex item no-gutters" *ngFor="let imovel of imoveis">
+            <div class="d-block d-lg-flex item no-gutters" *ngFor="let imovel of imoveis">
               <div class="col-lg-5 novo-slider h-100">
                 <owl-carousel-o [options]="mySlideOptions">
                   <ng-container *ngFor="let image of imagensCarousel(imovel.midia.imagens); let i = index">

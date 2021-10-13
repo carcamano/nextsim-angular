@@ -9,6 +9,11 @@
   height: 120px;
   display: block;
   width: 100%;
+
+  /* Small Devices, Tablets */
+  @media only screen and (max-width: 768px) {
+    height: 55px;
+  }
 }
 
 .breadcrumb .breadcrumb-item {
@@ -561,6 +566,7 @@ app-imovel {
   button {
     cursor: pointer;
   }
+
   input {
     padding: 4px 8px 4px 16px;
     height: 32px;
@@ -809,4 +815,26 @@ app-imovel {
   .btn-link {
     color: #000;
   }
+}
+
+@media only screen and (max-width: 768px) {
+  .content.properties {
+    margin-top: -35px;
+  }
+
+  .properties .sidebar {
+    padding-right: 15px;
+  }
+
+  .MobileMenuHeader .CloseMenu, .FirstMenu, .SocialMobileMenu {
+    text-align: center;
+  }
+
+  .properties .properties-list {
+    margin-top: 15px;
+  }
+}
+
+
+@media only screen and (max-width: 576px) {
 }

@@ -8893,7 +8893,6 @@ body {
   -ms-flex-pack: center;
   justify-content: center;
   margin: 0;
-  min-height: 100vh;
   padding: 50px 0;
   text-align: center;
   width: 100%; }
@@ -9190,7 +9189,6 @@ body {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  min-height: 100vh;
   padding: 50px 0 100px 0;
   text-align: center; }
 
@@ -9216,7 +9214,7 @@ body {
   width: 90px; }
 
 .about-session-block {
-  margin-top: 160px; }
+  margin-top: 100px; }
 
 .picture {
   width: 100%;

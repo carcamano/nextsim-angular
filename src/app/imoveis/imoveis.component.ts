@@ -293,13 +293,18 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   doSimpleSearch() {
+    console.log(this.simpleSearch);
     if (this.simpleSearch?.length > 0) {
       this.router.navigate(['imoveis'], {
         queryParams: {
           query: this.simpleSearch
-        },
-        skipLocationChange: true
-      });
+        }
+      }).then(value => {
+        console.log(value);
+        this.getImoveis({
+          query: this.simpleSearch
+        })
+      }).catch(reason => console.error(reason));
     }
   }
 
