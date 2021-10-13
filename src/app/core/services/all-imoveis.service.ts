@@ -13,7 +13,6 @@ import {from} from "rxjs";
 export class AllImoveis {
 
 
-
   constructor(private ngxService: NgxUiLoaderService, private firestore: Firestore) {
 
   }
@@ -40,6 +39,7 @@ export class AllImoveis {
     const compra_preco = 'comercializacao.venda.preco';
     const venda_preco = 'comercializacao.locacao.preco';
 
+    let customFilter = false;
     if (customSearch.finalidade) {
       wheres.push(where('finalidade', '==', customSearch.finalidade));
     }
@@ -51,30 +51,37 @@ export class AllImoveis {
     //
     if (customSearch.bairros?.length > 0) {
       wheres.push(where('local.bairro', 'in', customSearch.bairros));
+      customFilter = true;
     }
 
     if (customSearch.banheiros > 0) {
       wheres.push(where('numeros.banheiros', '==', customSearch.banheiros));
+      customFilter = true;
     }
 
     if (customSearch.cidade) {
       console.log(customSearch.cidade)
       wheres.push(where('local.cidade', '==', customSearch.cidade));
+      customFilter = true;
     }
 
     if (customSearch.dormitorios > 0) {
       wheres.push(where('numeros.dormitorios', '==', customSearch.dormitorios));
+      customFilter = true;
     }
 
     if (customSearch.garagem > 0) {
       wheres.push(where('numeros.garagem', '==', customSearch.garagem));
+      customFilter = true;
     }
     if (customSearch.salas > 0) {
       wheres.push(where('numeros.salas', '==', customSearch.salas));
+      customFilter = true;
     }
 
     if (customSearch.tipo?.length > 0) {
       wheres.push(where('tipo', 'in', customSearch.tipo));
+      customFilter = true;
     }
 
     // area: {min: 0, max: 61000}
@@ -89,12 +96,15 @@ export class AllImoveis {
     //   wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '<=', customSearch.precos.max));
     // }
 
-    wheres.push(limit(10));
+
+    if (!customFilter) {
+      // wheres.push(limit(10));
+    }
     wheres.push(orderBy('sigla'));
 
     if (last) {
       console.log(last);
-      wheres.push(startAfter(last.sigla));
+      // wheres.push(startAfter(last.sigla));
     }
     console.log(wheres);
 
