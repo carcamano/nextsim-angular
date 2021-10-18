@@ -40,7 +40,7 @@
                 </div>
                 <div class="row">
                   <div class="col-12">
-                    <button class="button-modal"><i></i>Filtro Personalizado</button>
+                    <button class="button-modal" (click)="openFilter()"><i></i>Filtro Personalizado</button>
                 </div>
                 </div>
               </div>
@@ -276,311 +276,312 @@
   </section>
 </div>
 
+<app-custom-search #customSearch (customSearchChange)="queryChange($event)"></app-custom-search>
 
-<ng-template #modalmobile let-modal>
-  <div class="row MobileFilterBarOptions">
+<!--<ng-template #modalmobile let-modal>-->
+<!--  <div class="row MobileFilterBarOptions">-->
 
-    <div class="col-12 MobileFilterBarTitle text-center">
-      <button type="button" class=" pull-left btn btn-block btn-apply checkbox-s" (click)="modal.close(true)">
-        Aplicar
-      </button>
-      <span>FILTRAR</span>
-      <button type="button" class="close pull-right" (click)="modal.close(false)">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
-    <div class="col-12 MobileFilterBarMenu px-0 py-0">
-      <ngb-accordion #acc="ngbAccordion">
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle>
-            <i class="icon-key"></i> Finalidade <i
-            class="fas fa-chevron-down small-icon"></i>
-          </ng-template>
-          <ng-template ngbPanelContent>
+<!--    <div class="col-12 MobileFilterBarTitle text-center">-->
+<!--      <button type="button" class=" pull-left btn btn-block btn-apply checkbox-s" (click)="modal.close(true)">-->
+<!--        Aplicar-->
+<!--      </button>-->
+<!--      <span>FILTRAR</span>-->
+<!--      <button type="button" class="close pull-right" (click)="modal.close(false)">-->
+<!--        <span aria-hidden="true">×</span>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <div class="col-12 MobileFilterBarMenu px-0 py-0">-->
+<!--      <ngb-accordion #acc="ngbAccordion">-->
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle>-->
+<!--            <i class="icon-key"></i> Finalidade <i-->
+<!--            class="fas fa-chevron-down small-icon"></i>-->
+<!--          </ng-template>-->
+<!--          <ng-template ngbPanelContent>-->
 
-            <div class="FilterBarCheckBoxFIELDS2">
-              <ul>
-                <li>
-                  <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'comprar'"
-                         (change)="categoriaCheckboxChange('comprar')" id="OPCcomprarMObile"/>
-                  <label for="OPCcomprarMObile"><span>Comprar</span></label>
-                </li>
+<!--            <div class="FilterBarCheckBoxFIELDS2">-->
+<!--              <ul>-->
+<!--                <li>-->
+<!--                  <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'comprar'"-->
+<!--                         (change)="categoriaCheckboxChange('comprar')" id="OPCcomprarMObile"/>-->
+<!--                  <label for="OPCcomprarMObile"><span>Comprar</span></label>-->
+<!--                </li>-->
 
-                <li>
-                  <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'alugar'"
-                         (change)="categoriaCheckboxChange('alugar')" id="OPCalugarMObile"/>
-                  <label for="OPCalugarMObile"><span>Alugar</span></label>
-                </li>
-              </ul>
+<!--                <li>-->
+<!--                  <input type="checkbox" class="checkbox-s2" [checked]="customSearch.categoria === 'alugar'"-->
+<!--                         (change)="categoriaCheckboxChange('alugar')" id="OPCalugarMObile"/>-->
+<!--                  <label for="OPCalugarMObile"><span>Alugar</span></label>-->
+<!--                </li>-->
+<!--              </ul>-->
 
-            </div>
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle>
-            <i class="icon-building"></i> Categoria <i
-            class="fas fa-chevron-down small-icon"></i>
-          </ng-template>
-          <ng-template ngbPanelContent>
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle>-->
+<!--            <i class="icon-building"></i> Categoria <i-->
+<!--            class="fas fa-chevron-down small-icon"></i>-->
+<!--          </ng-template>-->
+<!--          <ng-template ngbPanelContent>-->
 
-            <div class="FilterBarCheckBoxFIELDS2">
-              <ul>
-                <li>
-                  <input type="checkbox" class="checkbox-s2" id="categoria-1-mobile"
-                         (change)="changeFinalidade($event, 'residencial')"
-                         [checked]="customSearch.finalidade === 'residencial'"/>
-                  <label for="categoria-1-mobile"><span>Residencial</span></label>
-                </li>
-                <li>
-                  <input type="checkbox" class="checkbox-s2" id="categoria-2-mobile"
-                         (change)="changeFinalidade($event, 'comercial')"
-                         [checked]="customSearch.finalidade === 'comercial'"/>
-                  <label for="categoria-2-mobile"><span>Comercial</span></label>
-                </li>
-              </ul>
+<!--            <div class="FilterBarCheckBoxFIELDS2">-->
+<!--              <ul>-->
+<!--                <li>-->
+<!--                  <input type="checkbox" class="checkbox-s2" id="categoria-1-mobile"-->
+<!--                         (change)="changeFinalidade($event, 'residencial')"-->
+<!--                         [checked]="customSearch.finalidade === 'residencial'"/>-->
+<!--                  <label for="categoria-1-mobile"><span>Residencial</span></label>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <input type="checkbox" class="checkbox-s2" id="categoria-2-mobile"-->
+<!--                         (change)="changeFinalidade($event, 'comercial')"-->
+<!--                         [checked]="customSearch.finalidade === 'comercial'"/>-->
+<!--                  <label for="categoria-2-mobile"><span>Comercial</span></label>-->
+<!--                </li>-->
+<!--              </ul>-->
 
-            </div>
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle>
-            <i class="icon-house"></i> Tipo <i
-            class="fas fa-chevron-down small-icon"></i>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="FilterBarCheckBoxFIELDS2">
-              <ul>
-                <li *ngFor="let tipo of customSearch.tipos;  let i = index">
-                  <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" [checked]="tipo.selected"
-                         (change)="changeTipo($event, i)"/>
-                  <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>
-                </li>
-              </ul>
-            </div>
-          </ng-template>
-        </ngb-panel>
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle>-->
+<!--            <i class="icon-house"></i> Tipo <i-->
+<!--            class="fas fa-chevron-down small-icon"></i>-->
+<!--          </ng-template>-->
+<!--          <ng-template ngbPanelContent>-->
+<!--            <div class="FilterBarCheckBoxFIELDS2">-->
+<!--              <ul>-->
+<!--                <li *ngFor="let tipo of customSearch.tipos;  let i = index">-->
+<!--                  <input type="checkbox" class="checkbox-s2" [attr.id]="'tipo' + tipo.i" [checked]="tipo.selected"-->
+<!--                         (change)="changeTipo($event, i)"/>-->
+<!--                  <label [attr.for]="'tipo' + tipo.i"><span>{{tipo.key}}</span></label>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
 
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle><i class="icon-pin"></i> Cidade <i class="fas fa-chevron-down small-icon"></i>
-          </ng-template>
-
-
-          <ng-template ngbPanelContent>
-            <div class="cidades_botoes" *ngIf="cidades.length > 0">
-              <button *ngFor="let local of cidades;  let i = index" (click)="changeCidade(local)"
-                      [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>
-            </div>
-
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle><i class="icon-pin"></i> Bairro <i class="fas fa-chevron-down small-icon"></i>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" *ngIf="cidades.length > 0">
-              <ul>
-                <li *ngFor="let local of customSearch.bairros;  let i = index">
-                  <span><i class="menu-letter-marker"
-                           *ngIf="showMakerLetter(local.key, i)">{{firstMakerLetter(local.key)}}</i></span>
-                  <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"
-                         [checked]="local.selected"
-                         (change)="changeBairro($event, i)"/>
-                  <label [attr.for]="'bairro' + i"><span>{{local.key}}</span></label>
-                </li>
-              </ul>
-            </div>
-
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel class="MBFilterOptions">
-
-          <ng-template ngbPanelTitle><i class="icon-bed"></i> Quartos <i
-            class="fas fa-chevron-down small-icon"></i></ng-template>
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle><i class="icon-pin"></i> Cidade <i class="fas fa-chevron-down small-icon"></i>-->
+<!--          </ng-template>-->
 
 
-          <ng-template ngbPanelContent>
-            <div class="BALLCheckStyle pt-5 pb-3 ">
-              <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
-                  [(ngModel)]="customSearch.dormitorios">
-                <li>
+<!--          <ng-template ngbPanelContent>-->
+<!--            <div class="cidades_botoes" *ngIf="cidades.length > 0">-->
+<!--              <button *ngFor="let local of cidades;  let i = index" (click)="changeCidade(local)"-->
+<!--                      [ngClass]="{'active' : local === customSearch.cidade}">{{local}}</button>-->
+<!--            </div>-->
 
-                  <label ngbButtonLabel class="CheckHorizontalLabel">
-                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">
-                    <span>0</span>
-                  </label>
-                </li>
-                <li>
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle><i class="icon-pin"></i> Bairro <i class="fas fa-chevron-down small-icon"></i>-->
+<!--          </ng-template>-->
+<!--          <ng-template ngbPanelContent>-->
+<!--            <div class="tab-pane fade show  FilterBarCheckBoxFIELDS2" *ngIf="cidades.length > 0">-->
+<!--              <ul>-->
+<!--                <li *ngFor="let local of customSearch.bairros;  let i = index">-->
+<!--                  <span><i class="menu-letter-marker"-->
+<!--                           *ngIf="showMakerLetter(local.key, i)">{{firstMakerLetter(local.key)}}</i></span>-->
+<!--                  <input type="checkbox" class="checkbox-s2" [attr.id]="'bairro' + i"-->
+<!--                         [checked]="local.selected"-->
+<!--                         (change)="changeBairro($event, i)"/>-->
+<!--                  <label [attr.for]="'bairro' + i"><span>{{local.key}}</span></label>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
 
-                  <label ngbButtonLabel class="CheckHorizontalLabel">
-                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">
-                    <span>1</span>
-                  </label>
-                </li>
-                <li>
-                  <label ngbButtonLabel class="CheckHorizontalLabel">
-                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>
-                  </label>
-                </li>
-                <li>
-                  <label ngbButtonLabel class="CheckHorizontalLabel">
-                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>
-                  </label>
-                </li>
-                <li>
-                  <label ngbButtonLabel class="CheckHorizontalLabel">
-                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"
-                           value="4"><span>+4</span>
-                  </label>
-                </li>
-              </ul>
-            </div>
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle><i class="icon-dollar"></i> Preço <i
-            class="fas fa-chevron-down small-icon"></i></ng-template>
-          <ng-template ngbPanelContent>
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+<!--        <ngb-panel class="MBFilterOptions">-->
 
-            <div class="row pt-3">
-              <div class="col-12 ">
-                <h6 class="text-left mb-4">Preço</h6>
-                <div class="row">
-                  <div class="col-6">
-                    <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                           [(ngModel)]="customSearch.precos.min" placeholder="M²"
-                                           [textMask]="{mask: MASKS.currency.textMask}"
-                                           [ngModelOptions]="{standalone: true}">
-                  </div>
-                  <div class="col-6">
-                    <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                            [(ngModel)]="customSearch.precos.max" placeholder="M²"
-                                            [textMask]="{mask: MASKS.currency.textMask}"
-                                            [ngModelOptions]="{standalone: true}">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </ngb-panel>
-
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle><i class="icon-bathtub"></i> Banheiros <i
-            class="fas fa-chevron-down small-icon"></i></ng-template>
-          <ng-template ngbPanelContent>
-            <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"
-                [(ngModel)]="customSearch.banheiros">
-              <li>
-
-                <label ngbButtonLabel class="CheckHorizontalLabel">
-                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">
-                  <span>0</span>
-                </label>
-              </li>
-              <li>
-
-                <label ngbButtonLabel class="CheckHorizontalLabel">
-                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">
-                  <span>1</span>
-                </label>
-              </li>
-              <li>
-                <label ngbButtonLabel class="CheckHorizontalLabel">
-                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>
-                </label>
-              </li>
-              <li>
-                <label ngbButtonLabel class="CheckHorizontalLabel">
-                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>
-                </label>
-              </li>
-              <li>
-                <label ngbButtonLabel class="CheckHorizontalLabel">
-                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"
-                         value="4"><span>+4</span>
-                </label>
-              </li>
-            </ul>
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle><i class="icon-area"></i> M<sup>2</sup>
-            <i class="fas fa-chevron-down small-icon"></i></ng-template>
-          <ng-template ngbPanelContent>
+<!--          <ng-template ngbPanelTitle><i class="icon-bed"></i> Quartos <i-->
+<!--            class="fas fa-chevron-down small-icon"></i></ng-template>-->
 
 
-            <div class="row pt-3">
-              <div class="col-12 ">
-                <div class="row">
-                  <div class="col-6">
-                    <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"
-                                           [(ngModel)]="customSearch.area.min" placeholder="M²"
-                                           [ngModelOptions]="{standalone: true}">
-                  </div>
-                  <div class="col-6">
-                    <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"
-                                            [(ngModel)]="customSearch.area.max" placeholder="M²"
-                                            [ngModelOptions]="{standalone: true}">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row pt-3 mt-4 pl-3 pr-3">
-              <div class="col-12 ">
-                <ng5-slider [(value)]="customSearch.area.min" [(highValue)]="customSearch.area.max"
-                            [options]="optionsArea" *ngIf="optionsArea"></ng5-slider>
-              </div>
-            </div>
+<!--          <ng-template ngbPanelContent>-->
+<!--            <div class="BALLCheckStyle pt-5 pb-3 ">-->
+<!--              <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"-->
+<!--                  [(ngModel)]="customSearch.dormitorios">-->
+<!--                <li>-->
 
-          </ng-template>
-        </ngb-panel>
+<!--                  <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">-->
+<!--                    <span>0</span>-->
+<!--                  </label>-->
+<!--                </li>-->
+<!--                <li>-->
 
-        <ngb-panel class="MBFilterOptions">
-          <ng-template ngbPanelTitle><i class="icon-car"></i> Vagas de
-            Garagem <i class="fas fa-chevron-down small-icon"></i></ng-template>
-          <ng-template ngbPanelContent>
-            <ul class="HorizontalCheckBoxMobile">
+<!--                  <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">-->
+<!--                    <span>1</span>-->
+<!--                  </label>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>-->
+<!--                  </label>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>-->
+<!--                  </label>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                    <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"-->
+<!--                           value="4"><span>+4</span>-->
+<!--                  </label>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle><i class="icon-dollar"></i> Preço <i-->
+<!--            class="fas fa-chevron-down small-icon"></i></ng-template>-->
+<!--          <ng-template ngbPanelContent>-->
+
+<!--            <div class="row pt-3">-->
+<!--              <div class="col-12 ">-->
+<!--                <h6 class="text-left mb-4">Preço</h6>-->
+<!--                <div class="row">-->
+<!--                  <div class="col-6">-->
+<!--                    <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"-->
+<!--                                           [(ngModel)]="customSearch.precos.min" placeholder="M²"-->
+<!--                                           [textMask]="{mask: MASKS.currency.textMask}"-->
+<!--                                           [ngModelOptions]="{standalone: true}">-->
+<!--                  </div>-->
+<!--                  <div class="col-6">-->
+<!--                    <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"-->
+<!--                                            [(ngModel)]="customSearch.precos.max" placeholder="M²"-->
+<!--                                            [textMask]="{mask: MASKS.currency.textMask}"-->
+<!--                                            [ngModelOptions]="{standalone: true}">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle><i class="icon-bathtub"></i> Banheiros <i-->
+<!--            class="fas fa-chevron-down small-icon"></i></ng-template>-->
+<!--          <ng-template ngbPanelContent>-->
+<!--            <ul class="CheckHorizontal " ngbRadioGroup name="radioBasic"-->
+<!--                [(ngModel)]="customSearch.banheiros">-->
+<!--              <li>-->
+
+<!--                <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="0">-->
+<!--                  <span>0</span>-->
+<!--                </label>-->
+<!--              </li>-->
+<!--              <li>-->
+
+<!--                <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="1">-->
+<!--                  <span>1</span>-->
+<!--                </label>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="2"><span>2</span>-->
+<!--                </label>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s" value="3"><span>3</span>-->
+<!--                </label>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <label ngbButtonLabel class="CheckHorizontalLabel">-->
+<!--                  <input type="radio" ngbButton class="CheckHorizontalInput checkbox-s"-->
+<!--                         value="4"><span>+4</span>-->
+<!--                </label>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle><i class="icon-area"></i> M<sup>2</sup>-->
+<!--            <i class="fas fa-chevron-down small-icon"></i></ng-template>-->
+<!--          <ng-template ngbPanelContent>-->
 
 
-              <li>
-                <input type="radio" name="vagas" id="vagas_0" value="0"
-                       class="HorizontalCheckBoxMobileInput checkbox-s">
-                <label for="vagas_0" class="HorizontalCheckBoxMobileLabel"><span>0</span></label>
-              </li>
+<!--            <div class="row pt-3">-->
+<!--              <div class="col-12 ">-->
+<!--                <div class="row">-->
+<!--                  <div class="col-6">-->
+<!--                    <span>De</span> <input type="text" class="col-8 inputDeM2 input-grey"-->
+<!--                                           [(ngModel)]="customSearch.area.min" placeholder="M²"-->
+<!--                                           [ngModelOptions]="{standalone: true}">-->
+<!--                  </div>-->
+<!--                  <div class="col-6">-->
+<!--                    <span>Até</span> <input type="text" class="col-8 inputAteM2 input-grey"-->
+<!--                                            [(ngModel)]="customSearch.area.max" placeholder="M²"-->
+<!--                                            [ngModelOptions]="{standalone: true}">-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row pt-3 mt-4 pl-3 pr-3">-->
+<!--              <div class="col-12 ">-->
+<!--                <ng5-slider [(value)]="customSearch.area.min" [(highValue)]="customSearch.area.max"-->
+<!--                            [options]="optionsArea" *ngIf="optionsArea"></ng5-slider>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+
+<!--        <ngb-panel class="MBFilterOptions">-->
+<!--          <ng-template ngbPanelTitle><i class="icon-car"></i> Vagas de-->
+<!--            Garagem <i class="fas fa-chevron-down small-icon"></i></ng-template>-->
+<!--          <ng-template ngbPanelContent>-->
+<!--            <ul class="HorizontalCheckBoxMobile">-->
 
 
-              <li>
-                <input type="radio" name="vagas" id="vagas_1" value="1"
-                       class="HorizontalCheckBoxMobileInput checkbox-s">
-                <label for="vagas_1" class="HorizontalCheckBoxMobileLabel"><span>1</span></label>
-              </li>
+<!--              <li>-->
+<!--                <input type="radio" name="vagas" id="vagas_0" value="0"-->
+<!--                       class="HorizontalCheckBoxMobileInput checkbox-s">-->
+<!--                <label for="vagas_0" class="HorizontalCheckBoxMobileLabel"><span>0</span></label>-->
+<!--              </li>-->
 
 
-              <li>
-                <input type="radio" name="vagas" id="vagas_2" value="2"
-                       class="HorizontalCheckBoxMobileInput checkbox-s">
-                <label for="vagas_2" class="HorizontalCheckBoxMobileLabel"><span>2</span></label>
-              </li>
+<!--              <li>-->
+<!--                <input type="radio" name="vagas" id="vagas_1" value="1"-->
+<!--                       class="HorizontalCheckBoxMobileInput checkbox-s">-->
+<!--                <label for="vagas_1" class="HorizontalCheckBoxMobileLabel"><span>1</span></label>-->
+<!--              </li>-->
 
 
-              <li>
-                <input type="radio" name="vagas" id="vagas_3" value="3"
-                       class="HorizontalCheckBoxMobileInput checkbox-s">
-                <label for="vagas_3" class="HorizontalCheckBoxMobileLabel"><span>3</span></label>
-              </li>
+<!--              <li>-->
+<!--                <input type="radio" name="vagas" id="vagas_2" value="2"-->
+<!--                       class="HorizontalCheckBoxMobileInput checkbox-s">-->
+<!--                <label for="vagas_2" class="HorizontalCheckBoxMobileLabel"><span>2</span></label>-->
+<!--              </li>-->
 
 
-              <li>
-                <input type="radio" name="vagas" id="vagas_4" value="4"
-                       class="HorizontalCheckBoxMobileInput checkbox-s">
-                <label for="vagas_4" class="HorizontalCheckBoxMobileLabel"><span>+4</span></label>
-              </li>
+<!--              <li>-->
+<!--                <input type="radio" name="vagas" id="vagas_3" value="3"-->
+<!--                       class="HorizontalCheckBoxMobileInput checkbox-s">-->
+<!--                <label for="vagas_3" class="HorizontalCheckBoxMobileLabel"><span>3</span></label>-->
+<!--              </li>-->
 
 
-            </ul>
-          </ng-template>
-        </ngb-panel>
+<!--              <li>-->
+<!--                <input type="radio" name="vagas" id="vagas_4" value="4"-->
+<!--                       class="HorizontalCheckBoxMobileInput checkbox-s">-->
+<!--                <label for="vagas_4" class="HorizontalCheckBoxMobileLabel"><span>+4</span></label>-->
+<!--              </li>-->
 
-      </ngb-accordion>
-    </div>
-  </div>
-</ng-template>
+
+<!--            </ul>-->
+<!--          </ng-template>-->
+<!--        </ngb-panel>-->
+
+<!--      </ngb-accordion>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-template>-->

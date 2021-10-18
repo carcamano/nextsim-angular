@@ -19310,7 +19310,7 @@ body {
   margin-left: 10px;
   line-height: 1;
   color: #a3a3a3;
-  font-size: 12px;
+  font-size: 17px;
   background-color: #DBDBDB;
   border: 1px solid #DBDBDB;
   border-radius: 50% !important;
@@ -19320,7 +19320,7 @@ body {
   padding: 11px 15px;
   z-index: 1;
   color: #fff;
-  font-size: 14px;
+  font-size: 17px;
   background-color: #F69731;
   border-color: #F69731;
 }
@@ -19960,6 +19960,7 @@ h3.blog-result {
   border: 0;
   outline: 0;
   height: 35px;
+  font-size: 17px;
   width: 35px;
   margin: 0 8px;
   border-radius: 100px;
@@ -25708,6 +25709,12 @@ main {
   cursor: pointer;
 }
 
+i.custom-search {
+  width: 21px;
+  height: 18px;
+  background-image: url('assets/img/icons/custom-search.svg');
+}
+
 .owl-image-property {
   -o-object-fit: cover !important;
   object-fit: cover !important;
@@ -25939,8 +25946,9 @@ main {
 .properties .page-item.active .page-link {
   padding: 11px 15px;
   z-index: 1;
+
   color: #fff;
-  font-size: 14px;
+  font-size: 17px;
   background-color: #F69731;
   border-color: #F69731;
 }
@@ -25969,6 +25977,15 @@ main {
   .properties .properties-list .item .pos-content {
     padding: 15px 20px 15px 20px;
   }
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #F69731 !important;
+  font-width: bold !important;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+  background: #F69731 !important;
 }
 
 @media (max-width: 980px) {
@@ -26001,7 +26018,7 @@ main {
 
   .properties .properties-list .item .btn-see-more {
     padding: 0 10px;
-    margin: 0 !important;
+    margin: auto !important;
     font-size: 10px;
   }
 

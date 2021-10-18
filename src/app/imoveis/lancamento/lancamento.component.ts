@@ -98,6 +98,7 @@ export class LancamentoComponent implements OnInit {
     form.append('email', this.form.get('email').value);
     form.append('telefone', this.form.get('telefone').value);
     form.append('mensagem', this.form.get('mensagem').value);
+    form.append('categoria', this.lancamento?.fields?.portfolio_header_repeater[0]?.texto);
     this.service.sendToContactForm(form, 505).subscribe(value => {
       console.log(value);
       this.modalService.dismissAll();

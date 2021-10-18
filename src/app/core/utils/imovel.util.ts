@@ -74,6 +74,20 @@ export function getFormattedPrice(price: number) {
   return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(price).replace(',00', '');
 }
 
+export function currencyToNumber(c: any): number {
+  if (!c || c === '') {
+    return 0;
+  }
+  let s = '';
+  if (c instanceof InputEvent) {
+    const ie: InputEvent = c;
+    s = (ie.target as HTMLInputElement).value;
+  } else {
+    s = c;
+  }
+  return parseFloat(s.replace('R$ ', '').replace('.', '').replace(',', '.'));
+}
+
 export const getprice = (imovel: Imovel, queryParams: any): string =>  {
   if (!imovel) {
     return '?';

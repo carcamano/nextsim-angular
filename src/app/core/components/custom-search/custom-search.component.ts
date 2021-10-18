@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Options} from "ng5-slider";
 import {formatCurrency} from "@angular/common";
 import * as _ from "lodash";
@@ -7,19 +7,25 @@ import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_LOCAIS, PATH_PRECOS} from "../../util
 import {map} from "rxjs/operators";
 import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from "../../constants/tipos";
 import {NgbDropdown} from "@ng-bootstrap/ng-bootstrap";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {CustomSearchType} from "./custom-search.enum";
+import {MatSelectChange} from "@angular/material/select";
+import {MASKS, NgBrazilValidators, NgBrDirectives} from 'ng-brazil';
+import {currencyToNumber} from "../../utils/imovel.util";
+const {CURRENCYPipe} = NgBrDirectives;
+
 
 @Component({
   selector: 'app-custom-search',
   templateUrl: './custom-search.component.html',
   styleUrls: ['./custom-search.component.scss']
 })
-export class CustomSearchComponent implements OnInit {
+export class CustomSearchComponent implements OnInit, AfterViewInit {
 
   currentStep = 0;
 
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-
+  CustomSearchType = CustomSearchType;
+  @Input() type: CustomSearchType = CustomSearchType.simple;
 
   @ViewChild('myDrop') finalidadeSelector: NgbDropdown;
 
@@ -27,7 +33,7 @@ export class CustomSearchComponent implements OnInit {
 
   @Input() showMe = false;
 
-  customSearch = {
+  @Input() customSearch = {
     categoria: 'comprar',
     finalidade: 'residencial',
     quartos: 0,
@@ -37,20 +43,27 @@ export class CustomSearchComponent implements OnInit {
     garagem: 0,
     tipos: [],
     precos: {
-      min: 0,
-      max: 4000000,
+      min: null,
+      max: null,
     },
     area: {
-      min: 0,
-      max: 61000,
+      min: null,
+      max: null,
     },
     bairros: [],
     cidade: '',
     query: '',
-    page: 1
+    page: 1,
+    queryParams: {}
   };
 
+  @Output() customSearchChange = new EventEmitter<any>();
+
+  public MASKS = MASKS;
+
   filtred: any[] = [];
+
+  queryParams: any;
 
   cidades: string[] = [];
   bairrosSelecionados: any[] = [];
@@ -76,17 +89,51 @@ export class CustomSearchComponent implements OnInit {
     }
   };
 
-  constructor(private firestore: Firestore, private router: Router) {
+  constructor(private firestore: Firestore, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.loadDefaults();
     this.windowWidth = window.innerWidth;
+
+
   }
 
-  changeStep(goTo: number, value?: any) {
+  ngAfterViewInit() {
+    this.route.queryParams.subscribe(queryParams => {
+      this.queryParams = queryParams;
+      this.customSearch.categoria = this.queryParams.categoria || 'comprar';
+      this.customSearch.salas = this.queryParams.salas || 0;
+      this.customSearch.garagem = this.queryParams.garagem || 0 ,
+        this.customSearch.dormitorios = this.queryParams.dormitorios || 0,
+        this.customSearch.banheiros = this.queryParams.banheiros || 0,
+        this.customSearch.cidade = this.queryParams.bairro || ''
+      if (this.queryParams.finalidade) {
+        this.customSearch.finalidade = this.queryParams.finalidade;
+      }
+      this.customSearch.page = this.queryParams.page || 1;
+      this.customSearch.queryParams = this.queryParams;
+
+      this.customSearchChange.emit(this.customSearch);
+    });
+  }
+
+
+  applyFilter() {
+    this.closeMe();
+    this.doSearch(false);
+  }
+
+  changeStep(goTo: number, value?: any, check = false) {
     if (goTo > -1 && !value) {
-      this.currentStep = goTo;
+      if (this.customSearch.finalidade === 'lancamento') {
+        this.goLancamento();
+      } else {
+        if(check && this.currentStep <= goTo) {
+          return;
+        }
+        this.currentStep = goTo;
+      }
     }
     if (value) {
       switch (goTo) {
@@ -102,17 +149,29 @@ export class CustomSearchComponent implements OnInit {
     this.finalidadeSelector?.close();
   }
 
-  doSearch() {
-    this.router.navigate(['imoveis'], {
-      queryParams: this.makeParams()
-    }).then(value => {
-      this.showMe = false;
-      this.currentStep = 0;
+  inputPriceFocusOut(e: FocusEvent) {
+      console.log(this.customSearch.precos.min);
+      const value = new CURRENCYPipe().transform(currencyToNumber(this.customSearch.precos.min), 0);
       console.log(value);
+  }
+
+  doSearch(simple = false) {
+    this.router.navigate(['imoveis'], {
+      queryParams: simple ? {
+        finalidade: this.customSearch.finalidade,
+        categoria: this.customSearch.categoria,
+        query: this.customSearch.query
+      } : this.makeParams()
+    }).then(() => {
+      this.closeMe();
+      this.currentStep = 0;
     }).catch(reason => console.error(reason));
   }
 
-
+  closeMe() {
+    this.showMe = false;
+    this.currentStep = 0;
+  }
 
 
   makeParams() {
@@ -177,7 +236,9 @@ export class CustomSearchComponent implements OnInit {
   }
 
   goLancamento() {
-
+    this.closeMe();
+    this.customSearch.finalidade= 'residencial';
+    document.getElementById('backdrop').scrollIntoView({behavior: "smooth"});
   }
 
   result() {
@@ -203,6 +264,19 @@ export class CustomSearchComponent implements OnInit {
     };
   }
 
+  numberMask(rawValue: string): RegExp[] {
+    const mask = /[A-Za-z]/;
+    const strLength = String(rawValue).length;
+    const nameMask: RegExp[] = [];
+
+    for (let i = 0; i <= strLength; i++) {
+      nameMask.push(mask);
+    }
+
+    return nameMask;
+
+  }
+
   searchAutocomplete(event: any) {
     const datalist = document.querySelector('datalist');
     if (this.customSearch.query.length > 3) {
@@ -214,9 +288,10 @@ export class CustomSearchComponent implements OnInit {
   }
 
 
-  changeCidade(cidade: string) {
-    this.customSearch.cidade = cidade;
-    this.buildLocaisBairros(cidade);
+  changeCidade(cidade: MatSelectChange) {
+    console.log(cidade)
+    this.customSearch.cidade = cidade.value;
+    this.buildLocaisBairros(cidade.value);
   }
 
   changeTipo(event: any, i: number) {
@@ -239,9 +314,9 @@ export class CustomSearchComponent implements OnInit {
     console.log(cidade);
     this.customSearch.bairros = [];
 
-    _.union(_.compact(_.map(this.filtred[cidade], (im: any, key) => {
+    _.sortBy(_.union(_.compact(_.map(this.filtred[cidade], (im: any, key) => {
       return im.bairro;
-    }))).forEach((value, index) => {
+    }))), bairro => bairro).forEach((value, index) => {
       this.customSearch.bairros.push({key: value, selected: false, i: index, c: cidade});
     });
 
@@ -273,6 +348,7 @@ export class CustomSearchComponent implements OnInit {
       })))
       .subscribe(value => {
         this.locais = value;
+        this.rebuildFilter();
       })
 
 
@@ -289,7 +365,6 @@ export class CustomSearchComponent implements OnInit {
 
 
   rebuildFilter(event?: any) {
-    console.log('rebuildFilter');
     console.log(this.locais);
     console.log(this.customSearch.categoria);
     console.log(this.customSearch.finalidade);
@@ -326,6 +401,8 @@ export class CustomSearchComponent implements OnInit {
     tipos.forEach((value, index) => {
       this.customSearch.tipos.push({key: value, selected: false, i: index});
     });
+
+    console.log(this.customSearch.tipos);
 
     console.log(this.customSearch.tipos.length);
     this.cidades = _.union(this.cidades)

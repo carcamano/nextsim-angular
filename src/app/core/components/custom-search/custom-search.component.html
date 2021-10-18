@@ -1,5 +1,9 @@
 <div class="custom-search-bg" *ngIf="showMe">
-  <div class="row h-100 align-items-center justify-content-center">
+  <div class="row h-100 align-items-center justify-content-center custom-search-type-simple"
+       *ngIf="type === CustomSearchType.simple">
+    <div class="close-me" (click)="closeMe()">
+      <img src="../../../../assets/images/coolicon.svg"/>
+    </div>
     <div class="col-12 col-md-6">
       <div class="row align-items-center justify-content-center no-gutters">
         <div class="col-auto">
@@ -46,7 +50,7 @@
                       Comercial
                     </label>
                   </div>
-                  <div class="form-check category-option" (click)="goLancamento()">
+                  <div class="form-check category-option" (click)="changeStep(2, 'lancamento')">
                     <label class="form-check-label">
                       Lançamentos
                     </label>
@@ -76,8 +80,8 @@
       <div class="row align-items-center justify-content-center mt-4">
         <div class="col-auto">
           <div class="steppers">
-            <div [class.current]="currentStep === 0"></div>
-            <div [class.current]="currentStep === 1"></div>
+            <div [class.current]="currentStep === 0" (click)="changeStep(0, null, true)"></div>
+            <div [class.current]="currentStep === 1" (click)="changeStep(1, null, true)"></div>
             <div [class.current]="currentStep === 2"></div>
           </div>
         </div>
@@ -86,10 +90,156 @@
         <div class="col-auto">
           <button class="next-button" *ngIf="currentStep === 0" (click)="changeStep(1)">Avançar</button>
           <button class="next-button" *ngIf="currentStep === 1" (click)="changeStep(2)">Avançar</button>
-          <button class="next-button" *ngIf="currentStep === 2" (click)="doSearch(3)">Buscar</button>
+          <button class="next-button" *ngIf="currentStep === 2" (click)="doSearch(true)">Buscar</button>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="row h-100 custom-search-type-complex justify-content-center" *ngIf="type === CustomSearchType.complex">
+    <div class="top-filter col-12">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-auto">
+          <div class="close-me" (click)="closeMe()">
+            <img src="../../../../assets/images/coolicon.svg"/>
+            <span>Filtros</span>
+          </div>
+        </div>
+        <div class="col-auto">
+          <button class="button-apply" (click)="applyFilter()"><i class="custom-search"></i>Aplicar filtros</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 the-card">
+      <div class="close-me d-none d-sm-block" (click)="closeMe()">
+        <img src="../../../../assets/images/coolicon-black.svg"/>
+      </div>
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="">Home</a></li>
+              <li class="breadcrumb-item" *ngIf="queryParams?.query"><a> Pesquisa </a></li>
+              <li class="breadcrumb-item" *ngIf="!queryParams?.query"><a> Imóveis </a></li>
+              <li
+                class='breadcrumb-item active'
+                *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : (queryParams?.featured ? 'DESTAQUES' : 'GERAL')}} </li>
+              <li
+                class='breadcrumb-item active' *ngIf="queryParams?.query">{{queryParams?.query}} </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h6>Cidade</h6>
+          <mat-form-field>
+            <mat-select placeholder="Cidade" (selectionChange)="changeCidade($event)">
+              <mat-option *ngFor="let city of cidades" [value]="city">{{city}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-4">
+          <h6>Bairro</h6>
+          <mat-form-field multiple>
+            <mat-select placeholder="Bairro" multiple>
+              <mat-option *ngFor="let bairro of customSearch.bairros" [value]="bairro.key">{{bairro.key}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-4">
+          <h6>Tipo do imóvel</h6>
+          <mat-form-field>
+            <mat-select placeholder="Todos os imóveis" multiple>
+              <mat-option *ngFor="let tipo of customSearch.tipos" [value]="tipo">{{tipo.key}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6">
+          <h6>Valor</h6>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="price_min">Preço mínimo</label>
+                <input type="text" class="form-control" id="price_min" [(ngModel)]="customSearch.precos.min" [textMask]="{mask: MASKS.currency.textMask}" (focusout)="inputPriceFocusOut($event)"  placeholder="R$ 100"/>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="price_max">Preço máximo</label>
+                <input type="text" class="form-control" id="price_max"  [(ngModel)]="customSearch.precos.max" [textMask]="{mask: MASKS.currency.textMask}" placeholder="R$ 2.100"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 order-md-2">
+          <h6>Quartos</h6>
+          <div class="boll-selector">
+            <button [class.current]="customSearch.quartos === 1" (click)="customSearch.quartos = 1"><span>1</span>
+            </button>
+            <button [class.current]="customSearch.quartos === 2" (click)="customSearch.quartos = 2"><span>2</span>
+            </button>
+            <button [class.current]="customSearch.quartos === 3" (click)="customSearch.quartos = 3"><span>3</span>
+            </button>
+            <button [class.current]="customSearch.quartos === 4" (click)="customSearch.quartos = 4"><span>4+</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-12 col-md-4  order-md-2">
+          <h6>Banheiros</h6>
+          <div class="boll-selector">
+            <button [class.current]="customSearch.banheiros === 1" (click)="customSearch.banheiros = 1"><span>1</span>
+            </button>
+            <button [class.current]="customSearch.banheiros === 2" (click)="customSearch.banheiros = 2"><span>2</span>
+            </button>
+            <button [class.current]="customSearch.banheiros === 3" (click)="customSearch.banheiros = 3"><span>3</span>
+            </button>
+            <button [class.current]="customSearch.banheiros === 4" (click)="customSearch.banheiros = 4"><span>4+</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 order-md-2">
+          <h6>Garagem</h6>
+          <div class="boll-selector">
+            <button [class.current]="customSearch.garagem === 1" (click)="customSearch.garagem = 1"><span>1</span>
+            </button>
+            <button [class.current]="customSearch.garagem === 2" (click)="customSearch.garagem = 2"><span>2</span>
+            </button>
+            <button [class.current]="customSearch.garagem === 3" (click)="customSearch.garagem = 3"><span>3</span>
+            </button>
+            <button [class.current]="customSearch.garagem === 4" (click)="customSearch.garagem = 4"><span>4+</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-12 col-md-6  order-md-1">
+          <h6>Área</h6>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="area_min">Mínimo 20m²</label>
+                <input type="text" class="form-control" id="area_min"   [(ngModel)]="customSearch.area.min" [textMask]="{mask: MASKS.number.textMask}" placeholder="10 m²"/>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="area_max">Máximo 1.000 m²</label>
+                <input type="text" class="form-control" id="area_max"  [(ngModel)]="customSearch.area.max" [textMask]="{mask: MASKS.number.textMask}" placeholder="1000 m²"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-5 d-none d-sm-flex">
+        <div class="col-4">
+          <button class="button-apply justify-content-center" (click)="applyFilter()"><i class="custom-search"></i>Aplicar
+            filtros
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
