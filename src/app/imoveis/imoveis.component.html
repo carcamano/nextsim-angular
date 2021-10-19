@@ -5,18 +5,21 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-lg-4 sidebar">
-            <div class="sidebar-title" *ngIf="!queryParams?.query">
-              IMÓVEIS {{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : ''}} </div>
+            <div class="sidebar-title" *ngIf="!customSearch?.customSearch?.query">
+              IMÓVEIS {{customSearch?.customSearch?.finalidade === 'residencial' ? 'RESIDENCIAIS' : customSearch?.customSearch?.finalidade === 'comercial' ? 'COMERCIAIS' : ''}} </div>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="">Home</a></li>
-                <li class="breadcrumb-item" *ngIf="queryParams?.query"><a> Pesquisa </a></li>
-                <li class="breadcrumb-item" *ngIf="!queryParams?.query"><a> Imóveis </a></li>
+                <li class="breadcrumb-item" *ngIf="customSearch?.customSearch?.query"><a> Pesquisa </a></li>
+                <li class="breadcrumb-item" *ngIf="!customSearch?.customSearch?.query"><a> Imóveis </a></li>
                 <li
                   class='breadcrumb-item active'
-                  *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : (queryParams?.featured ? 'DESTAQUES' : 'GERAL')}} </li>
+                  *ngIf="!customSearch?.customSearch?.query && (customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar')">{{customSearch?.customSearch?.categoria === 'comprar' ? 'COMPRAR' : customSearch?.customSearch?.categoria === 'alugar' ? 'ALUGAR' : ('')}} </li>
                 <li
-                  class='breadcrumb-item active' *ngIf="queryParams?.query">{{queryParams?.query}} </li>
+                  class='breadcrumb-item active'
+                  *ngIf="!customSearch?.customSearch?.query && (customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial')">{{customSearch?.customSearch?.finalidade === 'residencial' ? 'RESIDENCIAIS' : customSearch?.customSearch?.finalidade === 'comercial' ? 'COMERCIAIS' : ('')}} </li>
+                <li
+                  class='breadcrumb-item active' *ngIf="queryParams?.query">{{customSearch?.customSearch?.query}} </li>
               </ol>
             </nav>
             <div class="filter-badges">
@@ -276,7 +279,7 @@
   </section>
 </div>
 
-<app-custom-search #customSearch (customSearchChange)="queryChange($event)"></app-custom-search>
+<app-custom-search #customSearch (customSearchChange)="queryChange($event)" (simpleSearchChange)="softParamSearch($event)"></app-custom-search>
 
 <!--<ng-template #modalmobile let-modal>-->
 <!--  <div class="row MobileFilterBarOptions">-->

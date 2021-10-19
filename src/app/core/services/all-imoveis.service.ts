@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Imovel} from "../../imoveis/models/imovel.model";
-import {finalize, first, map} from "rxjs/operators";
+import {finalize, first, map, filter} from "rxjs/operators";
 import {PATH_IMOVEIS} from "../utils/constants.util";
 import {collection, Firestore, getDocs, limit, orderBy, query, startAfter, where} from "@angular/fire/firestore";
 import {from} from "rxjs";
@@ -40,6 +40,8 @@ export class AllImoveis {
     const venda_preco = 'comercializacao.locacao.preco';
 
     let customFilter = false;
+    let isIn = false;
+    let needSubfilter = false;
     if (customSearch.finalidade) {
       wheres.push(where('finalidade', '==', customSearch.finalidade));
     }
@@ -50,7 +52,12 @@ export class AllImoveis {
 
     //
     if (customSearch.bairros?.length > 0) {
-      wheres.push(where('local.bairro', 'in', customSearch.bairros));
+      if (customSearch.bairros?.length > 1) {
+        wheres.push(where('local.bairro', 'in', customSearch.bairros));
+        isIn = true;
+      } else {
+        wheres.push(where('local.bairro', '==', customSearch.bairros[0]));
+      }
       customFilter = true;
     }
 
@@ -79,22 +86,28 @@ export class AllImoveis {
       customFilter = true;
     }
 
-    if (customSearch.tipo?.length > 0) {
-      wheres.push(where('tipo', 'in', customSearch.tipo));
+    if (customSearch.tipos?.length > 0) {
+      if (customSearch.tipos?.length > 1 && !isIn) {
+        wheres.push(where('tipo', 'in', customSearch.tipos));
+      } else if (customSearch.tipos?.length > 1) {
+        needSubfilter = true;
+      } else {
+        wheres.push(where('tipo', '==', customSearch.tipos[0]));
+      }
       customFilter = true;
     }
 
     // area: {min: 0, max: 61000}
     // precos: {min: 0, max: 4000000}
-    // if (customSearch.area.min !== 0 || customSearch.area.max !== 61000) {
-    //   wheres.push(where('numeros.areas.total', '>=', customSearch.area.min));
-    //   wheres.push(where('numeros.areas.total', '<=', customSearch.area.max));
-    // }
+    if (customSearch.area?.min && customSearch.area?.max) {
+      wheres.push(where('numeros.areas.total', '>=', customSearch.area.min));
+      wheres.push(where('numeros.areas.total', '<=', customSearch.area.max));
+    }
 
-    // if (customSearch.precos.min !== 0 || customSearch.precos.max !== 4000000) {
-    //   wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '>=', customSearch.precos.min));
-    //   wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '<=', customSearch.precos.max));
-    // }
+    if (customSearch.precos?.min && customSearch.precos?.max) {
+      wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '>=', customSearch.precos.min));
+      wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '<=', customSearch.precos.max));
+    }
 
 
     if (!customFilter) {
@@ -106,14 +119,17 @@ export class AllImoveis {
       console.log(last);
       // wheres.push(startAfter(last.sigla));
     }
-    console.log(wheres);
+    console.log(...wheres);
 
     return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS), ...wheres)))
       .pipe(
         map(actions => actions.docs.map(a => {
-          console.log()
           return a.data();
-        })));
+        })),
+        map(value => value.filter(value => {
+          return needSubfilter ? customSearch.tipos.includes(value.tipo) : true;
+        }))
+      );
   }
 
 

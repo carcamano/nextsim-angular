@@ -120,13 +120,16 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="">Home</a></li>
-              <li class="breadcrumb-item" *ngIf="queryParams?.query"><a> Pesquisa </a></li>
-              <li class="breadcrumb-item" *ngIf="!queryParams?.query"><a> Imóveis </a></li>
+              <li class="breadcrumb-item" *ngIf="customSearch?.query"><a> Pesquisa </a></li>
+              <li class="breadcrumb-item" *ngIf="!customSearch?.query"><a> Imóveis </a></li>
               <li
                 class='breadcrumb-item active'
-                *ngIf="!queryParams?.query">{{queryParams?.finalidade === 'residencial' ? 'RESIDENCIAIS' : queryParams?.finalidade === 'comercial' ? 'COMERCIAIS' : (queryParams?.featured ? 'DESTAQUES' : 'GERAL')}} </li>
+                *ngIf="!customSearch?.query && (customSearch?.categoria === 'comprar' || customSearch?.categoria === 'alugar')">{{customSearch?.categoria === 'comprar' ? 'COMPRAR' : customSearch?.categoria === 'alugar' ? 'ALUGAR' : ('')}} </li>
               <li
-                class='breadcrumb-item active' *ngIf="queryParams?.query">{{queryParams?.query}} </li>
+                class='breadcrumb-item active'
+                *ngIf="!customSearch?.query">{{customSearch?.finalidade === 'residencial' ? 'RESIDENCIAIS' : customSearch?.finalidade === 'comercial' ? 'COMERCIAIS' : ('')}} </li>
+              <li
+                class='breadcrumb-item active' *ngIf="customSearch?.query">{{customSearch?.query}} </li>
             </ol>
           </nav>
         </div>
@@ -136,24 +139,24 @@
         <div class="col-12 col-md-4">
           <h6>Cidade</h6>
           <mat-form-field>
-            <mat-select placeholder="Cidade" (selectionChange)="changeCidade($event)">
-              <mat-option *ngFor="let city of cidades" [value]="city">{{city}}</mat-option>
+            <mat-select placeholder="Cidade" (selectionChange)="changeCidade($event)" [(ngModel)]="customSearch.cidade">
+              <mat-option *ngFor="let city of cidades" [value]="city" >{{city}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col-12 col-md-4">
           <h6>Bairro</h6>
           <mat-form-field multiple>
-            <mat-select placeholder="Bairro" multiple>
-              <mat-option *ngFor="let bairro of customSearch.bairros" [value]="bairro.key">{{bairro.key}}</mat-option>
+            <mat-select placeholder="Bairro" multiple (selectionChange)="changeBairro($event)" [(ngModel)]="bairrosSelecionados">
+              <mat-option *ngFor="let bairro of customSearch.bairros" [value]="bairro">{{bairro}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col-12 col-md-4">
           <h6>Tipo do imóvel</h6>
           <mat-form-field>
-            <mat-select placeholder="Todos os imóveis" multiple>
-              <mat-option *ngFor="let tipo of customSearch.tipos" [value]="tipo">{{tipo.key}}</mat-option>
+            <mat-select placeholder="Todos os imóveis" multiple (selectionChange)="changeTipo($event)" [(ngModel)]="tiposSelecionados">
+              <mat-option *ngFor="let tipo of (customSearch.finalidade === 'residencial' ? TIPOS_RESIDENCIAL : TIPOS_RESIDENCIAL)" [value]="tipo">{{tipo | titlecase}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

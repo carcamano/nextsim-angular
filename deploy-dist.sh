@@ -1,1 +1,1 @@
-ng build --configuration production && cp ./.htaccess ./dist/nextsim
+ng build --configuration production && cp ./.htaccess ./dist/nextsim && scp -i  /Users/henriquewilson/Desktop/Acessos/Amazon\ Keys/SOLO\ AWS/soloed/saloed_key.pem -r ./dist/nextsim bitnami@ec2-35-165-54-69.us-west-2.compute.amazonaws.com:~/

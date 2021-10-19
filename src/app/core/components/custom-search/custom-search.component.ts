@@ -12,6 +12,7 @@ import {CustomSearchType} from "./custom-search.enum";
 import {MatSelectChange} from "@angular/material/select";
 import {MASKS, NgBrazilValidators, NgBrDirectives} from 'ng-brazil';
 import {currencyToNumber} from "../../utils/imovel.util";
+
 const {CURRENCYPipe} = NgBrDirectives;
 
 
@@ -25,13 +26,24 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   currentStep = 0;
 
   CustomSearchType = CustomSearchType;
+  TIPOS_RESIDENCIAL = TIPOS_RESIDENCIAL;
+  TIPOS_COMERCIAL = TIPOS_COMERCIAL;
   @Input() type: CustomSearchType = CustomSearchType.simple;
 
   @ViewChild('myDrop') finalidadeSelector: NgbDropdown;
 
   autocompletes: string[] = [];
 
-  @Input() showMe = false;
+  @Input() set showMe(v: boolean) {
+    this.showMeValue = v;
+    this.check();
+  }
+
+  get showMe() {
+    return this.showMeValue;
+  }
+
+  showMeValue = false;
 
   @Input() customSearch = {
     categoria: 'comprar',
@@ -53,11 +65,11 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     bairros: [],
     cidade: '',
     query: '',
-    page: 1,
-    queryParams: {}
+    page: 1
   };
 
   @Output() customSearchChange = new EventEmitter<any>();
+  @Output() simpleSearchChange = new EventEmitter<any>();
 
   public MASKS = MASKS;
 
@@ -67,6 +79,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
   cidades: string[] = [];
   bairrosSelecionados: any[] = [];
+  tiposSelecionados: any[] = [];
   locais: any[];
 
   removeParams: any[] = [];
@@ -95,26 +108,27 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.loadDefaults();
     this.windowWidth = window.innerWidth;
-
-
   }
 
   ngAfterViewInit() {
     this.route.queryParams.subscribe(queryParams => {
-      this.queryParams = queryParams;
-      this.customSearch.categoria = this.queryParams.categoria || 'comprar';
-      this.customSearch.salas = this.queryParams.salas || 0;
-      this.customSearch.garagem = this.queryParams.garagem || 0 ,
-        this.customSearch.dormitorios = this.queryParams.dormitorios || 0,
-        this.customSearch.banheiros = this.queryParams.banheiros || 0,
-        this.customSearch.cidade = this.queryParams.bairro || ''
-      if (this.queryParams.finalidade) {
-        this.customSearch.finalidade = this.queryParams.finalidade;
-      }
-      this.customSearch.page = this.queryParams.page || 1;
-      this.customSearch.queryParams = this.queryParams;
+      if (queryParams.bairros) {
+        this.queryParams = queryParams;
+        this.customSearch.categoria = this.queryParams.categoria || 'comprar';
+        this.customSearch.salas = this.queryParams.salas || 0;
+        this.customSearch.garagem = this.queryParams.garagem || 0 ,
+          this.customSearch.dormitorios = this.queryParams.dormitorios || 0,
+          this.customSearch.banheiros = this.queryParams.banheiros || 0,
+          this.customSearch.cidade = this.queryParams.cidade || ''
 
-      this.customSearchChange.emit(this.customSearch);
+        if (this.queryParams.finalidade) {
+          this.customSearch.finalidade = this.queryParams.finalidade;
+        }
+        this.customSearch.page = this.queryParams.page || 1;
+        this.customSearchChange.emit(this.customSearch);
+      } else {
+        this.simpleSearchChange.emit(queryParams);
+      }
     });
   }
 
@@ -129,7 +143,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
       if (this.customSearch.finalidade === 'lancamento') {
         this.goLancamento();
       } else {
-        if(check && this.currentStep <= goTo) {
+        if (check && this.currentStep <= goTo) {
           return;
         }
         this.currentStep = goTo;
@@ -150,9 +164,9 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   }
 
   inputPriceFocusOut(e: FocusEvent) {
-      console.log(this.customSearch.precos.min);
-      const value = new CURRENCYPipe().transform(currencyToNumber(this.customSearch.precos.min), 0);
-      console.log(value);
+    console.log(this.customSearch.precos.min);
+    const value = new CURRENCYPipe().transform(currencyToNumber(this.customSearch.precos.min), 0);
+    console.log(value);
   }
 
   doSearch(simple = false) {
@@ -163,6 +177,11 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
         query: this.customSearch.query
       } : this.makeParams()
     }).then(() => {
+      this.customSearchChange.emit(simple ? {
+        finalidade: this.customSearch.finalidade,
+        categoria: this.customSearch.categoria,
+        query: this.customSearch.query
+      } : this.makeParams());
       this.closeMe();
       this.currentStep = 0;
     }).catch(reason => console.error(reason));
@@ -175,19 +194,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
 
   makeParams() {
-    let tipos = [];
     let querys = this.removeParams.map(value => value.query);
-    tipos = this.customSearch.tipos.filter(value => {
-      return value.selected === true && !this.removeParams.filter(value => value.query === 'tipo').map(value => value.label).includes(value.key);
-    }).map(value => {
-      return value.key;
-    });
-    let bairros = [];
-    bairros = this.customSearch.bairros.filter(value => {
-      return value.selected === true && !this.removeParams.filter(value => value.query === 'bairros').map(value => value.label).includes(value.key);
-    }).map(value => {
-      return value.key;
-    });
     let area: string;
     if (!querys.includes('area')) {
       if (this.customSearch.area.min) {
@@ -208,19 +215,19 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
       if (this.customSearch.precos.min) {
         this.customSearch.precos.min = parseInt(this.customSearch.precos.min.toString()
           .replace('R$ ', '').replace('.', '')
-          .replace(',', '.'));
+          .replace(',', '.')) || null;
       }
       if (this.customSearch.precos.max) {
         this.customSearch.precos.max = parseInt(this.customSearch.precos.max.toString()
           .replace('R$ ', '').replace('.', '')
-          .replace(',', '.'));
+          .replace(',', '.')) || null;
       }
       precos = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
     }
     return {
       finalidade: !querys.includes('finalidade') ? this.customSearch.finalidade : '',
-      tipo: tipos,
       categoria: !querys.includes('categoria') ? this.customSearch.categoria : '',
+      tipos: this.tiposSelecionados  || [],
       precos,
       area,
       custom: true,
@@ -228,8 +235,8 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
       garagem: !querys.includes('garagem') ? (this.customSearch.garagem > 0 ? this.customSearch.garagem : '') : '',
       banheiros: !querys.includes('banheiros') ? (this.customSearch.banheiros > 0 ? this.customSearch.banheiros : '') : '',
       salas: !querys.includes('salas') ? (this.customSearch.salas > 0 ? this.customSearch.salas : '') : '',
-      bairros: bairros,
-      cidade: !querys.includes('cidade') ? this.customSearch.cidade : '',
+      bairros: this.bairrosSelecionados || [],
+      cidade: this.customSearch.cidade || '',
       page: this.customSearch.page,
       query: this.customSearch.query
     };
@@ -237,32 +244,10 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
   goLancamento() {
     this.closeMe();
-    this.customSearch.finalidade= 'residencial';
+    this.customSearch.finalidade = 'residencial';
     document.getElementById('backdrop').scrollIntoView({behavior: "smooth"});
   }
 
-  result() {
-    console.log(this.customSearch);
-    const tipos = this.customSearch.tipos.filter(value => {
-      return value.selected === true;
-    }).map(value => {
-      return value.key;
-    });
-    const bairros = this.customSearch.bairros.filter(value => {
-      return value.selected === true;
-    }).map(value => {
-      return value.key;
-    });
-    console.log(bairros);
-    const area: string = this.customSearch.area.min + ',' + this.customSearch.area.max;
-    const precos: string = this.customSearch.precos.min + ',' + this.customSearch.precos.max;
-    const search = {
-      finalidade: this.customSearch.finalidade, tipo: tipos.join(','),
-      categoria: this.customSearch.categoria, precos: precos, area: area, custom: true,
-      dormitorios: this.customSearch.dormitorios, salas: this.customSearch.salas,
-      bairros: bairros.join(','), cidade: this.customSearch.cidade
-    };
-  }
 
   numberMask(rawValue: string): RegExp[] {
     const mask = /[A-Za-z]/;
@@ -291,22 +276,33 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   changeCidade(cidade: MatSelectChange) {
     console.log(cidade)
     this.customSearch.cidade = cidade.value;
+    this.bairrosSelecionados = [];
     this.buildLocaisBairros(cidade.value);
   }
 
-  changeTipo(event: any, i: number) {
-    this.customSearch.tipos[i].selected = event.currentTarget.checked;
+  compareCidade(o1: any, o2: any): boolean {
+    console.log(o1)
+    console.log(o2)
+    return o1.name === o2.name && o1.id === o2.id;
+  }
+
+  changeTipo(event: MatSelectChange) {
+    console.log(event);
+    // if (event.value?.length > 0) {
+    //
+    //   this.customSearch.tipos.forEach((value, index) => {
+    //     console.log(value.key);
+    //     if (event.value.map(value => value.key).includes(value.key)) {
+    //       value.selected = true;
+    //     } else {
+    //       value.selected = false;
+    //     }
+    //   });
+    // }
     console.log(this.customSearch.tipos);
   }
 
-  changeBairro(event: any, i: number) {
-    console.log('changeBairro');
-    this.customSearch.bairros[i].selected = event.currentTarget.checked;
-    this.bairrosSelecionados = this.customSearch.bairros.filter(value => {
-      return value.selected === true;
-    }).map(value => {
-      return value.key;
-    });
+  changeBairro(event: MatSelectChange) {
   }
 
 
@@ -317,9 +313,16 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     _.sortBy(_.union(_.compact(_.map(this.filtred[cidade], (im: any, key) => {
       return im.bairro;
     }))), bairro => bairro).forEach((value, index) => {
-      this.customSearch.bairros.push({key: value, selected: false, i: index, c: cidade});
+      this.customSearch.bairros.push(value);
     });
 
+  }
+
+  private check() {
+    if (this.showMe && this.customSearch.cidade) {
+      this.buildLocaisBairros(this.customSearch.cidade);
+
+    }
   }
 
 
@@ -380,7 +383,6 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
 
     Object.keys(this.filtred).forEach((key: string, i: number) => {
-      console.log(key)
       if (key !== 'id') {
         this.cidades.push(key);
       }
@@ -392,21 +394,13 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     }
 
 
-    let tipos = [];
     if (this.customSearch.finalidade === 'residencial') {
-      tipos = TIPOS_RESIDENCIAL;
+      this.customSearch.tipos = TIPOS_RESIDENCIAL;
     } else {
-      tipos = TIPOS_COMERCIAL;
+      this.customSearch.tipos = TIPOS_COMERCIAL;
     }
-    tipos.forEach((value, index) => {
-      this.customSearch.tipos.push({key: value, selected: false, i: index});
-    });
 
-    console.log(this.customSearch.tipos);
-
-    console.log(this.customSearch.tipos.length);
     this.cidades = _.union(this.cidades)
-    console.log(this.cidades);
   }
 
 
