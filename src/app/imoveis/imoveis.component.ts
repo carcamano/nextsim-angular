@@ -334,6 +334,12 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
             });
           break;
       }
+    } else if(event.finalidade && event.categoria) {
+      this.all.getImoveisByFinalidadeTipo(event.finalidade, event.categoria)
+        .subscribe((value) => {
+          this.makeResults(value as Imovel[], event);
+        });
+
     }
 
   }
@@ -378,7 +384,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       }
 
       if(event.categoria) {
-        value = _.filter(value, (v) => v.tipo === event.categoria);
+        value = _.filter(value, (v) => event.categoria === 'comprar' ? v.comercializacao.venda.ativa : v.comercializacao.locacao.ativa);
       }
     }
     this.allImoveis = value;

@@ -35,6 +35,20 @@ export class AllImoveis {
       );
   }
 
+  getImoveisByFinalidadeTipo(finalidade: string, categoria: string) {
+    console.log('getImoveisByFinalidadeTipo')
+    console.log(finalidade)
+    return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS),
+      where('finalidade', '==', finalidade),
+      where(categoria === 'comprar' ? 'comercializacao.venda.ativa' : 'comercializacao.locacao.ativa', '==', true)
+      )))
+      .pipe(
+        map(actions => actions.docs.map(a => {
+          return a.data();
+        })),
+      );
+  }
+
   getImoveis(customSearch: any, last?: Imovel) {
     const wheres = [];
 
@@ -63,8 +77,8 @@ export class AllImoveis {
 
     //
     if (customSearch.bairros?.length > 0) {
-      if(customSearch.bairros?.length > 10) {
-        return ;
+      if (customSearch.bairros?.length > 10) {
+        return;
       }
       if (customSearch.bairros?.length > 1) {
         wheres.push(where('local.bairro', 'in', customSearch.bairros));
@@ -77,8 +91,8 @@ export class AllImoveis {
 
     if (customSearch.tipos?.length > 0) {
       if (customSearch.tipos?.length > 1 && !isIn) {
-        if(customSearch.tipos?.length > 10) {
-          return ;
+        if (customSearch.tipos?.length > 10) {
+          return;
         }
         wheres.push(where('tipo', 'in', customSearch.tipos));
       } else if (customSearch.tipos?.length > 1) {
