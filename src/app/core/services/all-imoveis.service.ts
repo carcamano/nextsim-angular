@@ -52,14 +52,11 @@ export class AllImoveis {
   getImoveis(customSearch: any, last?: Imovel) {
     const wheres = [];
 
-    console.log(customSearch);
-
     const compra = 'comercializacao.venda.ativa';
     const venda = 'comercializacao.locacao.ativa';
     const compra_preco = 'comercializacao.venda.preco';
     const venda_preco = 'comercializacao.locacao.preco';
 
-    let customFilter = false;
     let isIn = false;
     let needSubfilter = false;
     if (customSearch.finalidade) {
@@ -72,7 +69,6 @@ export class AllImoveis {
 
     if (customSearch.cidade) {
       wheres.push(where('local.cidade', '==', customSearch.cidade));
-      customFilter = true;
     }
 
     //
@@ -86,7 +82,6 @@ export class AllImoveis {
       } else {
         wheres.push(where('local.bairro', '==', customSearch.bairros[0]));
       }
-      customFilter = true;
     }
 
     if (customSearch.tipos?.length > 0) {
@@ -100,19 +95,11 @@ export class AllImoveis {
       } else {
         wheres.push(where('tipo', '==', customSearch.tipos[0]));
       }
-      customFilter = true;
     }
 
 
-    if (!customFilter) {
-      // wheres.push(limit(10));
-    }
     wheres.push(orderBy('sigla'));
 
-    if (last) {
-      console.log(last);
-      // wheres.push(startAfter(last.sigla));
-    }
 
     return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS), ...wheres)))
       .pipe(
@@ -140,17 +127,18 @@ export class AllImoveis {
           }
 
           if (is && customSearch.area?.min > 0 && value.numeros?.areas?.total) {
-            is = customSearch.area?.min >= value.numeros.areas.total;
+            is = customSearch.area?.min <= value.numeros.areas.total;
           }
           if (is && customSearch.area?.max > 0 && value.numeros?.areas?.total) {
-            is = customSearch.area?.max <= value.numeros.areas.total;
+            is = customSearch.area?.max >= value.numeros.areas.total;
           }
 
-          if (is && customSearch.precos?.min) {
-            is = customSearch.precos?.min >= (customSearch.categoria === 'comprar' ? customSearch.comercializacao.venda.preco : customSearch.comercializacao.locacao.preco);
+
+          if (is && customSearch.precos?.min && (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco)) {
+            is = customSearch.precos?.min <= (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco);
           }
-          if (is && customSearch.precos?.max) {
-            is = customSearch.precos?.max <= (customSearch.categoria === 'comprar' ? customSearch.comercializacao.venda.preco : customSearch.comercializacao.locacao.preco);
+          if (is && customSearch.precos?.max && (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco)) {
+            is = customSearch.precos?.max >= (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco);
           }
 
           return is;
@@ -164,7 +152,6 @@ export class AllImoveis {
     return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS), where('sigla', '==', sigla))))
       .pipe(
         map(actions => actions.docs.map(a => {
-          console.log()
           return a.data();
         })),
         first(),

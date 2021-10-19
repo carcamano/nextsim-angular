@@ -69,6 +69,18 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     page: 1
   };
 
+  @Input() set forceSearch(s:boolean) {
+    this.forceSearchValue = s;
+    this.doSearch(false);
+    console.log('forceSearch');
+  }
+
+  get forceSearch() {
+    return this.forceSearchValue;
+  }
+
+  private forceSearchValue = false;
+
   @Output() customSearchChange = new EventEmitter<any>();
   @Output() simpleSearchChange = new EventEmitter<any>();
 
@@ -89,21 +101,6 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
   windowWidth = 0;
 
-  options: Options = {
-    floor: 0,
-    ceil: this.customSearch.precos.max,
-    translate: (value: number): string => {
-      return formatCurrency(value, 'pt-BR', 'R$', 'BRL');
-    }
-  };
-
-  optionsArea: Options = {
-    floor: 0,
-    ceil: this.customSearch.area.max,
-    translate: (value: number): string => {
-      return value + ' M²';
-    }
-  };
 
   constructor(private firestore: Firestore, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
   }
@@ -167,8 +164,25 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     this.finalidadeSelector?.close();
   }
 
-  inputPriceFocusOut(e: FocusEvent) {
-    const value = new CURRENCYPipe().transform(currencyToNumber(this.customSearch.precos.min), 0);
+  inputPriceFocusOut(e: FocusEvent, id: number) {
+    console.log((e.target as HTMLInputElement));
+    const num = currencyToNumber((e.target as HTMLInputElement).value)
+    console.log(currencyToNumber((e.target as HTMLInputElement).value));
+
+    switch (id) {
+      case 0:
+        this.customSearch.precos.min = num;
+        break;
+      case 1:
+        this.customSearch.precos.max = num;
+        break;
+      case 2:
+        this.customSearch.area.min = num;
+        break;
+      case 3:
+        this.customSearch.area.max = num;
+        break;
+    }
   }
 
   doSearch(simple = false) {

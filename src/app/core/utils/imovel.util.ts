@@ -85,7 +85,7 @@ export function currencyToNumber(c: any): number {
   } else {
     s = c;
   }
-  return parseFloat(s.replace('R$ ', '').replace('.', '').replace(',', '.'));
+  return parseFloat(s.replace('R$ ', '').replace(/\./g, '').replace(',', '.'));
 }
 
 export const getprice = (imovel: Imovel, queryParams: any): string =>  {

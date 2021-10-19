@@ -166,13 +166,13 @@
             <div class="col">
               <div class="form-group">
                 <label for="price_min">Preço mínimo</label>
-                <input type="text" class="form-control" id="price_min" [(ngModel)]="customSearch.precos.min" [textMask]="{mask: MASKS.currency.textMask}" (focusout)="inputPriceFocusOut($event)"  placeholder="R$ 100"/>
+                <input type="text" class="form-control" id="price_min" [(ngModel)]="customSearch.precos.min" [textMask]="{mask: MASKS.currency.textMask}" (focusout)="inputPriceFocusOut($event, 0)" placeholder="Ex.: R$ 100"/>
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <label for="price_max">Preço máximo</label>
-                <input type="text" class="form-control" id="price_max"  [(ngModel)]="customSearch.precos.max" [textMask]="{mask: MASKS.currency.textMask}" placeholder="R$ 2.100"/>
+                <input type="text" class="form-control" id="price_max"  [(ngModel)]="customSearch.precos.max" [textMask]="{mask: MASKS.currency.textMask}" (focusout)="inputPriceFocusOut($event, 1)" placeholder="Ex.: R$ 1.000.000"/>
               </div>
             </div>
           </div>
@@ -222,13 +222,13 @@
             <div class="col">
               <div class="form-group">
                 <label for="area_min">Mínimo 20m²</label>
-                <input type="text" class="form-control" id="area_min"   [(ngModel)]="customSearch.area.min" [textMask]="{mask: MASKS.number.textMask}" placeholder="10 m²"/>
+                <input type="text" class="form-control" id="area_min"   [(ngModel)]="customSearch.area.min" [textMask]="{mask: MASKS.number.textMask}" (focusout)="inputPriceFocusOut($event, 2)" placeholder="Ex.: 10 m²"/>
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <label for="area_max">Máximo 1.000 m²</label>
-                <input type="text" class="form-control" id="area_max"  [(ngModel)]="customSearch.area.max" [textMask]="{mask: MASKS.number.textMask}" placeholder="1000 m²"/>
+                <input type="text" class="form-control" id="area_max"  [(ngModel)]="customSearch.area.max" [textMask]="{mask: MASKS.number.textMask}" (focusout)="inputPriceFocusOut($event, 3)" placeholder="Ex.: 1000 m²"/>
               </div>
             </div>
           </div>

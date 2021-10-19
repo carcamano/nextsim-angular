@@ -3,7 +3,7 @@ import {Imovel} from './models/imovel.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
-import {formatCurrency} from '@angular/common';
+import {DecimalPipe, formatCurrency} from '@angular/common';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AllImoveis} from "../core/services/all-imoveis.service";
 import {MASKS} from 'ng-brazil';
@@ -12,7 +12,14 @@ import {PATH_AUTOCOMPLETE, PATH_LOCAIS} from "../core/utils/constants.util";
 import {map} from "rxjs/operators";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from "../core/constants/tipos";
-import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from "../core/utils/imovel.util";
+import {
+  getFormattedPrice,
+  toArea,
+  toBath,
+  toDormis,
+  toSalas,
+  toVaga
+} from "../core/utils/imovel.util";
 import {CustomSearchComponent} from "../core/components/custom-search/custom-search.component";
 import {CustomSearchType} from "../core/components/custom-search/custom-search.enum";
 
@@ -47,12 +54,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   mySlideOptions: OwlOptions = {
     items: 1, dots: true, nav: false, navText: ['<', '>'],
-    // responsive: {}
   };
 
-  // customSearch: any;
-
-  /// filtro
 
   filtred: any[] = [];
 
@@ -60,21 +63,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   autocompletes: any[] = [];
   autocompleteSelected: any = null;
 
-  // options: Options = {
-  //   floor: 0,
-  //   ceil: this.customSearch.precos.max,
-  //   translate: (value: number): string => {
-  //     return formatCurrency(value, 'pt-BR', 'R$', 'BRL');
-  //   }
-  // };
-
-  // optionsArea: Options = {
-  //   floor: 0,
-  //   ceil: this.customSearch.area.max,
-  //   translate: (value: number): string => {
-  //     return value + ' M²';
-  //   }
-  // };
 
   removeParams: any[] = [];
 
@@ -101,6 +89,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   queryChange(p) {
+    console.log(p);
     this.queryParams = p;
     this.customSearch.customSearch.categoria = this.queryParams.categoria || 'comprar',
       this.customSearch.customSearch.salas = this.queryParams.salas || 0,
@@ -136,14 +125,54 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
 
   badgeClose(param: any) {
+    console.log(param.split(','));
+    const ss = param.split(',');
+    if (ss?.length > 0) {
+      switch (ss[0]) {
+        case 'categoria':
+          this.customSearch.customSearch.categoria = null;
+          break;
+        case 'finalidade':
+          this.customSearch.customSearch.categoria = null;
+          break;
+        case 'bairros':
+          this.customSearch.bairrosSelecionados = this.customSearch.bairrosSelecionados.filter(value1 => value1 !== ss[1]);
+          break;
+        case 'cidade':
+          this.customSearch.customSearch.cidade = null;
+          break;
+        case 'dormitorios':
+          this.customSearch.customSearch.dormitorios = 0;
+          break;
+        case 'banheiros':
+          this.customSearch.customSearch.banheiros = 0;
+          break;
+        case 'garagem':
+          this.customSearch.customSearch.garagem = 0;
+          break;
+        case 'tipo':
+          this.customSearch.tiposSelecionados = this.customSearch.tiposSelecionados.filter(value1 => value1 !== ss[1]);
+          break;
+        case 'precos':
+          this.customSearch.customSearch.precos = {
+            min: null,
+            max: null,
+          };
+          break;
+        case 'area':
+          this.customSearch.customSearch.area = {
+            min: null,
+            max: null,
+          };
+          break;
 
-    param.split(',')
-    this.removeParams.push({
-      query: param.split(',')[0],
-      label: param.split(',').length > 1 ? param.split(',')[1] : null
-    });
-    // this.dropDownChange(false);
+      }
+    }
 
+
+    // @ts-ignore
+    this.customSearch?.forceSearch = !this.customSearch?.forceSearch;
+    console.log(this.customSearch?.customSearch);
   }
 
   changePage(page: any) {
@@ -219,29 +248,18 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         }
       }
     } catch (e) {
-      // console.error(e);
     }
     return '?';
   }
 
   buildBadges() {
-    // area: "0,61000"
-    // bairros: ""
-    // categoria: "comprar"
-    // cidade: ""
-    // custom: "true"
-    // dormitorios: "0"
-    // finalidade: "residencial"
-    // precos: "0,39000000"
-    // salas: "0"
-    // tipo: ""
     this.badges = [];
     if (this.queryParams.categoria) {
-      this.badges.push(this.badge(this.queryParams.categoria, 'categoria'));
+      // this.badges.push(this.badge(this.queryParams.categoria, 'categoria'));
     }
 
     if (this.queryParams.finalidade) {
-      this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade'));
+      // this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade'));
     }
 
     if (this.queryParams?.bairros) {
@@ -295,21 +313,34 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       ss.forEach(b => this.badges.push(this.badge(`Tipo: ${b}`, `tipo,${b}`)));
     }
 
-    if (this.queryParams.precos instanceof String) {
-      console.log(this.queryParams.precos);
-      const ss = this.queryParams.precos.split(',');
-
-
-      const pMin = Number(ss[0]);
-      const pMax = Number(ss[1]);
-
-      // if (pMin !== this.minPrice || pMax !== this.maxPrice) {
-      if (pMin !== 0 || pMax !== 4000000) {
-        const spMin = formatCurrency(Number(ss[0]), 'pt-BR', 'R$', 'BRL');
-        const spMax = formatCurrency(Number(ss[1]), 'pt-BR', 'R$', 'BRL');
+    if (this.queryParams.precos?.min || this.queryParams.precos?.max) {
+      if (this.queryParams.precos?.min && this.queryParams.precos?.max) {
+        const spMin = formatCurrency(Number(this.queryParams.precos?.min), 'pt-BR', 'R$', 'BRL');
+        const spMax = formatCurrency(Number(this.queryParams.precos?.max), 'pt-BR', 'R$', 'BRL');
         this.badges.push(this.badge(`Entre: ${spMin} e ${spMax}`, 'precos'));
+      } else if (this.queryParams.precos?.min) {
+        const spMin = formatCurrency(Number(this.queryParams.precos?.min), 'pt-BR', 'R$', 'BRL');
+        this.badges.push(this.badge(`Preço maior que ${spMin}`, 'precos'));
+      } else if (this.queryParams.precos?.max) {
+        const spMax = formatCurrency(Number(this.queryParams.precos?.max), 'pt-BR', 'R$', 'BRL');
+        this.badges.push(this.badge(`Preço manor que ${spMax}`, 'precos'));
       }
     }
+
+    if (this.queryParams.area?.min || this.queryParams.area?.max) {
+      if (this.queryParams.area?.min && this.queryParams.area?.max) {
+        const spMin = new DecimalPipe('pt-BR').transform(this.queryParams.area?.min);
+        const spMax = new DecimalPipe('pt-BR').transform(this.queryParams.area?.max);
+        this.badges.push(this.badge(`Com área entre: ${spMin} m² e ${spMax} m²`, 'area'));
+      } else if (this.queryParams.area?.min) {
+        const spMin = new DecimalPipe('pt-BR').transform(this.queryParams.area?.min);
+        this.badges.push(this.badge(`Área maior que ${spMin} m²`, 'area'));
+      } else if (this.queryParams.area?.max) {
+        const spMax = new DecimalPipe('pt-BR').transform(this.queryParams.area?.max);
+        this.badges.push(this.badge(`Área manor que ${spMax} m²`, 'area'));
+      }
+    }
+
   }
 
   private badge(s: string, query: string): any {
@@ -319,7 +350,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   softParamSearch(event: any) {
     console.log(event)
 
-    if(event.autocomplete) {
+    if (event.autocomplete) {
       switch (event.autocomplete) {
         case 'bairro':
           this.all.getImoveisByBairro(event.query)
@@ -334,7 +365,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
             });
           break;
       }
-    } else if(event.finalidade && event.categoria) {
+    } else if (event.finalidade && event.categoria) {
       this.all.getImoveisByFinalidadeTipo(event.finalidade, event.categoria)
         .subscribe((value) => {
           this.makeResults(value as Imovel[], event);
@@ -378,13 +409,13 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   private makeResults(value: Imovel[], event: any = null) {
-    if(event && (event.finalidade || event.categoria)) {
-      if(event.finalidade) {
+    if (event && (event.finalidade || event.categoria)) {
+      if (event.finalidade) {
         value = _.filter(value, (v) => v.finalidade === event.finalidade);
       }
 
-      if(event.categoria) {
-        value = _.filter(value, (v) => event.categoria === 'comprar' ? v.comercializacao.venda.ativa : v.comercializacao.locacao.ativa);
+      if (event.categoria) {
+        value = _.filter(value, (v) => event.categoria === 'comprar' ? v.comercializacao?.venda?.ativa : v.comercializacao?.locacao?.ativa);
       }
     }
     this.allImoveis = value;
