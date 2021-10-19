@@ -21,21 +21,20 @@ export class HeaderComponent implements OnInit {
   simpleSearch = {
     finalidade: null,
     categoria: null,
-    campo: null
+    campo: null,
+    autocomplete: null
   };
-
 
 
   @ViewChild('customSearch') customSearch: CustomSearchComponent;
 
-  autocompletes: string[] = [];
+  autocompletes: any[] = [];
 
+  autocompleteSelected: any;
 
 
   showMobileMenu = false;
-  modalMobileStep1 = true;
   modalMobileStep2 = false;
-  modalMobileStep3 = false;
 
   mobileMenuAlugar = false;
 
@@ -50,7 +49,8 @@ export class HeaderComponent implements OnInit {
         this.simpleSearch = {
           finalidade: null,
           categoria: null,
-          campo: null
+          campo: null,
+          autocomplete: null
         };
       } else if (event instanceof NavigationEnd && ((event.url.includes('/sobre-nos') ||
         event.url.includes('/quero-negociar') || event.url.includes('/blog') || event.url.includes('/servicos')))) {
@@ -80,6 +80,10 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  onSelectAutoComplete(e: any, value: string) {
+    this.autocompleteSelected = this.autocompletes.find(item => item.value === value)
+  }
+
 
   open() {
     this.customSearch.showMe = true;
@@ -89,58 +93,29 @@ export class HeaderComponent implements OnInit {
     document.getElementById('backdrop').scrollIntoView({behavior: "smooth"});
   }
 
-  openSearchMobile(content) {
-    this.modalService.open(content, {
-      ariaLabelledBy: 'modal-basic-title',
-      // @ts-ignore
-      size: 'xl',
-      scrollable: false,
-      centered: true,
-      windowClass: 'MobHomeFilterModal'
-    }).result.then((result) => {
-      this.search(null);
-    }, (reason) => {
-    });
-  }
 
   searchAutocomplete(event: any) {
     const datalist = document.querySelector('datalist');
     if (this.simpleSearch.campo.length > 3) {
       datalist.id = 'dynmicUserIds';
     } else {
+      this.autocompleteSelected = null;
       datalist.id = '';
     }
 
   }
 
-  modalStep(step: number) {
-    this.modalMobileStep3 = false;
-    this.modalMobileStep2 = false;
-    this.modalMobileStep1 = false;
-    switch (step) {
-      case 1:
-        this.modalMobileStep1 = true;
-        break;
-      case 2:
-        this.modalMobileStep2 = true;
-        break;
-      case 3:
-        this.modalMobileStep3 = true;
-        break;
-
-    }
-
-  }
 
   search(query?: any) {
-    console.log('query');
-    console.log(query);
-    if (this.simpleSearch.finalidade || this.simpleSearch.categoria || this.simpleSearch.campo || query) {
+    if (this.autocompleteSelected?.type === 'sigla') {
+      this.router.navigate(['imoveis', this.autocompleteSelected?.value]).then();
+    } else if (this.simpleSearch.finalidade || this.simpleSearch.categoria || this.simpleSearch.campo || query) {
       this.router.navigate(['imoveis'], {
         queryParams: query || {
           finalidade: this.simpleSearch.finalidade,
           categoria: this.simpleSearch.categoria,
-          query: this.simpleSearch.campo
+          query: this.simpleSearch.campo,
+          autocomplete: this.autocompleteSelected?.type
         }
       });
     }
@@ -158,7 +133,6 @@ export class HeaderComponent implements OnInit {
         this.autocompletes = strings.autocomplete;
       });
   }
-
 
 
 }

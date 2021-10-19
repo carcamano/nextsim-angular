@@ -33,10 +33,11 @@
                   <div class="col-12 d-flex mb-3 mt-1">
                     <input type="text" class="col" placeholder="Cidade, bairro ou código"
                            [(ngModel)]="simpleSearch"
-                           (keyup)="searchAutocomplete($event)" id="userIdFirstWay" list="dynmicUserIds"
+                           (keyup)="searchAutocomplete($event)" id="userIdFirstWay" list="dynmicUserIdsImoveis"
+                           (change)="onSelectAutoComplete($event, simpleSearch)"
                            [ngModelOptions]="{standalone: true}"/>
-                    <datalist>
-                      <option *ngFor="let item of autocompletes" [value]="item">{{item}}</option>
+                    <datalist class="imoveisDatalist">
+                      <option *ngFor="let item of autocompletes" [value]="item.value">{{item.value}}</option>
                     </datalist>
                     <button class="input-button" (click)="doSimpleSearch()"><i></i></button>
                   </div>

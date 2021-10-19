@@ -12,6 +12,7 @@ import {CustomSearchType} from "./custom-search.enum";
 import {MatSelectChange} from "@angular/material/select";
 import {MASKS, NgBrazilValidators, NgBrDirectives} from 'ng-brazil';
 import {currencyToNumber} from "../../utils/imovel.util";
+import {ToastrService} from 'ngx-toastr';
 
 const {CURRENCYPipe} = NgBrDirectives;
 
@@ -82,6 +83,8 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   tiposSelecionados: any[] = [];
   locais: any[];
 
+  garagemSelecionada = 0;
+
   removeParams: any[] = [];
 
   windowWidth = 0;
@@ -102,7 +105,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     }
   };
 
-  constructor(private firestore: Firestore, private router: Router, private route: ActivatedRoute) {
+  constructor(private firestore: Firestore, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -130,6 +133,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
         this.simpleSearchChange.emit(queryParams);
       }
     });
+
   }
 
 
@@ -228,13 +232,13 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
       finalidade: !querys.includes('finalidade') ? this.customSearch.finalidade : '',
       categoria: !querys.includes('categoria') ? this.customSearch.categoria : '',
       tipos: this.tiposSelecionados  || [],
-      precos,
-      area,
+      precos: this.customSearch.precos || '',
+      area: this.customSearch.area || '',
       custom: true,
-      dormitorios: !querys.includes('dormitorios') ? (this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '') : '',
-      garagem: !querys.includes('garagem') ? (this.customSearch.garagem > 0 ? this.customSearch.garagem : '') : '',
-      banheiros: !querys.includes('banheiros') ? (this.customSearch.banheiros > 0 ? this.customSearch.banheiros : '') : '',
-      salas: !querys.includes('salas') ? (this.customSearch.salas > 0 ? this.customSearch.salas : '') : '',
+      dormitorios: (this.customSearch.dormitorios > 0 ? this.customSearch.dormitorios : '') || '',
+      garagem: this.garagemSelecionada || '',
+      banheiros: (this.customSearch.banheiros > 0 ? this.customSearch.banheiros : '') || '',
+      salas: this.customSearch.salas > 0 ? this.customSearch.salas : '' || '',
       bairros: this.bairrosSelecionados || [],
       cidade: this.customSearch.cidade || '',
       page: this.customSearch.page,
@@ -280,29 +284,21 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     this.buildLocaisBairros(cidade.value);
   }
 
-  compareCidade(o1: any, o2: any): boolean {
-    console.log(o1)
-    console.log(o2)
-    return o1.name === o2.name && o1.id === o2.id;
-  }
 
   changeTipo(event: MatSelectChange) {
     console.log(event);
-    // if (event.value?.length > 0) {
-    //
-    //   this.customSearch.tipos.forEach((value, index) => {
-    //     console.log(value.key);
-    //     if (event.value.map(value => value.key).includes(value.key)) {
-    //       value.selected = true;
-    //     } else {
-    //       value.selected = false;
-    //     }
-    //   });
-    // }
     console.log(this.customSearch.tipos);
+    if(this.tiposSelecionados.length > 10) {
+      this.toastr.error('Você pode selecionar apenas até 10 tipos de imóvel!', 'Maximo 10 selecionados!');
+    }
   }
 
   changeBairro(event: MatSelectChange) {
+    console.log(this.bairrosSelecionados);
+
+    if(this.bairrosSelecionados.length > 10) {
+      this.toastr.error('Você pode selecionar apenas até 10 bairros!', 'Maximo 10 selecionados!');
+    }
   }
 
 
@@ -368,9 +364,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
 
   rebuildFilter(event?: any) {
-    console.log(this.locais);
-    console.log(this.customSearch.categoria);
-    console.log(this.customSearch.finalidade);
+    console.log('rebuildFilter');
 
     this.filtred = this.locais.find(value => {
       return value.id === `${this.customSearch.categoria}_${this.customSearch.finalidade}`;

@@ -187,11 +187,11 @@
             <div class="searchfield">
               <input type="text" class="form-control" id="search-field"
                      placeholder="Cidade, bairro ou código" autocomplete="off" [(ngModel)]="simpleSearch.campo"
-                     (keyup)="searchAutocomplete($event)" id="userIdFirstWay" list="dynmicUserIds"
+                     (keyup)="searchAutocomplete($event)" id="userIdFirstWay" list="dynmicUserIds" (change)="onSelectAutoComplete($event, simpleSearch.campo)"
                      [ngModelOptions]="{standalone: true}">
 <!--                     [attr.list]="autocompletes && autocompletes.length > 4 ? 'dynmicUserIds': '' "-->
               <datalist>
-                <option *ngFor="let item of autocompletes" [value]="item">{{item}}</option>
+                <option *ngFor="let item of autocompletes" [value]="item.value" >{{item.value}}</option>
               </datalist>
             </div>
           </div>
@@ -221,17 +221,6 @@
   <div class="container scroll-btn" *ngIf="rootView">
     <span href=""><img src="assets/img/arrow-01.png" width="50" id="down-arrow" (click)="scroll()"></span>
   </div>
-  <!--  <div class="owl-carousel" *ngIf="rootView"  [ngStyle]="{'height.px': divStyle}">-->
-  <!--    <img src="assets/img/house-bg.jpg" alt="">-->
-  <!--  </div>-->
 </header>
 
 <app-custom-search #customSearch></app-custom-search>
-
-
-
-<!--<div class="modal fade" id="MobHomeFilterModal" tabindex="-1" role="dialog" aria-labelledby="MobHomeFilterModalLabel"-->
-<!--     aria-hidden="true" *ngIf="rootView">-->
-<!--  <div class="modal-dialog" role="document">-->
-  <!--  </div>-->
-  <!--</div>-->

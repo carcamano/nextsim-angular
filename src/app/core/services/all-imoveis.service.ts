@@ -50,8 +50,16 @@ export class AllImoveis {
       wheres.push(where(customSearch.categoria === 'comprar' ? compra : venda, '==', true));
     }
 
+    if (customSearch.cidade) {
+      wheres.push(where('local.cidade', '==', customSearch.cidade));
+      customFilter = true;
+    }
+
     //
     if (customSearch.bairros?.length > 0) {
+      if(customSearch.bairros?.length > 10) {
+        return ;
+      }
       if (customSearch.bairros?.length > 1) {
         wheres.push(where('local.bairro', 'in', customSearch.bairros));
         isIn = true;
@@ -61,33 +69,11 @@ export class AllImoveis {
       customFilter = true;
     }
 
-    if (customSearch.banheiros > 0) {
-      wheres.push(where('numeros.banheiros', '==', customSearch.banheiros));
-      customFilter = true;
-    }
-
-    if (customSearch.cidade) {
-      console.log(customSearch.cidade)
-      wheres.push(where('local.cidade', '==', customSearch.cidade));
-      customFilter = true;
-    }
-
-    if (customSearch.dormitorios > 0) {
-      wheres.push(where('numeros.dormitorios', '==', customSearch.dormitorios));
-      customFilter = true;
-    }
-
-    if (customSearch.garagem > 0) {
-      wheres.push(where('numeros.garagem', '==', customSearch.garagem));
-      customFilter = true;
-    }
-    if (customSearch.salas > 0) {
-      wheres.push(where('numeros.salas', '==', customSearch.salas));
-      customFilter = true;
-    }
-
     if (customSearch.tipos?.length > 0) {
       if (customSearch.tipos?.length > 1 && !isIn) {
+        if(customSearch.tipos?.length > 10) {
+          return ;
+        }
         wheres.push(where('tipo', 'in', customSearch.tipos));
       } else if (customSearch.tipos?.length > 1) {
         needSubfilter = true;
@@ -95,18 +81,6 @@ export class AllImoveis {
         wheres.push(where('tipo', '==', customSearch.tipos[0]));
       }
       customFilter = true;
-    }
-
-    // area: {min: 0, max: 61000}
-    // precos: {min: 0, max: 4000000}
-    if (customSearch.area?.min && customSearch.area?.max) {
-      wheres.push(where('numeros.areas.total', '>=', customSearch.area.min));
-      wheres.push(where('numeros.areas.total', '<=', customSearch.area.max));
-    }
-
-    if (customSearch.precos?.min && customSearch.precos?.max) {
-      wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '>=', customSearch.precos.min));
-      wheres.push(where(customSearch.categoria === 'comprar' ? compra_preco : venda_preco, '<=', customSearch.precos.max));
     }
 
 
@@ -119,7 +93,6 @@ export class AllImoveis {
       console.log(last);
       // wheres.push(startAfter(last.sigla));
     }
-    console.log(...wheres);
 
     return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS), ...wheres)))
       .pipe(
@@ -128,6 +101,39 @@ export class AllImoveis {
         })),
         map(value => value.filter(value => {
           return needSubfilter ? customSearch.tipos.includes(value.tipo) : true;
+        })),
+        map(value => value.filter((value: Imovel) => {
+          let is = true;
+          if (customSearch.banheiros > 0 && value.numeros?.banheiros) {
+            is = customSearch.banheiros === 4 ? value.numeros.banheiros >= 4 : value.numeros.banheiros === customSearch.banheiros;
+          }
+
+          if (is && customSearch.dormitorios > 0 && value.numeros?.dormitorios) {
+            is = customSearch.dormitorios === 4 ? value.numeros.dormitorios >= 4 : value.numeros.dormitorios === customSearch.dormitorios;
+          }
+
+          if (is && customSearch.garagem > 0 && value.numeros?.vagas) {
+            is = customSearch.garagem === 4 ? value.numeros.vagas >= 4 : value.numeros.vagas === customSearch.garagem;
+          }
+          if (is && customSearch.salas > 0 && value.numeros?.salas) {
+            is = customSearch.salas === 4 ? value.numeros.salas >= 4 : value.numeros.salas === customSearch.salas;
+          }
+
+          if (is && customSearch.area?.min > 0 && value.numeros?.areas?.total) {
+            is = customSearch.area?.min >= value.numeros.areas.total;
+          }
+          if (is && customSearch.area?.max > 0 && value.numeros?.areas?.total) {
+            is = customSearch.area?.max <= value.numeros.areas.total;
+          }
+
+          if (is && customSearch.precos?.min) {
+            is = customSearch.precos?.min >= (customSearch.categoria === 'comprar' ? customSearch.comercializacao.venda.preco : customSearch.comercializacao.locacao.preco);
+          }
+          if (is && customSearch.precos?.max) {
+            is = customSearch.precos?.max <= (customSearch.categoria === 'comprar' ? customSearch.comercializacao.venda.preco : customSearch.comercializacao.locacao.preco);
+          }
+
+          return is;
         }))
       );
   }

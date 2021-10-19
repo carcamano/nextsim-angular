@@ -57,7 +57,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   filtred: any[] = [];
 
 
-  autocompletes: string[] = [];
+  autocompletes: any[] = [];
+  autocompleteSelected: any = null;
 
   // options: Options = {
   //   floor: 0,
@@ -94,30 +95,12 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
               private router: Router, private modalService: NgbModal, private firestore: Firestore) {
   }
 
-  // open(content) {
-  //   this.modalService.open(content, {
-  //     ariaLabelledBy: 'modal-basic-title',
-  //     // @ts-ignore
-  //     size: 'xl',
-  //     scrollable: false,
-  //     centered: true,
-  //     windowClass: 'InternalModalFilter'
-  //   }).result.then((result) => {
-  //     if (result) {
-  //       this.dropDownChange(false);
-  //     }
-  //   }, (reason) => {
-  //
-  //   });
-  // }
 
   ngOnInit() {
-
-
+    this.loadDefaults();
   }
 
   queryChange(p) {
-    console.log(p);
     this.queryParams = p;
     this.customSearch.customSearch.categoria = this.queryParams.categoria || 'comprar',
       this.customSearch.customSearch.salas = this.queryParams.salas || 0,
@@ -134,7 +117,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     this.customSearch.customSearch.page = this.queryParams.page || 1;
     this.currentPage = parseInt(localStorage.getItem(location.search) || '1');
     this.buildBadges();
-    this.loadDefaults();
     this.getImoveis();
 
   }
@@ -193,15 +175,16 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   doSimpleSearch() {
     if (this.simpleSearch?.length > 0) {
-      this.router.navigate(['imoveis'], {
-        queryParams: {
-          query: this.simpleSearch
-        }
-      }).then(value => {
-        this.getImoveis({
-          query: this.simpleSearch
-        })
-      }).catch(reason => console.error(reason));
+      if (this.autocompleteSelected?.type === 'sigla') {
+        this.router.navigate(['imoveis', this.autocompleteSelected?.value]).then();
+      } else {
+        this.router.navigate(['imoveis'], {
+          queryParams: {
+            query: this.simpleSearch,
+            autocomplete: this.autocompleteSelected?.type
+          }
+        }).then();
+      }
     }
   }
 
@@ -262,7 +245,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
 
     if (this.queryParams?.bairros) {
-      const ss = typeof this.queryParams?.bairros?.split  === "function" ? (this.queryParams?.bairros?.split(',') || []) : this.queryParams?.bairros;
+      const ss = typeof this.queryParams?.bairros?.split === "function" ? (this.queryParams?.bairros?.split(',') || []) : this.queryParams?.bairros;
       ss.forEach(b => this.badges.push(this.badge(`No bairro: ${b}`, `bairros,${b}`)));
     }
 
@@ -308,7 +291,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
 
     if (this.queryParams.tipos) {
-      const ss = typeof this.queryParams?.tipos?.split  === "function" ? (this.queryParams?.tipos?.split(',') || []) : this.queryParams?.tipos;
+      const ss = typeof this.queryParams?.tipos?.split === "function" ? (this.queryParams?.tipos?.split(',') || []) : this.queryParams?.tipos;
       ss.forEach(b => this.badges.push(this.badge(`Tipo: ${b}`, `tipo,${b}`)));
     }
 
@@ -337,14 +320,20 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     console.log(event)
     this.getImoveis(event);
   }
+
   searchAutocomplete(event: any) {
-    const datalist = document.querySelector('datalist');
+    const datalist = document.querySelectorAll('.imoveisDatalist')[0];
     if (this.simpleSearch.length > 3) {
-      datalist.id = 'dynmicUserIds';
+      datalist.id = 'dynmicUserIdsImoveis';
     } else {
+      this.autocompleteSelected = null;
       datalist.id = '';
     }
 
+  }
+
+  onSelectAutoComplete(e: any, value: string) {
+    this.autocompleteSelected = this.autocompletes.find(item => item.value === value)
   }
 
   private loadDefaults() {
