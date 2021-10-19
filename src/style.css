@@ -21308,6 +21308,9 @@ i.custom-search {
 
   .properties .properties-list .item .pos-content {
     padding: 15px 20px 15px 20px; } }
+.hover-me {
+  cursor: pointer; }
+
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
   color: #F69731 !important;
   font-width: bold !important; }

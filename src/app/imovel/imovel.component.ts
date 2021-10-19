@@ -76,8 +76,7 @@ export class ImovelComponent implements OnInit {
   }
 
   back(): void {
-    this.router.navigate(['/imoveis'], {queryParams: {back: true}})
-
+    window.history.back();
   }
 
   scroll() {
