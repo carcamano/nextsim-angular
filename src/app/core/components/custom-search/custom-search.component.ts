@@ -168,9 +168,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   }
 
   inputPriceFocusOut(e: FocusEvent) {
-    console.log(this.customSearch.precos.min);
     const value = new CURRENCYPipe().transform(currencyToNumber(this.customSearch.precos.min), 0);
-    console.log(value);
   }
 
   doSearch(simple = false) {
@@ -278,7 +276,6 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
 
   changeCidade(cidade: MatSelectChange) {
-    console.log(cidade)
     this.customSearch.cidade = cidade.value;
     this.bairrosSelecionados = [];
     this.buildLocaisBairros(cidade.value);
@@ -286,16 +283,12 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
 
   changeTipo(event: MatSelectChange) {
-    console.log(event);
-    console.log(this.customSearch.tipos);
     if(this.tiposSelecionados.length > 10) {
       this.toastr.error('Você pode selecionar apenas até 10 tipos de imóvel!', 'Maximo 10 selecionados!');
     }
   }
 
   changeBairro(event: MatSelectChange) {
-    console.log(this.bairrosSelecionados);
-
     if(this.bairrosSelecionados.length > 10) {
       this.toastr.error('Você pode selecionar apenas até 10 bairros!', 'Maximo 10 selecionados!');
     }
@@ -303,7 +296,6 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
 
   buildLocaisBairros(cidade: string) {
-    console.log(cidade);
     this.customSearch.bairros = [];
 
     _.sortBy(_.union(_.compact(_.map(this.filtred[cidade], (im: any, key) => {
@@ -356,7 +348,6 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
         return a.data();
       }))
       .subscribe(strings => {
-        console.log(strings);
         this.autocompletes = strings.autocomplete;
       });
 
@@ -364,12 +355,10 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
 
   rebuildFilter(event?: any) {
-    console.log('rebuildFilter');
 
     this.filtred = this.locais.find(value => {
       return value.id === `${this.customSearch.categoria}_${this.customSearch.finalidade}`;
     });
-    console.log(this.filtred);
 
 
     this.customSearch.tipos = [];

@@ -7,6 +7,7 @@ import {PATH_AUTOCOMPLETE} from "../core/utils/constants.util";
 import {doc, docSnapshots, Firestore} from '@angular/fire/firestore';
 import {map} from "rxjs/operators";
 import {CustomSearchComponent} from "../core/components/custom-search/custom-search.component";
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-header',
@@ -129,8 +130,7 @@ export class HeaderComponent implements OnInit {
         return a.data();
       }))
       .subscribe(strings => {
-        console.log(strings);
-        this.autocompletes = strings.autocomplete;
+        this.autocompletes = this.autocompletes = _.unionBy(strings.autocomplete, 'value');;
       });
   }
 

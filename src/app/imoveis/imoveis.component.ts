@@ -318,7 +318,24 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   softParamSearch(event: any) {
     console.log(event)
-    this.getImoveis(event);
+
+    if(event.autocomplete) {
+      switch (event.autocomplete) {
+        case 'bairro':
+          this.all.getImoveisByBairro(event.query)
+            .subscribe((value) => {
+              this.makeResults(value as Imovel[]);
+            });
+          break;
+        case 'cidade':
+          this.all.getImoveisByCidade(event.query + '/SP')
+            .subscribe((value) => {
+              this.makeResults(value as Imovel[], event);
+            });
+          break;
+      }
+    }
+
   }
 
   searchAutocomplete(event: any) {
@@ -342,7 +359,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         return a.data();
       }))
       .subscribe(strings => {
-        this.autocompletes = strings.autocomplete;
+        this.autocompletes = _.unionBy(strings.autocomplete, 'value');
       });
   }
 
@@ -350,21 +367,35 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     console.log(query);
     this.all.getImoveis(query || this.customSearch?.customSearch, last)
       .subscribe((value) => {
-        this.allImoveis = value as Imovel[];
-        this.pages = this.allImoveis?.length || 0;
-        this.makePagination();
-        if (this.queryParams.query) {
-          const findBySigla = this.imoveis.find(value1 => value1.sigla === this.queryParams.query);
-          if (findBySigla) {
-            this.goImovel(findBySigla);
-          }
-        }
-        this.checkResults();
-        setTimeout(() => {
-          window.scrollTo(0, parseInt(localStorage.getItem('nextscroll')));
-          localStorage.removeItem('nextscroll');
-        }, 500);
+        this.makeResults(value as Imovel[]);
       });
+  }
+
+  private makeResults(value: Imovel[], event: any = null) {
+    if(event && (event.finalidade || event.categoria)) {
+      if(event.finalidade) {
+        value = _.filter(value, (v) => v.finalidade === event.finalidade);
+      }
+
+      if(event.categoria) {
+        value = _.filter(value, (v) => v.tipo === event.categoria);
+      }
+    }
+    this.allImoveis = value;
+    this.pages = this.allImoveis?.length || 0;
+    this.makePagination();
+    if (this.queryParams.query) {
+      const findBySigla = this.imoveis.find(value1 => value1.sigla === this.queryParams.query);
+      if (findBySigla) {
+        this.goImovel(findBySigla);
+      }
+    }
+    this.checkResults();
+    setTimeout(() => {
+      window.scrollTo(0, parseInt(localStorage.getItem('nextscroll')));
+      localStorage.removeItem('nextscroll');
+    }, 500);
+
   }
 
   private makePagination() {

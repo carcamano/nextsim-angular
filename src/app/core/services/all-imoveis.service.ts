@@ -17,20 +17,26 @@ export class AllImoveis {
 
   }
 
+  getImoveisByBairro(bairro: string) {
+    return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS), where('local.bairro', '==', bairro))))
+      .pipe(
+        map(actions => actions.docs.map(a => {
+          return a.data();
+        })),
+      );
+  }
+
+  getImoveisByCidade(cidade: string) {
+    return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS), where('local.cidade', '==', cidade))))
+      .pipe(
+        map(actions => actions.docs.map(a => {
+          return a.data();
+        })),
+      );
+  }
+
   getImoveis(customSearch: any, last?: Imovel) {
     const wheres = [];
-    // bairros: [] ok
-    // banheiros: 0 ok
-    // categoria: "comprar" ok
-    // cidade: "" ok
-    // dormitorios: "0" ok
-    // finalidade: "comercial" ok
-    // garagem: 0 ok
-    // tipo: [] ok
-    // salas: "0" ok
-    // page: 1
-    // area: {min: 0, max: 61000}
-    // precos: {min: 0, max: 4000000}
 
     console.log(customSearch);
 
