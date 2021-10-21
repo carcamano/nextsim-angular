@@ -443,7 +443,7 @@ app-imovel {
         display: flex;
         align-items: center;
 
-        &.digit {
+        &.digit, &.digit b {
           font-family: Roboto;
         }
 

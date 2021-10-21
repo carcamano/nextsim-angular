@@ -290,7 +290,7 @@ app-imovel .property {
     color: #575656;
     display: flex;
     align-items: center; }
-    .card-imovel .novo-footer .prices-table span.digit {
+    .card-imovel .novo-footer .prices-table span.digit, .card-imovel .novo-footer .prices-table span.digit b {
       font-family: Roboto; }
     .card-imovel .novo-footer .prices-table span.hard-color {
       color: #2E2E2E; }
