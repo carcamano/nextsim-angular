@@ -24,6 +24,29 @@ export const toArea = (imovel: Imovel) => {
   return null;
 }
 
+export const toAreaInt = (imovel: Imovel): number => {
+  if (imovel) {
+    try {
+      if (imovel && imovel.tipo === 'casa') {
+        return parseInt(imovel.numeros.areas.total.toFixed(0));
+      } else if (imovel && imovel.tipo === 'apartamento' || imovel.tipo === 'sala' || imovel.tipo === 'cobertura') {
+        return parseInt(imovel.numeros.areas.util.toFixed(0));
+      } else if (imovel && imovel.tipo === 'terreno') {
+        return parseInt(imovel.numeros.areas.terreno.toFixed(0));
+      } else if (imovel && imovel.tipo === 'chácara') {
+        return parseInt(imovel.numeros.areas.terreno.toFixed(0));
+      } else if (imovel && imovel.tipo === 'galpão') {
+        return parseInt(imovel.numeros.areas.construida.toFixed(0));
+      } else if (imovel && imovel.tipo === 'prédio') {
+        return parseInt(imovel.numeros.areas.construida.toFixed(0));
+      }
+    } catch (e) {
+      // console.error(e);
+    }
+  }
+  return null;
+}
+
 export const toDormis = (imovel: Imovel) =>  {
   if (!imovel) {
     return '?';

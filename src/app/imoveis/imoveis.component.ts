@@ -7,19 +7,11 @@ import {DecimalPipe, formatCurrency} from '@angular/common';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AllImoveis} from "../core/services/all-imoveis.service";
 import {MASKS} from 'ng-brazil';
-import {collection, collectionSnapshots, doc, docSnapshots, Firestore} from "@angular/fire/firestore";
-import {PATH_AUTOCOMPLETE, PATH_LOCAIS} from "../core/utils/constants.util";
+import {doc, docSnapshots, Firestore} from "@angular/fire/firestore";
+import {PATH_AUTOCOMPLETE} from "../core/utils/constants.util";
 import {map} from "rxjs/operators";
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from "../core/constants/tipos";
-import {
-  getFormattedPrice,
-  toArea,
-  toBath,
-  toDormis,
-  toSalas,
-  toVaga
-} from "../core/utils/imovel.util";
+import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from "../core/utils/imovel.util";
 import {CustomSearchComponent} from "../core/components/custom-search/custom-search.component";
 import {CustomSearchType} from "../core/components/custom-search/custom-search.enum";
 
@@ -106,6 +98,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     this.currentPage = parseInt(localStorage.getItem(location.search) || '1');
     this.buildBadges();
     this.getImoveis();
+    this.scrollTop();
 
   }
 

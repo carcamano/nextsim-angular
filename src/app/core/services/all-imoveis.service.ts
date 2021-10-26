@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Imovel} from "../../imoveis/models/imovel.model";
-import {finalize, first, map, filter} from "rxjs/operators";
+import {finalize, first, map} from "rxjs/operators";
 import {PATH_IMOVEIS} from "../utils/constants.util";
-import {collection, Firestore, getDocs, limit, orderBy, query, startAfter, where} from "@angular/fire/firestore";
+import {collection, Firestore, getDocs, orderBy, query, where} from "@angular/fire/firestore";
 import {from} from "rxjs";
+import {toAreaInt} from "../utils/imovel.util";
 
 
 @Injectable({
@@ -124,11 +125,11 @@ export class AllImoveis {
             is = parseInt(customSearch.salas) === 4 ? value.numeros.salas >= 4 : value.numeros.salas === parseInt(customSearch.salas);
           }
 
-          if (is && parseInt(customSearch.area?.min) > 0 && value.numeros?.areas?.total) {
-            is = parseInt(customSearch.area?.min) <= value.numeros.areas.total;
+          if (is && parseInt(customSearch.area?.min) > 0 && toAreaInt(value)) {
+            is = parseInt(customSearch.area?.min) <= toAreaInt(value);
           }
-          if (is && parseInt(customSearch.area?.max) > 0 && value.numeros?.areas?.total) {
-            is = parseInt(customSearch.area?.max) >= value.numeros.areas.total;
+          if (is && parseInt(customSearch.area?.max) > 0 && toAreaInt(value)) {
+            is = parseInt(customSearch.area?.max) >= toAreaInt(value);
           }
 
 

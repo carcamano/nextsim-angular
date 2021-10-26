@@ -205,8 +205,7 @@
             <div class="row mood">
               <div class="col-12 col-md mood-bg mood-card building px-0 mx-0" style="cursor:pointer;">
                 <a
-                  [routerLink]="['/imoveis/']"
-                  [queryParams]="{finalidade: 'residencial', categoria: 'comprar', tipo: 'terreno'}">
+                  (click)="queryChange({finalidade: 'residencial', categoria: 'comprar', tipo: 'terreno'})">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-wall h4"></i>
@@ -216,7 +215,7 @@
                 </a>
               </div>
               <div class="col-12 col-md mood-bg mood-card highlight px-0 mx-0" style="cursor:pointer;">
-                <a href="#" [routerLink]="['/imoveis/']" [queryParams]="{featured: true}">
+                <a (click)="queryChange({featured: true})">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-featured h4"></i>
@@ -227,8 +226,7 @@
               </div>
               <div class="col-12 col-md mood-bg mood-card for-family px-0 mx-0" style="cursor:pointer;">
                 <a
-                  [routerLink]="['/imoveis/']"
-                  [queryParams]="{finalidade: 'residencial', dormitorios: '3'}">
+                  (click)="queryChange({finalidade: 'residencial', dormitorios: '3'})">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-house-heart h4"></i>
@@ -239,8 +237,7 @@
               </div>
               <div class="col-12 col-md mood-bg mood-card for-couple px-0 mx-0" style="cursor:pointer;">
                 <a
-                  [routerLink]="['/imoveis/']"
-                  [queryParams]="{finalidade: 'residencial', dormitorios: '2'}">
+                  (click)="queryChange({finalidade: 'residencial', dormitorios: '2'})">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-alliance h4"></i>
