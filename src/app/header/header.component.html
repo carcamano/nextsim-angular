@@ -144,35 +144,35 @@
       <div class="row d-none d-lg-block">
         <div class="col-md-12">
           <div class="filter-bar-home centerObject">
-            <div class="goal" ngbDropdown>
+            <div class="goal" ngbDropdown #dropCategoria="ngbDropdown" [autoClose]="true">
               <div class="goal-title finalidade" ngbDropdownToggle id="dropdownForm1"><span
                 class="icon-goal arrow-down-icon"></span> <span
                 class="goal-title-in">{{simpleSearch.categoria || 'Finalidade'}}</span>
               </div>
               <div class="goal-options" ngbDropdownMenu aria-labelledby="dropdownForm1">
-                <div class="form-check goal-option" (click)='simpleSearch.categoria= "comprar"'>
+                <div class="form-check goal-option" (click)="selectCategoria('comprar', dropCategoria)">
                   <label class="form-check-label" id="label-comprar">
                     Comprar
                   </label>
                 </div>
-                <div class="form-check goal-option" (click)='simpleSearch.categoria = "alugar"'>
+                <div class="form-check goal-option" (click)="selectCategoria('alugar', dropCategoria)">
                   <label class="form-check-label" id="label-alugar">
                     Alugar
                   </label>
                 </div>
               </div>
             </div>
-            <div class="category" ngbDropdown>
+            <div class="category" ngbDropdown #dropFinalidade="ngbDropdown"  [autoClose]="true">
               <div class="category-title" ngbDropdownToggle id="dropdownForm2"><span
                 class="icon-category arrow-down-icon"></span> <span
                 class="category-title-in">{{simpleSearch.finalidade || 'Categoria'}}</span></div>
               <div class="category-options" ngbDropdownMenu aria-labelledby="dropdownForm2">
-                <div class="form-check category-option" (click)="simpleSearch.finalidade = 'residencial'">
+                <div class="form-check category-option" (click)="selectFinalidade('residencial', dropFinalidade)">
                   <label class="form-check-label">
                     Residencial
                   </label>
                 </div>
-                <div class="form-check category-option" (click)="simpleSearch.finalidade = 'comercial'">
+                <div class="form-check category-option" (click)="selectFinalidade('comercial', dropFinalidade)">
                   <label class="form-check-label">
                     Comercial
                   </label>

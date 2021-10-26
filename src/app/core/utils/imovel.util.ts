@@ -9,7 +9,7 @@ export const toArea = (imovel: Imovel) => {
       } else if (imovel && imovel.tipo === 'apartamento' || imovel.tipo === 'sala' || imovel.tipo === 'cobertura') {
         return imovel.numeros.areas.util.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
       } else if (imovel && imovel.tipo === 'terreno') {
-        return imovel.numeros.areas.total.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
+        return imovel.numeros.areas.terreno.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
       } else if (imovel && imovel.tipo === 'chácara') {
         return imovel.numeros.areas.terreno.toFixed(0) + ' ' + imovel.numeros.areas.unidade;
       } else if (imovel && imovel.tipo === 'galpão') {

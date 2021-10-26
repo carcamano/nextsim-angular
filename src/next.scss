@@ -361,6 +361,9 @@
 app-imovel {
   .property {
     background: #575656;
+    @media only screen and (max-width: 768px) {
+      background: #fff;
+    }
   }
 }
 
@@ -656,20 +659,25 @@ app-imovel {
 }
 
 @media only screen and (min-width: 768px) {
-  .how-we-do .title_block {
-    margin-top: -110px;
-  }
 
   .about-session {
     padding-bottom: 0;
   }
   .about-session {
     padding-top: 0;
-    margin-top: -80px;
   }
 
   .divBtnDownload {
     margin-bottom: 50px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .about-session {
+    margin-top: -80px;
+  }
+  .how-we-do .title_block {
+    margin-top: -110px;
   }
 }
 

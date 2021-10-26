@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdown, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AllImoveis} from "../core/services/all-imoveis.service";
 import {WPService} from "../core/services/w-p.service";
 import {PATH_AUTOCOMPLETE} from "../core/utils/constants.util";
@@ -108,6 +108,12 @@ export class HeaderComponent implements OnInit {
 
 
   search(query?: any) {
+    if (!this.autocompleteSelected?.type) {
+      const f = this.autocompletes.find(v => v.value?.toUpperCase() === this.simpleSearch?.campo?.toUpperCase());
+      if (f) {
+        this.autocompleteSelected = f;
+      }
+    }
     if (this.autocompleteSelected?.type === 'sigla') {
       this.router.navigate(['imoveis', this.autocompleteSelected?.value]).then();
     } else if (this.simpleSearch.finalidade || this.simpleSearch.categoria || this.simpleSearch.campo || query) {
@@ -122,6 +128,18 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  selectCategoria(value, comp: NgbDropdown) {
+    comp.close();
+    this.simpleSearch.categoria = value;
+
+  }
+
+  selectFinalidade(value, comp) {
+    comp.close();
+    this.simpleSearch.finalidade = value;
+
+  }
+
 
   private loadDefaults() {
 
@@ -130,7 +148,8 @@ export class HeaderComponent implements OnInit {
         return a.data();
       }))
       .subscribe(strings => {
-        this.autocompletes = this.autocompletes = _.unionBy(strings.autocomplete, 'value');;
+        this.autocompletes = this.autocompletes = _.unionBy(strings.autocomplete, 'value');
+        ;
       });
   }
 
