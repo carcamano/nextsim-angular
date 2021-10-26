@@ -18,7 +18,7 @@ import {CustomSearchType} from "../core/components/custom-search/custom-search.e
 @Component({
   selector: 'app-imoveis',
   templateUrl: './imoveis.component.html',
-  styleUrls: ['./imoveis.component.css']
+  styleUrls: ['./imoveis.component.scss']
 })
 export class ImoveisComponent implements OnInit, AfterViewInit {
 
