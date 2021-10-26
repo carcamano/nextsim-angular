@@ -120,16 +120,16 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="">Home</a></li>
-              <li class="breadcrumb-item" *ngIf="customSearch?.query"><a> Pesquisa </a></li>
-              <li class="breadcrumb-item" *ngIf="!customSearch?.query"><a> Imóveis </a></li>
+              <li class="breadcrumb-item" *ngIf="!(customSearch?.categoria === 'comprar' || customSearch?.categoria === 'alugar') && !(customSearch?.finalidade === 'residencial' || customSearch?.finalidade === 'comercial')"><a> Pesquisa </a></li>
+              <li class="breadcrumb-item" *ngIf="(customSearch?.categoria === 'comprar' || customSearch?.categoria === 'alugar') && (customSearch?.finalidade === 'residencial' || customSearch?.finalidade === 'comercial')"><a> Imóveis </a></li>
               <li
                 class='breadcrumb-item active'
-                *ngIf="!customSearch?.query && (customSearch?.categoria === 'comprar' || customSearch?.categoria === 'alugar')">{{customSearch?.categoria === 'comprar' ? 'COMPRAR' : customSearch?.categoria === 'alugar' ? 'ALUGAR' : ('')}} </li>
+                *ngIf="customSearch?.categoria === 'comprar' || customSearch?.categoria === 'alugar'">{{customSearch?.categoria === 'comprar' ? 'COMPRAR' : customSearch?.categoria === 'alugar' ? 'ALUGAR' : ('')}} </li>
               <li
                 class='breadcrumb-item active'
-                *ngIf="!customSearch?.query">{{customSearch?.finalidade === 'residencial' ? 'RESIDENCIAIS' : customSearch?.finalidade === 'comercial' ? 'COMERCIAIS' : ('')}} </li>
+                *ngIf="customSearch?.finalidade === 'residencial' || customSearch?.finalidade === 'comercial'">{{customSearch?.finalidade === 'residencial' ? 'RESIDENCIAIS' : customSearch?.finalidade === 'comercial' ? 'COMERCIAIS' : ('')}} </li>
               <li
-                class='breadcrumb-item active' *ngIf="customSearch?.query">{{customSearch?.query}} </li>
+                class='breadcrumb-item active' *ngIf="!(customSearch?.categoria === 'comprar' || customSearch?.categoria === 'alugar') && !(customSearch?.finalidade === 'residencial' || customSearch?.finalidade === 'comercial') && queryParams?.query">{{customSearch?.query}} </li>
             </ol>
           </nav>
         </div>
@@ -180,39 +180,39 @@
         <div class="col-12 col-md-4 order-md-2">
           <h6>Quartos</h6>
           <div class="boll-selector">
-            <button [class.current]="customSearch.quartos === 1" (click)="customSearch.quartos = 1"><span>1</span>
+            <button [class.current]="customSearch.dormitorios == 1" (click)="customSearch.dormitorios = 1"><span>1</span>
             </button>
-            <button [class.current]="customSearch.quartos === 2" (click)="customSearch.quartos = 2"><span>2</span>
+            <button [class.current]="customSearch.dormitorios == 2" (click)="customSearch.dormitorios = 2"><span>2</span>
             </button>
-            <button [class.current]="customSearch.quartos === 3" (click)="customSearch.quartos = 3"><span>3</span>
+            <button [class.current]="customSearch.dormitorios == 3" (click)="customSearch.dormitorios = 3"><span>3</span>
             </button>
-            <button [class.current]="customSearch.quartos === 4" (click)="customSearch.quartos = 4"><span>4+</span>
+            <button [class.current]="customSearch.dormitorios == 4" (click)="customSearch.dormitorios = 4"><span>4+</span>
             </button>
           </div>
         </div>
         <div class="col-12 col-md-4  order-md-2">
           <h6>Banheiros</h6>
           <div class="boll-selector">
-            <button [class.current]="customSearch.banheiros === 1" (click)="customSearch.banheiros = 1"><span>1</span>
+            <button [class.current]="customSearch.banheiros == 1" (click)="customSearch.banheiros = 1"><span>1</span>
             </button>
-            <button [class.current]="customSearch.banheiros === 2" (click)="customSearch.banheiros = 2"><span>2</span>
+            <button [class.current]="customSearch.banheiros == 2" (click)="customSearch.banheiros = 2"><span>2</span>
             </button>
-            <button [class.current]="customSearch.banheiros === 3" (click)="customSearch.banheiros = 3"><span>3</span>
+            <button [class.current]="customSearch.banheiros == 3" (click)="customSearch.banheiros = 3"><span>3</span>
             </button>
-            <button [class.current]="customSearch.banheiros === 4" (click)="customSearch.banheiros = 4"><span>4+</span>
+            <button [class.current]="customSearch.banheiros == 4" (click)="customSearch.banheiros = 4"><span>4+</span>
             </button>
           </div>
         </div>
         <div class="col-12 col-md-4 order-md-2">
           <h6>Garagem</h6>
           <div class="boll-selector">
-            <button [class.current]="garagemSelecionada === 1" (click)="garagemSelecionada = 1"><span>1</span>
+            <button [class.current]="garagemSelecionada == 1" (click)="garagemSelecionada = 1"><span>1</span>
             </button>
-            <button [class.current]="garagemSelecionada === 2" (click)="garagemSelecionada = 2"><span>2</span>
+            <button [class.current]="garagemSelecionada == 2" (click)="garagemSelecionada = 2"><span>2</span>
             </button>
-            <button [class.current]="garagemSelecionada === 3" (click)="garagemSelecionada = 3"><span>3</span>
+            <button [class.current]="garagemSelecionada == 3" (click)="garagemSelecionada = 3"><span>3</span>
             </button>
-            <button [class.current]="garagemSelecionada === 4" (click)="garagemSelecionada = 4"><span>4+</span>
+            <button [class.current]="garagemSelecionada == 4" (click)="garagemSelecionada = 4"><span>4+</span>
             </button>
           </div>
         </div>

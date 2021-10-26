@@ -296,17 +296,13 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
   }
 
   submit1() {
-    console.log(this.form1.getRawValue());
     if (this.form1.valid) {
-      console.log('valido 1');
       this.sendForm(this.form1.getRawValue(), 723);
     } else {
-      console.log('invalido 1');
       this.errorForm();
     }
   }
   submit2() {
-    console.log(this.form2.getRawValue());
     if (this.form2.valid) {
       console.log('valido 2');
       this.sendForm(this.form2.getRawValue(), 724);

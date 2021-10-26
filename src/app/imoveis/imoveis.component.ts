@@ -89,7 +89,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   queryChange(p) {
-    console.log(p);
     this.queryParams = p;
     this.customSearch.customSearch.categoria = this.queryParams.categoria || 'comprar',
       this.customSearch.customSearch.salas = this.queryParams.salas || 0,
@@ -125,7 +124,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
 
   badgeClose(param: any) {
-    console.log(param.split(','));
     const ss = param.split(',');
     if (ss?.length > 0) {
       switch (ss[0]) {
@@ -172,7 +170,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
     // @ts-ignore
     this.customSearch?.forceSearch = !this.customSearch?.forceSearch;
-    console.log(this.customSearch?.customSearch);
   }
 
   changePage(page: any) {
@@ -348,8 +345,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   softParamSearch(event: any) {
-    console.log(event)
-
     if (event.autocomplete) {
       switch (event.autocomplete) {
         case 'bairro':
@@ -401,7 +396,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   private getImoveis(query?: any, last?: Imovel) {
-    console.log(query);
     this.all.getImoveis(query || this.customSearch?.customSearch, last)
       .subscribe((value) => {
         this.makeResults(value as Imovel[]);

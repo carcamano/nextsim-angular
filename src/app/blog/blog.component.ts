@@ -29,7 +29,6 @@ export class BlogComponent implements OnInit, AfterViewInit {
 
     this.lancamentoService.taxonomies().subscribe((value: any[]) => {
       this.taxonomies = value.filter(value1 => value1.slug !== 'sem-categoria');
-      console.log(value);
     });
   }
 
@@ -53,7 +52,6 @@ export class BlogComponent implements OnInit, AfterViewInit {
   }
 
   changeCategory(category: any) {
-    console.log(category);
     this.currentTaxonomy = category ? category.slug : '';
     this.lancamentoService.posts(category ? category.id : null).subscribe(value => {
       this.allPosts = value;

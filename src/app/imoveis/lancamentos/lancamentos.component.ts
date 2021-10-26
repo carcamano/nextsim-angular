@@ -17,7 +17,6 @@ export class LancamentosComponent implements OnInit {
   ngOnInit() {
 
     this.lancamentoService.all().subscribe(value => {
-      console.log(value.body);
       this.lancamentos = value.body;
       try {
         window.scrollTo({left: 0, top: 0, behavior: 'smooth'});

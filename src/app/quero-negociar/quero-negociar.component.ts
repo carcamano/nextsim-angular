@@ -36,7 +36,6 @@ export class QueroNegociarComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.form);
     const form = new FormData();
     form.append('nome', this.form.get('nome').value);
     form.append('email', this.form.get('email').value);
@@ -44,7 +43,6 @@ export class QueroNegociarComponent implements OnInit {
     form.append('categoria', this.form.get('categoria').value);
     form.append('mensagem', this.form.get('mensagem').value);
     this.service.sendToContactForm(form, 505).subscribe(value => {
-      console.log(value);
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');
       this.form.reset();
     });
@@ -56,7 +54,6 @@ export class QueroNegociarComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    console.log(event);
     this.height = window.innerHeight;
   }
 }

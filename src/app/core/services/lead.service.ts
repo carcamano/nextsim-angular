@@ -42,8 +42,6 @@ export class LeadService {
         Authorization: authorizationData
       })
     };
-    console.log(authorizationData);
-    console.log(headerOptions);
     let interesse = 0;
     try {
       if (imovel.comercializacao.locacao.ativa) {

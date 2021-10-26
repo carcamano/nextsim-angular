@@ -22,7 +22,6 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
 
           if (post && post instanceof Array && (post as []).length > 0) {
             this.post = post[0];
-            console.log(this.post);
           }
         });
 

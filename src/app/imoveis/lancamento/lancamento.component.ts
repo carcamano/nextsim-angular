@@ -59,7 +59,6 @@ export class LancamentoComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.lancamentoService.slug(params.slug).subscribe(value => {
-        console.log(value);
         this.lancamento = value;
         if (this.lancamento && this.lancamento.fields && this.lancamento.fields.planta) {
 
@@ -100,7 +99,6 @@ export class LancamentoComponent implements OnInit {
     form.append('mensagem', this.form.get('mensagem').value);
     form.append('categoria', this.lancamento?.fields?.portfolio_header_repeater[0]?.texto);
     this.service.sendToContactForm(form, 505).subscribe(value => {
-      console.log(value);
       this.modalService.dismissAll();
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');
       this.form.reset();
@@ -126,13 +124,11 @@ export class LancamentoComponent implements OnInit {
   }
 
   changePlanta(index: number) {
-    console.log(index);
     this.plantas.select('plant' + index);
 
   }
 
   onSlide(slideEvent: NgbSlideEvent) {
-    console.log(slideEvent);
     this.currentPlant = slideEvent.current;
   }
 

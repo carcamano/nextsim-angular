@@ -43,14 +43,12 @@ export class FabComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.form);
     const form = new FormData();
     form.append('nome', this.form.get('nome').value);
     form.append('email', this.form.get('email').value);
     form.append('telefone', this.form.get('telefone').value);
     form.append('mensagem', this.form.get('mensagem').value);
     this.service.sendToContactForm(form, 504).subscribe(value => {
-      console.log(value);
       this.modalService.dismissAll();
       this.toastr.success('Contato enviado!', 'Seus dados foram enviados com sucesso!');
     });

@@ -8,16 +8,16 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="">Home</a></li>
-                <li class="breadcrumb-item" *ngIf="customSearch?.customSearch?.query"><a> Pesquisa </a></li>
-                <li class="breadcrumb-item" *ngIf="!customSearch?.customSearch?.query"><a> Imóveis </a></li>
+                <li class="breadcrumb-item" *ngIf="!(customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar') && !(customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial')"><a> Pesquisa </a></li>
+                <li class="breadcrumb-item" *ngIf="(customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar') && (customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial')"><a> Imóveis </a></li>
                 <li
                   class='breadcrumb-item active'
-                  *ngIf="!customSearch?.customSearch?.query && (customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar')">{{customSearch?.customSearch?.categoria === 'comprar' ? 'COMPRAR' : customSearch?.customSearch?.categoria === 'alugar' ? 'ALUGAR' : ('')}} </li>
+                  *ngIf="customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar'">{{customSearch?.customSearch?.categoria === 'comprar' ? 'COMPRAR' : customSearch?.customSearch?.categoria === 'alugar' ? 'ALUGAR' : ('')}} </li>
                 <li
                   class='breadcrumb-item active'
-                  *ngIf="!customSearch?.customSearch?.query && (customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial')">{{customSearch?.customSearch?.finalidade === 'residencial' ? 'RESIDENCIAIS' : customSearch?.customSearch?.finalidade === 'comercial' ? 'COMERCIAIS' : ('')}} </li>
+                  *ngIf="customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial'">{{customSearch?.customSearch?.finalidade === 'residencial' ? 'RESIDENCIAIS' : customSearch?.customSearch?.finalidade === 'comercial' ? 'COMERCIAIS' : ('')}} </li>
                 <li
-                  class='breadcrumb-item active' *ngIf="queryParams?.query">{{customSearch?.customSearch?.query}} </li>
+                  class='breadcrumb-item active' *ngIf="!(customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar') && !(customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial') && queryParams?.query">{{customSearch?.customSearch?.query}} </li>
               </ol>
             </nav>
             <div class="filter-badges">

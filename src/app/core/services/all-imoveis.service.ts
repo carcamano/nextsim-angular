@@ -36,8 +36,6 @@ export class AllImoveis {
   }
 
   getImoveisByFinalidadeTipo(finalidade: string, categoria: string) {
-    console.log('getImoveisByFinalidadeTipo')
-    console.log(finalidade)
     return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS),
       where('finalidade', '==', finalidade),
       where(categoria === 'comprar' ? 'comercializacao.venda.ativa' : 'comercializacao.locacao.ativa', '==', true)
@@ -111,34 +109,34 @@ export class AllImoveis {
         })),
         map(value => value.filter((value: Imovel) => {
           let is = true;
-          if (customSearch.banheiros > 0 && value.numeros?.banheiros) {
-            is = customSearch.banheiros === 4 ? value.numeros.banheiros >= 4 : value.numeros.banheiros === customSearch.banheiros;
+          if (parseInt(customSearch.banheiros) > 0 && value.numeros?.banheiros) {
+            is = parseInt(customSearch.banheiros) === 4 ? value.numeros.banheiros >= 4 : value.numeros.banheiros === parseInt(customSearch.banheiros);
           }
 
-          if (is && customSearch.dormitorios > 0 && value.numeros?.dormitorios) {
-            is = customSearch.dormitorios === 4 ? value.numeros.dormitorios >= 4 : value.numeros.dormitorios === customSearch.dormitorios;
+          if (is && parseInt(customSearch.dormitorios) > 0 && value.numeros?.dormitorios) {
+            is = parseInt(customSearch.dormitorios) === 4 ? value.numeros.dormitorios >= 4 : value.numeros.dormitorios === parseInt(customSearch.dormitorios);
           }
 
-          if (is && customSearch.garagem > 0 && value.numeros?.vagas) {
-            is = customSearch.garagem === 4 ? value.numeros.vagas >= 4 : value.numeros.vagas === customSearch.garagem;
+          if (is && parseInt(customSearch.garagem) > 0 && value.numeros?.vagas) {
+            is = parseInt(customSearch.garagem) === 4 ? value.numeros.vagas >= 4 : value.numeros.vagas === parseInt(customSearch.garagem);
           }
-          if (is && customSearch.salas > 0 && value.numeros?.salas) {
-            is = customSearch.salas === 4 ? value.numeros.salas >= 4 : value.numeros.salas === customSearch.salas;
-          }
-
-          if (is && customSearch.area?.min > 0 && value.numeros?.areas?.total) {
-            is = customSearch.area?.min <= value.numeros.areas.total;
-          }
-          if (is && customSearch.area?.max > 0 && value.numeros?.areas?.total) {
-            is = customSearch.area?.max >= value.numeros.areas.total;
+          if (is && parseInt(customSearch.salas) > 0 && value.numeros?.salas) {
+            is = parseInt(customSearch.salas) === 4 ? value.numeros.salas >= 4 : value.numeros.salas === parseInt(customSearch.salas);
           }
 
-
-          if (is && customSearch.precos?.min && (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco)) {
-            is = customSearch.precos?.min <= (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco);
+          if (is && parseInt(customSearch.area?.min) > 0 && value.numeros?.areas?.total) {
+            is = parseInt(customSearch.area?.min) <= value.numeros.areas.total;
           }
-          if (is && customSearch.precos?.max && (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco)) {
-            is = customSearch.precos?.max >= (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco);
+          if (is && parseInt(customSearch.area?.max) > 0 && value.numeros?.areas?.total) {
+            is = parseInt(customSearch.area?.max) >= value.numeros.areas.total;
+          }
+
+
+          if (is && parseInt(customSearch.precos?.min) && (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco)) {
+            is = parseInt(customSearch.precos?.min) <= (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco);
+          }
+          if (is && parseInt(customSearch.precos?.max) && (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco)) {
+            is = parseInt(customSearch.precos?.max) >= (customSearch.categoria === 'comprar' ? value.comercializacao?.venda?.preco : value.comercializacao?.locacao?.preco);
           }
 
           return is;

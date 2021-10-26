@@ -66,13 +66,13 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     bairros: [],
     cidade: '',
     query: '',
+    autocomplete: '',
     page: 1
   };
 
   @Input() set forceSearch(s:boolean) {
     this.forceSearchValue = s;
     this.doSearch(false);
-    console.log('forceSearch');
   }
 
   get forceSearch() {
@@ -112,18 +112,19 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.route.queryParams.subscribe(queryParams => {
+      this.queryParams = queryParams;
+      this.customSearch.categoria = this.queryParams.categoria || 'comprar';
+      if (this.queryParams.finalidade) {
+        this.customSearch.finalidade = this.queryParams.finalidade;
+      }
+      this.customSearch.query = this.queryParams || null;
       if (queryParams.bairros) {
-        this.queryParams = queryParams;
-        this.customSearch.categoria = this.queryParams.categoria || 'comprar';
         this.customSearch.salas = this.queryParams.salas || 0;
         this.customSearch.garagem = this.queryParams.garagem || 0 ,
           this.customSearch.dormitorios = this.queryParams.dormitorios || 0,
           this.customSearch.banheiros = this.queryParams.banheiros || 0,
           this.customSearch.cidade = this.queryParams.cidade || ''
 
-        if (this.queryParams.finalidade) {
-          this.customSearch.finalidade = this.queryParams.finalidade;
-        }
         this.customSearch.page = this.queryParams.page || 1;
         this.customSearchChange.emit(this.customSearch);
       } else {
@@ -165,9 +166,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   }
 
   inputPriceFocusOut(e: FocusEvent, id: number) {
-    console.log((e.target as HTMLInputElement));
     const num = currencyToNumber((e.target as HTMLInputElement).value)
-    console.log(currencyToNumber((e.target as HTMLInputElement).value));
 
     switch (id) {
       case 0:
@@ -397,14 +396,13 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
       this.customSearch.tipos = TIPOS_COMERCIAL;
     }
 
-    this.cidades = _.union(this.cidades)
+    this.cidades = _.sortBy(_.union(this.cidades));
   }
 
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target) {
-
       this.windowWidth = event.target.innerWidth;
     }
 
