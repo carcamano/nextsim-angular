@@ -45,12 +45,13 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {GoogleMapsModule} from "@angular/google-maps";
-import { NextToastComponent } from './core/components/next-toast/next-toast.component';
-import { CustomSearchComponent } from './core/components/custom-search/custom-search.component';
+import {NextToastComponent} from './core/components/next-toast/next-toast.component';
+import {CustomSearchComponent} from './core/components/custom-search/custom-search.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatOptionModule} from "@angular/material/core";
+import {NgImageFullscreenViewModule} from "ng-image-fullscreen-view";
 
 registerLocaleData(localePt);
 
@@ -132,7 +133,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatOptionModule
+    MatOptionModule,
+    NgImageFullscreenViewModule
   ],
   providers: [
     LeadService,

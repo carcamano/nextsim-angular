@@ -14,7 +14,7 @@
         <div class="col-auto">
           <span class="step-label" *ngIf="currentStep === 0">Escolha uma <b>Finalidade</b>:</span>
           <span class="step-label" *ngIf="currentStep === 1">Escolha uma <b>Categoria</b>:</span>
-          <span class="step-label" *ngIf="currentStep === 2">Digite ou escolha abaixo::</span>
+          <span class="step-label" *ngIf="currentStep === 2">Digite ou escolha abaixo:</span>
         </div>
       </div>
       <div class="row align-items-center justify-content-center mt-4">
@@ -180,39 +180,39 @@
         <div class="col-12 col-md-4 order-md-2">
           <h6>Quartos</h6>
           <div class="boll-selector">
-            <button [class.current]="customSearch.dormitorios == 1" (click)="customSearch.dormitorios = 1"><span>1</span>
+            <button [class.current]="customSearch.dormitorios == 1" (click)="customSearch.dormitorios === 1 ? customSearch.dormitorios = null : customSearch.dormitorios = 1"><span>1</span>
             </button>
-            <button [class.current]="customSearch.dormitorios == 2" (click)="customSearch.dormitorios = 2"><span>2</span>
+            <button [class.current]="customSearch.dormitorios == 2" (click)="customSearch.dormitorios === 2 ? customSearch.dormitorios = null : customSearch.dormitorios = 2"><span>2</span>
             </button>
-            <button [class.current]="customSearch.dormitorios == 3" (click)="customSearch.dormitorios = 3"><span>3</span>
+            <button [class.current]="customSearch.dormitorios == 3" (click)="customSearch.dormitorios === 3 ? customSearch.dormitorios = null : customSearch.dormitorios = 3"><span>3</span>
             </button>
-            <button [class.current]="customSearch.dormitorios == 4" (click)="customSearch.dormitorios = 4"><span>4+</span>
+            <button [class.current]="customSearch.dormitorios == 4" (click)="customSearch.dormitorios === 4 ? customSearch.dormitorios = null : customSearch.dormitorios = 4"><span>4+</span>
             </button>
           </div>
         </div>
         <div class="col-12 col-md-4  order-md-2">
           <h6>Banheiros</h6>
           <div class="boll-selector">
-            <button [class.current]="customSearch.banheiros == 1" (click)="customSearch.banheiros = 1"><span>1</span>
+            <button [class.current]="customSearch.banheiros == 1" (click)="customSearch.banheiros === 1 ? customSearch.banheiros = null : customSearch.banheiros = 1"><span>1</span>
             </button>
-            <button [class.current]="customSearch.banheiros == 2" (click)="customSearch.banheiros = 2"><span>2</span>
+            <button [class.current]="customSearch.banheiros == 2" (click)="customSearch.banheiros === 2 ? customSearch.banheiros = null : customSearch.banheiros = 2"><span>2</span>
             </button>
-            <button [class.current]="customSearch.banheiros == 3" (click)="customSearch.banheiros = 3"><span>3</span>
+            <button [class.current]="customSearch.banheiros == 3" (click)="customSearch.banheiros === 3 ? customSearch.banheiros = null : customSearch.banheiros = 3"><span>3</span>
             </button>
-            <button [class.current]="customSearch.banheiros == 4" (click)="customSearch.banheiros = 4"><span>4+</span>
+            <button [class.current]="customSearch.banheiros == 4" (click)="customSearch.banheiros === 4 ? customSearch.banheiros = null : customSearch.banheiros = 4"><span>4+</span>
             </button>
           </div>
         </div>
         <div class="col-12 col-md-4 order-md-2">
           <h6>Garagem</h6>
           <div class="boll-selector">
-            <button [class.current]="garagemSelecionada == 1" (click)="garagemSelecionada = 1"><span>1</span>
+            <button [class.current]="customSearch.garagem == 1" (click)="customSearch.garagem === 1 ? customSearch.garagem = 0 : customSearch.garagem = 1"><span>1</span>
             </button>
-            <button [class.current]="garagemSelecionada == 2" (click)="garagemSelecionada = 2"><span>2</span>
+            <button [class.current]="customSearch.garagem == 2" (click)="customSearch.garagem === 2 ? customSearch.garagem = 0 : customSearch.garagem = 2"><span>2</span>
             </button>
-            <button [class.current]="garagemSelecionada == 3" (click)="garagemSelecionada = 3"><span>3</span>
+            <button [class.current]="customSearch.garagem == 3" (click)="customSearch.garagem === 3 ? customSearch.garagem = 0 : customSearch.garagem = 3"><span>3</span>
             </button>
-            <button [class.current]="garagemSelecionada == 4" (click)="garagemSelecionada = 4"><span>4+</span>
+            <button [class.current]="customSearch.garagem == 4" (click)="customSearch.garagem === 4 ? customSearch.garagem = 0 : customSearch.garagem = 4"><span>4+</span>
             </button>
           </div>
         </div>

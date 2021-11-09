@@ -91,7 +91,7 @@
 
             <div class="galeria_container row">
               <div class="col-12 col-sm-4" *ngIf="lancamento?.fields?.galeria?.imagem_em_pe">
-                <img class="img-fluid " src="{{lancamento?.fields?.galeria?.imagem_em_pe?.url}}">
+                <img class="img-fluid " src="{{lancamento?.fields?.galeria?.imagem_em_pe?.url}}" (click)="showLightbox(0)">
                 <span class="name">{{lancamento?.fields?.galeria?.imagem_em_pe?.title}}</span>
               </div>
               <div [ngClass]="{'col-12': !lancamento?.fields?.galeria?.imagem_em_pe, 'col-8': lancamento?.fields?.galeria?.imagem_em_pe}">
@@ -99,7 +99,7 @@
 
                   <div [ngClass]="{'col-12 col-sm-4': !lancamento?.fields?.galeria?.imagem_em_pe, 'col-12 col-sm-6': lancamento?.fields?.galeria?.imagem_em_pe}" *ngFor="let galeria of lancamento?.fields?.galeria?.galeria | slice:0:(!lancamento?.fields?.galeria?.imagem_em_pe ? 6 : 4); let i=index">
                     <div class="galeria_item item" >
-                      <a href="#">
+                      <a (click)="showLightbox(i + 1)">
                         <img class="img-fluid " src="{{galeria?.url}}">
                       </a>
                       <span class="name">{{galeria?.title}}</span>
@@ -114,6 +114,12 @@
     </div>
   </div>
 </section>
+<ng-image-fullscreen-view
+  *ngIf="imagesGaleria.length > 0"
+  [images]="imagesGaleria"
+  [imageIndex]="selectedImageIndex"
+  [show]="showFlag"
+  (close)="closeEventHandler()"></ng-image-fullscreen-view>
 <section class="container-fluid content_portfolio" *ngIf="lancamento">
   <div class="row">
     <div class="col-md-12 c_left">

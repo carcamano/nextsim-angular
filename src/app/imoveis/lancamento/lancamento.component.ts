@@ -2,11 +2,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {WPService} from "../../core/services/w-p.service";
 import {Lancamento} from "../models/lancamento.model";
-import {ContactForm} from "../../imovel/imovel.component";
 import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {LeadService} from "../../core/services/lead.service";
 import {ToastrService} from "ngx-toastr";
-import {NgImageSliderComponent} from "ng-image-slider";
 import {NgbSlideEvent} from "@ng-bootstrap/ng-bootstrap/carousel/carousel";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -24,6 +22,10 @@ export class LancamentoComponent implements OnInit {
   MASKS = MASKS;
   imgs: Array<object>;
   currentPlant = 'plant0';
+
+  selectedImageIndex = 0;
+  imagesGaleria = [];
+  showFlag = false;
 
   @ViewChild('plantas') plantas: NgbCarousel;
   customOptions: OwlOptions = {
@@ -56,6 +58,15 @@ export class LancamentoComponent implements OnInit {
   }
 
 
+  showLightbox(index) {
+    this.selectedImageIndex = index;
+    this.showFlag = true;
+  }
+
+  closeEventHandler() {
+    this.showFlag = false;
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.lancamentoService.slug(params.slug).subscribe(value => {
@@ -70,6 +81,11 @@ export class LancamentoComponent implements OnInit {
             };
           });
         }
+
+        this.imagesGaleria = [{image: this.lancamento?.fields.galeria.imagem_em_pe.url}, ...this.lancamento?.fields.galeria.galeria.map(value1 => {
+          return {image: value1.url}
+        })];
+        console.log(this.imagesGaleria)
         this.buildForm();
         try {
           window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
