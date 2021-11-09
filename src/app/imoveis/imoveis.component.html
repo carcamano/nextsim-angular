@@ -15,14 +15,16 @@
                     *ngIf="(customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar') && (customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial')">
                   <a> Imóveis </a></li>
                 <li
-                  class='breadcrumb-item active'
+                  class='breadcrumb-item active' [class.d-none]="breadcrumbTitle"
                   *ngIf="customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar'">{{customSearch?.customSearch?.categoria === 'comprar' ? 'COMPRAR' : customSearch?.customSearch?.categoria === 'alugar' ? 'ALUGAR' : ('')}} </li>
                 <li
-                  class='breadcrumb-item active'
+                  class='breadcrumb-item active' [class.d-none]="breadcrumbTitle"
                   *ngIf="customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial'">{{customSearch?.customSearch?.finalidade === 'residencial' ? 'RESIDENCIAIS' : customSearch?.customSearch?.finalidade === 'comercial' ? 'COMERCIAIS' : ('')}} </li>
                 <li
-                  class='breadcrumb-item active'
+                  class='breadcrumb-item active' [class.d-none]="breadcrumbTitle"
                   *ngIf="!(customSearch?.customSearch?.categoria === 'comprar' || customSearch?.customSearch?.categoria === 'alugar') && !(customSearch?.customSearch?.finalidade === 'residencial' || customSearch?.customSearch?.finalidade === 'comercial') && queryParams?.query">{{customSearch?.customSearch?.query}} </li>
+
+                <li class='breadcrumb-item active' *ngIf="breadcrumbTitle">{{breadcrumbTitle}}</li>
               </ol>
             </nav>
             <div class="filter-badges">
@@ -229,7 +231,7 @@
             <div class="row mood">
               <div class="col-12 col-md mood-bg mood-card building px-0 mx-0" style="cursor:pointer;">
                 <a
-                  (click)="queryChange({finalidade: 'residencial', categoria: 'comprar', tipo: 'terreno'})">
+                  [routerLink]="'/imoveis/para-construir'">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-wall h4"></i>
@@ -239,7 +241,7 @@
                 </a>
               </div>
               <div class="col-12 col-md mood-bg mood-card highlight px-0 mx-0" style="cursor:pointer;">
-                <a (click)="queryChange({featured: true})">
+                <a [routerLink]="'/imoveis/destaques'">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-featured h4"></i>
@@ -250,7 +252,7 @@
               </div>
               <div class="col-12 col-md mood-bg mood-card for-family px-0 mx-0" style="cursor:pointer;">
                 <a
-                  (click)="queryChange({finalidade: 'residencial', dormitorios: '3'})">
+                  [routerLink]="'/imoveis/para-familia'">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-house-heart h4"></i>
@@ -261,7 +263,7 @@
               </div>
               <div class="col-12 col-md mood-bg mood-card for-couple px-0 mx-0" style="cursor:pointer;">
                 <a
-                  (click)="queryChange({finalidade: 'residencial', dormitorios: '2'})">
+                  [routerLink]="'/imoveis/para-casal'">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-alliance h4"></i>
@@ -272,8 +274,7 @@
               </div>
               <div class="col-12 col-md mood-bg mood-card alone px-0 mx-0" style="cursor:pointer;">
                 <a
-                  [routerLink]="['/imoveis/']"
-                  [queryParams]="{finalidade: 'residencial', dormitorios: '1'}">
+                  [routerLink]="'/imoveis/morando-sozinho'">
                   <div class="blend-mode">
                     <div class="mood-description">
                       <i class="icon-avatar-alone"></i>

@@ -48,6 +48,17 @@ export class AllImoveis {
       );
   }
 
+  getImoveisDestaque() {
+    return from(getDocs(query(collection(this.firestore, PATH_IMOVEIS),
+      where('site.imobiliaria.destaque', '==', true),
+    )))
+      .pipe(
+        map(actions => actions.docs.map(a => {
+          return a.data();
+        })),
+      );
+  }
+
   getImoveis(customSearch: any, last?: Imovel) {
     const wheres = [];
 

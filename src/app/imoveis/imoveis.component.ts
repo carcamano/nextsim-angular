@@ -44,6 +44,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   queryParams: any = {};
 
+  breadcrumbTitle: string = null;
+
   mySlideOptions: OwlOptions = {
     items: 1, dots: true, nav: false, navText: ['<', '>'],
   };
@@ -81,20 +83,21 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   queryChange(p) {
+    console.log(p);
     this.queryParams = p;
-    this.customSearch.customSearch.categoria = this.queryParams.categoria || 'comprar',
-      this.customSearch.customSearch.salas = this.queryParams.salas || 0,
-      this.customSearch.customSearch.garagem = this.queryParams.garagem || 0 ,
-      this.customSearch.customSearch.dormitorios = this.queryParams.dormitorios || 0,
-      this.customSearch.customSearch.banheiros = this.queryParams.banheiros || 0,
-      this.customSearch.customSearch.cidade = this.queryParams.cidade || '',
-      this.customSearch.customSearch.bairros = this.queryParams.bairros || '',
-      this.customSearch.customSearch.tipos = this.queryParams.tipos || '',
-      this.customSearch.customSearch.precos = this.queryParams.precos || ''
+    this.customSearch.customSearch.categoria = this.queryParams?.categoria || 'comprar',
+      this.customSearch.customSearch.salas = this.queryParams?.salas || 0,
+      this.customSearch.customSearch.garagem = this.queryParams?.garagem || 0 ,
+      this.customSearch.customSearch.dormitorios = this.queryParams?.dormitorios || 0,
+      this.customSearch.customSearch.banheiros = this.queryParams?.banheiros || 0,
+      this.customSearch.customSearch.cidade = this.queryParams?.cidade || '',
+      this.customSearch.customSearch.bairros = this.queryParams?.bairros || '',
+      this.customSearch.customSearch.tipos = _.isArray(this.queryParams?.tipos) ? this.queryParams?.tipos : (this.queryParams?.tipos ? [this.queryParams?.tipos] : ''),
+      this.customSearch.customSearch.precos = this.queryParams?.precos || ''
     if (this.queryParams.finalidade) {
-      this.customSearch.customSearch.finalidade = this.queryParams.finalidade;
+      this.customSearch.customSearch.finalidade = this.queryParams?.finalidade;
     }
-    this.customSearch.customSearch.page = this.queryParams.page || 1;
+    this.customSearch.customSearch.page = this.queryParams?.page || 1;
     this.currentPage = parseInt(localStorage.getItem(location.search) || '1');
     this.buildBadges();
     this.getImoveis();
@@ -113,6 +116,14 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.route.data.subscribe(data => {
+      console.log(data);
+      if (data.breadcrumbTitle) {
+        this.breadcrumbTitle = data.breadcrumbTitle;
+      } else {
+        this.breadcrumbTitle = null;
+      }
+    });
   }
 
 
@@ -338,6 +349,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   softParamSearch(event: any) {
+    console.log(event);
     if (event.autocomplete) {
       switch (event.autocomplete) {
         case 'bairro':
@@ -355,6 +367,12 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       }
     } else if (event.finalidade && event.categoria) {
       this.all.getImoveisByFinalidadeTipo(event.finalidade, event.categoria)
+        .subscribe((value) => {
+          this.makeResults(value as Imovel[], event);
+        });
+
+    } else if (event.destaques) {
+      this.all.getImoveisDestaque()
         .subscribe((value) => {
           this.makeResults(value as Imovel[], event);
         });

@@ -7,7 +7,7 @@ import {QueroNegociarComponent} from './quero-negociar/quero-negociar.component'
 import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
 import {BlogComponent} from "./blog/blog.component";
 import {BlogDetailComponent} from "./blog/blog-detail/blog-detail.component";
-import { ServicosFormulariosComponent } from './servicos-formularios/servicos-formularios.component';
+import {ServicosFormulariosComponent} from './servicos-formularios/servicos-formularios.component';
 import {LancamentosComponent} from "./imoveis/lancamentos/lancamentos.component";
 
 export const ROUTES: Routes = [
@@ -31,6 +31,32 @@ export const ROUTES: Routes = [
         path: 'lancamentos/:slug',
         component: LancamentoComponent
       },
+      {
+        path: 'para-construir',
+        component: ImoveisComponent,
+        data: {finalidade: 'residencial', categoria: 'comprar', tipos: 'terreno', breadcrumbTitle: 'Para construir'}
+      },
+      {
+        path: 'destaques',
+        component: ImoveisComponent,
+        data: {destaques: true, breadcrumbTitle: 'Destaques'}
+      },
+      {
+        path: 'para-familia',
+        component: ImoveisComponent,
+        data: {finalidade: 'residencial', dormitorios: '3', breadcrumbTitle: 'Para família'}
+      },
+      {
+        path: 'para-casal',
+        component: ImoveisComponent,
+        data: {finalidade: 'residencial', dormitorios: '2', breadcrumbTitle: 'Para casal'}
+      },
+      {
+        path: 'morando-sozinho',
+        component: ImoveisComponent,
+        data: {finalidade: 'residencial', dormitorios: '1', breadcrumbTitle: 'Morando sozinho'}
+      },
+
       {
         path: ':id',
         component: ImovelComponent
