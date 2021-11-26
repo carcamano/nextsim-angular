@@ -128,7 +128,7 @@
                         <div><i class="icon2-salas"></i> <span>{{toSalas(imovel)}}</span></div>
                       </div>
                       <div class="col-auto"
-                           *ngIf="(imovel.tipo !== 'sala' && imovel.tipo !== 'prédio' && imovel.tipo !== 'casa' && imovel.finalidade !== 'comercial') && toDormis(imovel)">
+                           *ngIf="(imovel.tipo !== 'sala' && imovel.tipo !== 'prédio' && imovel.finalidade !== 'comercial') && toDormis(imovel)">
                         <div><i class="icon-bed"></i> <span>{{toDormis(imovel)}}</span></div>
                       </div>
                       <div class="col-auto"
