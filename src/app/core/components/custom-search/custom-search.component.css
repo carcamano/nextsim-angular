@@ -35,7 +35,7 @@
     color: #575656;
     cursor: pointer; }
     .custom-search-bg .custom-search-type-simple button.current, .custom-search-bg .custom-search-type-simple button.next-button {
-      background: #F69731;
+      background: #fe6900;
       color: #FFFFFF; }
     .custom-search-bg .custom-search-type-simple button.next-button {
       width: auto;
@@ -81,7 +81,7 @@
       color: #FFFFFF;
       padding: 4px 8px;
       height: 32px;
-      background: #F69731;
+      background: #fe6900;
       border-radius: 8px;
       display: flex;
       border: none;
@@ -101,7 +101,8 @@
     overflow-y: scroll;
     padding-bottom: 20px;
     position: relative;
-    max-width: 800px; }
+    max-width: 800px;
+    overflow: auto; }
     @media only screen and (min-width: 768px) {
       .custom-search-bg .custom-search-type-complex .the-card {
         height: auto; } }
@@ -121,7 +122,7 @@
         .custom-search-bg .custom-search-type-complex .the-card .close-me {
           top: 15px; } }
     .custom-search-bg .custom-search-type-complex .the-card .button-apply {
-      background: #F69731;
+      background: #fe6900;
       box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.14), 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
       border-radius: 8px;
       height: 48px;
@@ -185,14 +186,14 @@
       .custom-search-bg .custom-search-type-complex .the-card .boll-selector button:hover, .custom-search-bg .custom-search-type-complex .the-card .boll-selector button:focus, .custom-search-bg .custom-search-type-complex .the-card .boll-selector button:active {
         border: 1px solid #DEDEDE !important; }
       .custom-search-bg .custom-search-type-complex .the-card .boll-selector button.current {
-        background: #F69731;
+        background: #fe6900;
         border: none;
         color: #fff; }
     .custom-search-bg .custom-search-type-complex .the-card ::ng-deep mat-select {
       overflow: hidden; }
     .custom-search-bg .custom-search-type-complex .the-card ::ng-deep mat-form-field {
       width: 100%;
-      color: #F69731 !important; }
+      color: #fe6900 !important; }
       .custom-search-bg .custom-search-type-complex .the-card ::ng-deep mat-form-field .mat-form-field-wrapper {
         margin-bottom: 0; }
       .custom-search-bg .custom-search-type-complex .the-card ::ng-deep mat-form-field .mat-form-field-wrapper {
@@ -242,6 +243,6 @@
     .custom-search-bg .custom-search-type-complex .the-card ::ng-deep .mat-focused .mat-form-field-label {
       display: none !important; }
     .custom-search-bg .custom-search-type-complex .the-card ::ng-deep .mat-focused .mat-form-field-wrapper {
-      border: 1px solid #F69731; }
+      border: 1px solid #fe6900; }
 
 /*# sourceMappingURL=custom-search.component.css.map */

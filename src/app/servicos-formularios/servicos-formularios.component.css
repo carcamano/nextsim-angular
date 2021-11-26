@@ -10,8 +10,8 @@
   -ms-flex-align: center;
   align-items: center;
   background-color: transparent;
-  border: #F69731 2px solid;
-  color: #F69731;
+  border: #fe6900 2px solid;
+  color: #fe6900;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -28,7 +28,7 @@
   cursor: pointer; }
 
 .btn-go-back:hover {
-  background-color: #F69731 !important;
+  background-color: #fe6900 !important;
   color: #ffffff !important; }
 
 .servicos-container {
@@ -73,7 +73,7 @@
   font-size: 0.8em; }
 
 .servicos-container .m-collapse-head-icon.active {
-  background-color: #F69731; }
+  background-color: #fe6900; }
 
 .servicos-container .m-collapse-body {
   display: flex;
@@ -94,7 +94,7 @@
 
 .servicos-container .button-collapse {
   padding: 12px 20px;
-  background-color: #F69731;
+  background-color: #fe6900;
   border: none;
   color: #ffffff;
   font-weight: 500;

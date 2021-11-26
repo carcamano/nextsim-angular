@@ -68,7 +68,7 @@
   background: rgba(0, 0, 0, 0.6); }
 .property_launches .lancamento_nome span {
   opacity: 0;
-  color: #f69731;
+  color: #fe6900;
   -webkit-animation: all 0.5s ease-out;
   -moz-animation: all 0.5s ease-out;
   -o-animation: all 0.5s ease-out;
@@ -210,7 +210,7 @@
       display: flex;
       align-items: center;
       /* Primary-color */
-      color: #F69731; }
+      color: #fe6900; }
       .properties .properties-list .item .novo-content .novo-price sub {
         font-size: 12px; }
     .properties .properties-list .item .novo-content .novo-meio > .row > .col-auto {
@@ -325,16 +325,16 @@ app-imovel .property {
     transition: all 0.3s ease; }
     .card-imovel .novo-footer button.more {
       filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14)) drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
-      background: #F69731;
+      background: #fe6900;
       color: #FFFFFF;
       border: none;
       margin: 15px 0; }
       .card-imovel .novo-footer button.more:hover {
         filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.14)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.12)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.2)) !important; }
     .card-imovel .novo-footer button.share {
-      border: 2px solid #F69731;
+      border: 2px solid #fe6900;
       background: transparent;
-      color: #F69731;
+      color: #fe6900;
       margin-bottom: 40px;
       display: flex;
       justify-content: center;
@@ -345,17 +345,17 @@ app-imovel .property {
         display: inline-flex;
         margin-right: 4px;
         transition: all 0.3s ease;
-        fill: #F69731; }
+        fill: #fe6900; }
         .card-imovel .novo-footer button.share svg a {
-          fill: #F69731; }
+          fill: #fe6900; }
         .card-imovel .novo-footer button.share svg:hover {
           fill: #fff; }
           .card-imovel .novo-footer button.share svg:hover a {
             fill: #fff; }
       .card-imovel .novo-footer button.share:hover {
-        background: #F69731 !important;
+        background: #fe6900 !important;
         color: #fff;
-        border: 2px solid #F69731 !important; }
+        border: 2px solid #fe6900 !important; }
         .card-imovel .novo-footer button.share:hover svg {
           fill: #fff; }
   .card-imovel .novo-footer .novo-cod {
@@ -393,7 +393,7 @@ app-imovel .property {
   padding: 4px 8px;
   width: 40px;
   height: 32px;
-  background: #F69731;
+  background: #fe6900;
   border: none;
   border-radius: 8px; }
   .filter-inputs .input-button i {
@@ -408,7 +408,7 @@ app-imovel .property {
   padding: 4px 8px;
   width: 100%;
   height: 32px;
-  background: #F69731;
+  background: #fe6900;
   border: none;
   border-radius: 8px;
   font-family: Raleway;

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -7,7 +7,7 @@ import {Observable} from "rxjs/Rx";
 import {finalize} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
 import {LeadService} from "../core/services/lead.service";
-import { MASKS } from 'ng-brazil';
+import {MASKS} from 'ng-brazil';
 
 @Component({
   selector: 'app-servicos-formularios',
@@ -249,11 +249,11 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field3: [, Validators.required],
       field4: [, Validators.required],
       field5: [, Validators.required],
-      field6: [, Validators.required],
-      field7: [, Validators.required],
-      field8: [, Validators.required],
-      field9: [, Validators.required],
-      field10: [, Validators.required],
+      field6: [, ],
+      field7: [, ],
+      field8: [, ],
+      field9: [, ],
+      field10: [, ],
       field11: [, Validators.required],
       field12: [, Validators.required],
       field13: [, Validators.required],
@@ -274,7 +274,6 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field11: [, Validators.required],
       field12: [, Validators.required],
       field13: [, Validators.required],
-      field14: [, Validators.required],
     });
   }
 

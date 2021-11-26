@@ -34,11 +34,11 @@ ngb-tabset {
   background-color: transparent;
   border-color: transparent;
   font-weight: bold !important;
-  color: #f69731 !important;
+  color: #fe6900 !important;
 }
 
 .HorizontalCheckBoxMobileLabel.btn.active {
-  background: #f69731 !important;
+  background: #fe6900 !important;
   color: #ffffff;
   border-radius: 20px;
 }
@@ -63,7 +63,7 @@ ngb-tabset {
 }
 
 .CheckHorizontalLabel.active {
-  background: #f69731;
+  background: #fe6900;
   color: #fff;
 }
 

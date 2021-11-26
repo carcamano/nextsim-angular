@@ -56,13 +56,13 @@ import {NgImageFullscreenViewModule} from "ng-image-fullscreen-view";
 registerLocaleData(localePt);
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  bgsColor: '#f69731',
+  bgsColor: '#fe6900',
   bgsOpacity: 0.5,
   bgsPosition: 'bottom-right',
   bgsSize: 60,
   bgsType: 'ball-spin-clockwise',
   blur: 5,
-  fgsColor: '#f69731',
+  fgsColor: '#fe6900',
   fgsPosition: 'center-center',
   fgsSize: 60,
   fgsType: 'double-bounce',

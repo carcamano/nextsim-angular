@@ -13,7 +13,7 @@ body {
 }
 
 .btn-next {
-  background-color: #f69731;
+  background-color: #fe6900;
   border-radius: 25px !important;
   text-transform: uppercase;
   color: #fff !important;
@@ -827,7 +827,7 @@ section.container.portifolio_about {
 }
 
 .content_portfolio .orange {
-  background-color: #f69631;
+  background-color: #fe6900;
   padding: 100px 0;
   text-align: center;
   color: #fff;
@@ -848,7 +848,7 @@ section.container.portifolio_about {
 
 .content_portfolio .orange button {
   background: #fff;
-  color: #f69631 !important;
+  color: #fe6900 !important;
   font-weight: 700 !important;
 }
 
@@ -1348,7 +1348,7 @@ button[aria-expanded="true"] .bar3 {
   display: none;
 }
 .md-radio input[type="radio"]:checked + label:before {
-  border-color: #f69631;
+  border-color: #fe6900;
   animation: ripple 0.2s linear forwards;
 }
 .md-radio input[type="radio"]:checked + label:after {
@@ -1383,7 +1383,7 @@ button[aria-expanded="true"] .bar3 {
   width: 10px;
   height: 10px;
   transform: scale(0);
-  background: #f69631;
+  background: #fe6900;
 }
 
 /*==========  Mobile First Method  ==========*/
@@ -1779,7 +1779,7 @@ button[aria-expanded="true"] .bar3 {
     padding: 40px 0;
   }
   .portifolio_about_title .middle button {
-    background-color: #f69731;
+    background-color: #fe6900;
     border-radius: 25px !important;
     text-transform: uppercase;
     font-size: 1rem;
