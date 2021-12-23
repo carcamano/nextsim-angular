@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {WPService} from '../core/services/w-p.service';
-import * as _ from "lodash";
 
 @Component({
   selector: 'app-home',
@@ -18,6 +17,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.removeItem('nextLastSearch');
+    localStorage.removeItem('nextQueryParams');
 
     this.lancamentoService.all().subscribe(value => {
       this.lancamentos = value.body;

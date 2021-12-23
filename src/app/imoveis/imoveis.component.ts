@@ -15,6 +15,12 @@ import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from "../c
 import {CustomSearchComponent} from "../core/components/custom-search/custom-search.component";
 import {CustomSearchType} from "../core/components/custom-search/custom-search.enum";
 
+// LOCAL STORAGE
+const nextscroll = 'nextscroll';
+const nextLastAllImoveis = 'nextLastAllImoveis';
+const nextLastImoveis = 'nextLastImoveis';
+const nextQueryParams = 'nextQueryParams';
+
 @Component({
   selector: 'app-imoveis',
   templateUrl: './imoveis.component.html',
@@ -27,7 +33,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   showExtraFilter = false;
 
-  noResults = false;
+  initializeResults = false;
 
   private itensPerPage = 10;
 
@@ -71,6 +77,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   toVaga = toVaga;
   getFormattedPrice = getFormattedPrice;
 
+
   @ViewChild('customSearch') customSearch: CustomSearchComponent;
 
   constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private all: AllImoveis,
@@ -111,14 +118,26 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   goImovel(imovel: Imovel) {
-    localStorage.setItem('nextscroll', String(window.scrollY));
+    localStorage.setItem(nextscroll, String(window.scrollY));
+    localStorage.setItem(nextLastAllImoveis, JSON.stringify(this.allImoveis));
+    localStorage.setItem(nextLastImoveis, JSON.stringify(this.imoveis));
+    localStorage.setItem(nextQueryParams, JSON.stringify(this.queryParams));
+    console.log(this.imoveis);
     this.router.navigate(['/imoveis/' + imovel.sigla]).then();
   }
 
   ngAfterViewInit(): void {
+    console.log(localStorage.getItem(nextLastAllImoveis));
+    if (localStorage.getItem(nextLastAllImoveis)) {
+      this.allImoveis = JSON.parse(localStorage.getItem(nextLastAllImoveis));
+      this.imoveis = JSON.parse(localStorage.getItem(nextLastImoveis));
+    }
+    localStorage.removeItem(nextLastAllImoveis);
+    localStorage.removeItem(nextLastImoveis);
+    console.log(this.allImoveis);
     this.route.data.subscribe(data => {
       console.log(data);
-      if (data.breadcrumbTitle) {
+      if (data?.breadcrumbTitle) {
         this.breadcrumbTitle = data.breadcrumbTitle;
       } else {
         this.breadcrumbTitle = null;
@@ -189,12 +208,9 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
 
   private checkResults() {
-    if (!this.imoveis || this.imoveis.length === 0) {
-      this.noResults = true;
+    if ((!this.imoveis || this.imoveis.length === 0) && (!this.allImoveis || this.allImoveis.length === 0)) {
     } else if (this.imoveis.length === 1 && Object.keys(this.queryParams).length === 1 && this.queryParams.query) {
       this.router.navigateByUrl('/imoveis/' + this.imoveis[0].sigla).then();
-    } else {
-      this.noResults = false;
     }
 
   }
@@ -254,6 +270,10 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   buildBadges() {
+    if (localStorage.getItem(nextQueryParams)) {
+      this.queryParams = JSON.parse(localStorage.getItem(nextQueryParams));
+    }
+    localStorage.removeItem(nextQueryParams);
     this.badges = [];
     if (this.queryParams.categoria) {
       // this.badges.push(this.badge(this.queryParams.categoria, 'categoria'));
@@ -407,10 +427,14 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   private getImoveis(query?: any, last?: Imovel) {
-    this.all.getImoveis(query || this.customSearch?.customSearch, last)
-      .subscribe((value) => {
-        this.makeResults(value as Imovel[]);
-      });
+    if (!localStorage.getItem(nextLastAllImoveis)) {
+      this.all.getImoveis(query || this.customSearch?.customSearch, last)
+        .subscribe((value) => {
+          this.makeResults(value as Imovel[]);
+        });
+    } else {
+      this.makeResults(this.allImoveis);
+    }
   }
 
   private makeResults(value: Imovel[], event: any = null) {
@@ -441,6 +465,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   private makePagination() {
+    this.initializeResults = true;
     this.imoveis = _.slice(this.allImoveis, 10 * (this.currentPage - 1), 10 * (this.currentPage - 1) + 10);
   }
 
