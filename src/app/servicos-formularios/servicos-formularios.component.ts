@@ -99,10 +99,10 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field33: [, Validators.required],
       field34: [, Validators.required],
       field35: [, Validators.required],
-      field36: [, Validators.required],
-      field37: [, Validators.required],
-      field38: [, Validators.required],
-      field39: [, Validators.required],
+      field36: [, ],
+      field37: [, ],
+      field38: [, ],
+      field39: [, ],
     });
 
     this.form2 = this.formBuilder.group({
@@ -129,11 +129,11 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field20: [, Validators.required],
       field21: [, Validators.required],
       field22: [, Validators.required],
-      field23: [, Validators.required],
-      field24: [, Validators.required],
-      field25: [, Validators.required],
-      field26: [, Validators.required],
-      field27: [, Validators.required],
+      field23: [, ],
+      field24: [, ],
+      field25: [, ],
+      field26: [, ],
+      field27: [, ],
     });
 
     this.form3 = this.formBuilder.group({
@@ -184,14 +184,14 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field44: [, Validators.required],
       field45: [, Validators.required],
       field46: [, Validators.required],
-      field47: [, Validators.required],
-      field48: [, Validators.required],
-      field49: [, Validators.required],
-      field50: [, Validators.required],
-      field51: [, Validators.required],
-      field52: [, Validators.required],
-      field53: [, Validators.required],
-      field54: [, Validators.required],
+      field47: [, ],
+      field48: [, ],
+      field49: [, ],
+      field50: [, ],
+      field51: [, ],
+      field52: [, ],
+      field53: [, ],
+      field54: [, ],
     });
 
 
@@ -232,7 +232,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field17: [, Validators.required],
       field18: [, Validators.required],
       field19: [, Validators.required],
-      field20: [, Validators.required],
+      field20: [, ],
       field21: [, Validators.required],
       field22: [, Validators.required],
       field23: [, Validators.required],
