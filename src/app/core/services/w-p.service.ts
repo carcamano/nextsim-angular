@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {Lancamento} from "../../imoveis/models/lancamento.model";
 
 
 // const LANCAMENTO_URL = 'http://localhost/buildingeng.com.br';
 // const LANCAMENTO_URL = 'http://homolog.nextsim.com.br/lancamentos';
 const LANCAMENTO_URL = 'https://admin.nextsim.com.br';
-@Injectable()
+
+@Injectable({providedIn: 'root'})
 export class WPService {
 
-
-
+  corretores: any[];
 
   constructor(private http: HttpClient) {
   }
@@ -38,6 +38,19 @@ export class WPService {
       this.http
         .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/acf/v3/options/acf-options`, {observe: 'response'})
         .subscribe(value => {
+          this.corretores = (value.body as any).acf.corretores;
+          subscriber.next(value.body);
+        }, error => subscriber.error(error));
+
+    });
+  }
+
+  options(): Observable<any> {
+    return new Observable(subscriber => {
+      this.http
+        .get<Lancamento[]>(`${LANCAMENTO_URL}/wp-json/acf/v3/options/acf-options`, {observe: 'response'})
+        .subscribe(value => {
+          this.corretores = (value.body as any).acf.corretores;
           subscriber.next(value.body);
         }, error => subscriber.error(error));
 

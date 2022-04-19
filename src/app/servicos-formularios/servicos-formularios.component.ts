@@ -8,6 +8,7 @@ import {finalize} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
 import {LeadService} from "../core/services/lead.service";
 import {MASKS} from 'ng-brazil';
+import {WPService} from "../core/services/w-p.service";
 
 @Component({
   selector: 'app-servicos-formularios',
@@ -16,6 +17,7 @@ import {MASKS} from 'ng-brazil';
 })
 export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
+  corretores: any[] = [];
   showForm1 = false;
   showForm2 = false;
   showForm3 = false;
@@ -59,7 +61,9 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
 
   constructor(private location: Location, private modalService: NgbModal, private formBuilder: FormBuilder,
-              private storage: AngularFireStorage, private toastr: ToastrService, private sendService: LeadService) {}
+              private storage: AngularFireStorage, private toastr: ToastrService, private sendService: LeadService,
+              private wpService: WPService) {
+  }
 
   ngOnInit() {
     this.form1 = this.formBuilder.group({
@@ -99,10 +103,10 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field33: [, Validators.required],
       field34: [, Validators.required],
       field35: [, Validators.required],
-      field36: [, ],
-      field37: [, ],
-      field38: [, ],
-      field39: [, ],
+      field36: [,],
+      field37: [,],
+      field38: [,],
+      field39: [,],
     });
 
     this.form2 = this.formBuilder.group({
@@ -110,37 +114,6 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field1: [, Validators.required],
       field2: [, Validators.required],
       field3: [, [Validators.required, Validators.email]],
-      field4: [, Validators.required],
-      field5: [, Validators.required],
-      field6: [, Validators.required],
-      field7: [, Validators.required],
-      field8: [, Validators.required],
-      field9: [, Validators.required],
-      field10: [, Validators.required],
-      field11: [, Validators.required],
-      field12: [, Validators.required],
-      field13: [, Validators.required],
-      field14: [, Validators.required],
-      field15: [, Validators.required],
-      field16: [, Validators.required],
-      field17: [, Validators.required],
-      field18: [, Validators.required],
-      field19: [, Validators.required],
-      field20: [, Validators.required],
-      field21: [, Validators.required],
-      field22: [, Validators.required],
-      field23: [, ],
-      field24: [, ],
-      field25: [, ],
-      field26: [, ],
-      field27: [, ],
-    });
-
-    this.form3 = this.formBuilder.group({
-      radio1: [, Validators.required],
-      field1: [, Validators.required],
-      field2: [, Validators.required],
-      field3: [, Validators.required],
       field4: [, Validators.required],
       field5: [, Validators.required],
       field6: [, Validators.required],
@@ -174,26 +147,74 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field34: [, Validators.required],
       field35: [, Validators.required],
       field36: [, Validators.required],
-      field37: [, Validators.required],
-      field38: [, Validators.required],
+      field37: [,],
+      field38: [,],
+      field39: [,],
+      field40: [,],
+      field41: [,],
+      field42: [,],
+      field43: [,],
+      field44: [,],
+      field45: [,],
+    });
+
+    this.form3 = this.formBuilder.group({
+      radio1: [, Validators.required],
+      field1: [, Validators.required],
+      field2: [, Validators.required],
+      field3: [, Validators.required],
+      field4: [, Validators.required],
+      field5: [, Validators.required],
+      field6: [, Validators.required],
+      field7: [, Validators.required],
+      field8: [, Validators.required],
+      field9: [, Validators.required],
+      field10: [, Validators.required],
+      field11: [, Validators.required],
+      field12: [, Validators.required],
+      field13: [, Validators.required],
+      field14: [, Validators.required],
+      field15: [, Validators.required],
+      field16: [, Validators.required],
+      field17: [, Validators.required],
+      field18: [, Validators.required],
+      field19: [, Validators.required],
+      field20: [, Validators.required],
+      field21: [, Validators.required],
+      field22: [, Validators.required],
+      field23: [, Validators.required],
+      field24: [, Validators.required],
+      field25: [, ],
+      field26: [, ],
+      field27: [, ],
+      field28: [, ],
+      field29: [, ],
+      field30: [, ],
+      field31: [, ],
+      field32: [, ],
+      field33: [, ],
+      field34: [, ],
+      field35: [, ],
+      field36: [, ],
+      field37: [, ],
+      field38: [, ],
       field39: [, Validators.required],
       field40: [, Validators.required],
       field41: [, Validators.required],
       field42: [, Validators.required],
       field43: [, Validators.required],
       field44: [, Validators.required],
-      field45: [, Validators.required],
-      field46: [, Validators.required],
-      field47: [, ],
-      field48: [, ],
-      field49: [, ],
-      field50: [, ],
-      field51: [, ],
-      field52: [, ],
-      field53: [, ],
-      field54: [, ],
+      field45: [, ],
+      field46: [, ],
+      field47: [,],
+      field48: [,],
+      field49: [,],
+      field50: [,],
+      field51: [,],
+      field52: [,],
+      field53: [,],
+      field54: [,],
     });
-
 
     this.form4 = this.formBuilder.group({
       field1: [, Validators.required],
@@ -208,7 +229,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field10: [, Validators.required],
       field11: [, Validators.required],
       field12: [, Validators.required],
-      field13: [, ],
+      field13: [,],
 
     });
 
@@ -232,14 +253,14 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field17: [, Validators.required],
       field18: [, Validators.required],
       field19: [, Validators.required],
-      field20: [, ],
+      field20: [,],
       field21: [, Validators.required],
       field22: [, Validators.required],
       field23: [, Validators.required],
       field24: [, Validators.required],
       field25: [, Validators.required],
       field26: [, Validators.required],
-      field27: [, ],
+      field27: [,],
     });
 
     this.form6 = this.formBuilder.group({
@@ -249,15 +270,20 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field3: [, Validators.required],
       field4: [, Validators.required],
       field5: [, Validators.required],
-      field6: [, ],
-      field7: [, ],
-      field8: [, ],
-      field9: [, ],
-      field10: [, ],
+      field6: [,],
+      field7: [,],
+      field8: [,],
+      field9: [,],
+      field10: [,],
       field11: [, Validators.required],
       field12: [, Validators.required],
       field13: [, Validators.required],
       field14: [, Validators.required],
+      field15: [, Validators.required],
+      field16: [, ],
+      field17: [, ],
+      field18: [, ],
+      field19: [, Validators.required], // corretor
     });
 
     this.form7 = this.formBuilder.group({
@@ -274,10 +300,23 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field11: [, Validators.required],
       field12: [, Validators.required],
       field13: [, Validators.required],
+      field14: [, Validators.required], // corretor
+      field15: [, Validators.required],
+      field16: [, ],
+      field17: [, ],
+      field18: [, ],
     });
   }
 
   ngAfterViewInit() {
+    if (!this.wpService.corretores) {
+      this.wpService.options().subscribe(() => {
+        this.setupCorretores();
+      });
+    } else {
+      this.setupCorretores();
+    }
+
     try {
       window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
     } catch (e) {
@@ -286,14 +325,6 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
   }
 
 
-  mToggle(event) {
-
-  }
-
-  none(){
-
-  }
-
   submit1() {
     if (this.form1.valid) {
       this.sendForm(this.form1.getRawValue(), 723);
@@ -301,62 +332,51 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       this.errorForm();
     }
   }
+
   submit2() {
     if (this.form2.valid) {
-      console.log('valido 2');
       this.sendForm(this.form2.getRawValue(), 724);
     } else {
-      console.log('invalido 2');
       this.errorForm();
     }
   }
+
   submit3() {
-    console.log(this.form3.getRawValue());
     if (this.form3.valid) {
-      console.log('valido 3');
       this.sendForm(this.form3.getRawValue(), 725);
     } else {
-      console.log('invalido 3');
       this.errorForm();
     }
   }
+
   submit4() {
-    console.log(this.form4.getRawValue());
     if (this.form4.valid) {
-      console.log('valido 4');
       this.sendForm(this.form4.getRawValue(), 726);
     } else {
-      console.log('invalido 4');
       this.errorForm();
     }
   }
+
   submit5() {
-    console.log(this.form5.getRawValue());
     if (this.form5.valid) {
-      console.log('valido 5');
       this.sendForm(this.form5.getRawValue(), 727);
     } else {
-      console.log('invalido 5');
       this.errorForm();
     }
   }
+
   submit6() {
-    console.log(this.form6.getRawValue());
     if (this.form6.valid) {
-      console.log('valido 6');
       this.sendForm(this.form6.getRawValue(), 728);
     } else {
-      console.log('invalido 6');
       this.errorForm();
     }
   }
+
   submit7() {
-    console.log(this.form7.getRawValue());
     if (this.form7.valid) {
-      console.log('valido 7');
       this.sendForm(this.form7.getRawValue(), 729);
     } else {
-      console.log('invalido 7');
       this.errorForm();
     }
   }
@@ -413,6 +433,11 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
   }
 
 
+  private setupCorretores(): void {
+    this.corretores = this.wpService.corretores;
+
+  }
+
   private errorForm() {
     this.toastr.error('Formulário incompleto!', 'Preencha todos os campos do formulario!');
   }
@@ -425,7 +450,6 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
     this.sendService.sendToContactFormAny(rowValue, formId)
       .subscribe(value => {
         this.successForm();
-        console.log(value);
         this.form1.reset();
         this.form2.reset();
         this.form3.reset();

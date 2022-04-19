@@ -24,7 +24,7 @@ import {LeadService} from './core/services/lead.service';
 import {ToastrModule} from 'ngx-toastr';
 import {ComponentFixtureAutoDetect} from '@angular/core/testing';
 import {NgxUiLoaderConfig, NgxUiLoaderModule} from 'ngx-ui-loader';
-import {registerLocaleData} from '@angular/common';
+import {CommonModule, registerLocaleData} from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import {environment} from "../environments/environment";
 import {AllImoveis} from "./core/services/all-imoveis.service";
@@ -103,6 +103,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     CustomSearchComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     HttpClientJsonpModule,

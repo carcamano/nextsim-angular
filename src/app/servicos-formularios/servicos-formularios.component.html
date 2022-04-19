@@ -44,6 +44,7 @@
               </div>
             </div>
           </div>
+
           <div class="card">
             <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
                  [class.collapsed]="!showForm2"
@@ -68,6 +69,7 @@
               </div>
             </div>
           </div>
+
           <div class="card">
             <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree"
                  [class.show]="showForm3" (click)="showForm3 = !showForm3"
@@ -434,7 +436,6 @@
             </div>
           </div>
 
-
           <div class="card">
             <div class="card-header" id="heading4" data-toggle="collapse" data-target="#collapse4"
                  [class.collapsed]="!showForm4" (click)="showForm4 = !showForm4"
@@ -585,6 +586,133 @@
                       </div>
                     </fieldset>
 
+
+                    <fieldset class="form-fieldset">
+                      <div class="row justify-content-center">
+                        <h6 class="mt-3 mb-3 col-12">Sócio 1</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Nome</label>
+                          <input type="text" class="form-control" name="banco" id="" placeholder=" "
+                                 [formControlName]="'field28'"
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">CPF</label>
+                          <input type="text" class="form-control" name="conta" placeholder=" "
+                                 [formControlName]="'field29'" [textMask]="{mask: MASKS.cpf.textMask}"
+                                 required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">RG</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field30'"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Data Nascimento</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field31'"
+                                 placeholder=" " [textMask]="{mask: MASKS.data.textMask}" required >
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Nacionalidade</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field32'"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Estado Civil</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field33'"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Profissão</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field34'"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">E-mail</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field35'"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Telefone/Celular</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field36'"
+                                 placeholder=" " [textMask]="{mask: MASKS.telefone.textMaskFunction}" required>
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+
+                    <fieldset class="form-fieldset">
+                      <div class="row justify-content-center">
+                        <h6 class="mt-3 mb-3 col-12">Sócio 2</h6>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Nome</label>
+                          <input type="text" class="form-control" name="banco" id="" placeholder=" "
+                                 [formControlName]="'field37'"
+                                 >
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">CPF</label>
+                          <input type="text" class="form-control" name="conta" placeholder=" "
+                                 [formControlName]="'field38'" [textMask]="{mask: MASKS.cpf.textMask}">
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">RG</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field39'"
+                                 placeholder=" " >
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Data Nascimento</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field40'"
+                                 placeholder=" " [textMask]="{mask: MASKS.data.textMask}"  >
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Nacionalidade</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field41'"
+                                 placeholder=" " >
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Estado Civil</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field42'"
+                                 placeholder=" " >
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Profissão</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field43'"
+                                 placeholder=" " >
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">E-mail</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field44'"
+                                 placeholder=" " >
+                          <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="">Telefone/Celular</label>
+                          <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field45'"
+                                 placeholder=" " [textMask]="{mask: MASKS.telefone.textMaskFunction}" >
+                          <span></span>
+                        </div>
+                      </div>
+                    </fieldset>
+
+
+
                     <fieldset class="form-fieldset">
                       <div class="row">
                         <h6 class="mt-3 mb-3 col-12">INFORMAÇÕES BANCÁRIAS</h6>
@@ -713,7 +841,6 @@
             </div>
           </div>
 
-
           <div class="card">
             <div class="card-header" id="heading5" data-toggle="collapse" data-target="#collapse5"
                  [class.collapsed]="!showForm5" (click)="showForm5 = !showForm5"
@@ -732,15 +859,10 @@
                 <div class="form-card">
                   <form class="col-12 col-lg-10 offset-lg-1 js-form-to-email" [formGroup]="form3"
                         id="cadastro-locadorFormSevicos">
-                    <input type="hidden" name="_token" value="Ge1CKCEMAe0J57GvTY6BYpXQvyvGiYrfCzhqxAiV"> <input
-                    type="hidden" name="assunto" value="Cadastro Locador">
-                    <input type="hidden" name="success-heading" value="Dados enviados com sucesso!">
-                    <input type="hidden" name="success-text"
-                           value="Obrigada! Já recebemos seus dados e em breve entraremos em contato para marcarmos uma conversa.">
                     <h6>CADASTRO DO LOCADOR</h6>
                     <p>Preencha e envie o formulário abaixo para se cadastrar.</p>
                     <fieldset class="form-fieldset">
-                      <div class="row">
+                      <div class="row justify-content-center">
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorsou-um">Sou um:</label>
                           <div class="form-check form-check-inline main-checkbox" style="margin-left: 5px">
@@ -847,6 +969,17 @@
                                  placeholder=" " required>
                           <span></span>
                         </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locadorcod-pintura-nova">Imóvel com pintura nova?</label>
+                          <select class="form-control" name="estado-civil" id="cadastro-locadorcod-pintura-nova" required
+                                  [formControlName]="'field25'">
+                            <span></span>
+                            <option value=""></option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                          </select>
+                        </div>
+
                       </div>
                     </fieldset>
 
@@ -936,39 +1069,32 @@
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
-                          <label for="cadastro-locadorendereco-do-trabalho">Endereço do trabalho</label>
+                          <label for="cadastro-locadorendereco-do-trabalho">Endereço do locador</label>
                           <input type="text" class="form-control" name="endereco-do-trabalho"
                                  [formControlName]="'field24'"
                                  id="cadastro-locadorendereco-do-trabalho" placeholder=" " required>
                           <span></span>
                         </div>
-                        <div class="col-12 col-lg-12 form-group">
-                          <label for="cadastro-locadorcartorio-para-reconhecimento-de-firma">Cartório para
-                            reconhecimento de firma</label>
-                          <input type="text" class="form-control" name="cartorio-para-reconhecimento-de-firma"
-                                 [formControlName]="'field25'"
-                                 id="cadastro-locadorcartorio-para-reconhecimento-de-firma" placeholder=" " required>
-                          <span></span>
-                        </div>
+
                       </div>
                     </fieldset>
 
 
                     <fieldset class="form-fieldset">
-                      <div class="row">
+                      <div class="row justify-content-center">
                         <h6 class="mt-3 mb-3 col-12">DADOS DO CONJUGUE</h6>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadornome">Nome</label>
                           <input type="text" class="form-control" placeholder="Nome Completo"
                                  [formControlName]="'field26'"
-                                 id="cadastro-locadornome" name="conjuge-nome" required>
+                                 id="cadastro-locadornome" name="conjuge-nome" >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadortelefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="conjuge-telefone"
                                  [formControlName]="'field27'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
-                                 id="cadastro-locadortelefone" placeholder="( ) 00000-0000" required>
+                                 id="cadastro-locadortelefone" placeholder="( ) 00000-0000" >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
@@ -981,28 +1107,28 @@
                           <label for="cadastro-locadornacionalidade">Nacionalidade</label>
                           <input type="text" class="form-control" name="conjuge-nacionalidade"
                                  [formControlName]="'field29'"
-                                 id="cadastro-locadornacionalidade" placeholder=" " required>
+                                 id="cadastro-locadornacionalidade" placeholder=" " >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorrg">RG</label>
                           <input type="text" class="form-control" name="conjuge-rg" id="cadastro-locadorrg"
                                  [formControlName]="'field30'"
-                                 placeholder="00000000-0" required>
+                                 placeholder="00000000-0" >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcpf">CPF</label>
                           <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf"
                                  [formControlName]="'field31'" [textMask]="{mask: MASKS.cpf.textMask}"
-                                 id="cadastro-locadorcpf" placeholder="00000000-0" required>
+                                 id="cadastro-locadorcpf" placeholder="00000000-0" >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorestadoCivil">Estado civíl</label>
                           <select class="form-control" name="conjuge-estado-civil" id="cadastro-locadorestadoCivil"
                                   [formControlName]="'field32'"
-                                  required>
+                                  >
                             <span></span>
                             <option value=""></option>
                             <option value="Casado">Casado</option>
@@ -1015,48 +1141,51 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorprofissao">Profissão</label>
                           <input type="text" class="form-control" name="conjuge-profissao" [formControlName]="'field33'"
-                                 id="cadastro-locadorprofissao" placeholder=" " required>
+                                 id="cadastro-locadorprofissao" placeholder=" " >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorlocalDeTrabalho">Local de trabalho</label>
                           <input type="text" class="form-control" name="conjuge-local-de-trabalho"
                                  [formControlName]="'field34'"
-                                 id="cadastro-locadorlocalDeTrabalho" placeholder=" " required>
+                                 id="cadastro-locadorlocalDeTrabalho" placeholder=" " >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorfuncao">Função</label>
                           <input type="text" class="form-control" name="conjuge-funcao" id="cadastro-locadorfuncao"
                                  [formControlName]="'field35'"
-                                 placeholder=" " required>
+                                 placeholder=" " >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorsalario">Salário</label>
                           <input type="text" class="form-control js-mask-money" name="conjuge-salario"
                                  [formControlName]="'field36'" [textMask]="{mask: MASKS.currency.textMask}"
-                                 id="cadastro-locadorsalario" placeholder=" " required>
+                                 id="cadastro-locadorsalario" placeholder=" " >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorenderecoDoTrabalho">Endereço do trabalho</label>
                           <input type="text" class="form-control" name="conjuge-endereco-do-trabalho"
                                  [formControlName]="'field37'"
-                                 id="cadastro-locadorenderecoDoTrabalho" placeholder=" " required>
+                                 id="cadastro-locadorenderecoDoTrabalho" placeholder=" " >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
-                          <label for="cadastro-locadorcartorio">Cartório para reconhecimento de firma</label>
-                          <input type="text" class="form-control" name="conjuge-cartorio" [formControlName]="'field38'"
-                                 id="cadastro-locadorcartorio" placeholder=" " required>
-                          <span></span>
+                          <label for="cadastro-locador-irf-conjuge">Deseja declarar 50% do IR no nome do cônjuge?</label>
+                          <select class="form-control" name="estado-civil" id="cadastro-locador-irf-conjuge"
+                                  [formControlName]="'field45'">
+                            <option value=""></option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                          </select>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorparentescoFiador">Grau de parentesco com o fiador</label>
                           <input type="text" class="form-control" name="conjuge-parentesco-fiador"
                                  [formControlName]="'field39'"
-                                 id="cadastro-locadorparentescoFiador" placeholder=" " required>
+                                 id="cadastro-locadorparentescoFiador" placeholder=" ">
                           <span></span>
                         </div>
                       </div>
@@ -1097,18 +1226,6 @@
                           <input type="text" class="form-control" name="titulo" id="cadastro-locadortitulo"
                                  [formControlName]="'field44'"
                                  placeholder=" " required>
-                          <span></span>
-                        </div>
-                        <div class="col-12 col-lg-6 form-group">
-                          <label for="cadastro-locadorcheque-nominal-a">Cheque nominal à:</label>
-                          <input type="text" class="form-control" name="cheque-nominal-a" [formControlName]="'field45'"
-                                 id="cadastro-locadorcheque-nominal-a" placeholder=" " required>
-                          <span></span>
-                        </div>
-                        <div class="col-12 col-lg-6 form-group">
-                          <label for="cadastro-locadorimposto-de-renda">Imposto de renda</label>
-                          <input type="text" class="form-control" name="imposto-de-renda" [formControlName]="'field46'"
-                                 id="cadastro-locadorimposto-de-renda" placeholder=" " required>
                           <span></span>
                         </div>
                       </div>
@@ -1839,13 +1956,45 @@
                     </fieldset>
 
                     <fieldset class="form-fieldset">
-                      <div class="row">
+                      <div class="row justify-content-center">
                         <h6 class="col-12">PROPOSTA</h6>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="proposta-de-locacaocod-imovel">Código do imóvel</label>
                           <input type="text" class="form-control" placeholder=" " id="proposta-de-locacaocod-imovel"
                                  [formControlName]="'field11'"
                                  name="cod-imovel" required>
+                          <span></span>
+                        </div>
+
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="end-do-imovel">Endereço do imóvel</label>
+                          <input type="text" class="form-control"  name="end-do-imovel"
+                                 [formControlName]="'field15'"
+                                 id="end-do-imovel" required>
+                          <span></span>
+                        </div>
+
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="end-do-imovel-num">Número do apartamento</label>
+                          <input type="text" class="form-control"  name="end-do-imovel-num"
+                                 [formControlName]="'field16'"
+                                 id="end-do-imovel-num" >
+                          <span></span>
+                        </div>
+
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="end-do-imovel-torre">Torre</label>
+                          <input type="text" class="form-control" name="end-do-imovel-torre"
+                                 [formControlName]="'field17'"
+                                 id="end-do-imovel-torre" >
+                          <span></span>
+                        </div>
+
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="end-do-imovel-condominio">Nome do condomínio</label>
+                          <input type="text" class="form-control" name="end-do-imovel-condominio"
+                                 [formControlName]="'field15'"
+                                 id="end-do-imovel-condominio" >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
@@ -1868,6 +2017,16 @@
                                  [formControlName]="'field14'"
                                  id="proposta-de-locacaofinalidade-da-locacao" placeholder=" " required>
                           <span></span>
+                        </div>
+
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-corretor">Corretor</label>
+                          <select class="form-control field-corretor" name="estado-civil" id="rand2-corretor" required
+                                  [formControlName]="'field19'">
+                            <span></span>
+                            <option value=""></option>
+                            <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
+                          </select>
                         </div>
                       </div>
                     </fieldset>
@@ -1968,6 +2127,42 @@
                                  name="cod-imovel" required>
                           <span></span>
                         </div>
+<!--                        Endereço do imóvel-->
+<!--                        Número do apartamento-->
+<!--                        Torre-->
+<!--                        Nome do condomínio-->
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-end-do-imovel">Endereço do imóvel</label>
+                          <input type="text" class="form-control"  name="rand2-end-do-imovel"
+                                 [formControlName]="'field15'"
+                                 id="rand2-end-do-imovel" required>
+                          <span></span>
+                        </div>
+
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-end-do-imovel-num">Número do apartamento</label>
+                          <input type="text" class="form-control"  name="rand2-end-do-imovel-num"
+                                 [formControlName]="'field16'"
+                                 id="rand2-end-do-imovel-num" >
+                          <span></span>
+                        </div>
+
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-end-do-imovel-torre">Torre</label>
+                          <input type="text" class="form-control" name="rand2-end-do-imovel-torre"
+                                 [formControlName]="'field17'"
+                                 id="rand2-end-do-imovel-torre" >
+                          <span></span>
+                        </div>
+
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-end-do-imovel-condominio">Nome do condomínio</label>
+                          <input type="text" class="form-control" name="rand2-end-do-imovel-condominio"
+                                 [formControlName]="'field15'"
+                                 id="rand2-end-do-imovel-condominio" >
+                          <span></span>
+                        </div>
+
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-valor-da-locacao">Valor da locação</label>
                           <input type="text" class="form-control" placeholder="R$ " name="valor-da-locacao"
@@ -2002,6 +2197,15 @@
                                  [formControlName]="'field13'"
                                  id="rand2-finalidade-da-locacao" placeholder=" " required>
                           <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-corrretor">Corretor</label>
+                          <select class="form-control field-corretor" name="estado-civil" id="rand2-corrretor" required
+                                  [formControlName]="'field14'">
+                            <span></span>
+                            <option value=""></option>
+                            <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
+                          </select>
                         </div>
                       </div>
                     </fieldset>
