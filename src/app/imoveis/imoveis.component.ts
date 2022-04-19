@@ -90,7 +90,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   queryChange(p) {
-    console.log(p);
     this.queryParams = p;
     this.customSearch.customSearch.categoria = this.queryParams?.categoria || 'comprar',
       this.customSearch.customSearch.salas = this.queryParams?.salas || 0,
@@ -105,7 +104,12 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       this.customSearch.customSearch.finalidade = this.queryParams?.finalidade;
     }
     this.customSearch.customSearch.page = this.queryParams?.page || 1;
-    this.currentPage = parseInt(localStorage.getItem(location.search) || '1');
+    try {
+      this.currentPage = parseInt(localStorage.getItem(location.search) || '1');
+    } catch (e) {
+      console.error(e);
+      this.currentPage = 1;
+    }
     this.buildBadges();
     this.getImoveis();
     this.scrollTop();
@@ -118,25 +122,29 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   goImovel(imovel: Imovel) {
-    localStorage.setItem(nextscroll, String(window.scrollY));
-    localStorage.setItem(nextLastAllImoveis, JSON.stringify(this.allImoveis));
-    localStorage.setItem(nextLastImoveis, JSON.stringify(this.imoveis));
-    localStorage.setItem(nextQueryParams, JSON.stringify(this.queryParams));
-    console.log(this.imoveis);
+    try {
+      localStorage.setItem(nextscroll, String(window.scrollY));
+      localStorage.setItem(nextLastAllImoveis, JSON.stringify(this.allImoveis));
+      localStorage.setItem(nextLastImoveis, JSON.stringify(this.imoveis));
+      localStorage.setItem(nextQueryParams, JSON.stringify(this.queryParams));
+    } catch (e) {
+      console.error(e);
+    }
     this.router.navigate(['/imoveis/' + imovel.sigla]).then();
   }
 
   ngAfterViewInit(): void {
-    console.log(localStorage.getItem(nextLastAllImoveis));
-    if (localStorage.getItem(nextLastAllImoveis)) {
-      this.allImoveis = JSON.parse(localStorage.getItem(nextLastAllImoveis));
-      this.imoveis = JSON.parse(localStorage.getItem(nextLastImoveis));
+    try {
+      if (localStorage.getItem(nextLastAllImoveis)) {
+        this.allImoveis = JSON.parse(localStorage.getItem(nextLastAllImoveis));
+        this.imoveis = JSON.parse(localStorage.getItem(nextLastImoveis));
+      }
+      localStorage.removeItem(nextLastAllImoveis);
+      localStorage.removeItem(nextLastImoveis);
+    } catch (e) {
+      console.error(e);
     }
-    localStorage.removeItem(nextLastAllImoveis);
-    localStorage.removeItem(nextLastImoveis);
-    console.log(this.allImoveis);
     this.route.data.subscribe(data => {
-      console.log(data);
       if (data?.breadcrumbTitle) {
         this.breadcrumbTitle = data.breadcrumbTitle;
       } else {
@@ -203,7 +211,11 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     this.currentPage = page;
     this.customSearch.customSearch.page = page;
     this.makePagination();
-    localStorage.setItem(location.search, page.toString());
+    try {
+      localStorage.setItem(location.search, page.toString());
+    } catch (e) {
+      console.error(e);
+    }
   }
 
 
@@ -270,10 +282,14 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   buildBadges() {
-    if (localStorage.getItem(nextQueryParams)) {
-      this.queryParams = JSON.parse(localStorage.getItem(nextQueryParams));
+    try {
+      if (localStorage.getItem(nextQueryParams)) {
+        this.queryParams = JSON.parse(localStorage.getItem(nextQueryParams));
+      }
+      localStorage.removeItem(nextQueryParams);
+    } catch (e) {
+      console.error(e);
     }
-    localStorage.removeItem(nextQueryParams);
     this.badges = [];
     if (this.queryParams.categoria) {
       // this.badges.push(this.badge(this.queryParams.categoria, 'categoria'));
@@ -369,7 +385,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   softParamSearch(event: any) {
-    console.log(event);
     if (event.autocomplete) {
       switch (event.autocomplete) {
         case 'bairro':
@@ -427,13 +442,21 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   private getImoveis(query?: any, last?: Imovel) {
-    if (!localStorage.getItem(nextLastAllImoveis)) {
+    try {
+      if (!localStorage.getItem(nextLastAllImoveis)) {
+        this.all.getImoveis(query || this.customSearch?.customSearch, last)
+          .subscribe((value) => {
+            this.makeResults(value as Imovel[]);
+          });
+      } else {
+        this.makeResults(this.allImoveis);
+      }
+    } catch (e) {
+      console.error(e);
       this.all.getImoveis(query || this.customSearch?.customSearch, last)
         .subscribe((value) => {
           this.makeResults(value as Imovel[]);
         });
-    } else {
-      this.makeResults(this.allImoveis);
     }
   }
 
@@ -458,8 +481,12 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
     this.checkResults();
     setTimeout(() => {
-      window.scrollTo(0, parseInt(localStorage.getItem('nextscroll')));
-      localStorage.removeItem('nextscroll');
+      try {
+        window.scrollTo(0, parseInt(localStorage.getItem('nextscroll')));
+        localStorage.removeItem('nextscroll');
+      } catch (e) {
+        console.error(e);
+      }
     }, 500);
 
   }

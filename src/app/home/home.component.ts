@@ -9,16 +9,20 @@ import {WPService} from '../core/services/w-p.service';
 export class HomeComponent implements OnInit {
 
 
-
-  lancamentos:any[] = [];
-  posts:any[] = [];
+  lancamentos: any[] = [];
+  posts: any[] = [];
   currentPost = 0;
+
   constructor(private lancamentoService: WPService) {
   }
 
   ngOnInit() {
-    localStorage.removeItem('nextLastSearch');
-    localStorage.removeItem('nextQueryParams');
+    try {
+      localStorage.removeItem('nextLastSearch');
+      localStorage.removeItem('nextQueryParams');
+    } catch (e) {
+      console.error(e);
+    }
 
     this.lancamentoService.all().subscribe(value => {
       this.lancamentos = value.body;
@@ -40,14 +44,14 @@ export class HomeComponent implements OnInit {
 
   nextPost() {
     this.currentPost += 1;
-    if(this.currentPost === this.posts.length) {
+    if (this.currentPost === this.posts.length) {
       this.currentPost = 0;
     }
   }
 
   prevPost() {
     this.currentPost -= 1;
-    if(this.currentPost < 0) {
+    if (this.currentPost < 0) {
       this.currentPost = this.posts.length - 1;
     }
 
@@ -58,7 +62,7 @@ export class HomeComponent implements OnInit {
   }
 
   removeHTML(html: string): string {
-    if(!html) {
+    if (!html) {
       return '';
     }
     return html.replace(/<[^>]+>/g, '').replace('[&hellip;]', '...');
