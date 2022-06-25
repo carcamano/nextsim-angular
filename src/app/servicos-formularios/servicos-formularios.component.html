@@ -202,25 +202,20 @@
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
-                          <label for="enderecoDoTrabalho">Endereço do trabalho</label>
-                          <input type="text" class="form-control" name="endereco-do-trabalho" id="enderecoDoTrabalho"
-                                 [formControlName]="'field14'"
-                                 placeholder=" " required>
-                          <span></span>
-                        </div>
-                        <div class="col-12 col-lg-6 form-group">
                           <label for="cartorio">Cartório para reconhecimento de firma</label>
                           <input type="text" class="form-control" name="cartorio" id="cartorio" placeholder=" "
                                  [formControlName]="'field15'"
                                  required>
                           <span></span>
                         </div>
-                        <div class="col-12 col-lg-6 form-group">
-                          <label for="parentescoFiador">Grau de parentesco com o fiador</label>
-                          <input type="text" class="form-control" name="parentesco-fiador" id="parentescoFiador"
-                                 [formControlName]="'field16'"
-                                 placeholder=" " required>
-                          <span></span>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-corretor">Corretor</label>
+                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor" required
+                                  [formControlName]="'field26'">
+                            <span></span>
+                            <option value=""></option>
+                            <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
+                          </select>
                         </div>
                       </div>
                     </fieldset>
@@ -311,26 +306,13 @@
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
-                          <label for="enderecoDoTrabalho">Endereço do trabalho</label>
-                          <input type="text" class="form-control" name="conjuge-endereco-do-trabalho"
-                                 [formControlName]="'field28'"
-                                 id="enderecoDoTrabalho" placeholder=" " required>
-                          <span></span>
-                        </div>
-                        <div class="col-12 col-lg-6 form-group">
                           <label for="cartorio">Cartório para reconhecimento de firma</label>
                           <input type="text" class="form-control" name="conjuge-cartorio" id="cartorio"
                                  [formControlName]="'field29'"
                                  placeholder=" " required>
                           <span></span>
                         </div>
-                        <div class="col-12 col-lg-6 form-group">
-                          <label for="parentescoFiador">Grau de parentesco com o fiador</label>
-                          <input type="text" class="form-control" name="conjuge-parentesco-fiador"
-                                 [formControlName]="'field30'"
-                                 id="parentescoFiador" placeholder=" " required>
-                          <span></span>
-                        </div>
+
                       </div>
                     </fieldset>
 
@@ -576,12 +558,21 @@
                                  placeholder="Número do imóvel" required>
                           <span></span>
                         </div>
-                        <div class="col-12 col-lg-12 form-group">
+                        <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-pjcomplemento">Complemento</label>
                           <input type="text" class="form-control" name="complemento" id="cadastro-pjcomplemento"
                                  [formControlName]="'field15'"
                                  placeholder="Ex: Bloco xxx , Número xxx" required>
                           <span></span>
+                        </div>
+                        <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-corretor">Corretor</label>
+                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor" required
+                                  [formControlName]="'field46'">
+                            <span></span>
+                            <option value=""></option>
+                            <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
+                          </select>
                         </div>
                       </div>
                     </fieldset>
@@ -979,6 +970,13 @@
                             <option value="Não">Não</option>
                           </select>
                         </div>
+                        <div class="col-12 col-lg-6 form-group">
+                          <label for="cadastro-locador-adm-cond">Administradora do condomínio</label>
+                          <input type="text" class="form-control" id="cadastro-locador-adm-cond"
+                                 [formControlName]="'field55'"
+                                 placeholder=" " required>
+                          <span></span>
+                        </div>
 
                       </div>
                     </fieldset>
@@ -1180,13 +1178,6 @@
                             <option value="Sim">Sim</option>
                             <option value="Não">Não</option>
                           </select>
-                        </div>
-                        <div class="col-12 col-lg-6 form-group">
-                          <label for="cadastro-locadorparentescoFiador">Grau de parentesco com o fiador</label>
-                          <input type="text" class="form-control" name="conjuge-parentesco-fiador"
-                                 [formControlName]="'field39'"
-                                 id="cadastro-locadorparentescoFiador" placeholder=" ">
-                          <span></span>
                         </div>
                       </div>
                     </fieldset>
@@ -2021,12 +2012,19 @@
 
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-corretor">Corretor</label>
-                          <select class="form-control field-corretor" name="estado-civil" id="rand2-corretor" required
+                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor" required
                                   [formControlName]="'field19'">
                             <span></span>
                             <option value=""></option>
                             <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
                           </select>
+                        </div>
+
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="proposta-de-locacao-obs">Observação</label>
+                          <textarea class="form-control" [formControlName]="'field20'"
+                                    id="proposta-de-locacao-obs" placeholder="Opcional"></textarea>
+                          <span></span>
                         </div>
                       </div>
                     </fieldset>
@@ -2200,12 +2198,18 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-corrretor">Corretor</label>
-                          <select class="form-control field-corretor" name="estado-civil" id="rand2-corrretor" required
+                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corrretor" required
                                   [formControlName]="'field14'">
                             <span></span>
                             <option value=""></option>
                             <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
                           </select>
+                        </div>
+                        <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
+                          <label for="rand2-obs">Observação</label>
+                          <textarea class="form-control" [formControlName]="'field19'"
+                                    id="rand2-obs" placeholder="Opcional"></textarea>
+                          <span></span>
                         </div>
                       </div>
                     </fieldset>

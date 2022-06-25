@@ -66,6 +66,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    // PF
     this.form1 = this.formBuilder.group({
       radio1: [, Validators.required],
       field1: [, Validators.required],
@@ -81,7 +82,6 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field11: [, Validators.required],
       field12: [, Validators.required],
       field13: [, Validators.required],
-      field14: [, Validators.required],
       field15: [, Validators.required],
       field16: [, Validators.required],
       field17: [, Validators.required],
@@ -95,7 +95,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field25: [, Validators.required],
       field26: [, Validators.required],
       field27: [, Validators.required],
-      field28: [, Validators.required],
+      field28: [, ],
       field29: [, Validators.required],
       field30: [, Validators.required],
       field31: [, Validators.required],
@@ -109,6 +109,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field39: [,],
     });
 
+    // PJ
     this.form2 = this.formBuilder.group({
       radio1: [, Validators.required],
       field1: [, Validators.required],
@@ -156,8 +157,10 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field43: [,],
       field44: [,],
       field45: [,],
+      field46: [, Validators.required], // corretor
     });
 
+    // Locador
     this.form3 = this.formBuilder.group({
       radio1: [, Validators.required],
       field1: [, Validators.required],
@@ -184,28 +187,27 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field22: [, Validators.required],
       field23: [, Validators.required],
       field24: [, Validators.required],
-      field25: [, ],
-      field26: [, ],
-      field27: [, ],
-      field28: [, ],
-      field29: [, ],
-      field30: [, ],
-      field31: [, ],
-      field32: [, ],
-      field33: [, ],
-      field34: [, ],
-      field35: [, ],
-      field36: [, ],
-      field37: [, ],
-      field38: [, ],
-      field39: [, Validators.required],
+      field25: [,],
+      field26: [,],
+      field27: [,],
+      field28: [,],
+      field29: [,],
+      field30: [,],
+      field31: [,],
+      field32: [,],
+      field33: [,],
+      field34: [,],
+      field35: [,],
+      field36: [,],
+      field37: [,],
+      field38: [,],
       field40: [, Validators.required],
       field41: [, Validators.required],
       field42: [, Validators.required],
       field43: [, Validators.required],
       field44: [, Validators.required],
-      field45: [, ],
-      field46: [, ],
+      field45: [,],
+      field46: [,],
       field47: [,],
       field48: [,],
       field49: [,],
@@ -214,6 +216,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field52: [,],
       field53: [,],
       field54: [,],
+      field55: [, Validators.required],
     });
 
     this.form4 = this.formBuilder.group({
@@ -280,10 +283,11 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field13: [, Validators.required],
       field14: [, Validators.required],
       field15: [, Validators.required],
-      field16: [, ],
-      field17: [, ],
-      field18: [, ],
+      field16: [,],
+      field17: [,],
+      field18: [,],
       field19: [, Validators.required], // corretor
+      field20: [,], // OBS
     });
 
     this.form7 = this.formBuilder.group({
@@ -302,9 +306,10 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field13: [, Validators.required],
       field14: [, Validators.required], // corretor
       field15: [, Validators.required],
-      field16: [, ],
-      field17: [, ],
-      field18: [, ],
+      field16: [,],
+      field17: [,],
+      field18: [,],
+      field19: [,], // obs
     });
   }
 

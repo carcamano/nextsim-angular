@@ -1,57 +1,77 @@
+.clickable:hover {
+  cursor: pointer;
+}
+
 .property_releases_nav {
   height: 40px;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+}
 
 .list-imoveis-menu-placeholder {
   height: 120px;
   display: block;
   width: 100%;
-  /* Small Devices, Tablets */ }
-  @media only screen and (max-width: 768px) {
-    .list-imoveis-menu-placeholder {
-      height: 55px; } }
+  /* Small Devices, Tablets */
+}
+@media only screen and (max-width: 768px) {
+  .list-imoveis-menu-placeholder {
+    height: 55px;
+  }
+}
 
 .breadcrumb .breadcrumb-item a {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  color: #A3A3A3; }
+  color: #A3A3A3;
+}
 .breadcrumb .breadcrumb-item.active {
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .how-we-do {
   background: #575656;
-  padding-bottom: 4px; }
-  .how-we-do .title_right, .how-we-do .title_left, .how-we-do .HWD-text {
-    color: #fff; }
+  padding-bottom: 4px;
+}
+.how-we-do .title_right, .how-we-do .title_left, .how-we-do .HWD-text {
+  color: #fff;
+}
 
 .footer .container {
-  max-width: 1190px; }
-  .footer .container .footer-links .instagram {
-    position: absolute;
-    left: 60px; }
+  max-width: 1190px;
+}
+.footer .container .footer-links .instagram {
+  position: absolute;
+  left: 60px;
+}
 
 .about-us.content-internal {
-  max-height: 800px; }
+  max-height: 800px;
+}
 
 #FilterBar .FilterBarCheckBoxFIELDS2 li {
-  width: 100%; }
+  width: 100%;
+}
 
 .RoomMenu.BALLCheckStyle, .BathMenu {
-  width: 300px !important; }
+  width: 300px !important;
+}
 
 .HomePersonalFilterBar .HorizontalCheckBoxMobileLabel, .HomePersonalFilterBar .HorizontalCheckBoxMobileLabel {
-  margin-right: 5px !important; }
+  margin-right: 5px !important;
+}
 
 .property_launches .item {
   height: 230px;
   background-size: cover;
   background-position: center;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+}
 .property_launches .blog-thumb img {
-  cursor: pointer; }
+  cursor: pointer;
+}
 .property_launches .lancamento_nome {
   position: absolute;
   top: 0;
@@ -63,30 +83,38 @@
   -webkit-animation: all 0.5s ease-out;
   -moz-animation: all 0.5s ease-out;
   -o-animation: all 0.5s ease-out;
-  animation: all 0.5s ease-out; }
+  animation: all 0.5s ease-out;
+}
 .property_launches .lancamento_nome:hover {
-  background: rgba(0, 0, 0, 0.6); }
+  background: rgba(0, 0, 0, 0.6);
+}
 .property_launches .lancamento_nome span {
   opacity: 0;
   color: #fe6900;
   -webkit-animation: all 0.5s ease-out;
   -moz-animation: all 0.5s ease-out;
   -o-animation: all 0.5s ease-out;
-  animation: all 0.5s ease-out; }
+  animation: all 0.5s ease-out;
+}
 .property_launches .lancamento_nome:hover span {
-  opacity: 1; }
+  opacity: 1;
+}
 .property_launches .property_releases_nav ul li a {
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 #down-arrow {
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .PropertyCardValues.valores img {
-  margin-top: 0 !important; }
+  margin-top: 0 !important;
+}
 .PropertyCardValues.valores.iptu.condominio img {
   margin-top: 0 !important;
   width: 40px;
-  margin-right: 10px; }
+  margin-right: 10px;
+}
 
 .recursos ul {
   columns: 4;
@@ -94,27 +122,35 @@
   -moz-columns: 4;
   /* Medium Devices, Desktops */
   /* Small Devices, Tablets */
-  /* Extra Small Devices, Phones */ }
-  @media only screen and (max-width: 992px) {
-    .recursos ul {
-      columns: 3;
-      -webkit-columns: 3;
-      -moz-columns: 3; } }
-  @media only screen and (max-width: 768px) {
-    .recursos ul {
-      columns: 2;
-      -webkit-columns: 2;
-      -moz-columns: 2; } }
-  @media only screen and (max-width: 480px) {
-    .recursos ul {
-      columns: 1;
-      -webkit-columns: 1;
-      -moz-columns: 1; } }
+  /* Extra Small Devices, Phones */
+}
+@media only screen and (max-width: 992px) {
+  .recursos ul {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .recursos ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .recursos ul {
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+  }
+}
 
 .dropdown-tipo-desktop ul li {
   display: block;
   float: unset;
-  width: unset; }
+  width: unset;
+}
 
 .MobileFilterBarTitle .btn-apply {
   width: 63px;
@@ -122,24 +158,30 @@
   left: 27px;
   text-align: center;
   padding: unset;
-  margin-top: 6px; }
+  margin-top: 6px;
+}
 
 .boleto-modal {
-  display: block !important; }
+  display: block !important;
+}
 
 #list-bairros {
   columns: 2;
   -webkit-columns: 2;
-  -moz-columns: 2; }
+  -moz-columns: 2;
+}
 
 .modal-dialog {
-  margin: 0; }
+  margin: 0;
+}
 
 .modal-dialog-centered {
-  margin: auto; }
+  margin: auto;
+}
 
 .modal-dialog.modal-xl.modal-dialog-centered {
-  margin: auto; }
+  margin: auto;
+}
 
 .MobileFilterBarTitle {
   position: fixed;
@@ -147,100 +189,126 @@
   top: 0;
   left: 0;
   right: 0;
-  width: 100%; }
+  width: 100%;
+}
 
 .MobileFilterBarMenu {
-  padding-top: 60px !important; }
+  padding-top: 60px !important;
+}
 
 .properties .properties-list .item {
   height: 235px;
   box-shadow: none !important;
   filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14)) drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
-  /* Small Devices, Tablets */ }
-  @media only screen and (max-width: 768px) {
-    .properties .properties-list .item {
-      height: auto; } }
-  .properties .properties-list .item .novo-slider {
-    position: relative; }
-    .properties .properties-list .item .novo-slider .owl-carousel {
-      height: 235px; }
-      .properties .properties-list .item .novo-slider .owl-carousel .owl-dots {
-        margin-top: -32px !important; }
-      .properties .properties-list .item .novo-slider .owl-carousel .owl-stage {
-        height: 235px; }
-        .properties .properties-list .item .novo-slider .owl-carousel .owl-stage .owl-item {
-          height: 235px; }
+  /* Small Devices, Tablets */
+}
+@media only screen and (max-width: 768px) {
+  .properties .properties-list .item {
+    height: auto;
+  }
+}
+.properties .properties-list .item .novo-slider {
+  position: relative;
+}
+.properties .properties-list .item .novo-slider .owl-carousel {
+  height: 235px;
+}
+.properties .properties-list .item .novo-slider .owl-carousel .owl-dots {
+  margin-top: -32px !important;
+}
+.properties .properties-list .item .novo-slider .owl-carousel .owl-stage {
+  height: 235px;
+}
+.properties .properties-list .item .novo-slider .owl-carousel .owl-stage .owl-item {
+  height: 235px;
+}
+.properties .properties-list .item .novo-content {
+  padding: 24px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
   .properties .properties-list .item .novo-content {
-    padding: 24px;
-    cursor: pointer; }
-    @media only screen and (max-width: 768px) {
-      .properties .properties-list .item .novo-content {
-        padding: 14px;
-        height: 170px !important; } }
-    .properties .properties-list .item .novo-content .novo-tipo {
-      font-family: Raleway;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 14px;
-      color: #A3A3A3; }
-    .properties .properties-list .item .novo-content .novo-local {
-      font-family: Raleway;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 19px;
-      color: #575656; }
-    .properties .properties-list .item .novo-content .novo-cod {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 16px;
-      display: flex;
-      align-items: center;
-      /* Not-is-black */
-      color: #575656; }
-    .properties .properties-list .item .novo-content .novo-price {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 28px;
-      display: flex;
-      align-items: center;
-      /* Primary-color */
-      color: #fe6900; }
-      .properties .properties-list .item .novo-content .novo-price sub {
-        font-size: 12px; }
-    .properties .properties-list .item .novo-content .novo-meio > .row > .col-auto {
-      margin-right: 15px; }
-      .properties .properties-list .item .novo-content .novo-meio > .row > .col-auto > div {
-        display: flex;
-        align-items: center; }
-        .properties .properties-list .item .novo-content .novo-meio > .row > .col-auto > div i {
-          color: #A3A3A3;
-          font-size: 22px; }
-        .properties .properties-list .item .novo-content .novo-meio > .row > .col-auto > div span {
-          margin-left: 4px;
-          font-family: Roboto;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 19px;
-          color: #575656; }
+    padding: 14px;
+    height: 170px !important;
+  }
+}
+.properties .properties-list .item .novo-content .novo-tipo {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #A3A3A3;
+}
+.properties .properties-list .item .novo-content .novo-local {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #575656;
+}
+.properties .properties-list .item .novo-content .novo-cod {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  /* Not-is-black */
+  color: #575656;
+}
+.properties .properties-list .item .novo-content .novo-price {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  /* Primary-color */
+  color: #fe6900;
+}
+.properties .properties-list .item .novo-content .novo-price sub {
+  font-size: 12px;
+}
+.properties .properties-list .item .novo-content .novo-meio > .row > .col-auto {
+  margin-right: 15px;
+}
+.properties .properties-list .item .novo-content .novo-meio > .row > .col-auto > div {
+  display: flex;
+  align-items: center;
+}
+.properties .properties-list .item .novo-content .novo-meio > .row > .col-auto > div i {
+  color: #A3A3A3;
+  font-size: 22px;
+}
+.properties .properties-list .item .novo-content .novo-meio > .row > .col-auto > div span {
+  margin-left: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #575656;
+}
 
 .info_icon {
   background-image: url("assets/img/error_outline.svg");
   display: inline-flex;
   width: 16px;
-  height: 16px; }
+  height: 16px;
+}
 
 app-imovel .property {
-  background: #575656; }
-  @media only screen and (max-width: 768px) {
-    app-imovel .property {
-      background: #fff; } }
+  background: #575656;
+}
+@media only screen and (max-width: 768px) {
+  app-imovel .property {
+    background: #fff;
+  }
+}
 
 .card-imovel {
   background: #FFFFFF;
@@ -248,126 +316,156 @@ app-imovel .property {
   border-radius: 8px;
   height: 500px;
   padding: 24px;
-  /* Small Devices, Tablets */ }
-  @media only screen and (max-width: 768px) {
-    .card-imovel {
-      height: auto; } }
-  .card-imovel .novo-tipo, .card-imovel .novo-cod-mobile {
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 14px;
-    color: #A3A3A3; }
-  .card-imovel .novo-local {
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 19px;
-    color: #575656; }
-  .card-imovel .novo-cod-mobile {
-    display: none; }
-  .card-imovel .novo-meio > .row > .col-auto {
-    margin-right: 15px; }
-    .card-imovel .novo-meio > .row > .col-auto > div {
-      display: flex;
-      align-items: center; }
-      .card-imovel .novo-meio > .row > .col-auto > div i {
-        color: #A3A3A3;
-        font-size: 22px; }
-      .card-imovel .novo-meio > .row > .col-auto > div span {
-        margin-left: 4px;
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 19px;
-        color: #575656; }
-  .card-imovel .novo-footer .prices-table span {
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 19px;
-    color: #575656;
-    display: flex;
-    align-items: center; }
-    .card-imovel .novo-footer .prices-table span.digit, .card-imovel .novo-footer .prices-table span.digit b {
-      font-family: Roboto; }
-    .card-imovel .novo-footer .prices-table span.hard-color {
-      color: #2E2E2E; }
-    .card-imovel .novo-footer .prices-table span b {
-      font-family: Raleway;
-      font-weight: bold;
-      color: #2E2E2E; }
-    .card-imovel .novo-footer .prices-table span i {
-      opacity: 0.3;
-      margin-left: 4px;
-      cursor: pointer; }
-  .card-imovel .novo-footer .prices-table .line {
-    margin-bottom: 8px; }
-    .card-imovel .novo-footer .prices-table .line:last-child {
-      margin-bottom: 0px; }
-  .card-imovel .novo-footer .prices-table hr {
-    border: 1px dashed #A3A3A3;
-    margin: 13px 0; }
-  .card-imovel .novo-footer button {
-    height: 48px;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 8px;
-    cursor: pointer !important;
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    transition: all 0.3s ease; }
-    .card-imovel .novo-footer button.more {
-      filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14)) drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
-      background: #fe6900;
-      color: #FFFFFF;
-      border: none;
-      margin: 15px 0; }
-      .card-imovel .novo-footer button.more:hover {
-        filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.14)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.12)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.2)) !important; }
-    .card-imovel .novo-footer button.share {
-      border: 2px solid #fe6900;
-      background: transparent;
-      color: #fe6900;
-      margin-bottom: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center; }
-      .card-imovel .novo-footer button.share svg {
-        width: 24px;
-        height: 24px;
-        display: inline-flex;
-        margin-right: 4px;
-        transition: all 0.3s ease;
-        fill: #fe6900; }
-        .card-imovel .novo-footer button.share svg a {
-          fill: #fe6900; }
-        .card-imovel .novo-footer button.share svg:hover {
-          fill: #fff; }
-          .card-imovel .novo-footer button.share svg:hover a {
-            fill: #fff; }
-      .card-imovel .novo-footer button.share:hover {
-        background: #fe6900 !important;
-        color: #fff;
-        border: 2px solid #fe6900 !important; }
-        .card-imovel .novo-footer button.share:hover svg {
-          fill: #fff; }
-  .card-imovel .novo-footer .novo-cod {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
-    color: #575656; }
+  /* Small Devices, Tablets */
+}
+@media only screen and (max-width: 768px) {
+  .card-imovel {
+    height: auto;
+  }
+}
+.card-imovel .novo-tipo, .card-imovel .novo-cod-mobile {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  color: #A3A3A3;
+}
+.card-imovel .novo-local {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 19px;
+  color: #575656;
+}
+.card-imovel .novo-cod-mobile {
+  display: none;
+}
+.card-imovel .novo-meio > .row > .col-auto {
+  margin-right: 15px;
+}
+.card-imovel .novo-meio > .row > .col-auto > div {
+  display: flex;
+  align-items: center;
+}
+.card-imovel .novo-meio > .row > .col-auto > div i {
+  color: #A3A3A3;
+  font-size: 22px;
+}
+.card-imovel .novo-meio > .row > .col-auto > div span {
+  margin-left: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 19px;
+  color: #575656;
+}
+.card-imovel .novo-footer .prices-table span {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 19px;
+  color: #575656;
+  display: flex;
+  align-items: center;
+}
+.card-imovel .novo-footer .prices-table span.digit, .card-imovel .novo-footer .prices-table span.digit b {
+  font-family: Roboto;
+}
+.card-imovel .novo-footer .prices-table span.hard-color {
+  color: #2E2E2E;
+}
+.card-imovel .novo-footer .prices-table span b {
+  font-family: Raleway;
+  font-weight: bold;
+  color: #2E2E2E;
+}
+.card-imovel .novo-footer .prices-table span i {
+  opacity: 0.3;
+  margin-left: 4px;
+  cursor: pointer;
+}
+.card-imovel .novo-footer .prices-table .line {
+  margin-bottom: 8px;
+}
+.card-imovel .novo-footer .prices-table .line:last-child {
+  margin-bottom: 0px;
+}
+.card-imovel .novo-footer .prices-table hr {
+  border: 1px dashed #A3A3A3;
+  margin: 13px 0;
+}
+.card-imovel .novo-footer button {
+  height: 48px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  cursor: pointer !important;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  transition: all 0.3s ease;
+}
+.card-imovel .novo-footer button.more {
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.14)) drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
+  background: #fe6900;
+  color: #FFFFFF;
+  border: none;
+  margin: 15px 0;
+}
+.card-imovel .novo-footer button.more:hover {
+  filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.14)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.12)) drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.2)) !important;
+}
+.card-imovel .novo-footer button.share {
+  border: 2px solid #fe6900;
+  background: transparent;
+  color: #fe6900;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-imovel .novo-footer button.share svg {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  margin-right: 4px;
+  transition: all 0.3s ease;
+  fill: #fe6900;
+}
+.card-imovel .novo-footer button.share svg a {
+  fill: #fe6900;
+}
+.card-imovel .novo-footer button.share svg:hover {
+  fill: #fff;
+}
+.card-imovel .novo-footer button.share svg:hover a {
+  fill: #fff;
+}
+.card-imovel .novo-footer button.share:hover {
+  background: #fe6900 !important;
+  color: #fff;
+  border: 2px solid #fe6900 !important;
+}
+.card-imovel .novo-footer button.share:hover svg {
+  fill: #fff;
+}
+.card-imovel .novo-footer .novo-cod {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #575656;
+}
 
 .filter-inputs button {
-  cursor: pointer; }
+  cursor: pointer;
+}
 .filter-inputs input {
   padding: 4px 8px 4px 16px;
   height: 32px;
@@ -382,9 +480,11 @@ app-imovel .property {
   line-height: 19px;
   color: #A3A3A3;
   display: flex;
-  margin-right: 4px; }
-  .filter-inputs input:focus {
-    outline: none; }
+  margin-right: 4px;
+}
+.filter-inputs input:focus {
+  outline: none;
+}
 .filter-inputs .input-button {
   display: flex;
   flex-direction: row;
@@ -395,11 +495,13 @@ app-imovel .property {
   height: 32px;
   background: #fe6900;
   border: none;
-  border-radius: 8px; }
-  .filter-inputs .input-button i {
-    width: 17px;
-    height: 17px;
-    background-image: url("assets/img/icons/lupa.svg"); }
+  border-radius: 8px;
+}
+.filter-inputs .input-button i {
+  width: 17px;
+  height: 17px;
+  background-image: url("assets/img/icons/lupa.svg");
+}
 .filter-inputs .button-modal {
   display: flex;
   flex-direction: row;
@@ -416,16 +518,19 @@ app-imovel .property {
   font-weight: bold;
   font-size: 16px;
   color: #FFFFFF;
-  margin-bottom: 16px; }
-  .filter-inputs .button-modal i {
-    width: 21px;
-    height: 18px;
-    background-image: url("assets/img/icons/custom-search.svg");
-    margin-right: 5px; }
+  margin-bottom: 16px;
+}
+.filter-inputs .button-modal i {
+  width: 21px;
+  height: 18px;
+  background-image: url("assets/img/icons/custom-search.svg");
+  margin-right: 5px;
+}
 
 .opacity-filter img {
   -webkit-filter: blur(10px);
-  filter: blur(10px); }
+  filter: blur(10px);
+}
 .opacity-filter a {
   position: absolute;
   top: 0;
@@ -433,45 +538,54 @@ app-imovel .property {
   margin: auto;
   left: 0;
   right: 0;
-  width: 210px; }
+  width: 210px;
+}
 
 @media only screen and (min-width: 768px) {
   .about-session {
-    padding-bottom: 0; }
-
+    padding-bottom: 0;
+  }
   .about-session {
-    padding-top: 0; }
-
+    padding-top: 0;
+  }
   .divBtnDownload {
-    margin-bottom: 50px; } }
+    margin-bottom: 50px;
+  }
+}
 @media only screen and (min-width: 1300px) {
   .about-session {
-    margin-top: -80px; }
-
+    margin-top: -80px;
+  }
   .how-we-do .title_block {
-    margin-top: -110px; } }
+    margin-top: -110px;
+  }
+}
 @media only screen and (max-width: 768px) {
   app-imovel .container.desc {
     width: 100% !important;
     max-width: 100%;
-    padding: 0 25px; }
+    padding: 0 25px;
+  }
   app-imovel .recursos {
     margin-left: -15px;
-    margin-right: -15px; }
-    app-imovel .recursos h3 {
-      font-family: Raleway;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 18px;
-      line-height: 19px;
-      color: #575656; }
-    app-imovel .recursos li {
-      font-family: Raleway;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 18px;
-      color: #333333; }
+    margin-right: -15px;
+  }
+  app-imovel .recursos h3 {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 19px;
+    color: #575656;
+  }
+  app-imovel .recursos li {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #333333;
+  }
   app-imovel .PropertyDescription h3 {
     font-family: Raleway;
     font-style: normal;
@@ -480,7 +594,8 @@ app-imovel .property {
     line-height: 19px;
     color: #575656;
     margin-bottom: 8px !important;
-    letter-spacing: 0; }
+    letter-spacing: 0;
+  }
   app-imovel .PropertyDescription p {
     font-family: Raleway;
     font-style: normal;
@@ -488,62 +603,83 @@ app-imovel .property {
     font-size: 14px;
     line-height: 18px;
     color: #333333;
-    letter-spacing: 0; } }
+    letter-spacing: 0;
+  }
+}
 @media only screen and (max-width: 768px) {
   app-imovel .property .PropertyBackLink {
-    color: #575656 !important; }
-    app-imovel .property .PropertyBackLink .PropertyArrowBackBtn {
-      filter: grayscale(100%) !important; }
+    color: #575656 !important;
+  }
+  app-imovel .property .PropertyBackLink .PropertyArrowBackBtn {
+    filter: grayscale(100%) !important;
+  }
   app-imovel .property .ResidencialHeaderContainer {
     background: #fafafa;
     width: 100% !important;
     max-width: 100%;
-    padding: 60px 0 0 0; }
+    padding: 60px 0 0 0;
+  }
   app-imovel .property .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img, app-imovel .property .ng-image-slider .ng-image-slider-container .main .main-inner .img-div video {
-    border-radius: 0 !important; }
+    border-radius: 0 !important;
+  }
   app-imovel .property .card-imovel {
     border-radius: 0;
     padding-top: 0;
     box-shadow: none;
     background-color: transparent;
-    padding-bottom: 0; }
-    app-imovel .property .card-imovel .novo-topo {
-      margin-bottom: 18px; }
-    app-imovel .property .card-imovel .novo-meio {
-      margin-bottom: 21px; }
-    app-imovel .property .card-imovel .novo-cod {
-      display: none; }
-    app-imovel .property .card-imovel .novo-cod-mobile {
-      display: inline-flex;
-      margin-left: 4px; }
-    app-imovel .property .card-imovel .share {
-      margin-bottom: 0px; } }
+    padding-bottom: 0;
+  }
+  app-imovel .property .card-imovel .novo-topo {
+    margin-bottom: 18px;
+  }
+  app-imovel .property .card-imovel .novo-meio {
+    margin-bottom: 21px;
+  }
+  app-imovel .property .card-imovel .novo-cod {
+    display: none;
+  }
+  app-imovel .property .card-imovel .novo-cod-mobile {
+    display: inline-flex;
+    margin-left: 4px;
+  }
+  app-imovel .property .card-imovel .share {
+    margin-bottom: 0px;
+  }
+}
 @media only screen and (max-width: 768px) {
   app-imovel .backdrop-imovel {
-    background: #fafafa; } }
+    background: #fafafa;
+  }
+}
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 576px) {
   app-imovel .recursos {
     margin-left: 0;
-    margin-right: 0; } }
+    margin-right: 0;
+  }
+}
 
 .MobileFilterBarMenu .card-header {
-  padding: 20px !important; }
+  padding: 20px !important;
+}
 .MobileFilterBarMenu .btn-link {
-  color: #000; }
+  color: #000;
+}
 
 @media only screen and (max-width: 768px) {
   .content.properties {
-    margin-top: -35px; }
-
+    margin-top: -35px;
+  }
   .properties .sidebar {
-    padding-right: 15px; }
-
+    padding-right: 15px;
+  }
   .MobileMenuHeader .CloseMenu, .FirstMenu, .SocialMobileMenu {
-    text-align: center; }
-
+    text-align: center;
+  }
   .properties .properties-list {
-    margin-top: 15px; } }
+    margin-top: 15px;
+  }
+}
 
 /*# sourceMappingURL=next.css.map */
