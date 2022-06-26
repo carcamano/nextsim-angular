@@ -445,7 +445,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     try {
       if (!localStorage.getItem(nextLastAllImoveis)) {
         this.all.getImoveis(query || this.customSearch?.customSearch, last)
-          .subscribe((value) => {
+          ?.subscribe((value) => {
             this.makeResults(value as Imovel[]);
           });
       } else {
@@ -454,7 +454,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     } catch (e) {
       console.error(e);
       this.all.getImoveis(query || this.customSearch?.customSearch, last)
-        .subscribe((value) => {
+        ?.subscribe((value) => {
           this.makeResults(value as Imovel[]);
         });
     }

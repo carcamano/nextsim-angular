@@ -466,7 +466,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
     Observable.forkJoin(...downloadUrls$)
       .subscribe((urls) => {
-        small.innerText = [..._.map(fileList, value => value.name), ...initialSmall].join(', ');
+        small.innerText = _.join([..._.map(fileList, value => value.name), ...initialSmall], ', ');
         const initalValues = el.value || [];
         el.setValue([...initalValues, ...urls]);
       });
