@@ -20,6 +20,7 @@ const nextscroll = 'nextscroll';
 const nextLastAllImoveis = 'nextLastAllImoveis';
 const nextLastImoveis = 'nextLastImoveis';
 const nextQueryParams = 'nextQueryParams';
+const nextCurrentPage = 'nextCurrentPage';
 
 @Component({
   selector: 'app-imoveis',
@@ -36,7 +37,15 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   MASKS = MASKS;
 
-  imoveis: Imovel[] = [];
+  _imoveis: Imovel[] = [];
+  set imoveis(imoveis: Imovel[]) {
+    this._imoveis = imoveis;
+  }
+
+  get imoveis() {
+    return this._imoveis;
+  }
+
   allImoveis: Imovel[] = [];
 
   simpleSearch: string;
@@ -63,13 +72,11 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   toVaga = toVaga;
   getFormattedPrice = getFormattedPrice;
 
-
   @ViewChild('customSearch') customSearch: CustomSearchComponent;
 
   constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private all: AllImoveis,
               private router: Router, private modalService: NgbModal, private firestore: Firestore) {
   }
-
 
   ngOnInit() {
     this.loadDefaults();
@@ -114,6 +121,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       localStorage.setItem(nextLastAllImoveis, JSON.stringify(this.allImoveis));
       localStorage.setItem(nextLastImoveis, JSON.stringify(this.imoveis));
       localStorage.setItem(nextQueryParams, JSON.stringify(this.queryParams));
+      localStorage.setItem(nextCurrentPage, String(this.currentPage));
     } catch (e) {
       console.error(e);
     }
@@ -138,10 +146,23 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         this.breadcrumbTitle = null;
       }
       this.backing = data?.backing || false;
-      console.log(data);
+
+      if (this.backing) {
+        setTimeout(() => {
+          this.backing = false;
+          const c = parseInt(localStorage.getItem('nextCurrentPage'), 0);
+          this.currentPage = c;
+          if (c === 0) {
+            this.currentPage = 1;
+          }
+          localStorage.removeItem('nextCurrentPage');
+          this.makeResults(this.allImoveis, null, true);
+          this.makePagination();
+          this.buildBadges();
+        }, 200);
+      }
     });
   }
-
 
   badgeClose(param: any) {
     const ss = param.split(',');
@@ -193,27 +214,27 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   changePage(page: any) {
-    if (this.currentPage + page <= 0) {
-      return;
-    }
-    this.scrollTop();
-    this.currentPage = page;
-    this.customSearch.customSearch.page = page;
-    this.makePagination();
-    try {
-      localStorage.setItem(location.search, page.toString());
-    } catch (e) {
-      console.error(e);
+    if (page) {
+      if (this.currentPage + page <= 0) {
+        return;
+      }
+      this.scrollTop();
+      this.currentPage = page;
+      this.customSearch.customSearch.page = page;
+      this.makePagination();
+      try {
+        localStorage.setItem(location.search, page.toString());
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
-
 
   private checkResults() {
     if ((!this.imoveis || this.imoveis.length === 0) && (!this.allImoveis || this.allImoveis.length === 0)) {
     } else if (this.imoveis.length === 1 && Object.keys(this.queryParams).length === 1 && this.queryParams.query) {
       this.router.navigateByUrl('/imoveis/' + this.imoveis[0].sigla).then();
     }
-
   }
 
   imagensCarousel(images: string[]) {
@@ -235,7 +256,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   private scrollTop() {
     try {
       window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
@@ -243,7 +263,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       window.scrollTo(0, 0);
     }
   }
-
 
   getprice(imovel: Imovel): string {
     if (!imovel) {
@@ -280,18 +299,15 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       console.error(e);
     }
     this.badges = [];
-    // if (this.queryParams.categoria) {
-    //   // this.badges.push(this.badge(this.queryParams.categoria, 'categoria'));
-    // }
-    //
-    // if (this.queryParams.finalidade) {
-    //   // this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade'));
-    // }
 
     if (this.queryParams?.bairros) {
       const ss = typeof this.queryParams?.bairros?.split === 'function' ?
         (this.queryParams?.bairros?.split(',') || []) : this.queryParams?.bairros;
       ss.forEach(b => this.badges.push(this.badge(`No bairro: ${b}`, `bairros,${b}`)));
+      if (ss.length === 0 && this.route.snapshot.queryParams.bairros) {
+        this.route.snapshot.queryParams.bairros.split(',')
+          .forEach(b => this.badges.push(this.badge(`No bairro: ${b}`, `bairros,${b}`)));
+      }
     }
 
     if (this.queryParams.cidade) {
@@ -404,7 +420,6 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
         });
 
     }
-
   }
 
   searchAutocomplete(event: any) {
@@ -434,14 +449,10 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   private getImoveis(query?: any, last?: Imovel) {
     try {
-      if (!localStorage.getItem(nextLastAllImoveis)) {
-        this.all.getImoveis(query || this.customSearch?.customSearch, last)
-          ?.subscribe((value) => {
-            this.makeResults(value as Imovel[]);
-          });
-      } else {
-        this.makeResults(this.allImoveis);
-      }
+      this.all.getImoveis(query || this.customSearch?.customSearch, last)
+        ?.subscribe((value) => {
+          this.makeResults(value as Imovel[]);
+        });
     } catch (e) {
       console.error(e);
       this.all.getImoveis(query || this.customSearch?.customSearch, last)
@@ -451,7 +462,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private makeResults(value: Imovel[], event: any = null) {
+  private makeResults(value: Imovel[], event: any = null, backing = false) {
     if (event && (event.finalidade || event.categoria)) {
       if (event.finalidade) {
         value = _.filter(value, (v) => v.finalidade === event.finalidade);
@@ -473,7 +484,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     this.checkResults();
     setTimeout(() => {
       try {
-        window.scrollTo(0, parseInt(localStorage.getItem('nextscroll')));
+        window.scrollTo(0, parseInt(localStorage.getItem('nextscroll'), 0));
         localStorage.removeItem('nextscroll');
       } catch (e) {
         console.error(e);

@@ -1,19 +1,16 @@
 import {AfterViewInit, Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
-import * as _ from "lodash";
-import {collection, collectionData, collectionSnapshots, doc, docSnapshots, Firestore} from "@angular/fire/firestore";
-import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_LOCAIS, PATH_PRECOS} from "../../utils/constants.util";
-import {map} from "rxjs/operators";
-import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from "../../constants/tipos";
-import {NgbDropdown} from "@ng-bootstrap/ng-bootstrap";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CustomSearchType} from "./custom-search.enum";
-import {MatSelectChange} from "@angular/material/select";
+import * as _ from 'lodash';
+import {collection, collectionData, collectionSnapshots, doc, docSnapshots, Firestore} from '@angular/fire/firestore';
+import {PATH_AREA, PATH_AUTOCOMPLETE, PATH_LOCAIS, PATH_PRECOS} from '../../utils/constants.util';
+import {map} from 'rxjs/operators';
+import {TIPOS_COMERCIAL, TIPOS_RESIDENCIAL} from '../../constants/tipos';
+import {NgbDropdown} from '@ng-bootstrap/ng-bootstrap';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CustomSearchType} from './custom-search.enum';
+import {MatSelectChange} from '@angular/material/select';
 import {MASKS, NgBrDirectives} from 'ng-brazil';
-import {currencyToNumber} from "../../utils/imovel.util";
+import {currencyToNumber} from '../../utils/imovel.util';
 import {ToastrService} from 'ngx-toastr';
-
-const {CURRENCYPipe} = NgBrDirectives;
-
 
 @Component({
   selector: 'app-custom-search',
@@ -95,11 +92,9 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   tiposSelecionados: any[] = [];
   locais: any[];
 
-
   removeParams: any[] = [];
 
   windowWidth = 0;
-
 
   constructor(private firestore: Firestore, private router: Router, private route: ActivatedRoute, private toastr: ToastrService) {
   }
@@ -111,22 +106,24 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.route.data.subscribe(data => {
-      console.log(data);
       if (!_.isEmpty(data)) {
         this.queryParams = data;
-        this.makeCustomSearch(data, true);
+        if (!this.route.snapshot.data.backing) {
+          this.makeCustomSearch(data, true);
+        }
       }
 
     });
     this.route.queryParams.subscribe(queryParams => {
       if (!_.isEmpty(queryParams)) {
         this.queryParams = queryParams;
-        this.makeCustomSearch(queryParams);
+        if (!this.route.snapshot.data.backing) {
+          this.makeCustomSearch(queryParams);
+        }
       }
     });
 
   }
-
 
   applyFilter() {
     this.closeMe();
@@ -134,7 +131,6 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   }
 
   changeStep(goTo: number, value?: any, check = false) {
-    console.log(this.customSearch.query);
     if (goTo > -1 && !value) {
       if (this.customSearch.finalidade === 'lancamento') {
         this.goLancamento();
@@ -160,7 +156,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   }
 
   inputPriceFocusOut(e: FocusEvent, id: number) {
-    const num = currencyToNumber((e.target as HTMLInputElement).value)
+    const num = currencyToNumber((e.target as HTMLInputElement).value);
 
     switch (id) {
       case 0:
@@ -201,20 +197,19 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
     this.currentStep = 0;
   }
 
-
   makeParams() {
-    let querys = this.removeParams.map(value => value.query);
+    const querys = this.removeParams.map(value => value.query);
     let area: string;
     if (!querys.includes('area')) {
       if (this.customSearch.area.min) {
         this.customSearch.area.min = parseInt(this.customSearch.area.min.toString()
           .replace('R$ ', '').replace('.', '')
-          .replace(',', '.'));
+          .replace(',', '.'), 0);
       }
       if (this.customSearch.area.max) {
         this.customSearch.area.max = parseInt(this.customSearch.area.max.toString()
           .replace('R$ ', '').replace('.', '')
-          .replace(',', '.'));
+          .replace(',', '.'), 0);
       }
       area = this.customSearch.area.min + ',' + this.customSearch.area.max;
     }
@@ -254,21 +249,7 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
   goLancamento() {
     this.closeMe();
     this.customSearch.finalidade = 'residencial';
-    document.getElementById('backdrop').scrollIntoView({behavior: "smooth"});
-  }
-
-
-  numberMask(rawValue: string): RegExp[] {
-    const mask = /[A-Za-z]/;
-    const strLength = String(rawValue).length;
-    const nameMask: RegExp[] = [];
-
-    for (let i = 0; i <= strLength; i++) {
-      nameMask.push(mask);
-    }
-
-    return nameMask;
-
+    document.getElementById('backdrop').scrollIntoView({behavior: 'smooth'});
   }
 
   searchAutocomplete(event: any) {
@@ -281,13 +262,11 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
   }
 
-
   changeCidade(cidade: MatSelectChange) {
     this.customSearch.cidade = cidade.value;
     this.bairrosSelecionados = [];
     this.buildLocaisBairros(cidade.value);
   }
-
 
   changeTipo(event: MatSelectChange) {
     if (this.tiposSelecionados.length > 10) {
@@ -300,7 +279,6 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
       this.toastr.error('Você pode selecionar apenas até 10 bairros!', 'Maximo 10 selecionados!');
     }
   }
-
 
   buildLocaisBairros(cidade: string) {
     this.customSearch.bairros = [];
@@ -330,7 +308,8 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
         this.customSearch.banheiros = this.queryParams.banheiros || 0,
         this.customSearch.cidade = this.queryParams.cidade || '',
         this.customSearch.page = this.queryParams.page || 1;
-        this.customSearch.tipos = _.isArray(queryParams?.tipos) ? this.queryParams?.tipos : (this.queryParams?.tipos ? [this.queryParams?.tipos] : []) ;
+      this.customSearch.tipos = _.isArray(queryParams?.tipos) ?
+        this.queryParams?.tipos : (this.queryParams?.tipos ? [this.queryParams?.tipos] : []);
       this.customSearchChange.emit(this.customSearch);
     } else {
       this.simpleSearchChange.emit(queryParams);
@@ -366,12 +345,12 @@ export class CustomSearchComponent implements OnInit, AfterViewInit {
 
     collectionSnapshots(collection(this.firestore, PATH_LOCAIS))
       .pipe(map((actions) => actions.map((a) => {
-        return {id: a.id, ...a.data()}
+        return {id: a.id, ...a.data()};
       })))
       .subscribe(value => {
         this.locais = value;
         this.rebuildFilter();
-      })
+      });
 
 
     docSnapshots(doc(this.firestore, `${PATH_AUTOCOMPLETE}/${PATH_AUTOCOMPLETE}`))
