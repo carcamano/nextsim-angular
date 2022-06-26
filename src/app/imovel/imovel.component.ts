@@ -1,18 +1,18 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Imovel} from '../imoveis/models/imovel.model';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {LeadService} from '../core/services/lead.service';
 import {ToastrService} from 'ngx-toastr';
-import {AllImoveis} from "../core/services/all-imoveis.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MASKS} from "ng-brazil";
-import {HttpClient} from "@angular/common/http";
-import {catchError, map} from "rxjs/operators";
-import {Observable, of} from "rxjs";
-import {environment} from "../../environments/environment";
-import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from "../core/utils/imovel.util";
-import {NextToastComponent} from "../core/components/next-toast/next-toast.component";
+import {AllImoveis} from '../core/services/all-imoveis.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MASKS} from 'ng-brazil';
+import {HttpClient} from '@angular/common/http';
+import {catchError, map} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {environment} from '../../environments/environment';
+import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from '../core/utils/imovel.util';
+import {NextToastComponent} from '../core/components/next-toast/next-toast.component';
 
 @Component({
   selector: 'app-imovel',
@@ -22,8 +22,6 @@ import {NextToastComponent} from "../core/components/next-toast/next-toast.compo
 export class ImovelComponent implements OnInit {
 
   imovel: Imovel;
-  mySlideOptions = {items: 1, dots: true, nav: false};
-  myCarouselOptions = {items: 3, dots: true, nav: true};
 
   imageheight = (window.innerWidth > 1300 ? 500 : (window.innerWidth > 992 ? 480 : 300)) + 'px';
 
@@ -80,7 +78,7 @@ export class ImovelComponent implements OnInit {
   }
 
   scroll() {
-    document.getElementById('down-arrow').scrollIntoView({behavior: "smooth"});
+    document.getElementById('down-arrow').scrollIntoView({behavior: 'smooth'});
   }
 
   imageObject(): Array<object> {
@@ -89,7 +87,7 @@ export class ImovelComponent implements OnInit {
         return {
           image: value,
           thumbImage: value
-        }
+        };
       });
     }
     if (this.imovel.midia.fotoscond) {
@@ -97,7 +95,7 @@ export class ImovelComponent implements OnInit {
         return {
           image: value,
           thumbImage: value
-        }
+        };
       }).forEach(value => this.imgs.push(value));
     }
     return this.imgs;
@@ -109,7 +107,7 @@ export class ImovelComponent implements OnInit {
       email: [, [Validators.required, Validators.email]],
       telefone: [],
       mensagem: ['Quero saber mais sobre o imovél: ' + this.imovel.sigla],
-    })
+    });
   }
 
   submitForm() {
@@ -128,7 +126,7 @@ export class ImovelComponent implements OnInit {
   anualOrMonth(label?: string) {
     let l = 'mês';
     if (label === 'anual') {
-      l = 'anual'
+      l = 'anual';
     }
     return l;
   }
@@ -171,11 +169,10 @@ export class ImovelComponent implements OnInit {
   }
 
   whatsapp() {
-    window.open("https://api.whatsapp.com/send?text=http://nextsim.com.br/imoveis/" + this.imovel.sigla, "_blank");
+    window.open('https://api.whatsapp.com/send?text=http://nextsim.com.br/imoveis/' + this.imovel.sigla, '_blank');
   }
 
 }
-
 
 export class ContactForm {
   constructor(

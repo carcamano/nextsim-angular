@@ -4,11 +4,12 @@ import {ImoveisComponent} from './imoveis/imoveis.component';
 import {ImovelComponent} from './imovel/imovel.component';
 import {SobreComponent} from './sobre/sobre.component';
 import {QueroNegociarComponent} from './quero-negociar/quero-negociar.component';
-import {LancamentoComponent} from "./imoveis/lancamento/lancamento.component";
-import {BlogComponent} from "./blog/blog.component";
-import {BlogDetailComponent} from "./blog/blog-detail/blog-detail.component";
+import {LancamentoComponent} from './imoveis/lancamento/lancamento.component';
+import {BlogComponent} from './blog/blog.component';
+import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 import {ServicosFormulariosComponent} from './servicos-formularios/servicos-formularios.component';
-import {LancamentosComponent} from "./imoveis/lancamentos/lancamentos.component";
+import {LancamentosComponent} from './imoveis/lancamentos/lancamentos.component';
+import {LeaveGuardService} from './core/services/leave-guard.service';
 
 export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
@@ -18,6 +19,7 @@ export const ROUTES: Routes = [
   {path: 'quero-negociar', component: QueroNegociarComponent},
   {path: 'servicos', component: ServicosFormulariosComponent},
   {path: 'imoveis',
+    canActivateChild: [LeaveGuardService],
     children: [
       {
         path: '',

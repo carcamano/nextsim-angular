@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {ContactForm} from '../../imovel/imovel.component';
 import {Imovel} from '../../imoveis/models/imovel.model';
-import {ToastrService} from 'ngx-toastr';
 
 
 const APIGESTAO_URL = 'https://api-atendimentos.gestaoreal.com.br';
@@ -17,12 +16,13 @@ export class LeadService {
 
 
   sendToContactFormAny(form: any, formId: number) {
-    var form_data = new FormData();
+    const formData = new FormData();
 
-    for ( var key in form ) {
-      form_data.append(key, form[key]);
+    // tslint:disable-next-line:forin
+    for (const k in form) {
+      formData.append(k, form[k]);
     }
-    return this.sendToContactForm(form_data, formId);
+    return this.sendToContactForm(formData, formId);
 
   }
 
@@ -30,7 +30,6 @@ export class LeadService {
     return this.http
       .post<any>(`https://admin.nextsim.com.br/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`, form);
   }
-
 
   incluir(form: ContactForm, imovel: Imovel): Observable<HttpResponse<any>> {
 

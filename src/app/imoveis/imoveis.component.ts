@@ -5,15 +5,15 @@ import * as _ from 'lodash';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import {DecimalPipe, formatCurrency} from '@angular/common';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AllImoveis} from "../core/services/all-imoveis.service";
+import {AllImoveis} from '../core/services/all-imoveis.service';
 import {MASKS} from 'ng-brazil';
-import {doc, docSnapshots, Firestore} from "@angular/fire/firestore";
-import {PATH_AUTOCOMPLETE} from "../core/utils/constants.util";
-import {map} from "rxjs/operators";
-import {OwlOptions} from "ngx-owl-carousel-o";
-import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from "../core/utils/imovel.util";
-import {CustomSearchComponent} from "../core/components/custom-search/custom-search.component";
-import {CustomSearchType} from "../core/components/custom-search/custom-search.enum";
+import {doc, docSnapshots, Firestore} from '@angular/fire/firestore';
+import {PATH_AUTOCOMPLETE} from '../core/utils/constants.util';
+import {map} from 'rxjs/operators';
+import {OwlOptions} from 'ngx-owl-carousel-o';
+import {getFormattedPrice, toArea, toBath, toDormis, toSalas, toVaga} from '../core/utils/imovel.util';
+import {CustomSearchComponent} from '../core/components/custom-search/custom-search.component';
+import {CustomSearchType} from '../core/components/custom-search/custom-search.enum';
 
 // LOCAL STORAGE
 const nextscroll = 'nextscroll';
@@ -30,12 +30,9 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
 
   pages = 0;
   currentPage = 1;
-
-  showExtraFilter = false;
+  backing = false;
 
   initializeResults = false;
-
-  private itensPerPage = 10;
 
   MASKS = MASKS;
 
@@ -56,19 +53,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     items: 1, dots: true, nav: false, navText: ['<', '>'],
   };
 
-
-  filtred: any[] = [];
-
-
   autocompletes: any[] = [];
   autocompleteSelected: any = null;
-
-
-  removeParams: any[] = [];
-
-  letter1: string;
-  letter2: string;
-  letterIndexes: number[] = [];
 
   toSalas = toSalas;
   toDormis = toDormis;
@@ -98,14 +84,15 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       this.customSearch.customSearch.banheiros = this.queryParams?.banheiros || 0,
       this.customSearch.customSearch.cidade = this.queryParams?.cidade || '',
       this.customSearch.customSearch.bairros = this.queryParams?.bairros || '',
-      this.customSearch.customSearch.tipos = _.isArray(this.queryParams?.tipos) ? this.queryParams?.tipos : (this.queryParams?.tipos ? [this.queryParams?.tipos] : ''),
-      this.customSearch.customSearch.precos = this.queryParams?.precos || ''
+      this.customSearch.customSearch.tipos = _.isArray(this.queryParams?.tipos) ?
+        this.queryParams?.tipos : (this.queryParams?.tipos ? [this.queryParams?.tipos] : ''),
+      this.customSearch.customSearch.precos = this.queryParams?.precos || '';
     if (this.queryParams.finalidade) {
       this.customSearch.customSearch.finalidade = this.queryParams?.finalidade;
     }
     this.customSearch.customSearch.page = this.queryParams?.page || 1;
     try {
-      this.currentPage = parseInt(localStorage.getItem(location.search) || '1');
+      this.currentPage = parseInt(localStorage.getItem(location.search) || '1', 0);
     } catch (e) {
       console.error(e);
       this.currentPage = 1;
@@ -150,6 +137,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       } else {
         this.breadcrumbTitle = null;
       }
+      this.backing = data?.backing || false;
+      console.log(data);
     });
   }
 
@@ -291,16 +280,17 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
       console.error(e);
     }
     this.badges = [];
-    if (this.queryParams.categoria) {
-      // this.badges.push(this.badge(this.queryParams.categoria, 'categoria'));
-    }
-
-    if (this.queryParams.finalidade) {
-      // this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade'));
-    }
+    // if (this.queryParams.categoria) {
+    //   // this.badges.push(this.badge(this.queryParams.categoria, 'categoria'));
+    // }
+    //
+    // if (this.queryParams.finalidade) {
+    //   // this.badges.push(this.badge(this.queryParams.finalidade, 'finalidade'));
+    // }
 
     if (this.queryParams?.bairros) {
-      const ss = typeof this.queryParams?.bairros?.split === "function" ? (this.queryParams?.bairros?.split(',') || []) : this.queryParams?.bairros;
+      const ss = typeof this.queryParams?.bairros?.split === 'function' ?
+        (this.queryParams?.bairros?.split(',') || []) : this.queryParams?.bairros;
       ss.forEach(b => this.badges.push(this.badge(`No bairro: ${b}`, `bairros,${b}`)));
     }
 
@@ -346,7 +336,8 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
     }
 
     if (this.queryParams.tipos) {
-      const ss = typeof this.queryParams?.tipos?.split === "function" ? (this.queryParams?.tipos?.split(',') || []) : this.queryParams?.tipos;
+      const ss = typeof this.queryParams?.tipos?.split === 'function' ?
+        (this.queryParams?.tipos?.split(',') || []) : this.queryParams?.tipos;
       ss.forEach(b => this.badges.push(this.badge(`Tipo: ${b}`, `tipo,${b}`)));
     }
 
@@ -428,7 +419,7 @@ export class ImoveisComponent implements OnInit, AfterViewInit {
   }
 
   onSelectAutoComplete(e: any, value: string) {
-    this.autocompleteSelected = this.autocompletes.find(item => item.value === value)
+    this.autocompleteSelected = this.autocompletes.find(item => item.value === value);
   }
 
   private loadDefaults() {
