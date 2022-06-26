@@ -1,14 +1,17 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {Observable} from "rxjs/Rx";
-import {finalize} from "rxjs/operators";
-import {ToastrService} from "ngx-toastr";
-import {LeadService} from "../core/services/lead.service";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AngularFireStorage} from '@angular/fire/compat/storage';
+// tslint:disable-next-line:import-blacklist
+import {Observable} from 'rxjs/Rx';
+import {filter, finalize, switchMap} from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
+import {LeadService} from '../core/services/lead.service';
 import {MASKS} from 'ng-brazil';
-import {WPService} from "../core/services/w-p.service";
+import {WPService} from '../core/services/w-p.service';
+import {from} from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-servicos-formularios',
@@ -18,15 +21,15 @@ import {WPService} from "../core/services/w-p.service";
 export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
   corretores: any[] = [];
-  showForm1 = false;
-  showForm2 = false;
-  showForm3 = false;
-  showForm4 = false;
-  showForm5 = false;
-  showForm6 = false;
-  showForm7 = false;
-  showForm8 = false;
-  showForm9 = false;
+  showForm1 = true;
+  showForm2 = true;
+  showForm3 = true;
+  showForm4 = true;
+  showForm5 = true;
+  showForm6 = true;
+  showForm7 = true;
+  showForm8 = true;
+  showForm9 = true;
 
   imgBoleto = 1;
 
@@ -95,7 +98,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field25: [, Validators.required],
       field26: [, Validators.required],
       field27: [, Validators.required],
-      field28: [, ],
+      field28: [,],
       field29: [, Validators.required],
       field30: [, Validators.required],
       field31: [, Validators.required],
@@ -402,13 +405,11 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
   }
 
 
-  //uploader
+  // uploader
 
   onFileChange(event, small, el) {
     if (event.target.files && event.target.files.length) {
-      const theFile = event.target.files[0];
-      console.log(theFile);
-      this.upload(theFile, small, el);
+      this.uploadMultipleFiles(event.target.files, small, el);
     }
   }
 
@@ -427,7 +428,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
           this.downloadURL.subscribe(url => {
             if (url) {
               small.innerText = file.name;
-              el.setValue(url)
+              el.setValue(url);
               this.image = url;
             }
             this.sending = false;
@@ -435,6 +436,40 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
         })
       )
       .subscribe();
+  }
+
+  cleanFiles(small: HTMLElement, el: AbstractControl, e?: any) {
+    e?.preventDefault();
+    e?.stopPropagation();
+    small.innerText = '';
+    el?.setValue('');
+  }
+
+  uploadMultipleFiles(fileList: FileList, small: HTMLElement, el: FormControl) {
+    this.sending = true;
+    const initialSmall = small.innerText.split(', ') || [];
+    small.innerText = 'Carregando...';
+    const downloadUrls$ = _.map(fileList, (file, key) => {
+      const n = Date.now();
+      const filePath = `${this.path}/${n}-${file.name}`;
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, file);
+      return task.snapshotChanges().pipe(
+        filter((uploadTask) => {
+          return uploadTask.state === 'success';
+        }),
+        switchMap(() => {
+          return from(fileRef.getDownloadURL());
+        })
+      );
+    });
+
+    Observable.forkJoin(...downloadUrls$)
+      .subscribe((urls) => {
+        small.innerText = [..._.map(fileList, value => value.name), ...initialSmall].join(', ');
+        const initalValues = el.value || [];
+        el.setValue([...initalValues, ...urls]);
+      });
   }
 
 

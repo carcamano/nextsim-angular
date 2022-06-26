@@ -210,11 +210,13 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-corretor">Corretor</label>
-                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor" required
+                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor"
+                                  required
                                   [formControlName]="'field26'">
                             <span></span>
                             <option value=""></option>
-                            <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
+                            <option value="{{corretor.email_do_corretor}}"
+                                    *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
                           </select>
                         </div>
                       </div>
@@ -370,40 +372,60 @@
                           <label for="rg-cpf">RG e CPF</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-rg-cpf" [formControlName]="'field36'">
-                            <input type="file" id="rg-cpf"
+                            <input type="file" multiple id="rg-cpf"
                                    (change)="onFileChange($event, filename1, form1.controls.field36)">
-                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small #filename1></small>
+                            <div>
+                              <span class="form-input-file-span" for="formFile">Escolher arquivos</span>
+                              <small #filename1></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="filename1.innerText && filename1.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(filename1, form1.controls.field36, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="certidaoCasamento">Certidão de casamento</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-certidao-casamento" [formControlName]="'field37'">
-                            <input type="file" id="certidaoCasamento"
+                            <input type="file" multiple id="certidaoCasamento"
                                    (change)="onFileChange($event, filename2, form1.controls.field37)">
-                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small #filename2></small>
+                            <div>
+                              <span class="form-input-file-span" for="formFile">Escolher arquivos</span>
+                              <small #filename2></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="filename2.innerText && filename2.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(filename2, form1.controls.field37, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="holerite">Holerite</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-holerite" [formControlName]="'field38'">
-                            <input type="file" id="holerite"
+                            <input type="file" multiple id="holerite"
                                    (change)="onFileChange($event, filename3, form1.controls.field38)">
-                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small #filename3></small>
+                            <div>
+                              <span class="form-input-file-span" for="formFile">Escolher arquivos</span>
+                              <small #filename3></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="filename3.innerText && filename3.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(filename3, form1.controls.field38, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="declaracaoIr">Última declaração do IR (renda de 3x o valor do aluguel)</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-declaracao-ir" [formControlName]="'field39'">
-                            <input type="file" id="declaracaoIr"
+                            <input type="file" multiple id="declaracaoIr"
                                    (change)="onFileChange($event, filename4, form1.controls.field39)">
-                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small #filename4></small>
+                            <div>
+                              <span class="form-input-file-span" for="formFile">Escolher arquivos</span>
+                              <small #filename4></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="filename4.innerText && filename4.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(filename4, form1.controls.field39, $event)">Limpar</small>
                           </label>
                         </div>
                       </div>
@@ -567,11 +589,13 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-corretor">Corretor</label>
-                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor" required
+                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor"
+                                  required
                                   [formControlName]="'field46'">
                             <span></span>
                             <option value=""></option>
-                            <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
+                            <option value="{{corretor.email_do_corretor}}"
+                                    *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
                           </select>
                         </div>
                       </div>
@@ -604,7 +628,7 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="">Data Nascimento</label>
                           <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field31'"
-                                 placeholder=" " [textMask]="{mask: MASKS.data.textMask}" required >
+                                 placeholder=" " [textMask]="{mask: MASKS.data.textMask}" required>
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
@@ -648,7 +672,7 @@
                           <label for="">Nome</label>
                           <input type="text" class="form-control" name="banco" id="" placeholder=" "
                                  [formControlName]="'field37'"
-                                 >
+                          >
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
@@ -660,48 +684,47 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="">RG</label>
                           <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field39'"
-                                 placeholder=" " >
+                                 placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="">Data Nascimento</label>
                           <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field40'"
-                                 placeholder=" " [textMask]="{mask: MASKS.data.textMask}"  >
+                                 placeholder=" " [textMask]="{mask: MASKS.data.textMask}">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="">Nacionalidade</label>
                           <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field41'"
-                                 placeholder=" " >
+                                 placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="">Estado Civil</label>
                           <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field42'"
-                                 placeholder=" " >
+                                 placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="">Profissão</label>
                           <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field43'"
-                                 placeholder=" " >
+                                 placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="">E-mail</label>
                           <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field44'"
-                                 placeholder=" " >
+                                 placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="">Telefone/Celular</label>
                           <input type="text" class="form-control" name="contato-bancario" [formControlName]="'field45'"
-                                 placeholder=" " [textMask]="{mask: MASKS.telefone.textMaskFunction}" >
+                                 placeholder=" " [textMask]="{mask: MASKS.telefone.textMaskFunction}">
                           <span></span>
                         </div>
                       </div>
                     </fieldset>
-
 
 
                     <fieldset class="form-fieldset">
@@ -773,40 +796,60 @@
                           <label for="cadastro-pjcartao-cnpj">Cartão CNPJ</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-cartao-cnpj" [formControlName]="'field23'">
-                            <input type="file" id="cadastro-pjcartao-cnpj"
+                            <input type="file" multiple id="cadastro-pjcartao-cnpj"
                                    (change)="onFileChange($event, form2filename01, form2.controls.field23)">
-                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small #form2filename01></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivos</span>
+                              <small #form2filename01></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form2filename01.innerText && form2filename01.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form2filename01, form2.controls.field23, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjcontrato-social">Contrato social</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-certidao-casamento" [formControlName]="'field24'">
-                            <input type="file" id="cadastro-pjcontrato-social"
+                            <input type="file" multiple id="cadastro-pjcontrato-social"
                                    (change)="onFileChange($event, form2filename02, form2.controls.field24)">
-                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small #form2filename02></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivos</span>
+                              <small #form2filename02></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form2filename02.innerText && form2filename02.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form2filename02, form2.controls.field24, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjcpf-e-rg-dos-socios">CPF/RG dos sócios</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-cpf-e-rg-dos-socios" [formControlName]="'field25'">
-                            <input type="file" id="cadastro-pjcpf-e-rg-dos-socios"
+                            <input type="file" multiple id="cadastro-pjcpf-e-rg-dos-socios"
                                    (change)="onFileChange($event, form2filename1, form2.controls.field25)">
-                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small #form2filename1></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivos</span>
+                              <small #form2filename1></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename1.innerText && form3filename1.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename1, form2.controls.field25, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-pjultimo-balanco-contabil">Último balanço contábil (com C.R.C)</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-ultimo-balanco-contabil" [formControlName]="'field26'">
-                            <input type="file" id="cadastro-pjultimo-balanco-contabil"
+                            <input type="file" multiple id="cadastro-pjultimo-balanco-contabil"
                                    (change)="onFileChange($event, form2filename2, form2.controls.field26)">
-                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small #form2filename2></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivos</span>
+                              <small #form2filename2></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form2filename2.innerText && form2filename2.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form2filename2, form2.controls.field26, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
@@ -814,10 +857,15 @@
                             sócio) </label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-procuracao-para-o-assinante" [formControlName]="'field27'">
-                            <input type="file" id="cadastro-pjprocuracao-para-o-assinante"
+                            <input type="file" multiple id="cadastro-pjprocuracao-para-o-assinante"
                                    (change)="onFileChange($event, form2filename3, form2.controls.field27)">
-                            <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivo</span>
-                            <small #form2filename3></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-pjformFile">Escolher arquivos</span>
+                              <small #form2filename3></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form2filename3.innerText && form2filename3.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form2filename3, form2.controls.field27, $event)">Limpar</small>
                           </label>
                         </div>
                       </div>
@@ -962,7 +1010,8 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcod-pintura-nova">Imóvel com pintura nova?</label>
-                          <select class="form-control" name="estado-civil" id="cadastro-locadorcod-pintura-nova" required
+                          <select class="form-control" name="estado-civil" id="cadastro-locadorcod-pintura-nova"
+                                  required
                                   [formControlName]="'field25'">
                             <span></span>
                             <option value=""></option>
@@ -1085,14 +1134,14 @@
                           <label for="cadastro-locadornome">Nome</label>
                           <input type="text" class="form-control" placeholder="Nome Completo"
                                  [formControlName]="'field26'"
-                                 id="cadastro-locadornome" name="conjuge-nome" >
+                                 id="cadastro-locadornome" name="conjuge-nome">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadortelefone">Telefone/celular</label>
                           <input type="text" class="form-control js-mask-phone" name="conjuge-telefone"
                                  [formControlName]="'field27'" [textMask]="{mask: MASKS.telefone.textMaskFunction}"
-                                 id="cadastro-locadortelefone" placeholder="( ) 00000-0000" >
+                                 id="cadastro-locadortelefone" placeholder="( ) 00000-0000">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
@@ -1105,28 +1154,28 @@
                           <label for="cadastro-locadornacionalidade">Nacionalidade</label>
                           <input type="text" class="form-control" name="conjuge-nacionalidade"
                                  [formControlName]="'field29'"
-                                 id="cadastro-locadornacionalidade" placeholder=" " >
+                                 id="cadastro-locadornacionalidade" placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorrg">RG</label>
                           <input type="text" class="form-control" name="conjuge-rg" id="cadastro-locadorrg"
                                  [formControlName]="'field30'"
-                                 placeholder="00000000-0" >
+                                 placeholder="00000000-0">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorcpf">CPF</label>
                           <input type="text" class="form-control js-mask-cpf" name="conjuge-cpf"
                                  [formControlName]="'field31'" [textMask]="{mask: MASKS.cpf.textMask}"
-                                 id="cadastro-locadorcpf" placeholder="00000000-0" >
+                                 id="cadastro-locadorcpf" placeholder="00000000-0">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorestadoCivil">Estado civíl</label>
                           <select class="form-control" name="conjuge-estado-civil" id="cadastro-locadorestadoCivil"
                                   [formControlName]="'field32'"
-                                  >
+                          >
                             <span></span>
                             <option value=""></option>
                             <option value="Casado">Casado</option>
@@ -1139,39 +1188,40 @@
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorprofissao">Profissão</label>
                           <input type="text" class="form-control" name="conjuge-profissao" [formControlName]="'field33'"
-                                 id="cadastro-locadorprofissao" placeholder=" " >
+                                 id="cadastro-locadorprofissao" placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorlocalDeTrabalho">Local de trabalho</label>
                           <input type="text" class="form-control" name="conjuge-local-de-trabalho"
                                  [formControlName]="'field34'"
-                                 id="cadastro-locadorlocalDeTrabalho" placeholder=" " >
+                                 id="cadastro-locadorlocalDeTrabalho" placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorfuncao">Função</label>
                           <input type="text" class="form-control" name="conjuge-funcao" id="cadastro-locadorfuncao"
                                  [formControlName]="'field35'"
-                                 placeholder=" " >
+                                 placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorsalario">Salário</label>
                           <input type="text" class="form-control js-mask-money" name="conjuge-salario"
                                  [formControlName]="'field36'" [textMask]="{mask: MASKS.currency.textMask}"
-                                 id="cadastro-locadorsalario" placeholder=" " >
+                                 id="cadastro-locadorsalario" placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
                           <label for="cadastro-locadorenderecoDoTrabalho">Endereço do trabalho</label>
                           <input type="text" class="form-control" name="conjuge-endereco-do-trabalho"
                                  [formControlName]="'field37'"
-                                 id="cadastro-locadorenderecoDoTrabalho" placeholder=" " >
+                                 id="cadastro-locadorenderecoDoTrabalho" placeholder=" ">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group">
-                          <label for="cadastro-locador-irf-conjuge">Deseja declarar 50% do IR no nome do cônjuge?</label>
+                          <label for="cadastro-locador-irf-conjuge">Deseja declarar 50% do IR no nome do
+                            cônjuge?</label>
                           <select class="form-control" name="estado-civil" id="cadastro-locador-irf-conjuge"
                                   [formControlName]="'field45'">
                             <option value=""></option>
@@ -1231,80 +1281,120 @@
                           <label for="cadastro-locadorcarne-iptu-do-imovel">Carnê do IPTU do imóvel</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-carne-iptu-do-imovel" [formControlName]="'field47'">
-                            <input type="file" id="cadastro-locadorcartao-cnpj"
+                            <input type="file" multiple id="cadastro-locadorcartao-cnpj"
                                    (change)="onFileChange($event, form3filename1, form3.controls.field47)">
-                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small #form3filename1></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivos</span>
+                              <small #form3filename1></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename1.innerText && form3filename1.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename1, form3.controls.field47, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorplanta-do-imovel">Planta do imóvel</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-planta-do-imovel" [formControlName]="'field48'">
-                            <input type="file" id="cadastro-locadorplanta-do-imovel"
+                            <input type="file" multiple id="cadastro-locadorplanta-do-imovel"
                                    (change)="onFileChange($event, form3filename2, form3.controls.field48)">
-                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small #form3filename2></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivos</span>
+                              <small #form3filename2></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename2.innerText && form3filename2.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename2, form3.controls.field48, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadormatrituca-do-imovel">Matrícula do imóvel</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-matrituca-do-imovel" [formControlName]="'field49'">
-                            <input type="file" id="cadastro-locadormatrituca-do-imovel"
+                            <input type="file" multiple id="cadastro-locadormatrituca-do-imovel"
                                    (change)="onFileChange($event, form3filename3, form3.controls.field49)">
-                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small #form3filename3></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivos</span>
+                              <small #form3filename3></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename3.innerText && form3filename3.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename3, form3.controls.field49, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorrg-e-cpf">RG e CPF</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-rg-e-cpf" [formControlName]="'field50'">
-                            <input type="file" id="cadastro-locadorrg-e-cpf"
+                            <input type="file" multiple id="cadastro-locadorrg-e-cpf"
                                    (change)="onFileChange($event, form3filename4, form3.controls.field50)">
-                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small #form3filename4></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivos</span>
+                              <small #form3filename4></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename4.innerText && form3filename4.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename4, form3.controls.field50, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorcomprovante-de-endereco">Comprovante de endereço</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-comprovante-de-endereco" [formControlName]="'field51'">
-                            <input type="file" id="cadastro-locadorcomprovante-de-endereco"
+                            <input type="file" multiple id="cadastro-locadorcomprovante-de-endereco"
                                    (change)="onFileChange($event, form3filename5, form3.controls.field51)">
-                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small #form3filename5></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivos</span>
+                              <small #form3filename5></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename5.innerText && form3filename5.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename5, form3.controls.field51, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorultima-conta-de-luz">Última conta de luz</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-ultima-conta-de-luz" [formControlName]="'field52'">
-                            <input type="file" id="cadastro-locadorultima-conta-de-luz"
+                            <input type="file" multiple id="cadastro-locadorultima-conta-de-luz"
                                    (change)="onFileChange($event, form3filename6, form3.controls.field52)">
-                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small #form3filename6></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivos</span>
+                              <small #form3filename6></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename6.innerText && form3filename6.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename6, form3.controls.field52, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorultima-conta-de-agua">Última conta de água</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-ultima-conta-de-agua" [formControlName]="'field53'">
-                            <input type="file" id="cadastro-locadorultima-conta-de-agua"
+                            <input type="file" multiple id="cadastro-locadorultima-conta-de-agua"
                                    (change)="onFileChange($event, form3filename7, form3.controls.field53)">
-                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small #form3filename7></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivos</span>
+                              <small #form3filename7></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename7.innerText && form3filename7.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename7, form3.controls.field53, $event)">Limpar</small>
                           </label>
                         </div>
                         <div class="col-12 col-lg-12 form-group">
                           <label for="cadastro-locadorultima-conta-de-gas">Última conta de gás</label>
                           <label class="form-input-file">
                             <input type="hidden" name="doc-ultima-conta-de-gas" [formControlName]="'field54'">
-                            <input type="file" id="cadastro-locadorultima-conta-de-gas"
+                            <input type="file" multiple id="cadastro-locadorultima-conta-de-gas"
                                    (change)="onFileChange($event, form3filename8, form3.controls.field54)">
-                            <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivo</span>
-                            <small #form3filename8></small>
+                            <div>
+                              <span class="form-input-file-span" for="cadastro-locadorformFile">Escolher arquivos</span>
+                              <small #form3filename8></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form3filename8.innerText && form3filename8.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form3filename8, form3.controls.field54, $event)">Limpar</small>
                           </label>
                         </div>
                       </div>
@@ -1800,10 +1890,15 @@
                           <label for="aviso-desocupacaoanexo-foto-do-imovel">Anexe uma foto do imóvel</label>
                           <label class="form-input-file">
                             <input type="hidden" name="foto-do-imovel" [formControlName]="'field20'">
-                            <input type="file" id="aviso-desocupacaoanexo-foto-do-imovel"
+                            <input type="file" multiple id="aviso-desocupacaoanexo-foto-do-imovel"
                                    (change)="onFileChange($event, form5filename1, form5.controls.field20)">
-                            <span class="form-input-file-span" for="formFile">Escolher arquivo</span>
-                            <small #form5filename1></small>
+                            <div>
+                              <span class="form-input-file-span" for="formFile">Escolher arquivos</span>
+                              <small #form5filename1></small>
+                            </div>
+                            <small class="form-input-file-clean"
+                                   *ngIf="form5filename1.innerText && form5filename1.innerText !== 'Carregando...'"
+                                   (click)="cleanFiles(form5filename1, form5.controls.field20, $event)">Limpar</small>
                           </label>
                         </div>
                       </div>
@@ -1959,7 +2054,7 @@
 
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="end-do-imovel">Endereço do imóvel</label>
-                          <input type="text" class="form-control"  name="end-do-imovel"
+                          <input type="text" class="form-control" name="end-do-imovel"
                                  [formControlName]="'field15'"
                                  id="end-do-imovel" required>
                           <span></span>
@@ -1967,9 +2062,9 @@
 
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="end-do-imovel-num">Número do apartamento</label>
-                          <input type="text" class="form-control"  name="end-do-imovel-num"
+                          <input type="text" class="form-control" name="end-do-imovel-num"
                                  [formControlName]="'field16'"
-                                 id="end-do-imovel-num" >
+                                 id="end-do-imovel-num">
                           <span></span>
                         </div>
 
@@ -1977,7 +2072,7 @@
                           <label for="end-do-imovel-torre">Torre</label>
                           <input type="text" class="form-control" name="end-do-imovel-torre"
                                  [formControlName]="'field17'"
-                                 id="end-do-imovel-torre" >
+                                 id="end-do-imovel-torre">
                           <span></span>
                         </div>
 
@@ -1985,7 +2080,7 @@
                           <label for="end-do-imovel-condominio">Nome do condomínio</label>
                           <input type="text" class="form-control" name="end-do-imovel-condominio"
                                  [formControlName]="'field15'"
-                                 id="end-do-imovel-condominio" >
+                                 id="end-do-imovel-condominio">
                           <span></span>
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
@@ -2012,11 +2107,13 @@
 
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-corretor">Corretor</label>
-                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor" required
+                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor"
+                                  required
                                   [formControlName]="'field19'">
                             <span></span>
                             <option value=""></option>
-                            <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
+                            <option value="{{corretor.email_do_corretor}}"
+                                    *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
                           </select>
                         </div>
 
@@ -2125,13 +2222,13 @@
                                  name="cod-imovel" required>
                           <span></span>
                         </div>
-<!--                        Endereço do imóvel-->
-<!--                        Número do apartamento-->
-<!--                        Torre-->
-<!--                        Nome do condomínio-->
+                        <!--                        Endereço do imóvel-->
+                        <!--                        Número do apartamento-->
+                        <!--                        Torre-->
+                        <!--                        Nome do condomínio-->
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-end-do-imovel">Endereço do imóvel</label>
-                          <input type="text" class="form-control"  name="rand2-end-do-imovel"
+                          <input type="text" class="form-control" name="rand2-end-do-imovel"
                                  [formControlName]="'field15'"
                                  id="rand2-end-do-imovel" required>
                           <span></span>
@@ -2139,9 +2236,9 @@
 
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-end-do-imovel-num">Número do apartamento</label>
-                          <input type="text" class="form-control"  name="rand2-end-do-imovel-num"
+                          <input type="text" class="form-control" name="rand2-end-do-imovel-num"
                                  [formControlName]="'field16'"
-                                 id="rand2-end-do-imovel-num" >
+                                 id="rand2-end-do-imovel-num">
                           <span></span>
                         </div>
 
@@ -2149,7 +2246,7 @@
                           <label for="rand2-end-do-imovel-torre">Torre</label>
                           <input type="text" class="form-control" name="rand2-end-do-imovel-torre"
                                  [formControlName]="'field17'"
-                                 id="rand2-end-do-imovel-torre" >
+                                 id="rand2-end-do-imovel-torre">
                           <span></span>
                         </div>
 
@@ -2157,7 +2254,7 @@
                           <label for="rand2-end-do-imovel-condominio">Nome do condomínio</label>
                           <input type="text" class="form-control" name="rand2-end-do-imovel-condominio"
                                  [formControlName]="'field15'"
-                                 id="rand2-end-do-imovel-condominio" >
+                                 id="rand2-end-do-imovel-condominio">
                           <span></span>
                         </div>
 
@@ -2198,11 +2295,13 @@
                         </div>
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-corrretor">Corretor</label>
-                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corrretor" required
+                          <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corrretor"
+                                  required
                                   [formControlName]="'field14'">
                             <span></span>
                             <option value=""></option>
-                            <option value="{{corretor.email_do_corretor}}" *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
+                            <option value="{{corretor.email_do_corretor}}"
+                                    *ngFor="let corretor of corretores">{{corretor.nome_do_corretor}}</option>
                           </select>
                         </div>
                         <div class="col-12 col-lg-12 form-group d-flex flex-column justify-content-end">
