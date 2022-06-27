@@ -21,15 +21,15 @@ import * as _ from 'lodash';
 export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
   corretores: any[] = [];
-  showForm1 = true;
-  showForm2 = true;
-  showForm3 = true;
-  showForm4 = true;
-  showForm5 = true;
-  showForm6 = true;
-  showForm7 = true;
-  showForm8 = true;
-  showForm9 = true;
+  showForm1 = false;
+  showForm2 = false;
+  showForm3 = false;
+  showForm4 = false;
+  showForm5 = false;
+  showForm6 = false;
+  showForm7 = false;
+  showForm8 = false;
+  showForm9 = false;
 
   imgBoleto = 1;
 
