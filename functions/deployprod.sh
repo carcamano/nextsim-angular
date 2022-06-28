@@ -1,1 +1,1 @@
-cd functions && firebase use default && firebase deploy
+npm run build && firebase deploy
