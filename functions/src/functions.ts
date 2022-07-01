@@ -3,7 +3,6 @@ import {COLLECTION_AUTOCOMPLETE, COLLECTION_IMOVEIS, COLLECTION_LOCAIS, Imovel} 
 import * as admin from "firebase-admin";
 import {BigBatch} from '@qualdesk/firestore-big-batch'
 
-
 export function replaceStrings(string: string): string {
   let s = string ? string.replace('/SP', '') : '';
   return s;
@@ -22,22 +21,7 @@ export const _get = (obj: any, path: string, defaultValue = undefined) => {
 export function fetchAllFromAPI(): Promise<Imovel[] | undefined | void> | null {
   return crossFetch('https://turbo.gestaoreal.com.br/exportacao/Imoveis?imob=5796bc63c096d580178b4575').then((value: Response) => {
     return value.json().then((value1: Imovel[]) => {
-      let imoveis: Imovel[] = [];
-      if (value1.filter) {
-        imoveis = value1.filter((imovel, index) => {
-          if (imovel && imovel.comercializacao && imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
-            return true;
-          } else if (imovel && imovel.comercializacao && imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
-            return true;
-          }
-          return false;
-        }).map(imovel => {
-
-          return adaptImovel(imovel);
-        });
-      }
-      return imoveis;
-
+      return makeImoveis(value1);
     });
 
   }).catch(reason => {
@@ -46,8 +30,49 @@ export function fetchAllFromAPI(): Promise<Imovel[] | undefined | void> | null {
   });
 }
 
+export function fetchAllFromBackup(filePath: string): Promise<Imovel[] | undefined | void> | null {
+  return admin.storage().bucket('next-jsonserver.appspot.com').file(filePath)
+    .download()
+    .then((data) => {
+      return makeImoveis(JSON.parse(data.toString()));
+    }).catch(reason => {
+      console.error(reason);
+      return new Promise(resolve => resolve());
+    });;
+}
+
+export const makeImoveis = (value1: any[]): Imovel[] => {
+  let imoveis: Imovel[] = [];
+  if (value1.filter) {
+    imoveis = value1.filter((imovel, index) => {
+      if (imovel && imovel.comercializacao && imovel.comercializacao.locacao && imovel.comercializacao.locacao.ativa) {
+        return true;
+      } else if (imovel && imovel.comercializacao && imovel.comercializacao.venda && imovel.comercializacao.venda.ativa) {
+        return true;
+      }
+      return false;
+    }).map(imovel => {
+      return adaptImovel(imovel);
+    });
+  }
+  return imoveis;
+}
+
 export function _getAllImoveisFromAPI(): Promise<{ imoveis: Imovel[] | void | undefined } | boolean> | undefined {
   return fetchAllFromAPI()?.then(async imoveis => {
+    if (imoveis) {
+      for (const imovel of imoveis) {
+        await admin.firestore().collection(COLLECTION_IMOVEIS).doc(imovel.sigla).set(imovel).then(value2 => value2);
+      }
+    }
+    return {imoveis};
+  }).catch(reason => {
+    return false;
+  });
+}
+
+export function _getAllImoveisFromBackup(filePath: string): Promise<{ imoveis: Imovel[] | void | undefined } | boolean> | undefined {
+  return fetchAllFromBackup(filePath)?.then(async imoveis => {
     if (imoveis) {
       for (const imovel of imoveis) {
         await admin.firestore().collection(COLLECTION_IMOVEIS).doc(imovel.sigla).set(imovel).then(value2 => value2);

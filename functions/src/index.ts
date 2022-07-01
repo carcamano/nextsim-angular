@@ -4,7 +4,7 @@ import {f} from './global';
 import {
   _deleteAllImoveisInDB, _deleteDuplicateImovel,
   _getAllFromCollection,
-  _getAllImoveisFromAPI,
+  _getAllImoveisFromAPI, _getAllImoveisFromBackup,
   _makeAutoComplete,
   _makeLocais, _saveAllLocalImoveis
 } from "./functions";
@@ -15,6 +15,14 @@ admin.initializeApp(functions.config().firebase);
 
 export const getAllImoveisFromAPI = f.https.onRequest((req: any, resp: { send: (arg0: { imoveis?: boolean | { imoveis: void | Imovel[] | undefined; }; success?: boolean; reason?: any; }) => void; }) => {
   return _getAllImoveisFromAPI()?.then(imoveis => {
+    resp.send({imoveis});
+  }).catch(reason => {
+    resp.send({success: false, reason: reason});
+  });
+});
+
+export const getAllImoveisFromBackup = f.https.onRequest((req: any, resp: { send: (arg0: { imoveis?: boolean | { imoveis: void | Imovel[] | undefined; }; success?: boolean; reason?: any; }) => void; }) => {
+  return _getAllImoveisFromBackup(req.query.file)?.then(imoveis => {
     resp.send({imoveis});
   }).catch(reason => {
     resp.send({success: false, reason: reason});
