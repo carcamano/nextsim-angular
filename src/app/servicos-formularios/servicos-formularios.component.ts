@@ -21,8 +21,6 @@ import * as _ from 'lodash';
 export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
   corretores: any[] = [];
-  showForm1 = false;
-  showForm2 = false;
   showForm3 = false;
   showForm4 = false;
   showForm5 = false;
@@ -85,7 +83,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field11: [, Validators.required],
       field12: [, Validators.required],
       field13: [, Validators.required],
-      field15: [, Validators.required],
+      field15: [,],
       field16: [, Validators.required],
       field17: [, Validators.required],
       field18: [, Validators.required],
@@ -99,7 +97,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
       field26: [, Validators.required],
       field27: [, Validators.required],
       field28: [,],
-      field29: [, Validators.required],
+      field29: [,],
       field30: [, Validators.required],
       field31: [, Validators.required],
       field32: [, Validators.required],

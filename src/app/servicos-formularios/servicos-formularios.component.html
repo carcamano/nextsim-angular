@@ -15,60 +15,6 @@
     <div class="row">
       <div class="col-12 col-lg-8 offset-lg-2 mt-5 mb-5">
         <div class="accordion" id="accordionExample">
-          <div class="card">
-            <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
-                 [class.collapsed]="!showForm1" (click)="showForm1 = !showForm1"
-                 aria-expanded="true" aria-controls="collapseOne">
-              <div class="row py-3">
-                <div class="col-10"><h2 [class.orange-text]="showForm1">SEGUNDA VIA DE BOLETO</h2></div>
-                <div class="col-2 text-right">
-                  <i class="fas pull-right fa-plus-circle" *ngIf="!showForm1"></i>
-                  <i class="fas pull-right orange-text fa-minus-circle" *ngIf="showForm1"></i>
-                </div>
-
-              </div>
-            </div>
-
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"
-                 [class.show]="showForm1">
-              <div class="card-body">
-                <div class="my-5 text-center">
-                  <a href="http://gerenciadordeimobiliarias.com.br/boletos/next"
-                     class="btn btn-access text-uppercase"> Acessar Sistema </a>
-
-                  <p class="mt-5 searchContratcLink">
-                    <a (click)="open(content2)"><u>Como localizar o
-                      número do seu contrato.</u></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
-                 [class.collapsed]="!showForm2"
-                 aria-expanded="false" aria-controls="collapseTwo" (click)="showForm2 = !showForm2">
-              <div class="row py-3">
-                <div class="col-10"><h2 [class.orange-text]="showForm2">EXTRATO DO PROPRIETÁRIO</h2></div>
-                <div class="col-2 text-right">
-                  <i class="fas pull-right fa-plus-circle" *ngIf="!showForm2"></i>
-                  <i class="fas pull-right orange-text fa-minus-circle" *ngIf="showForm2"></i>
-                </div>
-              </div>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample"
-                 [class.show]="showForm2">
-              <div class="card-body">
-                <div class="my-5 text-center">
-
-                  <a href="http://gerenciadordeimobiliarias.com.br/boletos/next/extrato"
-                     class="btn btn-access text-uppercase"> Acessar Sistema </a>
-
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div class="card">
             <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree"
@@ -201,13 +147,13 @@
                                  placeholder=" " required>
                           <span></span>
                         </div>
-                        <div class="col-12 col-lg-6 form-group">
-                          <label for="cartorio">Cartório para reconhecimento de firma</label>
-                          <input type="text" class="form-control" name="cartorio" id="cartorio" placeholder=" "
-                                 [formControlName]="'field15'"
-                                 required>
-                          <span></span>
-                        </div>
+<!--                        <div class="col-12 col-lg-6 form-group">-->
+<!--                          <label for="cartorio">Cartório para reconhecimento de firma</label>-->
+<!--                          <input type="text" class="form-control" name="cartorio" id="cartorio" placeholder=" "-->
+<!--                                 [formControlName]="'field15'"-->
+<!--                                 required>-->
+<!--                          <span></span>-->
+<!--                        </div>-->
                         <div class="col-12 col-lg-6 form-group d-flex flex-column justify-content-end">
                           <label for="rand2-corretor">Corretor</label>
                           <select class="form-control field-corretor clickable" name="estado-civil" id="rand2-corretor"
@@ -307,13 +253,13 @@
                                  placeholder=" " required>
                           <span></span>
                         </div>
-                        <div class="col-12 col-lg-6 form-group">
-                          <label for="cartorio">Cartório para reconhecimento de firma</label>
-                          <input type="text" class="form-control" name="conjuge-cartorio" id="cartorio"
-                                 [formControlName]="'field29'"
-                                 placeholder=" " required>
-                          <span></span>
-                        </div>
+<!--                        <div class="col-12 col-lg-6 form-group">-->
+<!--                          <label for="cartorio">Cartório para reconhecimento de firma</label>-->
+<!--                          <input type="text" class="form-control" name="conjuge-cartorio" id="cartorio"-->
+<!--                                 [formControlName]="'field29'"-->
+<!--                                 placeholder=" " required>-->
+<!--                          <span></span>-->
+<!--                        </div>-->
 
                       </div>
                     </fieldset>
