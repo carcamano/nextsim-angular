@@ -396,7 +396,7 @@
                       </div>
                     </fieldset>
                     <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit1()">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit(form1, FORM1_ID)">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -856,7 +856,7 @@
                       </div>
                     </fieldset>
                     <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit2()">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit(form2, FORM2_ID)">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -1417,7 +1417,7 @@
                       </div>
                     </fieldset>
                     <div class="col-6 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit3()">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit(form3,  FORM3_ID)">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -1594,7 +1594,7 @@
                     </fieldset>
 
                     <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit4()">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit(form4, FORM4_ID)">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -1926,7 +1926,7 @@
                     </fieldset>
 
                     <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit5()">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit(form5, FORM5_ID)">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -2148,7 +2148,7 @@
                     </fieldset>
 
                     <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
-                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit6()">ENVIAR</button>
+                      <button type="submit" class="btn btn-search btn-rounded" (click)="submit(form6, FORM6_ID)">ENVIAR</button>
                     </div>
                   </form>
                   <div class="form-return"></div>
@@ -2337,9 +2337,8 @@
 
                     <div class="col-12 form-group text-center mt-5 mb-3 mx-auto">
                       <button type="submit" class="btn btn-search btn-rounded"
-                              (click)="submit7()">ENVIAR
+                              (click)="submit(form7, FORM7_ID)">ENVIAR
                       </button>
-                      <!--                              (click)="form7.controls.field14.value === 'Sim' ? submit7() : none()">ENVIAR-->
                     </div>
                   </form>
                   <div class="form-return"></div>

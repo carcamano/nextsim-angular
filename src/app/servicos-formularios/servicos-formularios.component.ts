@@ -39,24 +39,31 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
 
   // form 1 Contrato pessoa fisica 39
   form1: FormGroup;
+  FORM1_ID = 723;
 
   // form 2 CADASTRO DE PESSOA JURÍDICA 28
   form2: FormGroup;
+  FORM2_ID = 724;
 
   // LOCADOR 55
   form3: FormGroup;
+  FORM3_ID = 725;
 
   // AVISO DE DESOCUPAÇÃO 13
   form4: FormGroup;
+  FORM4_ID = 726;
 
   // ANUNCIE O SEU IMÓVEL 27
   form5: FormGroup;
+  FORM5_ID = 727;
 
   // PROPOSTA DE LOCAÇÃO 11 com checkbox
   form6: FormGroup;
+  FORM6_ID = 728;
 
   // PROPOSTA DE COMPRA 13
   form7: FormGroup;
+  FORM7_ID = 729;
 
   public MASKS = MASKS;
 
@@ -331,60 +338,12 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
   }
 
 
-  submit1() {
-    if (this.form1.valid) {
-      this.sendForm(this.form1.getRawValue(), 723);
-    } else {
-      this.errorForm();
-    }
-  }
-
-  submit2() {
-    if (this.form2.valid) {
-      this.sendForm(this.form2.getRawValue(), 724);
-    } else {
-      this.errorForm();
-    }
-  }
-
-  submit3() {
-    if (this.form3.valid) {
-      this.sendForm(this.form3.getRawValue(), 725);
-    } else {
-      this.errorForm();
-    }
-  }
-
-  submit4() {
-    if (this.form4.valid) {
-      this.sendForm(this.form4.getRawValue(), 726);
-    } else {
-      this.errorForm();
-    }
-  }
-
-  submit5() {
-    if (this.form5.valid) {
-      this.sendForm(this.form5.getRawValue(), 727);
-    } else {
-      this.errorForm();
-    }
-  }
-
-  submit6() {
-    if (this.form6.valid) {
-      this.sendForm(this.form6.getRawValue(), 728);
-    } else {
-      this.errorForm();
-    }
-  }
-
-  submit7() {
-    if (this.form7.valid) {
-      this.sendForm(this.form7.getRawValue(), 729);
-    } else {
-      this.errorForm();
-    }
+  submit(form: FormGroup, formId) {
+    // if (form.valid) {
+    this.sendForm(form.getRawValue(), formId);
+    // } else {
+    //   this.errorForm();
+    // }
   }
 
   open(content) {
@@ -487,6 +446,7 @@ export class ServicosFormulariosComponent implements OnInit, AfterViewInit {
   private sendForm(rowValue: any, formId: number) {
     this.sendService.sendToContactFormAny(rowValue, formId)
       .subscribe(value => {
+        console.log(value);
         this.successForm();
         this.form1.reset();
         this.form2.reset();
