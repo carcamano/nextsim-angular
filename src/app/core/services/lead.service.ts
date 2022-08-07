@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ContactForm} from '../../imovel/imovel.component';
 import {Imovel} from '../../imoveis/models/imovel.model';
+import {isArray} from "lodash";
 
 
 const APIGESTAO_URL = 'https://api-atendimentos.gestaoreal.com.br';
@@ -17,10 +18,15 @@ export class LeadService {
 
   sendToContactFormAny(form: any, formId: number) {
     const formData = new FormData();
-
     // tslint:disable-next-line:forin
     for (const k in form) {
-      formData.append(k, form[k]);
+      if (isArray(form[k])) {
+        formData.append(k, form[k].map(el => {
+          return `<a href="${el}">Link</a>`;
+        }).join('.'));
+      } else {
+        formData.append(k, form[k]);
+      }
     }
     return this.sendToContactForm(formData, formId);
 
