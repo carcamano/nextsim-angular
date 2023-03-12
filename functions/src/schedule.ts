@@ -12,30 +12,30 @@ import {
 import DataSnapshot = admin.database.DataSnapshot;
 
 exports.scheduledFunction14 = functions.pubsub.schedule('every day 19:00')
-    .timeZone('America/Sao_Paulo').onRun(() => {
-        return admin.database().ref('/imoveis').orderByKey().once("value", (a: DataSnapshot, b?: string) => {
-            var autocomplete: string[] = [];
-            if (a.exists()) {
-                a.forEach((imovel: DataSnapshot) => {
-                    if (!autocomplete.includes(replaceStrings(imovel.val().sigla))) {
-                        autocomplete.push(replaceStrings(imovel.val().sigla));
-                    }
-                    if (!autocomplete.includes(replaceStrings(imovel.val().local.cidade))) {
-                        autocomplete.push(replaceStrings(imovel.val().local.cidade));
-                    }
-                    if (!autocomplete.includes(replaceStrings(imovel.val().local.bairro))) {
-                        autocomplete.push(replaceStrings(imovel.val().local.bairro));
-                    }
-                });
-                return admin.database().ref('/').update({autocomplete: autocomplete}).then(r => {
-                    console.log(r);
-                }).catch(reason => console.log(reason));
-            }
-            return a;
-
+    .timeZone('America/Sao_Paulo').onRun( () => {
+        return admin.database().ref('/imoveis').orderByKey().once("value", async (a: DataSnapshot) => {
+          var autocomplete: string[] = [];
+          if (a.exists()) {
+            a.forEach((imovel: DataSnapshot) => {
+              if (!autocomplete.includes(replaceStrings(imovel.val().sigla))) {
+                autocomplete.push(replaceStrings(imovel.val().sigla));
+              }
+              if (!autocomplete.includes(replaceStrings(imovel.val().local.cidade))) {
+                autocomplete.push(replaceStrings(imovel.val().local.cidade));
+              }
+              if (!autocomplete.includes(replaceStrings(imovel.val().local.bairro))) {
+                autocomplete.push(replaceStrings(imovel.val().local.bairro));
+              }
+            });
+            const ss = await admin.database().ref('/').update({ autocomplete: autocomplete }).then(r => {
+              console.log(r);
+            }).catch(reason => console.log(reason));
+            console.log(ss);
+          }
+          return undefined;
         }, (fail: any) => {
             console.log(fail);
-
+          return undefined
         })
     })
 

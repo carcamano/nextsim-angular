@@ -69,10 +69,10 @@ export const deleteDuplicateImovel = f.https.onRequest(async (req: any, resp: { 
   return;
 });
 
-export const saveAllLocalImoveis = f.https.onRequest((req, resp) => {
-  return _saveAllLocalImoveis().then(result => {
-    return resp.send(result);
-  });
+export const saveAllLocalImoveis = f.https.onRequest(async (req, resp) => {
+  const imoveis =  _saveAllLocalImoveis()
+  resp.send(imoveis);
+  return
 });
 
 
