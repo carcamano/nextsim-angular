@@ -1,4 +1,5 @@
-<header class="" [ngClass]="{'home-header': rootView, 'container-fluid PropertyListHeader': !rootView }" [style.background-image]="rootView ? ('url(' + image + ')') : 'none'">
+<header class=""
+        [ngClass]="{'home-header': rootView, 'container-fluid PropertyListHeader': !rootView }" [style.background-image]="rootView ? ('url(' + image + ')') : 'none'">
   <div class="row NextMobileMenu d-lg-none mt-4">
     <div class="col-2 text-left">
       <a class="toggleMenu" (click)="showMobileMenu = !showMobileMenu">

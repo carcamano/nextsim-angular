@@ -11451,15 +11451,15 @@ form.form-card .form-group .has-success {
 
 @font-face {
   font-family: "Next";
-  src: url(assets/fonts/Next.eot@0191974be89d3856583de646d60db3a7);
-  src: url(assets/fonts/Next.eot@0191974be89d3856583de646d60db3a7) format("embedded-opentype"), url(assets/fonts/Next.ttf@010637b7acddedc028310fcc7b474d60) format("truetype"), url(assets/fonts/Next.woff@caac00c40f1d486932d4b9acdc324976) format("woff"), url(assets/fonts/Next.svg) format("svg");
+  src: url(assets/fonts/Next.eot);
+  src: url(assets/fonts/Next.eot) format("embedded-opentype"), url(assets/fonts/Next.ttf) format("truetype"), url(assets/fonts/Next.woff) format("woff"), url(assets/fonts/Next.svg) format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "NextIcons";
-  src: url(assets/fonts/NextIcons.eot@e67d37a61959f44fedb446d3e980c0e2);
-  src: url(assets/fonts/NextIcons.eot@e67d37a61959f44fedb446d3e980c0e2) format("embedded-opentype"), url(assets/fonts/NextIcons.ttf@07b822b3ad1f9c2dc5f8a7e6e9a4e252) format("truetype"), url(assets/fonts/NextIcons.woff@d34b14dda0f414e45e77654f75bb958a) format("woff"), url(assets/fonts/NextIcons.svg) format("svg");
+  src: url(assets/fonts/NextIcons.eot);
+  src: url(assets/fonts/NextIcons.eot) format("embedded-opentype"), url(assets/fonts/NextIcons.ttf) format("truetype"), url(assets/fonts/NextIcons.woff) format("woff"), url(assets/fonts/NextIcons.svg) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -13198,8 +13198,8 @@ h3.blog-result {
 }
 @font-face {
   font-family: "next-icons2";
-  src: url(assets/fonts/Glyphter.eot@7d842b189fa1afeb011e0b29615328ae);
-  src: url(assets/fonts/Glyphter.eot@7d842b189fa1afeb011e0b29615328ae) format("embedded-opentype"), url(assets/fonts/Glyphter.woff@60d364af6681e1841aa738154e1c5fe5) format("woff"), url(assets/fonts/Glyphter.ttf@11bcfba04356bfb5d112250621cf3e93) format("truetype"), url(assets/fonts/Glyphter.svg) format("svg");
+  src: url(assets/fonts/Glyphter.eot);
+  src: url(assets/fonts/Glyphter.eot) format("embedded-opentype"), url(assets/fonts/Glyphter.woff) format("woff"), url(assets/fonts/Glyphter.ttf) format("truetype"), url(assets/fonts/Glyphter.svg) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -24064,7 +24064,6 @@ main {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  flex-direction: column;
   height: 850px;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
@@ -24074,6 +24073,12 @@ main {
   position: relative;
   text-align: center;
   background: url("assets/img/house-bg.jpg");
+}
+@media only screen and (max-width: 480px) {
+  .home-header {
+    background: url("https://admin.nextsim.com.br/wp-content/uploads/2023/06/9x16-foto.png") !important;
+    background-size: cover !important;
+  }
 }
 
 .home-header .owl-carousel {
