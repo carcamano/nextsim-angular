@@ -24201,6 +24201,10 @@ main {
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.84);
 }
 
+.about-us.content-internal img {
+
+}
+
 .title-home-section h4 {
   color: #fff;
   font-size: 20px;
@@ -25681,13 +25685,6 @@ i.custom-search {
 
 .about-us.content-internal {
   position: relative;
-}
-
-.about-us.content-internal img {
-  position: absolute;
-  right: 45%;
-  bottom: 0;
-  max-width: 55%;
 }
 
 .BlogSingleHeader.negotiate-header {
