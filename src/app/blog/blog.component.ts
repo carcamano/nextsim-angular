@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {WPService} from "../core/services/w-p.service";
-import * as _ from "lodash";
+import {WPService} from '../core/services/w-p.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-blog',
@@ -9,8 +9,8 @@ import * as _ from "lodash";
 })
 export class BlogComponent implements OnInit, AfterViewInit {
 
-  posts:any[];
-  allPosts:any[] = [];
+  posts: any[];
+  allPosts: any[] = [];
 
   taxonomies: any[] = [];
 
@@ -44,7 +44,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
     this.pages = this.allPosts.length;
     this.currentPage = page;
     if (this.allPosts.length > 10) {
-      this.posts = _.chunk(this.allPosts, 10)[this.currentPage - 1]
+      this.posts = _.chunk(this.allPosts, 10)[this.currentPage - 1];
     } else {
       this.posts = this.allPosts;
     }

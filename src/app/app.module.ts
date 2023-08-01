@@ -100,7 +100,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     dismiss: 'Entendi',
     deny: 'Recusar cookies',
     link: 'Política de Cookies',
-    href: 'https://firebasestorage.googleapis.com/v0/b/next-jsonserver.appspot.com/o/lgpd%2FPoli%CC%81tica%20de%20Privacidade.pdf?alt=media&token=a5f8037d-fa3f-4f32-a0e5-d1f24ecc1a87',
+    href: 'https://nextsim.com.br/politica-de-cookies',
+    target: '_self',
     policy: 'Política de Cookies'
   },
   theme: 'block',
