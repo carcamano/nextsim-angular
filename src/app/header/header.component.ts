@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
           autocomplete: null
         };
       } else if (event instanceof NavigationEnd && ((event.url.includes('/sobre-nos') ||
-        event.url.includes('/quero-negociar') || event.url.includes('/blog') || event.url.includes('/servicos')))) {
+        event.url.includes('/quero-negociar') || event.url.includes('/blog') || event.url.includes('/servicos') || event.url.includes('/politica-de-cookies')))) {
         this.rootView = false;
       } else if (event instanceof NavigationEnd && !event.url.includes('/imoveis')) {
         this.rootView = true;

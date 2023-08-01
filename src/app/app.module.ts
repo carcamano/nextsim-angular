@@ -52,6 +52,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatOptionModule} from '@angular/material/core';
 import {NgImageFullscreenViewModule} from 'ng-image-fullscreen-view';
 import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
+import { PoliticaComponent } from './politica/politica.component';
 
 registerLocaleData(localePt);
 
@@ -124,7 +125,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     FormPessoaFisicaComponent,
     LancamentosComponent,
     NextToastComponent,
-    CustomSearchComponent
+    CustomSearchComponent,
+    PoliticaComponent
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,7 @@ import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 import {ServicosFormulariosComponent} from './servicos-formularios/servicos-formularios.component';
 import {LancamentosComponent} from './imoveis/lancamentos/lancamentos.component';
 import {LeaveGuardService} from './core/services/leave-guard.service';
+import {PoliticaComponent} from './politica/politica.component';
 
 export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
@@ -17,6 +18,7 @@ export const ROUTES: Routes = [
   {path: 'blog/:post', component: BlogDetailComponent},
   {path: 'sobre-nos', component: SobreComponent},
   {path: 'quero-negociar', component: QueroNegociarComponent},
+  {path: 'politica-de-cookies', component: PoliticaComponent},
   {path: 'servicos', component: ServicosFormulariosComponent},
   {path: 'imoveis',
     canActivateChild: [LeaveGuardService],
