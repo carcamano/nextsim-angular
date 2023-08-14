@@ -1,9 +1,9 @@
 <div id="backdrop">
-  <section class="container-fluid d-block d-sm-block d-md-none bg-black">
+  <section class="container-fluid d-block d-sm-block d-md-none bg-gray-800">
     <div class="row pt-5">
 
-      <div class="col-12 col-sm-12 pt-3">
-        <img class="img-fluid" src="assets/img/photos/Ilustra_Next_Sobre_Nos_2.png"/>
+      <div class="col-12 col-sm-12 p-0">
+        <img class="img-fluid" src="assets/img/frente-predio-next-sobre-nos.png"/>
       </div>
 
       <div class="col-12 col-sm-12 pt-2 text-center">
@@ -125,42 +125,6 @@
     </ul>
   </section>
 
-  <section class="container-fluid d-block d-sm-block d-md-none bg-team ">
-    <div class="row pt-5 mt-5">
-      <div class="col-12 col-sm-12 padding-team">
-        <p class="title-bold mb-4 text-center">Nossa equipe</p>
-        <span class="orange_bar_decoration"></span>
-      </div>
-      <div class="col-10 col-sm-10 offset-1 offset-sm-1 mt-4">
-        <p class="text-team">Nossa equipe é formada por consultores especialistas, preparados da melhor forma
-          para atuar com lançamentos, revendas e terceiros, unindo uma visão empresarial com investimento
-          imobiliário. Nossos corretores são exclusivos e de grande experiência no mercado regional.
-        <p>
-      </div>
-    </div>
-  </section>
-
-  <section class="container-fluid d-block d-sm-block d-md-none bg-orange">
-    <div class="col-12 col-sm-12 text-center pt-2">
-      <p class="title-regular pt-5">Serviço de confiança</p>
-    </div>
-
-    <div class="col-12 col-sm-12 text-center pt-5">
-      <img class="img-fluid" src="assets/img/icons/icon-services-1.png">
-      <p class="pt-3 title-regular">Corretores <br/>exclusivos e <br/>selecionados.</p>
-    </div>
-
-    <div class="col-12 col-sm-12 text-center pt-5">
-      <img class="img-fluid" src="assets/img/icons/icon-services-2.png">
-      <p class="pt-3 title-regular">Grande experiência <br/>nas especificidades <br/>do mercado local.</p>
-    </div>
-
-    <div class="col-12 col-sm-12 text-center pt-5 pb-5">
-      <img class="img-fluid" src="assets/img/icons/icon-services-3.png">
-      <p class="pt-3 title-regular">Olhar para correção <br/>de detalhes que <br/>fazem a diferença.</p>
-    </div>
-
-  </section>
   <section class="d-none d-sm-none d-md-block d-lg-block d-xl-block bg-gray-800">
     <div class="content-internal container-fluid about-us">
       <div class="row">
@@ -291,14 +255,14 @@
       </div>
     </div>
   </section>
-  <section class="bg-gray d-none d-sm-none d-md-block d-lg-block d-xl-block">
+  <section class="bg-gray d-md-block d-lg-block d-xl-block sobre-especialistas">
     <div class="container">
       <div class="ptu-5">
         <div class="esp-text text-center">
-          <p>Somos especialistas em<br>médio e alto padrão</p>
+          <p class="top-text">Somos especialistas em<br>médio e alto padrão</p>
         </div>
       </div>
-      <div class="row pt-5 mt-5">
+      <div class="row pt-md-5 mt-md-5">
         <div class="offset-md-1 offset-lg-1 col-md-2 col-lg-2 text-center">
           <img src="assets/img/icons/icon-money.png" alt="" class="img-fluid img-icon">
           <p class="text-dark-gray font-weight-light mt-3 esp-text">Venda</p>
@@ -320,7 +284,7 @@
     </div>
     <div class="row bg-white py-5 d-none d-sm-none d-md-block d-lg-block d-xl-block">
       <div class="col-12 custom-title ">
-        <h2>Visite-nos!</h2>
+        <h2 class="top-text">Visite-nos!</h2>
         <span class="orange_bar_decoration"></span>
         <h3 class="mt-4">Visite o nosso escritório e descubra o universo de<br>soluções que a Next pode oferecer para
           você.</h3>
@@ -329,7 +293,7 @@
 
 
     <div class="offset-2 offset-sm-2 col-8 col-sm-8 py-5 text-center d-block d-sm-block d-md-none">
-      <p class="title-regular mb-4 text-center text-gray">Visite-nos</p>
+      <p class="title-regular mb-4 text-center text-gray top-text">Visite-nos</p>
       <span class="orange_bar_decoration"></span>
       <p class="text-hist pt-3">Visite o nosso escritório e descubra o universo de soluções que a Next pode oferecer
         para você.</p>
@@ -366,13 +330,11 @@
           </div>
         </div>
 
-        <section id="cd-google-map">
-          <!--          <agm-map id="map" [latitude]="latitude" [longitude]="longitude" [zoom]="16">-->
-          <!--            <agm-marker [latitude]="latitude"-->
-          <!--                        [longitude]="longitude"></agm-marker>-->
-          <!--          </agm-map>-->
-          <div id="cd-zoom-in" class='btn-in'><span class="zoom">+</span></div>
-          <div id="cd-zoom-out" class='btn-in'><span class="zoom">-</span></div>
+        <section id="cd-google-map" *ngIf="apiLoaded | async">
+
+          <google-map class="w-100" [center]="{lat: latitude, lng: longitude}"
+                      [zoom]="16">
+          </google-map>
 
         </section>
       </div>
