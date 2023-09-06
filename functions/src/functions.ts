@@ -212,11 +212,11 @@ const buildLocal = (imoveis: Imovel[]): any[] => {
 
 const adaptImovel = (imovel: Imovel): Imovel => {
   imovel['active_in_db'] = true;
-  if (imovel.local.cidade === 'Paulinia') {
+  if (imovel?.local?.cidade === 'Paulinia') {
     imovel.local.cidade = 'Paulínia';
   }
-  if (!imovel.local.cidade.includes("/SP")) {
-    imovel.local.cidade = imovel.local.cidade + '/SP'
+  if (imovel?.local?.cidade && !imovel?.local?.cidade?.includes("/SP")) {
+    imovel.local.cidade = `${imovel.local.cidade}/SP`
   }
   return imovel;
 }
