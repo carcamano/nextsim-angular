@@ -13890,7 +13890,7 @@ h3.blog-result {
 
   .text-aboutus {
     font-family: "Raleway", sans-serif;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: #A3A3A3;
     letter-spacing: 1px;
@@ -25400,6 +25400,7 @@ main {
   position: relative;
   text-align: center;
   background: url("assets/img/house-bg.jpg");
+  background-position: right center;
   @media only screen and (max-width: 480px) {
       background: url("https://admin.nextsim.com.br/wp-content/uploads/2023/06/9x16-foto.png") !important;
     background-size: cover !important;

@@ -1,14 +1,14 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {WPService} from "../../core/services/w-p.service";
-import {Lancamento} from "../models/lancamento.model";
-import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {LeadService} from "../../core/services/lead.service";
-import {ToastrService} from "ngx-toastr";
-import {NgbSlideEvent} from "@ng-bootstrap/ng-bootstrap/carousel/carousel";
-import {OwlOptions} from "ngx-owl-carousel-o";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MASKS} from "ng-brazil";
+import {ActivatedRoute} from '@angular/router';
+import {WPService} from '../../core/services/w-p.service';
+import {Lancamento} from '../models/lancamento.model';
+import {NgbCarousel, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {LeadService} from '../../core/services/lead.service';
+import {ToastrService} from 'ngx-toastr';
+import {NgbSlideEvent} from '@ng-bootstrap/ng-bootstrap/carousel/carousel';
+import {OwlOptions} from 'ngx-owl-carousel-o';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MASKS} from 'ng-brazil';
 
 @Component({
   selector: 'app-lancamento',
@@ -51,7 +51,7 @@ export class LancamentoComponent implements OnInit {
       }
     },
     nav: true
-  }
+  };
 
   constructor(private route: ActivatedRoute, private lancamentoService: WPService, private formBuilder: FormBuilder,
               private modalService: NgbModal, private toastr: ToastrService, private service: LeadService) {
@@ -70,9 +70,10 @@ export class LancamentoComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.lancamentoService.slug(params.slug).subscribe(value => {
-        this.lancamento = value;
-        if (this.lancamento && this.lancamento.fields && this.lancamento.fields.planta) {
 
+        this.lancamento = value;
+        this.lancamento.image = this.lancamento?.image?.replace('-1200x800', '');
+        if (this.lancamento && this.lancamento.fields && this.lancamento.fields.planta) {
           this.imgs = this.lancamento.fields.planta.map(value1 => {
             return {
               image: value1.url,
@@ -83,18 +84,17 @@ export class LancamentoComponent implements OnInit {
         }
 
         this.imagesGaleria = [{image: this.lancamento?.fields.galeria.imagem_em_pe.url}, ...this.lancamento?.fields.galeria.galeria.map(value1 => {
-          return {image: value1.url}
+          return {image: value1.url};
         })];
-        console.log(this.imagesGaleria)
         this.buildForm();
         try {
           window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
         } catch (e) {
           window.scrollTo(0, 0);
         }
-      })
+      });
 
-    })
+    });
   }
 
   buildForm() {
@@ -103,7 +103,7 @@ export class LancamentoComponent implements OnInit {
       email: [, [Validators.required, Validators.email]],
       telefone: [],
       mensagem: [],
-    })
+    });
   }
 
 
@@ -134,7 +134,7 @@ export class LancamentoComponent implements OnInit {
 
   whatsapp() {
 
-    window.open("https://api.whatsapp.com/send?text=http://nextsim.com.br/imoveis/lancamentos/" + this.lancamento.slug, "_blank");
+    window.open('https://api.whatsapp.com/send?text=http://nextsim.com.br/imoveis/lancamentos/' + this.lancamento.slug, '_blank');
 
     // https://api.whatsapp.com/send?phone=1996099999&text=https://postcron.com/en/blog/landings/whatsapp-link-generator/#page-block-he6t7wyxoh
   }

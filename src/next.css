@@ -685,5 +685,29 @@ app-imovel .property {
     margin-top: 15px;
   }
 }
+.modal-area-cliente {
+  padding: 20px 0;
+}
+.modal-area-cliente a {
+  color: #000;
+}
+.modal-area-cliente a:hover {
+  text-decoration: none;
+  color: #000;
+}
+.modal-area-cliente .border-me {
+  border: 2px solid;
+  padding: 20px;
+  border-radius: 15px;
+  border-color: #71a341;
+}
+.modal-area-cliente .border-me.owli {
+  border-color: #416ba3;
+}
+@media only screen and (max-width: 576px) {
+  .modal-area-cliente {
+    padding: 20px 15px;
+  }
+}
 
 /*# sourceMappingURL=next.css.map */

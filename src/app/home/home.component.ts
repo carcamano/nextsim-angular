@@ -38,8 +38,6 @@ export class HomeComponent implements OnInit {
         this.posts = this.posts.slice(0, 6);
       }
     });
-
-
   }
 
   nextPost() {
@@ -66,6 +64,10 @@ export class HomeComponent implements OnInit {
       return '';
     }
     return html.replace(/<[^>]+>/g, '').replace('[&hellip;]', '...');
+  }
+
+  openVideo = () => {
+
   }
 
 }

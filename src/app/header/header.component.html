@@ -1,5 +1,6 @@
 <header class=""
-        [ngClass]="{'home-header': rootView, 'container-fluid PropertyListHeader': !rootView }" [style.background-image]="rootView ? ('url(' + image + ')') : 'none'">
+        [ngClass]="{'home-header': rootView, 'container-fluid PropertyListHeader': !rootView }"
+        [style.background-image]="rootView ? ('url(' + image + ')') : 'none'">
   <div class="row NextMobileMenu d-lg-none mt-4">
     <div class="col-2 text-left">
       <a class="toggleMenu" (click)="showMobileMenu = !showMobileMenu">
@@ -51,7 +52,15 @@
                 </li>
               </ul>
             </li>
-            <li><a [routerLink]='["/quero-negociar"]'>Quero anunciar</a></li>
+            <li>
+              <a [routerLink]='["/imoveis/lancamentos"]'>Lançamentos</a>
+            </li>
+            <li>
+              <a [routerLink]='["/quero-negociar"]'>Quero anunciar</a>
+            </li>
+            <li>
+              <a href="#" (click)="openModal(content)">Área do cliente</a>
+            </li>
             <li><a [routerLink]='["/sobre-nos"]'>Sobre nós</a></li>
           </ul>
         </div>
@@ -118,7 +127,13 @@
             </div>
           </li>
           <li>
+            <a [routerLink]='["/imoveis/lancamentos"]'>Lançamentos</a>
+          </li>
+          <li>
             <a [routerLink]='["/quero-negociar"]'>Quero anunciar</a>
+          </li>
+          <li>
+            <a href="#" (click)="openModal(content)">Área do cliente</a>
           </li>
         </ul>
       </nav>
@@ -163,7 +178,7 @@
                 </div>
               </div>
             </div>
-            <div class="category" ngbDropdown #dropFinalidade="ngbDropdown"  [autoClose]="true">
+            <div class="category" ngbDropdown #dropFinalidade="ngbDropdown" [autoClose]="true">
               <div class="category-title" ngbDropdownToggle id="dropdownForm2"><span
                 class="icon-category arrow-down-icon"></span> <span
                 class="category-title-in">{{simpleSearch.finalidade || 'Categoria'}}</span></div>
@@ -188,11 +203,12 @@
             <div class="searchfield">
               <input type="text" class="form-control" id="search-field"
                      placeholder="Cidade, bairro ou código" autocomplete="off" [(ngModel)]="simpleSearch.campo"
-                     (keyup)="searchAutocomplete($event)" id="userIdFirstWay" list="dynmicUserIds" (change)="onSelectAutoComplete($event, simpleSearch.campo)"
+                     (keyup)="searchAutocomplete($event)" id="userIdFirstWay" list="dynmicUserIds"
+                     (change)="onSelectAutoComplete($event, simpleSearch.campo)"
                      [ngModelOptions]="{standalone: true}">
-<!--                     [attr.list]="autocompletes && autocompletes.length > 4 ? 'dynmicUserIds': '' "-->
+              <!--                     [attr.list]="autocompletes && autocompletes.length > 4 ? 'dynmicUserIds': '' "-->
               <datalist>
-                <option *ngFor="let item of autocompletes" [value]="item.value" >{{item.value}}</option>
+                <option *ngFor="let item of autocompletes" [value]="item.value">{{item.value}}</option>
               </datalist>
             </div>
           </div>
@@ -225,3 +241,55 @@
 </header>
 
 <app-custom-search #customSearch></app-custom-search>
+
+<div class="modal"></div>
+
+<ng-template #content let-modal>
+  <div class="row modal-area-cliente">
+    <div class="col-12">
+      <h2 class="text-center">Área do Cliente</h2>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 border-me owli">
+          <div class="row align-items-center my-3">
+            <div class="col-4">
+              <img src="../../assets/images/owli.png" class="img-fluid"/>
+            </div>
+            <div class="col-8 font-weight-bold">
+              Para acessar a área do cliente faça download do aplicativo Owli
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-6">
+              <a href="https://apps.apple.com/br/app/owli/id1397598475" target="_blank">
+                <img src="../../assets/images/app-store.png" class="img-fluid"/>
+              </a>
+            </div>
+            <div class="col-6">
+              <a href="https://play.google.com/store/apps/details?id=br.com.owli&hl=pt_BR" target="_blank">
+                <img src="../../assets/images/google-play.png" class="img-fluid"/>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-10">
+          <h6 class="text-center my-4 ">Perdeu seu acesso? Envie um e-mail para: <a
+            href="mailto:administrativo@nextsim.com.br">administrativo@nextsim.com.br</a></h6>
+        </div>
+        <div class="col-12 col-md-10 border-me">
+          <a
+            href="https://api.whatsapp.com/send?phone=5519999120030&text=Oi,%20preciso%20de%20ajuda%20com%20a%20manuten%C3%A7%C3%A3o%20do%20meu%20im%C3%B3vel%20Next!"
+            target="_blank" class="row align-items-center my-3">
+            <div class="col-4">
+              <img src="../../assets/images/whatsapp.png" class="img-fluid"/>
+            </div>
+            <div class="col-8 font-weight-bold font-weight-bold">
+              <h4 class="font-weight-bold">Manuteção</h4>
+              Clique aqui para acessar nosso canal no WhatsApp
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-template>

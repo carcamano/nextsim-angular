@@ -38,7 +38,7 @@ export function fetchAllFromBackup(filePath: string): Promise<Imovel[] | undefin
     }).catch(reason => {
       console.error(reason);
       return new Promise(resolve => resolve());
-    });;
+    });
 }
 
 export const makeImoveis = (value1: any[]): Imovel[] => {

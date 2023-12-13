@@ -8,6 +8,7 @@ import {doc, docSnapshots, Firestore} from '@angular/fire/firestore';
 import {map} from "rxjs/operators";
 import {CustomSearchComponent} from "../core/components/custom-search/custom-search.component";
 import * as _ from "lodash";
+import {MASKS} from "ng-brazil";
 
 @Component({
   selector: 'app-header',
@@ -140,6 +141,18 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  openModal(content) {
+    this.showMobileMenu = false
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      // @ts-ignore
+      size: 'md',
+      centered: true
+    }).result.then((result) => {
+    }, (reason) => {
+    });
+  }
+
 
   private loadDefaults() {
 
@@ -149,9 +162,9 @@ export class HeaderComponent implements OnInit {
       }))
       .subscribe(strings => {
         this.autocompletes = this.autocompletes = _.unionBy(strings.autocomplete, 'value');
-        ;
       });
   }
 
 
+  protected readonly MASKS = MASKS;
 }

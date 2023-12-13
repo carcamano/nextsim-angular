@@ -13093,7 +13093,7 @@ h3.blog-result {
   }
   .text-aboutus {
     font-family: "Raleway", sans-serif;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: #A3A3A3;
     letter-spacing: 1px;
@@ -24073,6 +24073,7 @@ main {
   position: relative;
   text-align: center;
   background: url("assets/img/house-bg.jpg");
+  background-position: right center;
 }
 @media only screen and (max-width: 480px) {
   .home-header {
@@ -24199,10 +24200,6 @@ main {
   margin: 0;
   line-height: 1.1em;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.84);
-}
-
-.about-us.content-internal img {
-
 }
 
 .title-home-section h4 {
