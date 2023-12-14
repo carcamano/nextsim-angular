@@ -1,14 +1,14 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {NgbDropdown, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AllImoveis} from "../core/services/all-imoveis.service";
-import {WPService} from "../core/services/w-p.service";
-import {PATH_AUTOCOMPLETE} from "../core/utils/constants.util";
+import {AllImoveis} from '../core/services/all-imoveis.service';
+import {WPService} from '../core/services/w-p.service';
+import {PATH_AUTOCOMPLETE} from '../core/utils/constants.util';
 import {doc, docSnapshots, Firestore} from '@angular/fire/firestore';
-import {map} from "rxjs/operators";
-import {CustomSearchComponent} from "../core/components/custom-search/custom-search.component";
-import * as _ from "lodash";
-import {MASKS} from "ng-brazil";
+import {map} from 'rxjs/operators';
+import {CustomSearchComponent} from '../core/components/custom-search/custom-search.component';
+import * as _ from 'lodash';
+import {MASKS} from 'ng-brazil';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +17,28 @@ import {MASKS} from "ng-brazil";
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit {
+
+  constructor(private router: Router, private modalService: NgbModal, private allImoveis: AllImoveis, private firestore: Firestore,
+              private lancamentoService: WPService, private elementRef: ElementRef, private renderer: Renderer2) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
+        this.rootView = false;
+        this.simpleSearch = {
+          finalidade: null,
+          categoria: null,
+          campo: null,
+          autocomplete: null
+        };
+      } else if (event instanceof NavigationEnd && ((event.url.includes('/sobre-nos') ||
+        event.url.includes('/quero-negociar') || event.url.includes('/blog') || event.url.includes('/servicos') || event.url.includes('/politica-de-cookies')))) {
+        this.rootView = false;
+      } else if (event instanceof NavigationEnd && !event.url.includes('/imoveis')) {
+        this.rootView = true;
+      }
+      this.showMobileMenu = false;
+
+    });
+  }
 
   rootView = true;
 
@@ -43,27 +65,8 @@ export class HeaderComponent implements OnInit {
   title = 'Sua melhor forma de acessar imóveis<br> de alto padrão com suporte.';
   image = 'https://admin.nextsim.com.br/wp-content/themes/theme/img/house-bg.jpg';
 
-  constructor(private router: Router, private modalService: NgbModal, private allImoveis: AllImoveis, private firestore: Firestore,
-              private lancamentoService: WPService, private elementRef: ElementRef, private renderer: Renderer2) {
-    router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && event.url.includes('/imoveis')) {
-        this.rootView = false;
-        this.simpleSearch = {
-          finalidade: null,
-          categoria: null,
-          campo: null,
-          autocomplete: null
-        };
-      } else if (event instanceof NavigationEnd && ((event.url.includes('/sobre-nos') ||
-        event.url.includes('/quero-negociar') || event.url.includes('/blog') || event.url.includes('/servicos') || event.url.includes('/politica-de-cookies')))) {
-        this.rootView = false;
-      } else if (event instanceof NavigationEnd && !event.url.includes('/imoveis')) {
-        this.rootView = true;
-      }
-      this.showMobileMenu = false;
 
-    });
-  }
+  protected readonly MASKS = MASKS;
 
   ngOnInit() {
     this.loadDefaults();
@@ -79,11 +82,11 @@ export class HeaderComponent implements OnInit {
 
         this.image = value.acf.imagem_home;
       }
-    })
+    });
   }
 
   onSelectAutoComplete(e: any, value: string) {
-    this.autocompleteSelected = this.autocompletes.find(item => item.value === value)
+    this.autocompleteSelected = this.autocompletes.find(item => item.value === value);
   }
 
 
@@ -92,7 +95,7 @@ export class HeaderComponent implements OnInit {
   }
 
   scroll() {
-    document.getElementById('backdrop').scrollIntoView({behavior: "smooth"});
+    document.getElementById('backdrop').scrollIntoView({behavior: 'smooth'});
   }
 
 
@@ -156,6 +159,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  closeModal = () => {
+    this.modalService.dismissAll();
+  }
 
   private loadDefaults() {
 
@@ -167,7 +173,4 @@ export class HeaderComponent implements OnInit {
         this.autocompletes = this.autocompletes = _.unionBy(strings.autocomplete, 'value');
       });
   }
-
-
-  protected readonly MASKS = MASKS;
 }
