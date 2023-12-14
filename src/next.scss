@@ -859,8 +859,39 @@ app-imovel {
 }
 
 
+.client-modal {
+
+  .modal-content {
+    border-radius: 20px;
+  }
+
 .modal-area-cliente {
   padding: 20px 0;
+  font-size: 1.1rem;
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .close-modal {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAE9WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgOS4xLWMwMDEgNzkuMTQ2Mjg5OTc3NywgMjAyMy8wNi8yNS0yMzo1NzoxNCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDI1LjIgKE1hY2ludG9zaCkiIHhtcDpDcmVhdGVEYXRlPSIyMDIzLTEyLTE0VDEzOjE3OjAyLTAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMy0xMi0xNFQxMzoxNzoyNy0wMzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMy0xMi0xNFQxMzoxNzoyNy0wMzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ZjkyODU5NmUtN2FjMS00NjE2LTg4OWItZjQzNGIyYjgyOTIxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOmY5Mjg1OTZlLTdhYzEtNDYxNi04ODliLWY0MzRiMmI4MjkyMSIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOmY5Mjg1OTZlLTdhYzEtNDYxNi04ODliLWY0MzRiMmI4MjkyMSI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ZjkyODU5NmUtN2FjMS00NjE2LTg4OWItZjQzNGIyYjgyOTIxIiBzdEV2dDp3aGVuPSIyMDIzLTEyLTE0VDEzOjE3OjAyLTAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgMjUuMiAoTWFjaW50b3NoKSIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4zLArhAAADa0lEQVRYhbXXQYhVVRzH8c+5vEWLQSREIkREJmkhGlaEFUEZUyBEMggWA0NjSHPDwCAigiDcFDGLCK9TiSMhU7uIogZTJyajhaFTzMpEXESLCAmJGGTwtLjnTW/evHvf+Jz+q3vP+Z/z/d1zzv+e/z/EGK3UYh624Qncjw1Yn7r+wG+4iLOhiLMrnTN0ExDz0IcXMZqAp/EjruJacrsTm/AQnkztH+KjUMTrPQuIeRjCe7iEMUyFIt7oIriBp3EI2/BaKOKJWxIQ87AGE3gAo6GIX9dBa8QMKFdiFsOdViPrMGg9vkcD23uFQyjiKWzHTfwQ83BXrYD05d/iJwyGIv7VK7xFxHXsxTmciXlYu6S/dQtiHr5IaveGIi7cLrzVYh4yfIo12B2KeJOWFYh5GMFW5V6tKhwScD8246XF9hijtCy/4rlQxNNtyt9HjuN4uZu4FAVHMILxUMSDbf2P4kvcE4r4Z3MFclxoh7f0NXAAEwlQB59Ivo00domFIp7DDA5ClvZmVBnvnexEy/NQlYgW+FBL8/GKOcdwIOahkeFh5Vk4W+E8isk6ERXwyTR2mYUizmAejzWU//ap5qns4LwQ8zCcXp9vESHm4YX03gne7TBPYVdDebF8U+NYK6LD80rgcB6DGfpxuYuzNOGw5dvRC1xibsnQ579brRcRvcDhd9zRDMOO+19jnfx7mSPLlKdx7UpGVJz2plWGaIXdjRsZriiTiV7gk7qEaI1twOUMvygjoRf4sM4HcyUiHsRchjMY6AUeirhQEx3dRAxgOsN3WBfzsKPC8UgVvNlQI+JoxUdtxUacylKO94kyh+tkI3XwLiJG2v2SHcLJUMT5ZhiO4dmUdrfbuDJkjlXBO4g4lsaMt/vEPNyLfdLlt5gRxTy8hd145P9ISBKjgWnMhCK+ydKc8J30XnUtr4YdVv55DzcbFgWkszCIfTEPr642OebhFeWZ2BOKOL/Iba8L0h5N4yTeuN3tSMv+trK62hWKONfaX1WYbMLn+Bv7QxEv9Qjvx8fK0m1PKOKVdp9lhQmEIl7FTmUufzHm4WjMw5ZbAG+OefgAP+MCdnaCs7LitB+vKxOROWUmc155n/+jDLc+ZV6xA0/hPnyGd7utXlcBLUL68AweT6CNWJe6rymr5Vnlr/2rblVx0/4FBQaCLNfMwJMAAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 32px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fe6900;
+    background-color: #fff;
+    padding: 0;
+    opacity: 1;
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    z-index: 12;
+    cursor: pointer;
+    transition: .2s;
+  }
 
   a {
     color: #000;
@@ -872,49 +903,22 @@ app-imovel {
   }
 
   .border-me {
-    border: 2px solid;
+    border: 2px solid #7b8187;
     padding: 20px;
     border-radius: 15px;
-    border-color: #71a341;
 
-    &.owli {
-      border-color: #416ba3;
-    }
   }
 
   @media only screen and (max-width: 576px) {
     padding: 20px 15px;
   }
 }
+}
 
 .about-img-block {
   .picture-frame {
     .fachada-play {
       cursor: pointer;
-    }
-
-    &:after {
-      cursor: pointer;
-      content: '';
-      width: 70px;
-      height: 70px;
-      position: absolute;
-      margin: auto;
-      left: 0;
-      top: 0;
-      right: -70px;
-      bottom: 70px;
-      border: 0;
-      display: block;
-      background-image: url("./assets/images/play-solid.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
-      @media only screen and (max-width: 576px) {
-        right: -50px;
-        bottom: 50px;
-        width: 50px;
-        height: 50px;
-      }
     }
   }
 }

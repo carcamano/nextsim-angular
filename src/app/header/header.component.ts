@@ -141,11 +141,14 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  openModal(content) {
-    this.showMobileMenu = false
+  openModal(e, content) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.showMobileMenu = false;
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       // @ts-ignore
+      modalDialogClass: 'client-modal',
       size: 'md',
       centered: true
     }).result.then((result) => {
