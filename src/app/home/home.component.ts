@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WPService} from '../core/services/w-p.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   posts: any[] = [];
   currentPost = 0;
 
-  constructor(private lancamentoService: WPService) {
+  constructor(private lancamentoService: WPService, private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -66,8 +67,21 @@ export class HomeComponent implements OnInit {
     return html.replace(/<[^>]+>/g, '').replace('[&hellip;]', '...');
   }
 
-  openVideo = () => {
+  openVideo = (content) => {
+    const modal = this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      modalDialogClass: 'modal-video',
+      size: 'xl',
+      centered: true
+    });
+    console.log(modal);
 
+    modal.shown.subscribe(() => {
+      console.log('modal shown');
+    });
+    modal.hidden.subscribe(() => {
+      console.log('modal shown');
+    });
   }
 
 }

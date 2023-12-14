@@ -92,8 +92,8 @@
     <div class="row about-session-block">
       <div class="col-xs-12 col-sm-12 col-md-6">
         <div class="about-img-block">
-          <div class="picture-frame ">
-            <img src="assets/img/next-fachada.png" alt="" class="picture fachada-play" (click)="openVideo()" />
+          <div class="picture-frame " (click)="openVideo(content)">
+            <img src="assets/img/next-fachada.png" alt="" class="picture fachada-play" />
           </div>
         </div>
       </div>
@@ -182,3 +182,9 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/0Wj_UqH7XcM?si=gXB6qTufbk6YfKv-&amp;controls=0&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</ng-template>
