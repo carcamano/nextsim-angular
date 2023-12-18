@@ -858,16 +858,26 @@ app-imovel {
 @media only screen and (max-width: 576px) {
 }
 
-
+.home-header {
+  background-size: cover;
+}
 .client-modal {
+    @media only screen and (max-width: 576px) {
+      font-size: 1.5rem;
+    }
 
   .modal-content {
     border-radius: 20px;
+
+    @media only screen and (max-width: 576px) {
+      margin: auto 15px;
+      padding: 20px;
+    }
   }
 
 .modal-area-cliente {
   padding: 20px 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
 
   h2 {
     font-weight: bold;

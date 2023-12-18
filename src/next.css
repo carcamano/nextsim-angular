@@ -680,12 +680,27 @@ app-imovel .property {
     margin-top: 15px;
   }
 }
+.home-header {
+  background-size: cover;
+}
+
+@media only screen and (max-width: 576px) {
+  .client-modal {
+    font-size: 1.5rem;
+  }
+}
 .client-modal .modal-content {
   border-radius: 20px;
 }
+@media only screen and (max-width: 576px) {
+  .client-modal .modal-content {
+    margin: auto 15px;
+    padding: 20px;
+  }
+}
 .client-modal .modal-area-cliente {
   padding: 20px 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 .client-modal .modal-area-cliente h2 {
   font-weight: bold;
