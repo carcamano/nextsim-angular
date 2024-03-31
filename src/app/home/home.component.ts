@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
 
     this.lancamentoService.all().subscribe(value => {
       this.lancamentos = value.body;
+      console.log(this.lancamentos)
       if (this.lancamentos.length > 6) {
         this.lancamentos = this.lancamentos.slice(0, 6);
       }
@@ -54,6 +55,14 @@ export class HomeComponent implements OnInit {
       this.currentPost = this.posts.length - 1;
     }
 
+  }
+
+  lancamentoTitle = (title: string) => {
+    return title.split('/').pop()
+  }
+
+  lancamentoSubTitle = (title: string) => {
+    return title.split('/').shift()
   }
 
   anotherPosts(): any[] {

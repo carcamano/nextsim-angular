@@ -20,13 +20,11 @@
             <div class="row">
               <div class="col-12 col-sm-4" *ngFor="let lancamento of lancamentos">
                 <a [routerLink]="['/imoveis/lancamentos/' + lancamento.slug]">
-                  <div class="item" [style.background-image]="'url(' + lancamento.image + ')'">
-                    <div class="lancamento_nome">
-                      <div class="row">
-                        <div class="col">
-                          <span>{{lancamento.title.rendered}}</span>
-                        </div>
-                      </div>
+                  <div class="item" >
+                    <img [src]="lancamento.image" class="img-fluid" />
+                    <div class=" text-left m-2">
+                      <h6>{{lancamentoTitle(lancamento.title.rendered)}}</h6>
+                      <h4>{{lancamentoSubTitle(lancamento.title.rendered)}}</h4>
                     </div>
                   </div>
                 </a>

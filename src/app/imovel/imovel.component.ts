@@ -22,6 +22,7 @@ import {NextToastComponent} from '../core/components/next-toast/next-toast.compo
 export class ImovelComponent implements OnInit {
 
   imovel: Imovel;
+  similarImoveis: Imovel[];
 
   imageheight = (window.innerWidth > 1300 ? 500 : (window.innerWidth > 992 ? 480 : 300)) + 'px';
 
@@ -60,6 +61,7 @@ export class ImovelComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.all.getBySigla(String(params.id).toLocaleUpperCase()).subscribe((im: Imovel[]) => {
         this.imovel = im[0];
+        console.log(this.imovel);
         this.imageObject();
         this.buildForm();
         try {
@@ -67,6 +69,20 @@ export class ImovelComponent implements OnInit {
         } catch (e) {
           window.scrollTo(0, 0);
         }
+
+        this.all.getImoveis(
+          {
+            finalidade: this.imovel.finalidade,
+            cidade: this.imovel.local.cidade,
+            tipos: [this.imovel.tipo]
+          }
+        )
+          .subscribe(value => {
+            this.similarImoveis = value
+              .map(value1 => value1 as Imovel)
+              .filter(value1 => value1.sigla !== this.imovel.sigla)
+              .slice(0, 3);
+          });
       });
     });
 

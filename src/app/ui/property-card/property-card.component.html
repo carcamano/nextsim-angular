@@ -1,0 +1,131 @@
+<div class="d-flex flex-column item no-gutters property-card" >
+  <div class="col-12 novo-slider h-100">
+    <owl-carousel-o [options]="mySlideOptions">
+      <ng-container *ngFor="let image of imagensCarousel(imovel.midia.imagens); let i = index">
+        <ng-template carouselSlide [id]="i">
+          <div class="item" (click)="goImovel(imovel)"
+               style="height: 100%;">
+            <div class="img" [class.opacity-filter]="i === 3" style="height: 100%;">
+              <img [src]="image"/>
+              <a (click)="goImovel(imovel)" class="btn btn-see-more btn-rounded"
+                 *ngIf="i === 3">
+                VER MAIS <span class="arrow-icon"></span>
+              </a>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o>
+
+  </div>
+  <div class="col-12 h-100 novo-content" (click)="goImovel(imovel)">
+    <div class="h-100 row">
+      <div class="col-12 align-self-start novo-topo">
+        <div class="row">
+          <div class="col-12">
+            <span class="novo-tipo">{{imovel.tipo}}</span>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <span class="novo-local">{{imovel?.local?.bairro}}, {{imovel?.local?.cidade}}</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-12 align-self-center novo-meio">
+        <div class="row no-gutters">
+          <div class="col-auto" *ngIf="toArea(imovel)">
+            <div>
+              <i class="icon-area"></i>
+              <span>{{toArea(imovel)}}</span>
+            </div>
+          </div>
+          <div class="col-auto"
+               *ngIf="(imovel.tipo === 'casa' && imovel.finalidade === 'comercial') && toSalas(imovel)">
+            <div><i class="icon2-salas"></i> <span>{{toSalas(imovel)}}</span></div>
+          </div>
+          <div class="col-auto"
+               *ngIf="(imovel.tipo !== 'sala' && imovel.tipo !== 'prédio' && imovel.finalidade !== 'comercial') && toDormis(imovel)">
+            <div><i class="icon-bed"></i> <span>{{toDormis(imovel)}}</span></div>
+          </div>
+          <div class="col-auto"
+               *ngIf="(imovel.tipo === 'sala' || imovel.tipo === 'prédio') && toSalas(imovel)">
+            <div><i class="icon2-salas"></i> <span>{{toSalas(imovel)}}</span></div>
+          </div>
+          <div class="col-auto" *ngIf="toBath(imovel)">
+            <div>
+              <i class="icon-bathtub"></i>
+              <span>{{toBath(imovel)}}</span>
+            </div>
+          </div>
+          <div class="col-auto" *ngIf="toVaga(imovel)">
+            <div>
+              <i class="icon-car"></i>
+              <span>{{toVaga(imovel)}}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-12 align-self-end novo-footer">
+        <div class="row justify-content-between">
+          <div class="col-auto">
+            <span class="novo-price" [innerHTML]="getprice(imovel)"></span>
+          </div>
+          <div class="col-auto align-self-end">
+            <span class="novo-cod">Cód: {{imovel.sigla}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="old" *ngIf="false">
+      <span class="field-label">{{imovel.tipo}}</span>
+      <p class="neighborhood">{{imovel?.local?.bairro}}</p>
+      <span class="code">Cód: <b>{{imovel.sigla}}</b></span>
+      <div class="middle-info">
+        <!-- Info Type -->
+        <div class="info-item"
+             *ngIf="(imovel.tipo === 'casa' && imovel.finalidade === 'comercial') && toSalas(imovel)">
+          <span class="field-label label-change">Salas</span>
+          <div><i class="icon2-salas text-orange"></i> {{toSalas(imovel)}}</div>
+        </div>
+        <div class="info-item"
+             *ngIf="(imovel.tipo !== 'sala' && imovel.tipo !== 'prédio' && imovel.tipo !== 'casa' && imovel.finalidade !== 'comercial') && toDormis(imovel)">
+          <span class="field-label label-change">Quartos</span>
+          <div><i class="icon-bed text-orange"></i> {{toDormis(imovel)}}</div>
+        </div>
+        <div class="info-item"
+             *ngIf="(imovel.tipo === 'sala' || imovel.tipo === 'prédio') && toSalas(imovel)">
+          <span class="field-label label-change">Salas</span>
+          <div><i class="icon2-salas text-orange"></i> {{toSalas(imovel)}}</div>
+        </div>
+        <div class="info-item" *ngIf="toArea(imovel)">
+          <span class="field-label label-change" *ngIf="imovel.tipo !== 'cobertura'">Área</span>
+          <span class="field-label label-change" *ngIf="imovel.tipo === 'cobertura'">Área útil</span>
+          <div>
+            <i class="icon-area text-orange"></i>
+            {{toArea(imovel)}}
+          </div>
+        </div>
+        <div class="info-item">
+<!--          <span class="field-label label-change" *ngIf="queryParams.categoria === 'comprar'">Preço</span>-->
+<!--          <span class="field-label label-change" *ngIf="queryParams.categoria === 'alugar'">Aluguel</span>-->
+          <div><i class="icon-dollar text-orange"></i> {{getprice(imovel)}}</div>
+        </div>
+      </div>
+      <div class="footer-info">
+        <div class="row">
+          <div class="col-6 col-sm-6 pos-btn-see-more">
+            <a (click)="goImovel(imovel)"
+               class="btn btn-see-more btn-rounded">
+              VER MAIS <span class="arrow-icon"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

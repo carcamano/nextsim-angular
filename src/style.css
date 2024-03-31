@@ -26020,4 +26020,13 @@ button.toast-close-button {
   background: transparent;
 }
 
+.property-card .owl-dots {
+  margin-top: -32px !important;
+  z-index: 999;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  justify-items: baseline;
+}
+
 /*# sourceMappingURL=style.css.map */

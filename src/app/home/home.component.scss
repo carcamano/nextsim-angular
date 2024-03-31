@@ -1,3 +1,4 @@
+
 .item {
   height: auto;
   background-size: cover;
@@ -8,36 +9,47 @@
   transition: ease-in 0.2s !important;
   background: #FAFAFA !important;
   padding-bottom: 2px;
-}
-.item img {
-  object-fit: cover;
-  height: 220px;
-}
-.item h4, .item h6 {
-  margin: auto;
-  color: #000;
-}
-.item h6 {
-  text-transform: capitalize;
-  font-size: 1rem;
-}
-.item h4 {
-  font-size: 1.3rem;
-}
-.item:hover h6, .item:hover h4 {
-  color: #000;
-}
 
+  img {
+    object-fit: cover;
+    height: 220px;
+  }
+
+  h4, h6 {
+    margin: auto;
+    color: #000;
+  }
+
+  h6 {
+    text-transform: capitalize;
+    font-size: 1rem;
+  }
+  h4 {
+    font-size: 1.3rem;
+
+  }
+
+  &:hover {
+    h6, h4 {
+      color: #000;
+    }
+  }
+}
 .blog-thumb img {
   cursor: pointer;
 }
+.lancamento_nome {
+}
 
 .lancamento_nome:hover {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, .6);
+}
+
+
+.property_releases_nav {
+
 }
 
 .property_releases_nav ul li a {
   cursor: pointer;
 }
-
-/*# sourceMappingURL=home.component.css.map */

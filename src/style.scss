@@ -27411,3 +27411,12 @@ button.toast-close-button {
 .Services form .form-group input.form-control:not(:placeholder-shown), .Services form .form-group select.form-control:not(:placeholder-shown), .Services .form-control:not(:placeholder-shown) {
   background: transparent;
 }
+
+.property-card .owl-dots {
+  margin-top: -32px !important;
+  z-index: 999;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  justify-items: baseline;
+}
